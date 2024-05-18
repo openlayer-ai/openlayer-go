@@ -29,16 +29,11 @@ func TestUsage(t *testing.T) {
 		"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
 		openlayer.InferencePipelineDataStreamParams{
 			Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmDataConfig{
-				Number0: "R",
-				Number1: "E",
-				Number2: "P",
-				Number3: "L",
-				Number4: "A",
-				Number5: "C",
-				Number6: "E",
-				Number7: "_",
-				Number8: "M",
-				Number9: "E",
+				InputVariableNames:   openlayer.F([]string{"user_query"}),
+				OutputColumnName:     openlayer.F("output"),
+				NumOfTokenColumnName: "tokens",
+				CostColumnName:       openlayer.F("cost"),
+				TimestampColumnName:  openlayer.F("timestamp"),
 			}),
 			Rows: openlayer.F([]map[string]interface{}{{
 				"user_query": "what's the meaning of life?",
