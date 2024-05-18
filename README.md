@@ -3,7 +3,7 @@
 <a href="https://pkg.go.dev/github.com/stainless-sdks/openlayer-go"><img src="https://pkg.go.dev/badge/github.com/stainless-sdks/openlayer-go.svg" alt="Go Reference"></a>
 
 The Openlayer Go library provides convenient access to [the Openlayer REST
-API](https://openlayer.com/) from applications written in Go. The full API of this library can be found in [api.md](api.md).
+API](https://docs.openlayer.com/introduction) from applications written in Go. The full API of this library can be found in [api.md](api.md).
 
 It is generated with [Stainless](https://www.stainlessapi.com/).
 
