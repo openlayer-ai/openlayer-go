@@ -33,40 +33,46 @@ The full API of this library can be found in [api.md](api.md).
 package main
 
 import (
-  "context"
-  "fmt"
+	"context"
+	"fmt"
 
-  "github.com/stainless-sdks/openlayer-go"
-  "github.com/stainless-sdks/openlayer-go/option"
+	"github.com/stainless-sdks/openlayer-go"
+	"github.com/stainless-sdks/openlayer-go/option"
 )
 
 func main() {
-  client := openlayer.NewClient(
-    option.WithAPIKey("My API Key"), // defaults to os.LookupEnv("OPENLAYER_API_KEY")
-  )
-  inferencePipelineDataStreamResponse, err := client.InferencePipelines.Data.Stream(
-    context.TODO(),
-    "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-    openlayer.InferencePipelineDataStreamParams{
-      Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmDataConfig{
-        Number0: "R",
-        Number1: "E",
-        Number2: "P",
-        Number3: "L",
-        Number4: "A",
-        Number5: "C",
-        Number6: "E",
-        Number7: "_",
-        Number8: "M",
-        Number9: "E",
-      }),
-      Rows: openlayer.F([]),
-    },
-  )
-  if err != nil {
-    panic(err.Error())
-  }
-  fmt.Printf("%+v\n", inferencePipelineDataStreamResponse.Success)
+	client := openlayer.NewClient(
+		option.WithAPIKey("My API Key"), // defaults to os.LookupEnv("OPENLAYER_API_KEY")
+	)
+	inferencePipelineDataStreamResponse, err := client.InferencePipelines.Data.Stream(
+		context.TODO(),
+		"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+		openlayer.InferencePipelineDataStreamParams{
+			Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmDataConfig{
+				Number0: "R",
+				Number1: "E",
+				Number2: "P",
+				Number3: "L",
+				Number4: "A",
+				Number5: "C",
+				Number6: "E",
+				Number7: "_",
+				Number8: "M",
+				Number9: "E",
+			}),
+			Rows: openlayer.F([]map[string]interface{}{{
+				"user_query": "what's the meaning of life?",
+				"output":     "42",
+				"tokens":     map[string]interface{}{},
+				"cost":       map[string]interface{}{},
+				"timestamp":  map[string]interface{}{},
+			}}),
+		},
+	)
+	if err != nil {
+		panic(err.Error())
+	}
+	fmt.Printf("%+v\n", inferencePipelineDataStreamResponse.Success)
 }
 
 ```
@@ -185,31 +191,37 @@ To handle errors, we recommend that you use the `errors.As` pattern:
 
 ```go
 _, err := client.InferencePipelines.Data.Stream(
-  context.TODO(),
-  "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-  openlayer.InferencePipelineDataStreamParams{
-    Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmDataConfig{
-      Number0: "R",
-      Number1: "E",
-      Number2: "P",
-      Number3: "L",
-      Number4: "A",
-      Number5: "C",
-      Number6: "E",
-      Number7: "_",
-      Number8: "M",
-      Number9: "E",
-    }),
-    Rows: openlayer.F([]),
-  },
+	context.TODO(),
+	"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+	openlayer.InferencePipelineDataStreamParams{
+		Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmDataConfig{
+			Number0: "R",
+			Number1: "E",
+			Number2: "P",
+			Number3: "L",
+			Number4: "A",
+			Number5: "C",
+			Number6: "E",
+			Number7: "_",
+			Number8: "M",
+			Number9: "E",
+		}),
+		Rows: openlayer.F([]map[string]interface{}{{
+			"user_query": "what's the meaning of life?",
+			"output":     "42",
+			"tokens":     map[string]interface{}{},
+			"cost":       map[string]interface{}{},
+			"timestamp":  map[string]interface{}{},
+		}}),
+	},
 )
 if err != nil {
-  var apierr *openlayer.Error
-  if errors.As(err, &apierr) {
-     println(string(apierr.DumpRequest(true))) // Prints the serialized HTTP request
-     println(string(apierr.DumpResponse(true))) // Prints the serialized HTTP response
-  }
-  panic(err.Error()) // GET "/inference-pipelines/{id}/data-stream": 400 Bad Request { ... }
+	var apierr *openlayer.Error
+	if errors.As(err, &apierr) {
+		println(string(apierr.DumpRequest(true)))  // Prints the serialized HTTP request
+		println(string(apierr.DumpResponse(true))) // Prints the serialized HTTP response
+	}
+	panic(err.Error()) // GET "/inference-pipelines/{id}/data-stream": 400 Bad Request { ... }
 }
 ```
 
@@ -225,28 +237,34 @@ To set a per-retry timeout, use `option.WithRequestTimeout()`.
 
 ```go
 // This sets the timeout for the request, including all the retries.
-ctx, cancel := context.WithTimeout(context.Background(), 5 * time.Minute)
+ctx, cancel := context.WithTimeout(context.Background(), 5*time.Minute)
 defer cancel()
 client.InferencePipelines.Data.Stream(
-  ctx,
-  "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-  openlayer.InferencePipelineDataStreamParams{
-    Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmDataConfig{
-      Number0: "R",
-      Number1: "E",
-      Number2: "P",
-      Number3: "L",
-      Number4: "A",
-      Number5: "C",
-      Number6: "E",
-      Number7: "_",
-      Number8: "M",
-      Number9: "E",
-    }),
-    Rows: openlayer.F([]),
-  },
-  // This sets the per-retry timeout
-    option.WithRequestTimeout(20 * time.Second),
+	ctx,
+	"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+	openlayer.InferencePipelineDataStreamParams{
+		Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmDataConfig{
+			Number0: "R",
+			Number1: "E",
+			Number2: "P",
+			Number3: "L",
+			Number4: "A",
+			Number5: "C",
+			Number6: "E",
+			Number7: "_",
+			Number8: "M",
+			Number9: "E",
+		}),
+		Rows: openlayer.F([]map[string]interface{}{{
+			"user_query": "what's the meaning of life?",
+			"output":     "42",
+			"tokens":     map[string]interface{}{},
+			"cost":       map[string]interface{}{},
+			"timestamp":  map[string]interface{}{},
+		}}),
+	},
+	// This sets the per-retry timeout
+	option.WithRequestTimeout(20*time.Second),
 )
 ```
 
@@ -274,29 +292,35 @@ You can use the `WithMaxRetries` option to configure or disable this:
 ```go
 // Configure the default for all requests:
 client := openlayer.NewClient(
-  option.WithMaxRetries(0), // default is 2
+	option.WithMaxRetries(0), // default is 2
 )
 
 // Override per-request:
 client.InferencePipelines.Data.Stream(
-  context.TODO(),
-  "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-  openlayer.InferencePipelineDataStreamParams{
-    Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmDataConfig{
-      Number0: "R",
-      Number1: "E",
-      Number2: "P",
-      Number3: "L",
-      Number4: "A",
-      Number5: "C",
-      Number6: "E",
-      Number7: "_",
-      Number8: "M",
-      Number9: "E",
-    }),
-    Rows: openlayer.F([]),
-  },
-  option.WithMaxRetries(5),
+	context.TODO(),
+	"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+	openlayer.InferencePipelineDataStreamParams{
+		Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmDataConfig{
+			Number0: "R",
+			Number1: "E",
+			Number2: "P",
+			Number3: "L",
+			Number4: "A",
+			Number5: "C",
+			Number6: "E",
+			Number7: "_",
+			Number8: "M",
+			Number9: "E",
+		}),
+		Rows: openlayer.F([]map[string]interface{}{{
+			"user_query": "what's the meaning of life?",
+			"output":     "42",
+			"tokens":     map[string]interface{}{},
+			"cost":       map[string]interface{}{},
+			"timestamp":  map[string]interface{}{},
+		}}),
+	},
+	option.WithMaxRetries(5),
 )
 ```
 
