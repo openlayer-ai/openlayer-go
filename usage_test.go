@@ -28,7 +28,7 @@ func TestUsage(t *testing.T) {
 		context.TODO(),
 		"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
 		openlayer.InferencePipelineDataStreamParams{
-			Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmDataConfig{
+			Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmData{
 				InputVariableNames:   openlayer.F([]string{"user_query"}),
 				OutputColumnName:     openlayer.F("output"),
 				NumOfTokenColumnName: "tokens",
