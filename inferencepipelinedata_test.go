@@ -29,7 +29,7 @@ func TestInferencePipelineDataStreamWithOptionalParams(t *testing.T) {
 		context.TODO(),
 		"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
 		openlayer.InferencePipelineDataStreamParams{
-			Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmDataConfig{
+			Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmData{
 				ContextColumnName:     openlayer.F("context"),
 				CostColumnName:        openlayer.F("cost"),
 				GroundTruthColumnName: openlayer.F("ground_truth"),
@@ -38,7 +38,7 @@ func TestInferencePipelineDataStreamWithOptionalParams(t *testing.T) {
 				LatencyColumnName:     openlayer.F("latency"),
 				Metadata:              openlayer.F[any](map[string]interface{}{}),
 				OutputColumnName:      openlayer.F("output"),
-				Prompt: openlayer.F([]openlayer.InferencePipelineDataStreamParamsConfigLlmDataConfigPrompt{{
+				Prompt: openlayer.F([]openlayer.InferencePipelineDataStreamParamsConfigLlmDataPrompt{{
 					Role:    openlayer.F("user"),
 					Content: openlayer.F("{{ user_query }}"),
 				}}),

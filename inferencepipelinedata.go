@@ -141,16 +141,16 @@ func (r InferencePipelineDataStreamParamsConfig) implementsInferencePipelineData
 // Configuration for the data stream. Depends on your **Openlayer project task
 // type**.
 //
-// Satisfied by [InferencePipelineDataStreamParamsConfigLlmDataConfig],
-// [InferencePipelineDataStreamParamsConfigTabularClassificationDataConfig],
-// [InferencePipelineDataStreamParamsConfigTabularRegressionDataConfig],
-// [InferencePipelineDataStreamParamsConfigTextClassificationDataConfig],
+// Satisfied by [InferencePipelineDataStreamParamsConfigLlmData],
+// [InferencePipelineDataStreamParamsConfigTabularClassificationData],
+// [InferencePipelineDataStreamParamsConfigTabularRegressionData],
+// [InferencePipelineDataStreamParamsConfigTextClassificationData],
 // [InferencePipelineDataStreamParamsConfig].
 type InferencePipelineDataStreamParamsConfigUnion interface {
 	implementsInferencePipelineDataStreamParamsConfigUnion()
 }
 
-type InferencePipelineDataStreamParamsConfigLlmDataConfig struct {
+type InferencePipelineDataStreamParamsConfigLlmData struct {
 	// Name of the column with the model outputs.
 	OutputColumnName param.Field[string] `json:"outputColumnName,required"`
 	// Name of the column with the context retrieved. Applies to RAG use cases.
@@ -171,7 +171,7 @@ type InferencePipelineDataStreamParamsConfigLlmDataConfig struct {
 	// Object with metadata.
 	Metadata param.Field[interface{}] `json:"metadata"`
 	// Prompt for the LLM.
-	Prompt param.Field[[]InferencePipelineDataStreamParamsConfigLlmDataConfigPrompt] `json:"prompt"`
+	Prompt param.Field[[]InferencePipelineDataStreamParamsConfigLlmDataPrompt] `json:"prompt"`
 	// Name of the column with the questions. Applies to RAG use cases. Providing the
 	// question enables RAG-specific metrics.
 	QuestionColumnName param.Field[string] `json:"questionColumnName"`
@@ -180,25 +180,25 @@ type InferencePipelineDataStreamParamsConfigLlmDataConfig struct {
 	TimestampColumnName param.Field[string] `json:"timestampColumnName"`
 }
 
-func (r InferencePipelineDataStreamParamsConfigLlmDataConfig) MarshalJSON() (data []byte, err error) {
+func (r InferencePipelineDataStreamParamsConfigLlmData) MarshalJSON() (data []byte, err error) {
 	return apijson.MarshalRoot(r)
 }
 
-func (r InferencePipelineDataStreamParamsConfigLlmDataConfig) implementsInferencePipelineDataStreamParamsConfigUnion() {
+func (r InferencePipelineDataStreamParamsConfigLlmData) implementsInferencePipelineDataStreamParamsConfigUnion() {
 }
 
-type InferencePipelineDataStreamParamsConfigLlmDataConfigPrompt struct {
+type InferencePipelineDataStreamParamsConfigLlmDataPrompt struct {
 	// Content of the prompt.
 	Content param.Field[string] `json:"content"`
 	// Role of the prompt.
 	Role param.Field[string] `json:"role"`
 }
 
-func (r InferencePipelineDataStreamParamsConfigLlmDataConfigPrompt) MarshalJSON() (data []byte, err error) {
+func (r InferencePipelineDataStreamParamsConfigLlmDataPrompt) MarshalJSON() (data []byte, err error) {
 	return apijson.MarshalRoot(r)
 }
 
-type InferencePipelineDataStreamParamsConfigTabularClassificationDataConfig struct {
+type InferencePipelineDataStreamParamsConfigTabularClassificationData struct {
 	// List of class names indexed by label integer in the dataset. E.g. ["Retained",
 	// "Exited"] when 0, 1 are in your label column.
 	ClassNames param.Field[[]string] `json:"classNames,required"`
@@ -228,14 +228,14 @@ type InferencePipelineDataStreamParamsConfigTabularClassificationDataConfig stru
 	TimestampColumnName param.Field[string] `json:"timestampColumnName"`
 }
 
-func (r InferencePipelineDataStreamParamsConfigTabularClassificationDataConfig) MarshalJSON() (data []byte, err error) {
+func (r InferencePipelineDataStreamParamsConfigTabularClassificationData) MarshalJSON() (data []byte, err error) {
 	return apijson.MarshalRoot(r)
 }
 
-func (r InferencePipelineDataStreamParamsConfigTabularClassificationDataConfig) implementsInferencePipelineDataStreamParamsConfigUnion() {
+func (r InferencePipelineDataStreamParamsConfigTabularClassificationData) implementsInferencePipelineDataStreamParamsConfigUnion() {
 }
 
-type InferencePipelineDataStreamParamsConfigTabularRegressionDataConfig struct {
+type InferencePipelineDataStreamParamsConfigTabularRegressionData struct {
 	// Array with the names of all categorical features in the dataset. E.g. ["Gender",
 	// "Geography"].
 	CategoricalFeatureNames param.Field[[]string] `json:"categoricalFeatureNames"`
@@ -258,14 +258,14 @@ type InferencePipelineDataStreamParamsConfigTabularRegressionDataConfig struct {
 	TimestampColumnName param.Field[string] `json:"timestampColumnName"`
 }
 
-func (r InferencePipelineDataStreamParamsConfigTabularRegressionDataConfig) MarshalJSON() (data []byte, err error) {
+func (r InferencePipelineDataStreamParamsConfigTabularRegressionData) MarshalJSON() (data []byte, err error) {
 	return apijson.MarshalRoot(r)
 }
 
-func (r InferencePipelineDataStreamParamsConfigTabularRegressionDataConfig) implementsInferencePipelineDataStreamParamsConfigUnion() {
+func (r InferencePipelineDataStreamParamsConfigTabularRegressionData) implementsInferencePipelineDataStreamParamsConfigUnion() {
 }
 
-type InferencePipelineDataStreamParamsConfigTextClassificationDataConfig struct {
+type InferencePipelineDataStreamParamsConfigTextClassificationData struct {
 	// List of class names indexed by label integer in the dataset. E.g. ["Retained",
 	// "Exited"] when 0, 1 are in your label column.
 	ClassNames param.Field[[]string] `json:"classNames,required"`
@@ -292,9 +292,9 @@ type InferencePipelineDataStreamParamsConfigTextClassificationDataConfig struct 
 	TimestampColumnName param.Field[string] `json:"timestampColumnName"`
 }
 
-func (r InferencePipelineDataStreamParamsConfigTextClassificationDataConfig) MarshalJSON() (data []byte, err error) {
+func (r InferencePipelineDataStreamParamsConfigTextClassificationData) MarshalJSON() (data []byte, err error) {
 	return apijson.MarshalRoot(r)
 }
 
-func (r InferencePipelineDataStreamParamsConfigTextClassificationDataConfig) implementsInferencePipelineDataStreamParamsConfigUnion() {
+func (r InferencePipelineDataStreamParamsConfigTextClassificationData) implementsInferencePipelineDataStreamParamsConfigUnion() {
 }

@@ -40,7 +40,7 @@ func TestUserAgentHeader(t *testing.T) {
 		context.Background(),
 		"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
 		openlayer.InferencePipelineDataStreamParams{
-			Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmDataConfig{
+			Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmData{
 				InputVariableNames:   openlayer.F([]string{"user_query"}),
 				OutputColumnName:     openlayer.F("output"),
 				NumOfTokenColumnName: "tokens",
@@ -82,7 +82,7 @@ func TestRetryAfter(t *testing.T) {
 		context.Background(),
 		"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
 		openlayer.InferencePipelineDataStreamParams{
-			Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmDataConfig{
+			Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmData{
 				InputVariableNames:   openlayer.F([]string{"user_query"}),
 				OutputColumnName:     openlayer.F("output"),
 				NumOfTokenColumnName: "tokens",
@@ -127,7 +127,7 @@ func TestRetryAfterMs(t *testing.T) {
 		context.Background(),
 		"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
 		openlayer.InferencePipelineDataStreamParams{
-			Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmDataConfig{
+			Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmData{
 				InputVariableNames:   openlayer.F([]string{"user_query"}),
 				OutputColumnName:     openlayer.F("output"),
 				NumOfTokenColumnName: "tokens",
@@ -168,7 +168,7 @@ func TestContextCancel(t *testing.T) {
 		cancelCtx,
 		"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
 		openlayer.InferencePipelineDataStreamParams{
-			Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmDataConfig{
+			Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmData{
 				InputVariableNames:   openlayer.F([]string{"user_query"}),
 				OutputColumnName:     openlayer.F("output"),
 				NumOfTokenColumnName: "tokens",
@@ -206,7 +206,7 @@ func TestContextCancelDelay(t *testing.T) {
 		cancelCtx,
 		"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
 		openlayer.InferencePipelineDataStreamParams{
-			Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmDataConfig{
+			Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmData{
 				InputVariableNames:   openlayer.F([]string{"user_query"}),
 				OutputColumnName:     openlayer.F("output"),
 				NumOfTokenColumnName: "tokens",
@@ -250,7 +250,7 @@ func TestContextDeadline(t *testing.T) {
 			deadlineCtx,
 			"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
 			openlayer.InferencePipelineDataStreamParams{
-				Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmDataConfig{
+				Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmData{
 					InputVariableNames:   openlayer.F([]string{"user_query"}),
 					OutputColumnName:     openlayer.F("output"),
 					NumOfTokenColumnName: "tokens",
