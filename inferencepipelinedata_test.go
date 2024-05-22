@@ -30,6 +30,7 @@ func TestInferencePipelineDataStreamWithOptionalParams(t *testing.T) {
 		"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
 		openlayer.InferencePipelineDataStreamParams{
 			Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmData{
+				NumOfTokenColumnName:  openlayer.F("tokens"),
 				ContextColumnName:     openlayer.F("context"),
 				CostColumnName:        openlayer.F("cost"),
 				GroundTruthColumnName: openlayer.F("ground_truth"),

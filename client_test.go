@@ -43,7 +43,7 @@ func TestUserAgentHeader(t *testing.T) {
 			Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmData{
 				InputVariableNames:   openlayer.F([]string{"user_query"}),
 				OutputColumnName:     openlayer.F("output"),
-				NumOfTokenColumnName: "tokens",
+				NumOfTokenColumnName: openlayer.F("tokens"),
 				CostColumnName:       openlayer.F("cost"),
 				TimestampColumnName:  openlayer.F("timestamp"),
 			}),
@@ -85,7 +85,7 @@ func TestRetryAfter(t *testing.T) {
 			Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmData{
 				InputVariableNames:   openlayer.F([]string{"user_query"}),
 				OutputColumnName:     openlayer.F("output"),
-				NumOfTokenColumnName: "tokens",
+				NumOfTokenColumnName: openlayer.F("tokens"),
 				CostColumnName:       openlayer.F("cost"),
 				TimestampColumnName:  openlayer.F("timestamp"),
 			}),
@@ -130,7 +130,7 @@ func TestRetryAfterMs(t *testing.T) {
 			Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmData{
 				InputVariableNames:   openlayer.F([]string{"user_query"}),
 				OutputColumnName:     openlayer.F("output"),
-				NumOfTokenColumnName: "tokens",
+				NumOfTokenColumnName: openlayer.F("tokens"),
 				CostColumnName:       openlayer.F("cost"),
 				TimestampColumnName:  openlayer.F("timestamp"),
 			}),
@@ -171,7 +171,7 @@ func TestContextCancel(t *testing.T) {
 			Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmData{
 				InputVariableNames:   openlayer.F([]string{"user_query"}),
 				OutputColumnName:     openlayer.F("output"),
-				NumOfTokenColumnName: "tokens",
+				NumOfTokenColumnName: openlayer.F("tokens"),
 				CostColumnName:       openlayer.F("cost"),
 				TimestampColumnName:  openlayer.F("timestamp"),
 			}),
@@ -209,7 +209,7 @@ func TestContextCancelDelay(t *testing.T) {
 			Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmData{
 				InputVariableNames:   openlayer.F([]string{"user_query"}),
 				OutputColumnName:     openlayer.F("output"),
-				NumOfTokenColumnName: "tokens",
+				NumOfTokenColumnName: openlayer.F("tokens"),
 				CostColumnName:       openlayer.F("cost"),
 				TimestampColumnName:  openlayer.F("timestamp"),
 			}),
@@ -253,7 +253,7 @@ func TestContextDeadline(t *testing.T) {
 				Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmData{
 					InputVariableNames:   openlayer.F([]string{"user_query"}),
 					OutputColumnName:     openlayer.F("output"),
-					NumOfTokenColumnName: "tokens",
+					NumOfTokenColumnName: openlayer.F("tokens"),
 					CostColumnName:       openlayer.F("cost"),
 					TimestampColumnName:  openlayer.F("timestamp"),
 				}),

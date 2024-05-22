@@ -51,7 +51,7 @@ func main() {
 			Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmData{
 				InputVariableNames:   openlayer.F([]string{"user_query"}),
 				OutputColumnName:     openlayer.F("output"),
-				NumOfTokenColumnName: "tokens",
+				NumOfTokenColumnName: openlayer.F("tokens"),
 				CostColumnName:       openlayer.F("cost"),
 				TimestampColumnName:  openlayer.F("timestamp"),
 			}),
@@ -192,7 +192,7 @@ _, err := client.InferencePipelines.Data.Stream(
 		Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmData{
 			InputVariableNames:   openlayer.F([]string{"user_query"}),
 			OutputColumnName:     openlayer.F("output"),
-			NumOfTokenColumnName: "tokens",
+			NumOfTokenColumnName: openlayer.F("tokens"),
 			CostColumnName:       openlayer.F("cost"),
 			TimestampColumnName:  openlayer.F("timestamp"),
 		}),
@@ -236,7 +236,7 @@ client.InferencePipelines.Data.Stream(
 		Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmData{
 			InputVariableNames:   openlayer.F([]string{"user_query"}),
 			OutputColumnName:     openlayer.F("output"),
-			NumOfTokenColumnName: "tokens",
+			NumOfTokenColumnName: openlayer.F("tokens"),
 			CostColumnName:       openlayer.F("cost"),
 			TimestampColumnName:  openlayer.F("timestamp"),
 		}),
@@ -288,7 +288,7 @@ client.InferencePipelines.Data.Stream(
 		Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmData{
 			InputVariableNames:   openlayer.F([]string{"user_query"}),
 			OutputColumnName:     openlayer.F("output"),
-			NumOfTokenColumnName: "tokens",
+			NumOfTokenColumnName: openlayer.F("tokens"),
 			CostColumnName:       openlayer.F("cost"),
 			TimestampColumnName:  openlayer.F("timestamp"),
 		}),
