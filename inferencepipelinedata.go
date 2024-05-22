@@ -90,6 +90,8 @@ func (r InferencePipelineDataStreamParams) MarshalJSON() (data []byte, err error
 // Configuration for the data stream. Depends on your **Openlayer project task
 // type**.
 type InferencePipelineDataStreamParamsConfig struct {
+	// Name of the column with the total number of tokens.
+	NumOfTokenColumnName param.Field[string] `json:"numOfTokenColumnName"`
 	// Name of the column with the context retrieved. Applies to RAG use cases.
 	// Providing the context enables RAG-specific metrics.
 	ContextColumnName param.Field[string] `json:"contextColumnName"`
@@ -170,6 +172,8 @@ type InferencePipelineDataStreamParamsConfigLlmData struct {
 	LatencyColumnName param.Field[string] `json:"latencyColumnName"`
 	// Object with metadata.
 	Metadata param.Field[interface{}] `json:"metadata"`
+	// Name of the column with the total number of tokens.
+	NumOfTokenColumnName param.Field[string] `json:"numOfTokenColumnName"`
 	// Prompt for the LLM.
 	Prompt param.Field[[]InferencePipelineDataStreamParamsConfigLlmDataPrompt] `json:"prompt"`
 	// Name of the column with the questions. Applies to RAG use cases. Providing the
