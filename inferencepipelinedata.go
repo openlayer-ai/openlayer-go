@@ -4,6 +4,7 @@ package openlayer
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"net/http"
 
@@ -35,6 +36,10 @@ func NewInferencePipelineDataService(opts ...option.RequestOption) (r *Inference
 // Stream production data to an inference pipeline in Openlayer.
 func (r *InferencePipelineDataService) Stream(ctx context.Context, id string, body InferencePipelineDataStreamParams, opts ...option.RequestOption) (res *InferencePipelineDataStreamResponse, err error) {
 	opts = append(r.Options[:], opts...)
+	if id == "" {
+		err = errors.New("missing required id parameter")
+		return
+	}
 	path := fmt.Sprintf("inference-pipelines/%s/data-stream", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
 	return
