@@ -4,6 +4,7 @@ package openlayer
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"net/http"
 	"net/url"
@@ -41,6 +42,10 @@ func NewCommitTestResultService(opts ...option.RequestOption) (r *CommitTestResu
 // List the test results for a commit (project version).
 func (r *CommitTestResultService) List(ctx context.Context, id string, query CommitTestResultListParams, opts ...option.RequestOption) (res *CommitTestResultListResponse, err error) {
 	opts = append(r.Options[:], opts...)
+	if id == "" {
+		err = errors.New("missing required id parameter")
+		return
+	}
 	path := fmt.Sprintf("versions/%s/results", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

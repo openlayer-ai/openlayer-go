@@ -4,6 +4,7 @@ package openlayer
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"net/http"
 	"net/url"
@@ -41,6 +42,10 @@ func NewInferencePipelineTestResultService(opts ...option.RequestOption) (r *Inf
 // List the test results under an inference pipeline.
 func (r *InferencePipelineTestResultService) List(ctx context.Context, id string, query InferencePipelineTestResultListParams, opts ...option.RequestOption) (res *InferencePipelineTestResultListResponse, err error) {
 	opts = append(r.Options[:], opts...)
+	if id == "" {
+		err = errors.New("missing required id parameter")
+		return
+	}
 	path := fmt.Sprintf("inference-pipelines/%s/results", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return

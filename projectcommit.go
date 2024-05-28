@@ -4,6 +4,7 @@ package openlayer
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"net/http"
 	"net/url"
@@ -38,6 +39,10 @@ func NewProjectCommitService(opts ...option.RequestOption) (r *ProjectCommitServ
 // List the commits (project versions) under a project.
 func (r *ProjectCommitService) List(ctx context.Context, id string, query ProjectCommitListParams, opts ...option.RequestOption) (res *ProjectCommitListResponse, err error) {
 	opts = append(r.Options[:], opts...)
+	if id == "" {
+		err = errors.New("missing required id parameter")
+		return
+	}
 	path := fmt.Sprintf("projects/%s/versions", id)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
