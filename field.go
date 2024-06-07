@@ -1,4 +1,4 @@
-package githubcomopenlayeraiopenlayergo
+package openlayer
 
 import (
 	"github.com/stainless-sdks/openlayer-go/internal/param"
