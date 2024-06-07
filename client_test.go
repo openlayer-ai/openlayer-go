@@ -9,9 +9,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/stainless-sdks/openlayer-go"
-	"github.com/stainless-sdks/openlayer-go/internal"
-	"github.com/stainless-sdks/openlayer-go/option"
+	"github.com/openlayer-ai/openlayer-go"
+	"github.com/openlayer-ai/openlayer-go/internal"
+	"github.com/openlayer-ai/openlayer-go/option"
 )
 
 type closureTransport struct {
