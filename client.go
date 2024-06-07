@@ -22,13 +22,16 @@ type Client struct {
 }
 
 // NewClient generates a new client with the default option read from the
-// environment (OPENLAYER_API_KEY). The option passed in as arguments are applied
-// after these default arguments, and all option will be passed down to the
-// services and requests that this client makes.
+// environment (OPENLAYER_API_KEY, OPENLAYER_SERVER_URL). The option passed in as
+// arguments are applied after these default arguments, and all option will be
+// passed down to the services and requests that this client makes.
 func NewClient(opts ...option.RequestOption) (r *Client) {
 	defaults := []option.RequestOption{option.WithEnvironmentProduction()}
 	if o, ok := os.LookupEnv("OPENLAYER_API_KEY"); ok {
 		defaults = append(defaults, option.WithAPIKey(o))
+	}
+	if o, ok := os.LookupEnv("OPENLAYER_SERVER_URL"); ok {
+		defaults = append(defaults, option.WithBaseURL(o))
 	}
 	opts = append(defaults, opts...)
 
