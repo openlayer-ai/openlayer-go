@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-package openlayer_test
+package githubcomopenlayeraiopenlayergo_test
 
 import (
 	"context"
@@ -20,22 +20,22 @@ func TestUsage(t *testing.T) {
 	if !testutil.CheckTestServer(t, baseURL) {
 		return
 	}
-	client := openlayer.NewClient(
+	client := githubcomopenlayeraiopenlayergo.NewClient(
 		option.WithBaseURL(baseURL),
 		option.WithAPIKey("My API Key"),
 	)
 	inferencePipelineDataStreamResponse, err := client.InferencePipelines.Data.Stream(
 		context.TODO(),
 		"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-		openlayer.InferencePipelineDataStreamParams{
-			Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmData{
-				InputVariableNames:   openlayer.F([]string{"user_query"}),
-				OutputColumnName:     openlayer.F("output"),
-				NumOfTokenColumnName: openlayer.F("tokens"),
-				CostColumnName:       openlayer.F("cost"),
-				TimestampColumnName:  openlayer.F("timestamp"),
+		githubcomopenlayeraiopenlayergo.InferencePipelineDataStreamParams{
+			Config: githubcomopenlayeraiopenlayergo.F[githubcomopenlayeraiopenlayergo.InferencePipelineDataStreamParamsConfigUnion](githubcomopenlayeraiopenlayergo.InferencePipelineDataStreamParamsConfigLlmData{
+				InputVariableNames:   githubcomopenlayeraiopenlayergo.F([]string{"user_query"}),
+				OutputColumnName:     githubcomopenlayeraiopenlayergo.F("output"),
+				NumOfTokenColumnName: githubcomopenlayeraiopenlayergo.F("tokens"),
+				CostColumnName:       githubcomopenlayeraiopenlayergo.F("cost"),
+				TimestampColumnName:  githubcomopenlayeraiopenlayergo.F("timestamp"),
 			}),
-			Rows: openlayer.F([]map[string]interface{}{{
+			Rows: githubcomopenlayeraiopenlayergo.F([]map[string]interface{}{{
 				"user_query": "what's the meaning of life?",
 				"output":     "42",
 				"tokens":     map[string]interface{}{},
