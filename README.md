@@ -11,7 +11,7 @@ It is generated with [Stainless](https://www.stainlessapi.com/).
 
 ```go
 import (
-	"github.com/stainless-sdks/openlayer-go" // imported as openlayer
+	"github.com/stainless-sdks/openlayer-go" // imported as githubcomopenlayeraiopenlayergo
 )
 ```
 
@@ -41,21 +41,21 @@ import (
 )
 
 func main() {
-	client := openlayer.NewClient(
+	client := githubcomopenlayeraiopenlayergo.NewClient(
 		option.WithAPIKey("My API Key"), // defaults to os.LookupEnv("OPENLAYER_API_KEY")
 	)
 	inferencePipelineDataStreamResponse, err := client.InferencePipelines.Data.Stream(
 		context.TODO(),
 		"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-		openlayer.InferencePipelineDataStreamParams{
-			Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmData{
-				InputVariableNames:   openlayer.F([]string{"user_query"}),
-				OutputColumnName:     openlayer.F("output"),
-				NumOfTokenColumnName: openlayer.F("tokens"),
-				CostColumnName:       openlayer.F("cost"),
-				TimestampColumnName:  openlayer.F("timestamp"),
+		githubcomopenlayeraiopenlayergo.InferencePipelineDataStreamParams{
+			Config: githubcomopenlayeraiopenlayergo.F[githubcomopenlayeraiopenlayergo.InferencePipelineDataStreamParamsConfigUnion](githubcomopenlayeraiopenlayergo.InferencePipelineDataStreamParamsConfigLlmData{
+				InputVariableNames:   githubcomopenlayeraiopenlayergo.F([]string{"user_query"}),
+				OutputColumnName:     githubcomopenlayeraiopenlayergo.F("output"),
+				NumOfTokenColumnName: githubcomopenlayeraiopenlayergo.F("tokens"),
+				CostColumnName:       githubcomopenlayeraiopenlayergo.F("cost"),
+				TimestampColumnName:  githubcomopenlayeraiopenlayergo.F("timestamp"),
 			}),
-			Rows: openlayer.F([]map[string]interface{}{{
+			Rows: githubcomopenlayeraiopenlayergo.F([]map[string]interface{}{{
 				"user_query": "what's the meaning of life?",
 				"output":     "42",
 				"tokens":     map[string]interface{}{},
@@ -86,18 +86,18 @@ To send a null, use `Null[T]()`, and to send a nonconforming value, use `Raw[T](
 
 ```go
 params := FooParams{
-	Name: openlayer.F("hello"),
+	Name: githubcomopenlayeraiopenlayergo.F("hello"),
 
 	// Explicitly send `"description": null`
-	Description: openlayer.Null[string](),
+	Description: githubcomopenlayeraiopenlayergo.Null[string](),
 
-	Point: openlayer.F(openlayer.Point{
-		X: openlayer.Int(0),
-		Y: openlayer.Int(1),
+	Point: githubcomopenlayeraiopenlayergo.F(githubcomopenlayeraiopenlayergo.Point{
+		X: githubcomopenlayeraiopenlayergo.Int(0),
+		Y: githubcomopenlayeraiopenlayergo.Int(1),
 
 		// In cases where the API specifies a given type,
 		// but you want to send something else, use `Raw`:
-		Z: openlayer.Raw[int64](0.01), // sends a float
+		Z: githubcomopenlayeraiopenlayergo.Raw[int64](0.01), // sends a float
 	}),
 }
 ```
@@ -151,7 +151,7 @@ This library uses the functional options pattern. Functions defined in the
 requests. For example:
 
 ```go
-client := openlayer.NewClient(
+client := githubcomopenlayeraiopenlayergo.NewClient(
 	// Adds a header to every request made by the client
 	option.WithHeader("X-Some-Header", "custom_header_info"),
 )
@@ -178,7 +178,7 @@ with additional helper methods like `.GetNextPage()`, e.g.:
 ### Errors
 
 When the API returns a non-success status code, we return an error with type
-`*openlayer.Error`. This contains the `StatusCode`, `*http.Request`, and
+`*githubcomopenlayeraiopenlayergo.Error`. This contains the `StatusCode`, `*http.Request`, and
 `*http.Response` values of the request, as well as the JSON of the error body
 (much like other response objects in the SDK).
 
@@ -188,15 +188,15 @@ To handle errors, we recommend that you use the `errors.As` pattern:
 _, err := client.InferencePipelines.Data.Stream(
 	context.TODO(),
 	"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-	openlayer.InferencePipelineDataStreamParams{
-		Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmData{
-			InputVariableNames:   openlayer.F([]string{"user_query"}),
-			OutputColumnName:     openlayer.F("output"),
-			NumOfTokenColumnName: openlayer.F("tokens"),
-			CostColumnName:       openlayer.F("cost"),
-			TimestampColumnName:  openlayer.F("timestamp"),
+	githubcomopenlayeraiopenlayergo.InferencePipelineDataStreamParams{
+		Config: githubcomopenlayeraiopenlayergo.F[githubcomopenlayeraiopenlayergo.InferencePipelineDataStreamParamsConfigUnion](githubcomopenlayeraiopenlayergo.InferencePipelineDataStreamParamsConfigLlmData{
+			InputVariableNames:   githubcomopenlayeraiopenlayergo.F([]string{"user_query"}),
+			OutputColumnName:     githubcomopenlayeraiopenlayergo.F("output"),
+			NumOfTokenColumnName: githubcomopenlayeraiopenlayergo.F("tokens"),
+			CostColumnName:       githubcomopenlayeraiopenlayergo.F("cost"),
+			TimestampColumnName:  githubcomopenlayeraiopenlayergo.F("timestamp"),
 		}),
-		Rows: openlayer.F([]map[string]interface{}{{
+		Rows: githubcomopenlayeraiopenlayergo.F([]map[string]interface{}{{
 			"user_query": "what's the meaning of life?",
 			"output":     "42",
 			"tokens":     map[string]interface{}{},
@@ -206,7 +206,7 @@ _, err := client.InferencePipelines.Data.Stream(
 	},
 )
 if err != nil {
-	var apierr *openlayer.Error
+	var apierr *githubcomopenlayeraiopenlayergo.Error
 	if errors.As(err, &apierr) {
 		println(string(apierr.DumpRequest(true)))  // Prints the serialized HTTP request
 		println(string(apierr.DumpResponse(true))) // Prints the serialized HTTP response
@@ -232,15 +232,15 @@ defer cancel()
 client.InferencePipelines.Data.Stream(
 	ctx,
 	"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-	openlayer.InferencePipelineDataStreamParams{
-		Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmData{
-			InputVariableNames:   openlayer.F([]string{"user_query"}),
-			OutputColumnName:     openlayer.F("output"),
-			NumOfTokenColumnName: openlayer.F("tokens"),
-			CostColumnName:       openlayer.F("cost"),
-			TimestampColumnName:  openlayer.F("timestamp"),
+	githubcomopenlayeraiopenlayergo.InferencePipelineDataStreamParams{
+		Config: githubcomopenlayeraiopenlayergo.F[githubcomopenlayeraiopenlayergo.InferencePipelineDataStreamParamsConfigUnion](githubcomopenlayeraiopenlayergo.InferencePipelineDataStreamParamsConfigLlmData{
+			InputVariableNames:   githubcomopenlayeraiopenlayergo.F([]string{"user_query"}),
+			OutputColumnName:     githubcomopenlayeraiopenlayergo.F("output"),
+			NumOfTokenColumnName: githubcomopenlayeraiopenlayergo.F("tokens"),
+			CostColumnName:       githubcomopenlayeraiopenlayergo.F("cost"),
+			TimestampColumnName:  githubcomopenlayeraiopenlayergo.F("timestamp"),
 		}),
-		Rows: openlayer.F([]map[string]interface{}{{
+		Rows: githubcomopenlayeraiopenlayergo.F([]map[string]interface{}{{
 			"user_query": "what's the meaning of life?",
 			"output":     "42",
 			"tokens":     map[string]interface{}{},
@@ -263,7 +263,7 @@ The file name and content-type can be customized by implementing `Name() string`
 string` on the run-time type of `io.Reader`. Note that `os.File` implements `Name() string`, so a
 file returned by `os.Open` will be sent with the file name on disk.
 
-We also provide a helper `openlayer.FileParam(reader io.Reader, filename string, contentType string)`
+We also provide a helper `githubcomopenlayeraiopenlayergo.FileParam(reader io.Reader, filename string, contentType string)`
 which can be used to wrap any `io.Reader` with the appropriate file name and content type.
 
 ### Retries
@@ -276,7 +276,7 @@ You can use the `WithMaxRetries` option to configure or disable this:
 
 ```go
 // Configure the default for all requests:
-client := openlayer.NewClient(
+client := githubcomopenlayeraiopenlayergo.NewClient(
 	option.WithMaxRetries(0), // default is 2
 )
 
@@ -284,15 +284,15 @@ client := openlayer.NewClient(
 client.InferencePipelines.Data.Stream(
 	context.TODO(),
 	"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-	openlayer.InferencePipelineDataStreamParams{
-		Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmData{
-			InputVariableNames:   openlayer.F([]string{"user_query"}),
-			OutputColumnName:     openlayer.F("output"),
-			NumOfTokenColumnName: openlayer.F("tokens"),
-			CostColumnName:       openlayer.F("cost"),
-			TimestampColumnName:  openlayer.F("timestamp"),
+	githubcomopenlayeraiopenlayergo.InferencePipelineDataStreamParams{
+		Config: githubcomopenlayeraiopenlayergo.F[githubcomopenlayeraiopenlayergo.InferencePipelineDataStreamParamsConfigUnion](githubcomopenlayeraiopenlayergo.InferencePipelineDataStreamParamsConfigLlmData{
+			InputVariableNames:   githubcomopenlayeraiopenlayergo.F([]string{"user_query"}),
+			OutputColumnName:     githubcomopenlayeraiopenlayergo.F("output"),
+			NumOfTokenColumnName: githubcomopenlayeraiopenlayergo.F("tokens"),
+			CostColumnName:       githubcomopenlayeraiopenlayergo.F("cost"),
+			TimestampColumnName:  githubcomopenlayeraiopenlayergo.F("timestamp"),
 		}),
-		Rows: openlayer.F([]map[string]interface{}{{
+		Rows: githubcomopenlayeraiopenlayergo.F([]map[string]interface{}{{
 			"user_query": "what's the meaning of life?",
 			"output":     "42",
 			"tokens":     map[string]interface{}{},
@@ -337,9 +337,9 @@ or the `option.WithJSONSet()` methods.
 
 ```go
 params := FooNewParams{
-    ID:   openlayer.F("id_xxxx"),
-    Data: openlayer.F(FooNewParamsData{
-        FirstName: openlayer.F("John"),
+    ID:   githubcomopenlayeraiopenlayergo.F("id_xxxx"),
+    Data: githubcomopenlayeraiopenlayergo.F(FooNewParamsData{
+        FirstName: githubcomopenlayeraiopenlayergo.F("John"),
     }),
 }
 client.Foo.New(context.Background(), params, option.WithJSONSet("data.last_name", "Doe"))
@@ -374,7 +374,7 @@ func Logger(req *http.Request, next option.MiddlewareNext) (res *http.Response, 
     return res, err
 }
 
-client := openlayer.NewClient(
+client := githubcomopenlayeraiopenlayergo.NewClient(
 	option.WithMiddleware(Logger),
 )
 ```

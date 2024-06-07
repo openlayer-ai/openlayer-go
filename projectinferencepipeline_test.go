@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-package openlayer_test
+package githubcomopenlayeraiopenlayergo_test
 
 import (
 	"context"
@@ -21,21 +21,21 @@ func TestProjectInferencePipelineListWithOptionalParams(t *testing.T) {
 	if !testutil.CheckTestServer(t, baseURL) {
 		return
 	}
-	client := openlayer.NewClient(
+	client := githubcomopenlayeraiopenlayergo.NewClient(
 		option.WithBaseURL(baseURL),
 		option.WithAPIKey("My API Key"),
 	)
 	_, err := client.Projects.InferencePipelines.List(
 		context.TODO(),
 		"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-		openlayer.ProjectInferencePipelineListParams{
-			Name:    openlayer.F("string"),
-			Page:    openlayer.F(int64(1)),
-			PerPage: openlayer.F(int64(1)),
+		githubcomopenlayeraiopenlayergo.ProjectInferencePipelineListParams{
+			Name:    githubcomopenlayeraiopenlayergo.F("string"),
+			Page:    githubcomopenlayeraiopenlayergo.F(int64(1)),
+			PerPage: githubcomopenlayeraiopenlayergo.F(int64(1)),
 		},
 	)
 	if err != nil {
-		var apierr *openlayer.Error
+		var apierr *githubcomopenlayeraiopenlayergo.Error
 		if errors.As(err, &apierr) {
 			t.Log(string(apierr.DumpRequest(true)))
 		}
