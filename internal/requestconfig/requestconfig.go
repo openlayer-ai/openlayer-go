@@ -17,10 +17,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/stainless-sdks/openlayer-go/internal"
-	"github.com/stainless-sdks/openlayer-go/internal/apierror"
-	"github.com/stainless-sdks/openlayer-go/internal/apiform"
-	"github.com/stainless-sdks/openlayer-go/internal/apiquery"
+	"github.com/openlayer-ai/openlayer-go/internal"
+	"github.com/openlayer-ai/openlayer-go/internal/apierror"
+	"github.com/openlayer-ai/openlayer-go/internal/apiform"
+	"github.com/openlayer-ai/openlayer-go/internal/apiquery"
 )
 
 func getDefaultHeaders() map[string]string {

@@ -3,7 +3,7 @@
 package githubcomopenlayeraiopenlayergo
 
 import (
-	"github.com/stainless-sdks/openlayer-go/option"
+	"github.com/openlayer-ai/openlayer-go/option"
 )
 
 // InferencePipelineService contains methods and other services that help with
