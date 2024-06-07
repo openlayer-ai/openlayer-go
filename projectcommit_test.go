@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-package githubcomopenlayeraiopenlayergo_test
+package openlayer_test
 
 import (
 	"context"
@@ -21,20 +21,20 @@ func TestProjectCommitListWithOptionalParams(t *testing.T) {
 	if !testutil.CheckTestServer(t, baseURL) {
 		return
 	}
-	client := githubcomopenlayeraiopenlayergo.NewClient(
+	client := openlayer.NewClient(
 		option.WithBaseURL(baseURL),
 		option.WithAPIKey("My API Key"),
 	)
 	_, err := client.Projects.Commits.List(
 		context.TODO(),
 		"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-		githubcomopenlayeraiopenlayergo.ProjectCommitListParams{
-			Page:    githubcomopenlayeraiopenlayergo.F(int64(1)),
-			PerPage: githubcomopenlayeraiopenlayergo.F(int64(1)),
+		openlayer.ProjectCommitListParams{
+			Page:    openlayer.F(int64(1)),
+			PerPage: openlayer.F(int64(1)),
 		},
 	)
 	if err != nil {
-		var apierr *githubcomopenlayeraiopenlayergo.Error
+		var apierr *openlayer.Error
 		if errors.As(err, &apierr) {
 			t.Log(string(apierr.DumpRequest(true)))
 		}
