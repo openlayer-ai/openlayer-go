@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-package githubcomopenlayeraiopenlayergo
+package openlayer
 
 import (
 	"github.com/stainless-sdks/openlayer-go/option"

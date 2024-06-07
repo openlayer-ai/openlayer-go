@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-package githubcomopenlayeraiopenlayergo_test
+package openlayer_test
 
 import (
 	"context"
@@ -21,32 +21,32 @@ func TestInferencePipelineDataStreamWithOptionalParams(t *testing.T) {
 	if !testutil.CheckTestServer(t, baseURL) {
 		return
 	}
-	client := githubcomopenlayeraiopenlayergo.NewClient(
+	client := openlayer.NewClient(
 		option.WithBaseURL(baseURL),
 		option.WithAPIKey("My API Key"),
 	)
 	_, err := client.InferencePipelines.Data.Stream(
 		context.TODO(),
 		"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-		githubcomopenlayeraiopenlayergo.InferencePipelineDataStreamParams{
-			Config: githubcomopenlayeraiopenlayergo.F[githubcomopenlayeraiopenlayergo.InferencePipelineDataStreamParamsConfigUnion](githubcomopenlayeraiopenlayergo.InferencePipelineDataStreamParamsConfigLlmData{
-				NumOfTokenColumnName:  githubcomopenlayeraiopenlayergo.F("tokens"),
-				ContextColumnName:     githubcomopenlayeraiopenlayergo.F("context"),
-				CostColumnName:        githubcomopenlayeraiopenlayergo.F("cost"),
-				GroundTruthColumnName: githubcomopenlayeraiopenlayergo.F("ground_truth"),
-				InferenceIDColumnName: githubcomopenlayeraiopenlayergo.F("id"),
-				InputVariableNames:    githubcomopenlayeraiopenlayergo.F([]string{"user_query"}),
-				LatencyColumnName:     githubcomopenlayeraiopenlayergo.F("latency"),
-				Metadata:              githubcomopenlayeraiopenlayergo.F[any](map[string]interface{}{}),
-				OutputColumnName:      githubcomopenlayeraiopenlayergo.F("output"),
-				Prompt: githubcomopenlayeraiopenlayergo.F([]githubcomopenlayeraiopenlayergo.InferencePipelineDataStreamParamsConfigLlmDataPrompt{{
-					Role:    githubcomopenlayeraiopenlayergo.F("user"),
-					Content: githubcomopenlayeraiopenlayergo.F("{{ user_query }}"),
+		openlayer.InferencePipelineDataStreamParams{
+			Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmData{
+				NumOfTokenColumnName:  openlayer.F("tokens"),
+				ContextColumnName:     openlayer.F("context"),
+				CostColumnName:        openlayer.F("cost"),
+				GroundTruthColumnName: openlayer.F("ground_truth"),
+				InferenceIDColumnName: openlayer.F("id"),
+				InputVariableNames:    openlayer.F([]string{"user_query"}),
+				LatencyColumnName:     openlayer.F("latency"),
+				Metadata:              openlayer.F[any](map[string]interface{}{}),
+				OutputColumnName:      openlayer.F("output"),
+				Prompt: openlayer.F([]openlayer.InferencePipelineDataStreamParamsConfigLlmDataPrompt{{
+					Role:    openlayer.F("user"),
+					Content: openlayer.F("{{ user_query }}"),
 				}}),
-				QuestionColumnName:  githubcomopenlayeraiopenlayergo.F("question"),
-				TimestampColumnName: githubcomopenlayeraiopenlayergo.F("timestamp"),
+				QuestionColumnName:  openlayer.F("question"),
+				TimestampColumnName: openlayer.F("timestamp"),
 			}),
-			Rows: githubcomopenlayeraiopenlayergo.F([]map[string]interface{}{{
+			Rows: openlayer.F([]map[string]interface{}{{
 				"user_query": "bar",
 				"output":     "bar",
 				"tokens":     "bar",
@@ -56,7 +56,7 @@ func TestInferencePipelineDataStreamWithOptionalParams(t *testing.T) {
 		},
 	)
 	if err != nil {
-		var apierr *githubcomopenlayeraiopenlayergo.Error
+		var apierr *openlayer.Error
 		if errors.As(err, &apierr) {
 			t.Log(string(apierr.DumpRequest(true)))
 		}

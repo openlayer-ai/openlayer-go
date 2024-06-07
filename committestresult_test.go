@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-package githubcomopenlayeraiopenlayergo_test
+package openlayer_test
 
 import (
 	"context"
@@ -21,23 +21,23 @@ func TestCommitTestResultListWithOptionalParams(t *testing.T) {
 	if !testutil.CheckTestServer(t, baseURL) {
 		return
 	}
-	client := githubcomopenlayeraiopenlayergo.NewClient(
+	client := openlayer.NewClient(
 		option.WithBaseURL(baseURL),
 		option.WithAPIKey("My API Key"),
 	)
 	_, err := client.Commits.TestResults.List(
 		context.TODO(),
 		"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-		githubcomopenlayeraiopenlayergo.CommitTestResultListParams{
-			IncludeArchived: githubcomopenlayeraiopenlayergo.F(true),
-			Page:            githubcomopenlayeraiopenlayergo.F(int64(1)),
-			PerPage:         githubcomopenlayeraiopenlayergo.F(int64(1)),
-			Status:          githubcomopenlayeraiopenlayergo.F(githubcomopenlayeraiopenlayergo.CommitTestResultListParamsStatusPassing),
-			Type:            githubcomopenlayeraiopenlayergo.F(githubcomopenlayeraiopenlayergo.CommitTestResultListParamsTypeIntegrity),
+		openlayer.CommitTestResultListParams{
+			IncludeArchived: openlayer.F(true),
+			Page:            openlayer.F(int64(1)),
+			PerPage:         openlayer.F(int64(1)),
+			Status:          openlayer.F(openlayer.CommitTestResultListParamsStatusPassing),
+			Type:            openlayer.F(openlayer.CommitTestResultListParamsTypeIntegrity),
 		},
 	)
 	if err != nil {
-		var apierr *githubcomopenlayeraiopenlayergo.Error
+		var apierr *openlayer.Error
 		if errors.As(err, &apierr) {
 			t.Log(string(apierr.DumpRequest(true)))
 		}
