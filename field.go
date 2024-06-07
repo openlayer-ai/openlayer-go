@@ -1,4 +1,4 @@
-package githubcomopenlayeraiopenlayergo
+package openlayer
 
 import (
 	"github.com/openlayer-ai/openlayer-go/internal/param"
