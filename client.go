@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/stainless-sdks/openlayer-go/internal/requestconfig"
-	"github.com/stainless-sdks/openlayer-go/option"
+	"github.com/openlayer-ai/openlayer-go/internal/requestconfig"
+	"github.com/openlayer-ai/openlayer-go/option"
 )
 
 // Client creates a struct with services and top level methods that help with
