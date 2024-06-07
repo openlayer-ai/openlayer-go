@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-package openlayer_test
+package githubcomopenlayeraiopenlayergo_test
 
 import (
 	"context"
@@ -21,23 +21,23 @@ func TestInferencePipelineTestResultListWithOptionalParams(t *testing.T) {
 	if !testutil.CheckTestServer(t, baseURL) {
 		return
 	}
-	client := openlayer.NewClient(
+	client := githubcomopenlayeraiopenlayergo.NewClient(
 		option.WithBaseURL(baseURL),
 		option.WithAPIKey("My API Key"),
 	)
 	_, err := client.InferencePipelines.TestResults.List(
 		context.TODO(),
 		"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-		openlayer.InferencePipelineTestResultListParams{
-			IncludeArchived: openlayer.F(true),
-			Page:            openlayer.F(int64(1)),
-			PerPage:         openlayer.F(int64(1)),
-			Status:          openlayer.F(openlayer.InferencePipelineTestResultListParamsStatusPassing),
-			Type:            openlayer.F(openlayer.InferencePipelineTestResultListParamsTypeIntegrity),
+		githubcomopenlayeraiopenlayergo.InferencePipelineTestResultListParams{
+			IncludeArchived: githubcomopenlayeraiopenlayergo.F(true),
+			Page:            githubcomopenlayeraiopenlayergo.F(int64(1)),
+			PerPage:         githubcomopenlayeraiopenlayergo.F(int64(1)),
+			Status:          githubcomopenlayeraiopenlayergo.F(githubcomopenlayeraiopenlayergo.InferencePipelineTestResultListParamsStatusPassing),
+			Type:            githubcomopenlayeraiopenlayergo.F(githubcomopenlayeraiopenlayergo.InferencePipelineTestResultListParamsTypeIntegrity),
 		},
 	)
 	if err != nil {
-		var apierr *openlayer.Error
+		var apierr *githubcomopenlayeraiopenlayergo.Error
 		if errors.As(err, &apierr) {
 			t.Log(string(apierr.DumpRequest(true)))
 		}
