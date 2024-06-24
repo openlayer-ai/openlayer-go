@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.3 (2024-06-24)
+
+Full Changelog: [v0.1.0-alpha.2...v0.1.0-alpha.3](https://github.com/openlayer-ai/openlayer-go/compare/v0.1.0-alpha.2...v0.1.0-alpha.3)
+
+### Features
+
+* **api:** update via SDK Studio ([#7](https://github.com/openlayer-ai/openlayer-go/issues/7)) ([9ea6352](https://github.com/openlayer-ai/openlayer-go/commit/9ea6352504266dcc33f3f083956130eabba809e8))
+
 ## 0.1.0-alpha.2 (2024-06-07)
 
 Full Changelog: [v0.1.0-alpha.1...v0.1.0-alpha.2](https://github.com/openlayer-ai/openlayer-go/compare/v0.1.0-alpha.1...v0.1.0-alpha.2)
