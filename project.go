@@ -38,12 +38,201 @@ func NewProjectService(opts ...option.RequestOption) (r *ProjectService) {
 	return
 }
 
+// Create a project under the current workspace.
+func (r *ProjectService) New(ctx context.Context, body ProjectNewParams, opts ...option.RequestOption) (res *ProjectNewResponse, err error) {
+	opts = append(r.Options[:], opts...)
+	path := "projects"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
+	return
+}
+
 // List the projects in a user's workspace.
 func (r *ProjectService) List(ctx context.Context, query ProjectListParams, opts ...option.RequestOption) (res *ProjectListResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "projects"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
+}
+
+type ProjectNewResponse struct {
+	// The project id.
+	ID string `json:"id,required" format:"uuid"`
+	// The project creator id.
+	CreatorID string `json:"creatorId,required,nullable" format:"uuid"`
+	// The project creation date.
+	DateCreated time.Time `json:"dateCreated,required" format:"date-time"`
+	// The project last updated date.
+	DateUpdated time.Time `json:"dateUpdated,required" format:"date-time"`
+	// The number of tests in the development mode of the project.
+	DevelopmentGoalCount int64 `json:"developmentGoalCount,required"`
+	// The total number of tests in the project.
+	GoalCount int64 `json:"goalCount,required"`
+	// The number of inference pipelines in the project.
+	InferencePipelineCount int64 `json:"inferencePipelineCount,required"`
+	// Links to the project.
+	Links ProjectNewResponseLinks `json:"links,required"`
+	// The number of tests in the monitoring mode of the project.
+	MonitoringGoalCount int64 `json:"monitoringGoalCount,required"`
+	// The project name.
+	Name string `json:"name,required"`
+	// Whether the project is a sample project or a user-created project.
+	Sample bool `json:"sample,required"`
+	// The source of the project.
+	Source ProjectNewResponseSource `json:"source,required,nullable"`
+	// The task type of the project.
+	TaskType ProjectNewResponseTaskType `json:"taskType,required"`
+	// The number of versions (commits) in the project.
+	VersionCount int64 `json:"versionCount,required"`
+	// The workspace id.
+	WorkspaceID string `json:"workspaceId,required,nullable" format:"uuid"`
+	// The project description.
+	Description string                    `json:"description,nullable"`
+	GitRepo     ProjectNewResponseGitRepo `json:"gitRepo,nullable"`
+	// The slack channel id connected to the project.
+	SlackChannelID string `json:"slackChannelId,nullable"`
+	// The slack channel connected to the project.
+	SlackChannelName string `json:"slackChannelName,nullable"`
+	// Whether slack channel notifications are enabled for the project.
+	SlackChannelNotificationsEnabled bool `json:"slackChannelNotificationsEnabled"`
+	// The number of unread notifications in the project.
+	UnreadNotificationCount int64                  `json:"unreadNotificationCount"`
+	JSON                    projectNewResponseJSON `json:"-"`
+}
+
+// projectNewResponseJSON contains the JSON metadata for the struct
+// [ProjectNewResponse]
+type projectNewResponseJSON struct {
+	ID                               apijson.Field
+	CreatorID                        apijson.Field
+	DateCreated                      apijson.Field
+	DateUpdated                      apijson.Field
+	DevelopmentGoalCount             apijson.Field
+	GoalCount                        apijson.Field
+	InferencePipelineCount           apijson.Field
+	Links                            apijson.Field
+	MonitoringGoalCount              apijson.Field
+	Name                             apijson.Field
+	Sample                           apijson.Field
+	Source                           apijson.Field
+	TaskType                         apijson.Field
+	VersionCount                     apijson.Field
+	WorkspaceID                      apijson.Field
+	Description                      apijson.Field
+	GitRepo                          apijson.Field
+	SlackChannelID                   apijson.Field
+	SlackChannelName                 apijson.Field
+	SlackChannelNotificationsEnabled apijson.Field
+	UnreadNotificationCount          apijson.Field
+	raw                              string
+	ExtraFields                      map[string]apijson.Field
+}
+
+func (r *ProjectNewResponse) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r projectNewResponseJSON) RawJSON() string {
+	return r.raw
+}
+
+// Links to the project.
+type ProjectNewResponseLinks struct {
+	App  string                      `json:"app,required"`
+	JSON projectNewResponseLinksJSON `json:"-"`
+}
+
+// projectNewResponseLinksJSON contains the JSON metadata for the struct
+// [ProjectNewResponseLinks]
+type projectNewResponseLinksJSON struct {
+	App         apijson.Field
+	raw         string
+	ExtraFields map[string]apijson.Field
+}
+
+func (r *ProjectNewResponseLinks) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r projectNewResponseLinksJSON) RawJSON() string {
+	return r.raw
+}
+
+// The source of the project.
+type ProjectNewResponseSource string
+
+const (
+	ProjectNewResponseSourceWeb  ProjectNewResponseSource = "web"
+	ProjectNewResponseSourceAPI  ProjectNewResponseSource = "api"
+	ProjectNewResponseSourceNull ProjectNewResponseSource = "null"
+)
+
+func (r ProjectNewResponseSource) IsKnown() bool {
+	switch r {
+	case ProjectNewResponseSourceWeb, ProjectNewResponseSourceAPI, ProjectNewResponseSourceNull:
+		return true
+	}
+	return false
+}
+
+// The task type of the project.
+type ProjectNewResponseTaskType string
+
+const (
+	ProjectNewResponseTaskTypeLlmBase               ProjectNewResponseTaskType = "llm-base"
+	ProjectNewResponseTaskTypeTabularClassification ProjectNewResponseTaskType = "tabular-classification"
+	ProjectNewResponseTaskTypeTabularRegression     ProjectNewResponseTaskType = "tabular-regression"
+	ProjectNewResponseTaskTypeTextClassification    ProjectNewResponseTaskType = "text-classification"
+)
+
+func (r ProjectNewResponseTaskType) IsKnown() bool {
+	switch r {
+	case ProjectNewResponseTaskTypeLlmBase, ProjectNewResponseTaskTypeTabularClassification, ProjectNewResponseTaskTypeTabularRegression, ProjectNewResponseTaskTypeTextClassification:
+		return true
+	}
+	return false
+}
+
+type ProjectNewResponseGitRepo struct {
+	ID            string                        `json:"id,required" format:"uuid"`
+	DateConnected time.Time                     `json:"dateConnected,required" format:"date-time"`
+	DateUpdated   time.Time                     `json:"dateUpdated,required" format:"date-time"`
+	GitAccountID  string                        `json:"gitAccountId,required" format:"uuid"`
+	GitID         int64                         `json:"gitId,required"`
+	Name          string                        `json:"name,required"`
+	Private       bool                          `json:"private,required"`
+	ProjectID     string                        `json:"projectId,required" format:"uuid"`
+	Slug          string                        `json:"slug,required"`
+	URL           string                        `json:"url,required" format:"url"`
+	Branch        string                        `json:"branch"`
+	RootDir       string                        `json:"rootDir"`
+	JSON          projectNewResponseGitRepoJSON `json:"-"`
+}
+
+// projectNewResponseGitRepoJSON contains the JSON metadata for the struct
+// [ProjectNewResponseGitRepo]
+type projectNewResponseGitRepoJSON struct {
+	ID            apijson.Field
+	DateConnected apijson.Field
+	DateUpdated   apijson.Field
+	GitAccountID  apijson.Field
+	GitID         apijson.Field
+	Name          apijson.Field
+	Private       apijson.Field
+	ProjectID     apijson.Field
+	Slug          apijson.Field
+	URL           apijson.Field
+	Branch        apijson.Field
+	RootDir       apijson.Field
+	raw           string
+	ExtraFields   map[string]apijson.Field
+}
+
+func (r *ProjectNewResponseGitRepo) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r projectNewResponseGitRepoJSON) RawJSON() string {
+	return r.raw
 }
 
 type ProjectListResponse struct {
@@ -279,6 +468,55 @@ func (r *ProjectListResponseItemsGitRepo) UnmarshalJSON(data []byte) (err error)
 
 func (r projectListResponseItemsGitRepoJSON) RawJSON() string {
 	return r.raw
+}
+
+type ProjectNewParams struct {
+	// The project name.
+	Name param.Field[string] `json:"name,required"`
+	// The task type of the project.
+	TaskType param.Field[ProjectNewParamsTaskType] `json:"taskType,required"`
+	// The project description.
+	Description param.Field[string]                  `json:"description"`
+	GitRepo     param.Field[ProjectNewParamsGitRepo] `json:"gitRepo"`
+	// The slack channel id connected to the project.
+	SlackChannelID param.Field[string] `json:"slackChannelId"`
+	// The slack channel connected to the project.
+	SlackChannelName param.Field[string] `json:"slackChannelName"`
+	// Whether slack channel notifications are enabled for the project.
+	SlackChannelNotificationsEnabled param.Field[bool] `json:"slackChannelNotificationsEnabled"`
+}
+
+func (r ProjectNewParams) MarshalJSON() (data []byte, err error) {
+	return apijson.MarshalRoot(r)
+}
+
+// The task type of the project.
+type ProjectNewParamsTaskType string
+
+const (
+	ProjectNewParamsTaskTypeLlmBase               ProjectNewParamsTaskType = "llm-base"
+	ProjectNewParamsTaskTypeTabularClassification ProjectNewParamsTaskType = "tabular-classification"
+	ProjectNewParamsTaskTypeTabularRegression     ProjectNewParamsTaskType = "tabular-regression"
+	ProjectNewParamsTaskTypeTextClassification    ProjectNewParamsTaskType = "text-classification"
+)
+
+func (r ProjectNewParamsTaskType) IsKnown() bool {
+	switch r {
+	case ProjectNewParamsTaskTypeLlmBase, ProjectNewParamsTaskTypeTabularClassification, ProjectNewParamsTaskTypeTabularRegression, ProjectNewParamsTaskTypeTextClassification:
+		return true
+	}
+	return false
+}
+
+type ProjectNewParamsGitRepo struct {
+	GitAccountID param.Field[string] `json:"gitAccountId,required" format:"uuid"`
+	GitID        param.Field[int64]  `json:"gitId,required"`
+	Branch       param.Field[string] `json:"branch"`
+	RootDir      param.Field[string] `json:"rootDir"`
+}
+
+func (r ProjectNewParamsGitRepo) MarshalJSON() (data []byte, err error) {
+	return apijson.MarshalRoot(r)
 }
 
 type ProjectListParams struct {
