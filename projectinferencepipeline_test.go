@@ -8,9 +8,9 @@ import (
 	"os"
 	"testing"
 
-	"github.com/openlayer-ai/openlayer-go"
-	"github.com/openlayer-ai/openlayer-go/internal/testutil"
-	"github.com/openlayer-ai/openlayer-go/option"
+	"github.com/stainless-sdks/openlayer-go"
+	"github.com/stainless-sdks/openlayer-go/internal/testutil"
+	"github.com/stainless-sdks/openlayer-go/option"
 )
 
 func TestProjectInferencePipelineListWithOptionalParams(t *testing.T) {

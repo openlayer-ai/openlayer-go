@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/openlayer-ai/openlayer-go/internal/param"
+	"github.com/stainless-sdks/openlayer-go/internal/param"
 )
 
 type Struct struct {
