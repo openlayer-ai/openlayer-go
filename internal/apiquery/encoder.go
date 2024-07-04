@@ -9,7 +9,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/openlayer-ai/openlayer-go/internal/param"
+	"github.com/stainless-sdks/openlayer-go/internal/param"
 )
 
 var encoders sync.Map // map[reflect.Type]encoderFunc

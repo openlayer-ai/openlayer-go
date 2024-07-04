@@ -1,4 +1,4 @@
-module github.com/openlayer-ai/openlayer-go
+module github.com/stainless-sdks/openlayer-go
 
 go 1.19
 

@@ -3,7 +3,7 @@
 package openlayer
 
 import (
-	"github.com/openlayer-ai/openlayer-go/internal/apierror"
+	"github.com/stainless-sdks/openlayer-go/internal/apierror"
 )
 
 type Error = apierror.Error

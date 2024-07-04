@@ -8,11 +8,11 @@ import (
 	"net/url"
 	"time"
 
-	"github.com/openlayer-ai/openlayer-go/internal/apijson"
-	"github.com/openlayer-ai/openlayer-go/internal/apiquery"
-	"github.com/openlayer-ai/openlayer-go/internal/param"
-	"github.com/openlayer-ai/openlayer-go/internal/requestconfig"
-	"github.com/openlayer-ai/openlayer-go/option"
+	"github.com/stainless-sdks/openlayer-go/internal/apijson"
+	"github.com/stainless-sdks/openlayer-go/internal/apiquery"
+	"github.com/stainless-sdks/openlayer-go/internal/param"
+	"github.com/stainless-sdks/openlayer-go/internal/requestconfig"
+	"github.com/stainless-sdks/openlayer-go/option"
 )
 
 // ProjectService contains methods and other services that help with interacting
