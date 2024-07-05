@@ -1,6 +1,6 @@
 # Openlayer Go API Library
 
-<a href="https://pkg.go.dev/github.com/stainless-sdks/openlayer-go"><img src="https://pkg.go.dev/badge/github.com/stainless-sdks/openlayer-go.svg" alt="Go Reference"></a>
+<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go"><img src="https://pkg.go.dev/badge/github.com/openlayer-ai/openlayer-go.svg" alt="Go Reference"></a>
 
 The Openlayer Go library provides convenient access to [the Openlayer REST
 API](https://openlayer.com/docs/api-reference/rest/overview) from applications written in Go. The full API of this library can be found in [api.md](api.md).
@@ -9,17 +9,25 @@ It is generated with [Stainless](https://www.stainlessapi.com/).
 
 ## Installation
 
+<!-- x-release-please-start-version -->
+
 ```go
 import (
-	"github.com/stainless-sdks/openlayer-go" // imported as openlayer
+	"github.com/openlayer-ai/openlayer-go" // imported as openlayer
 )
 ```
 
+<!-- x-release-please-end -->
+
 Or to pin the version:
 
+<!-- x-release-please-start-version -->
+
 ```sh
-go get -u 'github.com/stainless-sdks/openlayer-go@v0.1.0-alpha.2'
+go get -u 'github.com/openlayer-ai/openlayer-go@v0.1.0-alpha.2'
 ```
+
+<!-- x-release-please-end -->
 
 ## Requirements
 
@@ -36,8 +44,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/stainless-sdks/openlayer-go"
-	"github.com/stainless-sdks/openlayer-go/option"
+	"github.com/openlayer-ai/openlayer-go"
+	"github.com/openlayer-ai/openlayer-go/option"
 )
 
 func main() {
@@ -164,7 +172,7 @@ client.InferencePipelines.Data.Stream(context.TODO(), ...,
 )
 ```
 
-See the [full list of request options](https://pkg.go.dev/github.com/stainless-sdks/openlayer-go/option).
+See the [full list of request options](https://pkg.go.dev/github.com/openlayer-ai/openlayer-go/option).
 
 ### Pagination
 
@@ -399,4 +407,4 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/stainless-sdks/openlayer-go/issues) with questions, bugs, or suggestions.
+We are keen for your feedback; please open an [issue](https://www.github.com/openlayer-ai/openlayer-go/issues) with questions, bugs, or suggestions.
