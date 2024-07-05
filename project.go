@@ -75,8 +75,6 @@ type ProjectNewResponse struct {
 	MonitoringGoalCount int64 `json:"monitoringGoalCount,required"`
 	// The project name.
 	Name string `json:"name,required"`
-	// Whether the project is a sample project or a user-created project.
-	Sample bool `json:"sample,required"`
 	// The source of the project.
 	Source ProjectNewResponseSource `json:"source,required,nullable"`
 	// The task type of the project.
@@ -88,43 +86,30 @@ type ProjectNewResponse struct {
 	// The project description.
 	Description string                    `json:"description,nullable"`
 	GitRepo     ProjectNewResponseGitRepo `json:"gitRepo,nullable"`
-	// The slack channel id connected to the project.
-	SlackChannelID string `json:"slackChannelId,nullable"`
-	// The slack channel connected to the project.
-	SlackChannelName string `json:"slackChannelName,nullable"`
-	// Whether slack channel notifications are enabled for the project.
-	SlackChannelNotificationsEnabled bool `json:"slackChannelNotificationsEnabled"`
-	// The number of unread notifications in the project.
-	UnreadNotificationCount int64                  `json:"unreadNotificationCount"`
-	JSON                    projectNewResponseJSON `json:"-"`
+	JSON        projectNewResponseJSON    `json:"-"`
 }
 
 // projectNewResponseJSON contains the JSON metadata for the struct
 // [ProjectNewResponse]
 type projectNewResponseJSON struct {
-	ID                               apijson.Field
-	CreatorID                        apijson.Field
-	DateCreated                      apijson.Field
-	DateUpdated                      apijson.Field
-	DevelopmentGoalCount             apijson.Field
-	GoalCount                        apijson.Field
-	InferencePipelineCount           apijson.Field
-	Links                            apijson.Field
-	MonitoringGoalCount              apijson.Field
-	Name                             apijson.Field
-	Sample                           apijson.Field
-	Source                           apijson.Field
-	TaskType                         apijson.Field
-	VersionCount                     apijson.Field
-	WorkspaceID                      apijson.Field
-	Description                      apijson.Field
-	GitRepo                          apijson.Field
-	SlackChannelID                   apijson.Field
-	SlackChannelName                 apijson.Field
-	SlackChannelNotificationsEnabled apijson.Field
-	UnreadNotificationCount          apijson.Field
-	raw                              string
-	ExtraFields                      map[string]apijson.Field
+	ID                     apijson.Field
+	CreatorID              apijson.Field
+	DateCreated            apijson.Field
+	DateUpdated            apijson.Field
+	DevelopmentGoalCount   apijson.Field
+	GoalCount              apijson.Field
+	InferencePipelineCount apijson.Field
+	Links                  apijson.Field
+	MonitoringGoalCount    apijson.Field
+	Name                   apijson.Field
+	Source                 apijson.Field
+	TaskType               apijson.Field
+	VersionCount           apijson.Field
+	WorkspaceID            apijson.Field
+	Description            apijson.Field
+	GitRepo                apijson.Field
+	raw                    string
+	ExtraFields            map[string]apijson.Field
 }
 
 func (r *ProjectNewResponse) UnmarshalJSON(data []byte) (err error) {
@@ -310,8 +295,6 @@ type ProjectListResponseItem struct {
 	MonitoringGoalCount int64 `json:"monitoringGoalCount,required"`
 	// The project name.
 	Name string `json:"name,required"`
-	// Whether the project is a sample project or a user-created project.
-	Sample bool `json:"sample,required"`
 	// The source of the project.
 	Source ProjectListResponseItemsSource `json:"source,required,nullable"`
 	// The task type of the project.
@@ -323,43 +306,30 @@ type ProjectListResponseItem struct {
 	// The project description.
 	Description string                          `json:"description,nullable"`
 	GitRepo     ProjectListResponseItemsGitRepo `json:"gitRepo,nullable"`
-	// The slack channel id connected to the project.
-	SlackChannelID string `json:"slackChannelId,nullable"`
-	// The slack channel connected to the project.
-	SlackChannelName string `json:"slackChannelName,nullable"`
-	// Whether slack channel notifications are enabled for the project.
-	SlackChannelNotificationsEnabled bool `json:"slackChannelNotificationsEnabled"`
-	// The number of unread notifications in the project.
-	UnreadNotificationCount int64                       `json:"unreadNotificationCount"`
-	JSON                    projectListResponseItemJSON `json:"-"`
+	JSON        projectListResponseItemJSON     `json:"-"`
 }
 
 // projectListResponseItemJSON contains the JSON metadata for the struct
 // [ProjectListResponseItem]
 type projectListResponseItemJSON struct {
-	ID                               apijson.Field
-	CreatorID                        apijson.Field
-	DateCreated                      apijson.Field
-	DateUpdated                      apijson.Field
-	DevelopmentGoalCount             apijson.Field
-	GoalCount                        apijson.Field
-	InferencePipelineCount           apijson.Field
-	Links                            apijson.Field
-	MonitoringGoalCount              apijson.Field
-	Name                             apijson.Field
-	Sample                           apijson.Field
-	Source                           apijson.Field
-	TaskType                         apijson.Field
-	VersionCount                     apijson.Field
-	WorkspaceID                      apijson.Field
-	Description                      apijson.Field
-	GitRepo                          apijson.Field
-	SlackChannelID                   apijson.Field
-	SlackChannelName                 apijson.Field
-	SlackChannelNotificationsEnabled apijson.Field
-	UnreadNotificationCount          apijson.Field
-	raw                              string
-	ExtraFields                      map[string]apijson.Field
+	ID                     apijson.Field
+	CreatorID              apijson.Field
+	DateCreated            apijson.Field
+	DateUpdated            apijson.Field
+	DevelopmentGoalCount   apijson.Field
+	GoalCount              apijson.Field
+	InferencePipelineCount apijson.Field
+	Links                  apijson.Field
+	MonitoringGoalCount    apijson.Field
+	Name                   apijson.Field
+	Source                 apijson.Field
+	TaskType               apijson.Field
+	VersionCount           apijson.Field
+	WorkspaceID            apijson.Field
+	Description            apijson.Field
+	GitRepo                apijson.Field
+	raw                    string
+	ExtraFields            map[string]apijson.Field
 }
 
 func (r *ProjectListResponseItem) UnmarshalJSON(data []byte) (err error) {
@@ -478,12 +448,6 @@ type ProjectNewParams struct {
 	// The project description.
 	Description param.Field[string]                  `json:"description"`
 	GitRepo     param.Field[ProjectNewParamsGitRepo] `json:"gitRepo"`
-	// The slack channel id connected to the project.
-	SlackChannelID param.Field[string] `json:"slackChannelId"`
-	// The slack channel connected to the project.
-	SlackChannelName param.Field[string] `json:"slackChannelName"`
-	// Whether slack channel notifications are enabled for the project.
-	SlackChannelNotificationsEnabled param.Field[bool] `json:"slackChannelNotificationsEnabled"`
 }
 
 func (r ProjectNewParams) MarshalJSON() (data []byte, err error) {
