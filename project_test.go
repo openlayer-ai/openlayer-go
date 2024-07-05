@@ -35,9 +35,6 @@ func TestProjectNewWithOptionalParams(t *testing.T) {
 			RootDir:      openlayer.F("string"),
 			GitAccountID: openlayer.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),
 		}),
-		SlackChannelID:                   openlayer.F("C01B2PZQX1Z"),
-		SlackChannelName:                 openlayer.F("#my-project"),
-		SlackChannelNotificationsEnabled: openlayer.F(true),
 	})
 	if err != nil {
 		var apierr *openlayer.Error
