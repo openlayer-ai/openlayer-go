@@ -3,7 +3,7 @@
 package openlayer
 
 import (
-	"github.com/stainless-sdks/openlayer-go/option"
+	"github.com/openlayer-ai/openlayer-go/option"
 )
 
 // CommitService contains methods and other services that help with interacting
