@@ -38,7 +38,7 @@ func NewProjectService(opts ...option.RequestOption) (r *ProjectService) {
 	return
 }
 
-// Create a project under the current workspace.
+// Create a project in your workspace.
 func (r *ProjectService) New(ctx context.Context, body ProjectNewParams, opts ...option.RequestOption) (res *ProjectNewResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "projects"
@@ -46,7 +46,7 @@ func (r *ProjectService) New(ctx context.Context, body ProjectNewParams, opts ..
 	return
 }
 
-// List the projects in a user's workspace.
+// List your workspace's projects.
 func (r *ProjectService) List(ctx context.Context, query ProjectListParams, opts ...option.RequestOption) (res *ProjectListResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	path := "projects"
