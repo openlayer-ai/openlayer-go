@@ -52,14 +52,30 @@ func main() {
 	client := openlayer.NewClient(
 		option.WithAPIKey("My API Key"), // defaults to os.LookupEnv("OPENLAYER_API_KEY")
 	)
-	projectNewResponse, err := client.Projects.New(context.TODO(), openlayer.ProjectNewParams{
-		Name:     openlayer.F("My Project"),
-		TaskType: openlayer.F(openlayer.ProjectNewParamsTaskTypeLlmBase),
-	})
+	inferencePipelineDataStreamResponse, err := client.InferencePipelines.Data.Stream(
+		context.TODO(),
+		"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+		openlayer.InferencePipelineDataStreamParams{
+			Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmData{
+				InputVariableNames:   openlayer.F([]string{"user_query"}),
+				OutputColumnName:     openlayer.F("output"),
+				NumOfTokenColumnName: openlayer.F("tokens"),
+				CostColumnName:       openlayer.F("cost"),
+				TimestampColumnName:  openlayer.F("timestamp"),
+			}),
+			Rows: openlayer.F([]map[string]interface{}{{
+				"user_query": "what's the meaning of life?",
+				"output":     "42",
+				"tokens":     map[string]interface{}{},
+				"cost":       map[string]interface{}{},
+				"timestamp":  map[string]interface{}{},
+			}}),
+		},
+	)
 	if err != nil {
 		panic(err.Error())
 	}
-	fmt.Printf("%+v\n", projectNewResponse.ID)
+	fmt.Printf("%+v\n", inferencePipelineDataStreamResponse.Success)
 }
 
 ```
@@ -148,7 +164,7 @@ client := openlayer.NewClient(
 	option.WithHeader("X-Some-Header", "custom_header_info"),
 )
 
-client.Projects.New(context.TODO(), ...,
+client.InferencePipelines.Data.Stream(context.TODO(), ...,
 	// Override the header
 	option.WithHeader("X-Some-Header", "some_other_custom_header_info"),
 	// Add an undocumented field to the request body, using sjson syntax
@@ -177,17 +193,33 @@ When the API returns a non-success status code, we return an error with type
 To handle errors, we recommend that you use the `errors.As` pattern:
 
 ```go
-_, err := client.Projects.New(context.TODO(), openlayer.ProjectNewParams{
-	Name:     openlayer.F("My Project"),
-	TaskType: openlayer.F(openlayer.ProjectNewParamsTaskTypeLlmBase),
-})
+_, err := client.InferencePipelines.Data.Stream(
+	context.TODO(),
+	"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+	openlayer.InferencePipelineDataStreamParams{
+		Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmData{
+			InputVariableNames:   openlayer.F([]string{"user_query"}),
+			OutputColumnName:     openlayer.F("output"),
+			NumOfTokenColumnName: openlayer.F("tokens"),
+			CostColumnName:       openlayer.F("cost"),
+			TimestampColumnName:  openlayer.F("timestamp"),
+		}),
+		Rows: openlayer.F([]map[string]interface{}{{
+			"user_query": "what's the meaning of life?",
+			"output":     "42",
+			"tokens":     map[string]interface{}{},
+			"cost":       map[string]interface{}{},
+			"timestamp":  map[string]interface{}{},
+		}}),
+	},
+)
 if err != nil {
 	var apierr *openlayer.Error
 	if errors.As(err, &apierr) {
 		println(string(apierr.DumpRequest(true)))  // Prints the serialized HTTP request
 		println(string(apierr.DumpResponse(true))) // Prints the serialized HTTP response
 	}
-	panic(err.Error()) // GET "/projects": 400 Bad Request { ... }
+	panic(err.Error()) // GET "/inference-pipelines/{inferencePipelineId}/data-stream": 400 Bad Request { ... }
 }
 ```
 
@@ -205,11 +237,24 @@ To set a per-retry timeout, use `option.WithRequestTimeout()`.
 // This sets the timeout for the request, including all the retries.
 ctx, cancel := context.WithTimeout(context.Background(), 5*time.Minute)
 defer cancel()
-client.Projects.New(
+client.InferencePipelines.Data.Stream(
 	ctx,
-	openlayer.ProjectNewParams{
-		Name:     openlayer.F("My Project"),
-		TaskType: openlayer.F(openlayer.ProjectNewParamsTaskTypeLlmBase),
+	"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+	openlayer.InferencePipelineDataStreamParams{
+		Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmData{
+			InputVariableNames:   openlayer.F([]string{"user_query"}),
+			OutputColumnName:     openlayer.F("output"),
+			NumOfTokenColumnName: openlayer.F("tokens"),
+			CostColumnName:       openlayer.F("cost"),
+			TimestampColumnName:  openlayer.F("timestamp"),
+		}),
+		Rows: openlayer.F([]map[string]interface{}{{
+			"user_query": "what's the meaning of life?",
+			"output":     "42",
+			"tokens":     map[string]interface{}{},
+			"cost":       map[string]interface{}{},
+			"timestamp":  map[string]interface{}{},
+		}}),
 	},
 	// This sets the per-retry timeout
 	option.WithRequestTimeout(20*time.Second),
@@ -244,11 +289,24 @@ client := openlayer.NewClient(
 )
 
 // Override per-request:
-client.Projects.New(
+client.InferencePipelines.Data.Stream(
 	context.TODO(),
-	openlayer.ProjectNewParams{
-		Name:     openlayer.F("My Project"),
-		TaskType: openlayer.F(openlayer.ProjectNewParamsTaskTypeLlmBase),
+	"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+	openlayer.InferencePipelineDataStreamParams{
+		Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmData{
+			InputVariableNames:   openlayer.F([]string{"user_query"}),
+			OutputColumnName:     openlayer.F("output"),
+			NumOfTokenColumnName: openlayer.F("tokens"),
+			CostColumnName:       openlayer.F("cost"),
+			TimestampColumnName:  openlayer.F("timestamp"),
+		}),
+		Rows: openlayer.F([]map[string]interface{}{{
+			"user_query": "what's the meaning of life?",
+			"output":     "42",
+			"tokens":     map[string]interface{}{},
+			"cost":       map[string]interface{}{},
+			"timestamp":  map[string]interface{}{},
+		}}),
 	},
 	option.WithMaxRetries(5),
 )

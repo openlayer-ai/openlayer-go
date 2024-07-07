@@ -12,14 +12,56 @@ Methods:
 
 ## Commits
 
+Response Types:
+
+- <a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#ProjectCommitListResponse">ProjectCommitListResponse</a>
+
+Methods:
+
+- <code title="get /projects/{projectId}/versions">client.Projects.Commits.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#ProjectCommitService.List">List</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, projectID <a href="https://pkg.go.dev/builtin#string">string</a>, query <a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#ProjectCommitListParams">ProjectCommitListParams</a>) (<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#ProjectCommitListResponse">ProjectCommitListResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+
 ## InferencePipelines
+
+Response Types:
+
+- <a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#ProjectInferencePipelineNewResponse">ProjectInferencePipelineNewResponse</a>
+- <a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#ProjectInferencePipelineListResponse">ProjectInferencePipelineListResponse</a>
+
+Methods:
+
+- <code title="post /projects/{projectId}/inference-pipelines">client.Projects.InferencePipelines.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#ProjectInferencePipelineService.New">New</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, projectID <a href="https://pkg.go.dev/builtin#string">string</a>, body <a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#ProjectInferencePipelineNewParams">ProjectInferencePipelineNewParams</a>) (<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#ProjectInferencePipelineNewResponse">ProjectInferencePipelineNewResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="get /projects/{projectId}/inference-pipelines">client.Projects.InferencePipelines.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#ProjectInferencePipelineService.List">List</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, projectID <a href="https://pkg.go.dev/builtin#string">string</a>, query <a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#ProjectInferencePipelineListParams">ProjectInferencePipelineListParams</a>) (<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#ProjectInferencePipelineListResponse">ProjectInferencePipelineListResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 
 # Commits
 
 ## TestResults
 
+Response Types:
+
+- <a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#CommitTestResultListResponse">CommitTestResultListResponse</a>
+
+Methods:
+
+- <code title="get /versions/{projectVersionId}/results">client.Commits.TestResults.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#CommitTestResultService.List">List</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, projectVersionID <a href="https://pkg.go.dev/builtin#string">string</a>, query <a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#CommitTestResultListParams">CommitTestResultListParams</a>) (<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#CommitTestResultListResponse">CommitTestResultListResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+
 # InferencePipelines
 
 ## Data
 
+Response Types:
+
+- <a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#InferencePipelineDataStreamResponse">InferencePipelineDataStreamResponse</a>
+
+Methods:
+
+- <code title="post /inference-pipelines/{inferencePipelineId}/data-stream">client.InferencePipelines.Data.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#InferencePipelineDataService.Stream">Stream</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, inferencePipelineID <a href="https://pkg.go.dev/builtin#string">string</a>, body <a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#InferencePipelineDataStreamParams">InferencePipelineDataStreamParams</a>) (<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#InferencePipelineDataStreamResponse">InferencePipelineDataStreamResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+
 ## TestResults
+
+Response Types:
+
+- <a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#InferencePipelineTestResultListResponse">InferencePipelineTestResultListResponse</a>
+
+Methods:
+
+- <code title="get /inference-pipelines/{inferencePipelineId}/results">client.InferencePipelines.TestResults.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#InferencePipelineTestResultService.List">List</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, inferencePipelineID <a href="https://pkg.go.dev/builtin#string">string</a>, query <a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#InferencePipelineTestResultListParams">InferencePipelineTestResultListParams</a>) (<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#InferencePipelineTestResultListResponse">InferencePipelineTestResultListResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
