@@ -36,10 +36,26 @@ func TestUserAgentHeader(t *testing.T) {
 			},
 		}),
 	)
-	client.Projects.New(context.Background(), openlayer.ProjectNewParams{
-		Name:     openlayer.F("My Project"),
-		TaskType: openlayer.F(openlayer.ProjectNewParamsTaskTypeLlmBase),
-	})
+	client.InferencePipelines.Data.Stream(
+		context.Background(),
+		"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+		openlayer.InferencePipelineDataStreamParams{
+			Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmData{
+				InputVariableNames:   openlayer.F([]string{"user_query"}),
+				OutputColumnName:     openlayer.F("output"),
+				NumOfTokenColumnName: openlayer.F("tokens"),
+				CostColumnName:       openlayer.F("cost"),
+				TimestampColumnName:  openlayer.F("timestamp"),
+			}),
+			Rows: openlayer.F([]map[string]interface{}{{
+				"user_query": "what's the meaning of life?",
+				"output":     "42",
+				"tokens":     map[string]interface{}{},
+				"cost":       map[string]interface{}{},
+				"timestamp":  map[string]interface{}{},
+			}}),
+		},
+	)
 	if userAgent != fmt.Sprintf("Openlayer/Go %s", internal.PackageVersion) {
 		t.Errorf("Expected User-Agent to be correct, but got: %#v", userAgent)
 	}
@@ -62,10 +78,26 @@ func TestRetryAfter(t *testing.T) {
 			},
 		}),
 	)
-	res, err := client.Projects.New(context.Background(), openlayer.ProjectNewParams{
-		Name:     openlayer.F("My Project"),
-		TaskType: openlayer.F(openlayer.ProjectNewParamsTaskTypeLlmBase),
-	})
+	res, err := client.InferencePipelines.Data.Stream(
+		context.Background(),
+		"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+		openlayer.InferencePipelineDataStreamParams{
+			Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmData{
+				InputVariableNames:   openlayer.F([]string{"user_query"}),
+				OutputColumnName:     openlayer.F("output"),
+				NumOfTokenColumnName: openlayer.F("tokens"),
+				CostColumnName:       openlayer.F("cost"),
+				TimestampColumnName:  openlayer.F("timestamp"),
+			}),
+			Rows: openlayer.F([]map[string]interface{}{{
+				"user_query": "what's the meaning of life?",
+				"output":     "42",
+				"tokens":     map[string]interface{}{},
+				"cost":       map[string]interface{}{},
+				"timestamp":  map[string]interface{}{},
+			}}),
+		},
+	)
 	if err == nil || res != nil {
 		t.Error("Expected there to be a cancel error and for the response to be nil")
 	}
@@ -91,10 +123,26 @@ func TestRetryAfterMs(t *testing.T) {
 			},
 		}),
 	)
-	res, err := client.Projects.New(context.Background(), openlayer.ProjectNewParams{
-		Name:     openlayer.F("My Project"),
-		TaskType: openlayer.F(openlayer.ProjectNewParamsTaskTypeLlmBase),
-	})
+	res, err := client.InferencePipelines.Data.Stream(
+		context.Background(),
+		"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+		openlayer.InferencePipelineDataStreamParams{
+			Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmData{
+				InputVariableNames:   openlayer.F([]string{"user_query"}),
+				OutputColumnName:     openlayer.F("output"),
+				NumOfTokenColumnName: openlayer.F("tokens"),
+				CostColumnName:       openlayer.F("cost"),
+				TimestampColumnName:  openlayer.F("timestamp"),
+			}),
+			Rows: openlayer.F([]map[string]interface{}{{
+				"user_query": "what's the meaning of life?",
+				"output":     "42",
+				"tokens":     map[string]interface{}{},
+				"cost":       map[string]interface{}{},
+				"timestamp":  map[string]interface{}{},
+			}}),
+		},
+	)
 	if err == nil || res != nil {
 		t.Error("Expected there to be a cancel error and for the response to be nil")
 	}
@@ -116,10 +164,26 @@ func TestContextCancel(t *testing.T) {
 	)
 	cancelCtx, cancel := context.WithCancel(context.Background())
 	cancel()
-	res, err := client.Projects.New(cancelCtx, openlayer.ProjectNewParams{
-		Name:     openlayer.F("My Project"),
-		TaskType: openlayer.F(openlayer.ProjectNewParamsTaskTypeLlmBase),
-	})
+	res, err := client.InferencePipelines.Data.Stream(
+		cancelCtx,
+		"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+		openlayer.InferencePipelineDataStreamParams{
+			Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmData{
+				InputVariableNames:   openlayer.F([]string{"user_query"}),
+				OutputColumnName:     openlayer.F("output"),
+				NumOfTokenColumnName: openlayer.F("tokens"),
+				CostColumnName:       openlayer.F("cost"),
+				TimestampColumnName:  openlayer.F("timestamp"),
+			}),
+			Rows: openlayer.F([]map[string]interface{}{{
+				"user_query": "what's the meaning of life?",
+				"output":     "42",
+				"tokens":     map[string]interface{}{},
+				"cost":       map[string]interface{}{},
+				"timestamp":  map[string]interface{}{},
+			}}),
+		},
+	)
 	if err == nil || res != nil {
 		t.Error("Expected there to be a cancel error and for the response to be nil")
 	}
@@ -138,10 +202,26 @@ func TestContextCancelDelay(t *testing.T) {
 	)
 	cancelCtx, cancel := context.WithTimeout(context.Background(), 2*time.Millisecond)
 	defer cancel()
-	res, err := client.Projects.New(cancelCtx, openlayer.ProjectNewParams{
-		Name:     openlayer.F("My Project"),
-		TaskType: openlayer.F(openlayer.ProjectNewParamsTaskTypeLlmBase),
-	})
+	res, err := client.InferencePipelines.Data.Stream(
+		cancelCtx,
+		"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+		openlayer.InferencePipelineDataStreamParams{
+			Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmData{
+				InputVariableNames:   openlayer.F([]string{"user_query"}),
+				OutputColumnName:     openlayer.F("output"),
+				NumOfTokenColumnName: openlayer.F("tokens"),
+				CostColumnName:       openlayer.F("cost"),
+				TimestampColumnName:  openlayer.F("timestamp"),
+			}),
+			Rows: openlayer.F([]map[string]interface{}{{
+				"user_query": "what's the meaning of life?",
+				"output":     "42",
+				"tokens":     map[string]interface{}{},
+				"cost":       map[string]interface{}{},
+				"timestamp":  map[string]interface{}{},
+			}}),
+		},
+	)
 	if err == nil || res != nil {
 		t.Error("expected there to be a cancel error and for the response to be nil")
 	}
@@ -166,10 +246,26 @@ func TestContextDeadline(t *testing.T) {
 				},
 			}),
 		)
-		res, err := client.Projects.New(deadlineCtx, openlayer.ProjectNewParams{
-			Name:     openlayer.F("My Project"),
-			TaskType: openlayer.F(openlayer.ProjectNewParamsTaskTypeLlmBase),
-		})
+		res, err := client.InferencePipelines.Data.Stream(
+			deadlineCtx,
+			"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+			openlayer.InferencePipelineDataStreamParams{
+				Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmData{
+					InputVariableNames:   openlayer.F([]string{"user_query"}),
+					OutputColumnName:     openlayer.F("output"),
+					NumOfTokenColumnName: openlayer.F("tokens"),
+					CostColumnName:       openlayer.F("cost"),
+					TimestampColumnName:  openlayer.F("timestamp"),
+				}),
+				Rows: openlayer.F([]map[string]interface{}{{
+					"user_query": "what's the meaning of life?",
+					"output":     "42",
+					"tokens":     map[string]interface{}{},
+					"cost":       map[string]interface{}{},
+					"timestamp":  map[string]interface{}{},
+				}}),
+			},
+		)
 		if err == nil || res != nil {
 			t.Error("expected there to be a deadline error and for the response to be nil")
 		}
