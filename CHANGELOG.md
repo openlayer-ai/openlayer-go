@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.0-alpha.4 (2024-07-08)
+
+Full Changelog: [v0.1.0-alpha.3...v0.1.0-alpha.4](https://github.com/openlayer-ai/openlayer-go/compare/v0.1.0-alpha.3...v0.1.0-alpha.4)
+
+### Features
+
+* **api:** OpenAPI spec update via Stainless API ([be7c0b4](https://github.com/openlayer-ai/openlayer-go/commit/be7c0b479f4bbdcf19cf6783f73dc2d4aae820e3))
+* **api:** OpenAPI spec update via Stainless API ([#13](https://github.com/openlayer-ai/openlayer-go/issues/13)) ([bb83bc0](https://github.com/openlayer-ai/openlayer-go/commit/bb83bc0c22f8727d3d3352b4826b2c24bb34c8d4))
+* **api:** OpenAPI spec update via Stainless API ([#14](https://github.com/openlayer-ai/openlayer-go/issues/14)) ([c23f741](https://github.com/openlayer-ai/openlayer-go/commit/c23f74110985d5f91ed0bfa08418d763ba47d471))
+* **api:** OpenAPI spec update via Stainless API ([#16](https://github.com/openlayer-ai/openlayer-go/issues/16)) ([7ae861b](https://github.com/openlayer-ai/openlayer-go/commit/7ae861b1f28161696c347c208425d41a27c2da44))
+* **api:** update via SDK Studio ([#10](https://github.com/openlayer-ai/openlayer-go/issues/10)) ([25f7816](https://github.com/openlayer-ai/openlayer-go/commit/25f781652e3e9645c0dc776ec0bc695c2fb68b2d))
+* **api:** update via SDK Studio ([#15](https://github.com/openlayer-ai/openlayer-go/issues/15)) ([7b362a5](https://github.com/openlayer-ai/openlayer-go/commit/7b362a56e43a50f7c2229e39bc9fec649bd2aad0))
+
 ## 0.1.0-alpha.3 (2024-07-05)
 
 Full Changelog: [v0.1.0-alpha.2...v0.1.0-alpha.3](https://github.com/openlayer-ai/openlayer-go/compare/v0.1.0-alpha.2...v0.1.0-alpha.3)
