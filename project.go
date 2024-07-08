@@ -446,8 +446,7 @@ type ProjectNewParams struct {
 	// The task type of the project.
 	TaskType param.Field[ProjectNewParamsTaskType] `json:"taskType,required"`
 	// The project description.
-	Description param.Field[string]                  `json:"description"`
-	GitRepo     param.Field[ProjectNewParamsGitRepo] `json:"gitRepo"`
+	Description param.Field[string] `json:"description"`
 }
 
 func (r ProjectNewParams) MarshalJSON() (data []byte, err error) {
@@ -470,17 +469,6 @@ func (r ProjectNewParamsTaskType) IsKnown() bool {
 		return true
 	}
 	return false
-}
-
-type ProjectNewParamsGitRepo struct {
-	GitAccountID param.Field[string] `json:"gitAccountId,required" format:"uuid"`
-	GitID        param.Field[int64]  `json:"gitId,required"`
-	Branch       param.Field[string] `json:"branch"`
-	RootDir      param.Field[string] `json:"rootDir"`
-}
-
-func (r ProjectNewParamsGitRepo) MarshalJSON() (data []byte, err error) {
-	return apijson.MarshalRoot(r)
 }
 
 type ProjectListParams struct {

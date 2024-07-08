@@ -15,3 +15,5 @@ jobs:
       - name: Check release environment
         run: |
           bash ./scripts/check-release-environment
+        env:
+          STAINLESS_API_KEY: ${{ secrets.STAINLESS_API_KEY }}
