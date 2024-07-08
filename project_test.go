@@ -29,12 +29,6 @@ func TestProjectNewWithOptionalParams(t *testing.T) {
 		Name:        openlayer.F("My Project"),
 		TaskType:    openlayer.F(openlayer.ProjectNewParamsTaskTypeLlmBase),
 		Description: openlayer.F("My project description."),
-		GitRepo: openlayer.F(openlayer.ProjectNewParamsGitRepo{
-			GitID:        openlayer.F(int64(0)),
-			Branch:       openlayer.F("string"),
-			RootDir:      openlayer.F("string"),
-			GitAccountID: openlayer.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),
-		}),
 	})
 	if err != nil {
 		var apierr *openlayer.Error
