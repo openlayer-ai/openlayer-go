@@ -36,7 +36,7 @@ func NewInferencePipelineRowService(opts ...option.RequestOption) (r *InferenceP
 }
 
 // Update an inference data point in an inference pipeline.
-func (r *InferencePipelineRowService) Stream(ctx context.Context, inferencePipelineID string, params InferencePipelineRowStreamParams, opts ...option.RequestOption) (res *InferencePipelineRowStreamResponse, err error) {
+func (r *InferencePipelineRowService) Update(ctx context.Context, inferencePipelineID string, params InferencePipelineRowUpdateParams, opts ...option.RequestOption) (res *InferencePipelineRowUpdateResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	if inferencePipelineID == "" {
 		err = errors.New("missing required inferencePipelineId parameter")
@@ -47,62 +47,62 @@ func (r *InferencePipelineRowService) Stream(ctx context.Context, inferencePipel
 	return
 }
 
-type InferencePipelineRowStreamResponse struct {
-	Success InferencePipelineRowStreamResponseSuccess `json:"success,required"`
-	JSON    inferencePipelineRowStreamResponseJSON    `json:"-"`
+type InferencePipelineRowUpdateResponse struct {
+	Success InferencePipelineRowUpdateResponseSuccess `json:"success,required"`
+	JSON    inferencePipelineRowUpdateResponseJSON    `json:"-"`
 }
 
-// inferencePipelineRowStreamResponseJSON contains the JSON metadata for the struct
-// [InferencePipelineRowStreamResponse]
-type inferencePipelineRowStreamResponseJSON struct {
+// inferencePipelineRowUpdateResponseJSON contains the JSON metadata for the struct
+// [InferencePipelineRowUpdateResponse]
+type inferencePipelineRowUpdateResponseJSON struct {
 	Success     apijson.Field
 	raw         string
 	ExtraFields map[string]apijson.Field
 }
 
-func (r *InferencePipelineRowStreamResponse) UnmarshalJSON(data []byte) (err error) {
+func (r *InferencePipelineRowUpdateResponse) UnmarshalJSON(data []byte) (err error) {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-func (r inferencePipelineRowStreamResponseJSON) RawJSON() string {
+func (r inferencePipelineRowUpdateResponseJSON) RawJSON() string {
 	return r.raw
 }
 
-type InferencePipelineRowStreamResponseSuccess bool
+type InferencePipelineRowUpdateResponseSuccess bool
 
 const (
-	InferencePipelineRowStreamResponseSuccessTrue InferencePipelineRowStreamResponseSuccess = true
+	InferencePipelineRowUpdateResponseSuccessTrue InferencePipelineRowUpdateResponseSuccess = true
 )
 
-func (r InferencePipelineRowStreamResponseSuccess) IsKnown() bool {
+func (r InferencePipelineRowUpdateResponseSuccess) IsKnown() bool {
 	switch r {
-	case InferencePipelineRowStreamResponseSuccessTrue:
+	case InferencePipelineRowUpdateResponseSuccessTrue:
 		return true
 	}
 	return false
 }
 
-type InferencePipelineRowStreamParams struct {
+type InferencePipelineRowUpdateParams struct {
 	// Specify the inference id as a query param.
 	InferenceID param.Field[string]                                 `query:"inferenceId,required"`
 	Row         param.Field[interface{}]                            `json:"row,required"`
-	Config      param.Field[InferencePipelineRowStreamParamsConfig] `json:"config"`
+	Config      param.Field[InferencePipelineRowUpdateParamsConfig] `json:"config"`
 }
 
-func (r InferencePipelineRowStreamParams) MarshalJSON() (data []byte, err error) {
+func (r InferencePipelineRowUpdateParams) MarshalJSON() (data []byte, err error) {
 	return apijson.MarshalRoot(r)
 }
 
-// URLQuery serializes [InferencePipelineRowStreamParams]'s query parameters as
+// URLQuery serializes [InferencePipelineRowUpdateParams]'s query parameters as
 // `url.Values`.
-func (r InferencePipelineRowStreamParams) URLQuery() (v url.Values) {
+func (r InferencePipelineRowUpdateParams) URLQuery() (v url.Values) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,
 	})
 }
 
-type InferencePipelineRowStreamParamsConfig struct {
+type InferencePipelineRowUpdateParamsConfig struct {
 	// Name of the column with the ground truths.
 	GroundTruthColumnName param.Field[string] `json:"groundTruthColumnName"`
 	// Name of the column with human feedback.
@@ -118,6 +118,6 @@ type InferencePipelineRowStreamParamsConfig struct {
 	TimestampColumnName param.Field[string] `json:"timestampColumnName"`
 }
 
-func (r InferencePipelineRowStreamParamsConfig) MarshalJSON() (data []byte, err error) {
+func (r InferencePipelineRowUpdateParamsConfig) MarshalJSON() (data []byte, err error) {
 	return apijson.MarshalRoot(r)
 }

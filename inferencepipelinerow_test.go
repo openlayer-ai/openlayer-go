@@ -13,7 +13,7 @@ import (
 	"github.com/openlayer-ai/openlayer-go/option"
 )
 
-func TestInferencePipelineRowStreamWithOptionalParams(t *testing.T) {
+func TestInferencePipelineRowUpdateWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -25,13 +25,13 @@ func TestInferencePipelineRowStreamWithOptionalParams(t *testing.T) {
 		option.WithBaseURL(baseURL),
 		option.WithAPIKey("My API Key"),
 	)
-	_, err := client.InferencePipelines.Rows.Stream(
+	_, err := client.InferencePipelines.Rows.Update(
 		context.TODO(),
 		"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-		openlayer.InferencePipelineRowStreamParams{
+		openlayer.InferencePipelineRowUpdateParams{
 			InferenceID: openlayer.F("inferenceId"),
 			Row:         openlayer.F[any](map[string]interface{}{}),
-			Config: openlayer.F(openlayer.InferencePipelineRowStreamParamsConfig{
+			Config: openlayer.F(openlayer.InferencePipelineRowUpdateParamsConfig{
 				InferenceIDColumnName:   openlayer.F("id"),
 				LatencyColumnName:       openlayer.F("latency"),
 				TimestampColumnName:     openlayer.F("timestamp"),
