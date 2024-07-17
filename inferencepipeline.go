@@ -15,6 +15,7 @@ import (
 type InferencePipelineService struct {
 	Options     []option.RequestOption
 	Data        *InferencePipelineDataService
+	Rows        *InferencePipelineRowService
 	TestResults *InferencePipelineTestResultService
 }
 
@@ -25,6 +26,7 @@ func NewInferencePipelineService(opts ...option.RequestOption) (r *InferencePipe
 	r = &InferencePipelineService{}
 	r.Options = opts
 	r.Data = NewInferencePipelineDataService(opts...)
+	r.Rows = NewInferencePipelineRowService(opts...)
 	r.TestResults = NewInferencePipelineTestResultService(opts...)
 	return
 }
