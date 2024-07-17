@@ -56,6 +56,16 @@ Methods:
 
 - <code title="post /inference-pipelines/{inferencePipelineId}/data-stream">client.InferencePipelines.Data.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#InferencePipelineDataService.Stream">Stream</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, inferencePipelineID <a href="https://pkg.go.dev/builtin#string">string</a>, body <a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#InferencePipelineDataStreamParams">InferencePipelineDataStreamParams</a>) (<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#InferencePipelineDataStreamResponse">InferencePipelineDataStreamResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 
+## Rows
+
+Response Types:
+
+- <a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#InferencePipelineRowStreamResponse">InferencePipelineRowStreamResponse</a>
+
+Methods:
+
+- <code title="put /inference-pipelines/{inferencePipelineId}/rows">client.InferencePipelines.Rows.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#InferencePipelineRowService.Stream">Stream</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, inferencePipelineID <a href="https://pkg.go.dev/builtin#string">string</a>, params <a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#InferencePipelineRowStreamParams">InferencePipelineRowStreamParams</a>) (<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#InferencePipelineRowStreamResponse">InferencePipelineRowStreamResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+
 ## TestResults
 
 Response Types:
