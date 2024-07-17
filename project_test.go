@@ -52,7 +52,7 @@ func TestProjectListWithOptionalParams(t *testing.T) {
 		option.WithAPIKey("My API Key"),
 	)
 	_, err := client.Projects.List(context.TODO(), openlayer.ProjectListParams{
-		Name:     openlayer.F("string"),
+		Name:     openlayer.F("name"),
 		Page:     openlayer.F(int64(1)),
 		PerPage:  openlayer.F(int64(1)),
 		TaskType: openlayer.F(openlayer.ProjectListParamsTaskTypeLlmBase),

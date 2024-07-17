@@ -33,7 +33,7 @@ func NewInferencePipelineDataService(opts ...option.RequestOption) (r *Inference
 	return
 }
 
-// Stream production data to an inference pipeline.
+// Create an inference data point in an inference pipeline.
 func (r *InferencePipelineDataService) Stream(ctx context.Context, inferencePipelineID string, body InferencePipelineDataStreamParams, opts ...option.RequestOption) (res *InferencePipelineDataStreamResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	if inferencePipelineID == "" {
@@ -84,7 +84,7 @@ type InferencePipelineDataStreamParams struct {
 	// Configuration for the data stream. Depends on your **Openlayer project task
 	// type**.
 	Config param.Field[InferencePipelineDataStreamParamsConfigUnion] `json:"config,required"`
-	// A list of entries that represent rows of a csv file
+	// A list of inference data points with inputs and outputs
 	Rows param.Field[[]map[string]interface{}] `json:"rows,required"`
 }
 
