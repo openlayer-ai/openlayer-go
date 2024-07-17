@@ -60,11 +60,11 @@ Methods:
 
 Response Types:
 
-- <a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#InferencePipelineRowStreamResponse">InferencePipelineRowStreamResponse</a>
+- <a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#InferencePipelineRowUpdateResponse">InferencePipelineRowUpdateResponse</a>
 
 Methods:
 
-- <code title="put /inference-pipelines/{inferencePipelineId}/rows">client.InferencePipelines.Rows.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#InferencePipelineRowService.Stream">Stream</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, inferencePipelineID <a href="https://pkg.go.dev/builtin#string">string</a>, params <a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#InferencePipelineRowStreamParams">InferencePipelineRowStreamParams</a>) (<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#InferencePipelineRowStreamResponse">InferencePipelineRowStreamResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="put /inference-pipelines/{inferencePipelineId}/rows">client.InferencePipelines.Rows.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#InferencePipelineRowService.Update">Update</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, inferencePipelineID <a href="https://pkg.go.dev/builtin#string">string</a>, params <a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#InferencePipelineRowUpdateParams">InferencePipelineRowUpdateParams</a>) (<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#InferencePipelineRowUpdateResponse">InferencePipelineRowUpdateResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 
 ## TestResults
 
