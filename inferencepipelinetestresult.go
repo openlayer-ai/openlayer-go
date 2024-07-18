@@ -52,7 +52,7 @@ func (r *InferencePipelineTestResultService) List(ctx context.Context, inference
 }
 
 type InferencePipelineTestResultListResponse struct {
-	Meta  InferencePipelineTestResultListResponseMeta   `json:"_meta,required"`
+	Meta  InferencePipelineTestResultListResponse_Meta  `json:"_meta,required"`
 	Items []InferencePipelineTestResultListResponseItem `json:"items,required"`
 	JSON  inferencePipelineTestResultListResponseJSON   `json:"-"`
 }
@@ -74,7 +74,7 @@ func (r inferencePipelineTestResultListResponseJSON) RawJSON() string {
 	return r.raw
 }
 
-type InferencePipelineTestResultListResponseMeta struct {
+type InferencePipelineTestResultListResponse_Meta struct {
 	// The current page.
 	Page int64 `json:"page,required"`
 	// The number of items per page.
@@ -87,7 +87,7 @@ type InferencePipelineTestResultListResponseMeta struct {
 }
 
 // inferencePipelineTestResultListResponseMetaJSON contains the JSON metadata for
-// the struct [InferencePipelineTestResultListResponseMeta]
+// the struct [InferencePipelineTestResultListResponse_Meta]
 type inferencePipelineTestResultListResponseMetaJSON struct {
 	Page        apijson.Field
 	PerPage     apijson.Field
@@ -97,7 +97,7 @@ type inferencePipelineTestResultListResponseMetaJSON struct {
 	ExtraFields map[string]apijson.Field
 }
 
-func (r *InferencePipelineTestResultListResponseMeta) UnmarshalJSON(data []byte) (err error) {
+func (r *InferencePipelineTestResultListResponse_Meta) UnmarshalJSON(data []byte) (err error) {
 	return apijson.UnmarshalRoot(data, r)
 }
 
