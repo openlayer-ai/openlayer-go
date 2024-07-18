@@ -49,7 +49,7 @@ func (r *ProjectCommitService) List(ctx context.Context, projectID string, query
 }
 
 type ProjectCommitListResponse struct {
-	Meta  ProjectCommitListResponseMeta   `json:"_meta,required"`
+	Meta  ProjectCommitListResponse_Meta  `json:"_meta,required"`
 	Items []ProjectCommitListResponseItem `json:"items,required"`
 	JSON  projectCommitListResponseJSON   `json:"-"`
 }
@@ -71,7 +71,7 @@ func (r projectCommitListResponseJSON) RawJSON() string {
 	return r.raw
 }
 
-type ProjectCommitListResponseMeta struct {
+type ProjectCommitListResponse_Meta struct {
 	// The current page.
 	Page int64 `json:"page,required"`
 	// The number of items per page.
@@ -84,7 +84,7 @@ type ProjectCommitListResponseMeta struct {
 }
 
 // projectCommitListResponseMetaJSON contains the JSON metadata for the struct
-// [ProjectCommitListResponseMeta]
+// [ProjectCommitListResponse_Meta]
 type projectCommitListResponseMetaJSON struct {
 	Page        apijson.Field
 	PerPage     apijson.Field
@@ -94,7 +94,7 @@ type projectCommitListResponseMetaJSON struct {
 	ExtraFields map[string]apijson.Field
 }
 
-func (r *ProjectCommitListResponseMeta) UnmarshalJSON(data []byte) (err error) {
+func (r *ProjectCommitListResponse_Meta) UnmarshalJSON(data []byte) (err error) {
 	return apijson.UnmarshalRoot(data, r)
 }
 
