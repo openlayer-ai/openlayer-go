@@ -33,7 +33,7 @@ func NewInferencePipelineDataService(opts ...option.RequestOption) (r *Inference
 	return
 }
 
-// Create an inference data point in an inference pipeline.
+// Publish an inference data point to an inference pipeline.
 func (r *InferencePipelineDataService) Stream(ctx context.Context, inferencePipelineID string, body InferencePipelineDataStreamParams, opts ...option.RequestOption) (res *InferencePipelineDataStreamResponse, err error) {
 	opts = append(r.Options[:], opts...)
 	if inferencePipelineID == "" {
