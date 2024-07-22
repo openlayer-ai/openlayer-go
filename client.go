@@ -19,6 +19,7 @@ type Client struct {
 	Projects           *ProjectService
 	Commits            *CommitService
 	InferencePipelines *InferencePipelineService
+	Storage            *StorageService
 }
 
 // NewClient generates a new client with the default option read from the
@@ -37,6 +38,7 @@ func NewClient(opts ...option.RequestOption) (r *Client) {
 	r.Projects = NewProjectService(opts...)
 	r.Commits = NewCommitService(opts...)
 	r.InferencePipelines = NewInferencePipelineService(opts...)
+	r.Storage = NewStorageService(opts...)
 
 	return
 }
