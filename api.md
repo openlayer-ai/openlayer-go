@@ -75,3 +75,15 @@ Response Types:
 Methods:
 
 - <code title="get /inference-pipelines/{inferencePipelineId}/results">client.InferencePipelines.TestResults.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#InferencePipelineTestResultService.List">List</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, inferencePipelineID <a href="https://pkg.go.dev/builtin#string">string</a>, query <a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#InferencePipelineTestResultListParams">InferencePipelineTestResultListParams</a>) (<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#InferencePipelineTestResultListResponse">InferencePipelineTestResultListResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+
+# Storage
+
+## PresignedURL
+
+Response Types:
+
+- <a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#StoragePresignedURLNewResponse">StoragePresignedURLNewResponse</a>
+
+Methods:
+
+- <code title="post /storage/presigned-url">client.Storage.PresignedURL.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#StoragePresignedURLService.New">New</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, body <a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#StoragePresignedURLNewParams">StoragePresignedURLNewParams</a>) (<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#StoragePresignedURLNewResponse">StoragePresignedURLNewResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
