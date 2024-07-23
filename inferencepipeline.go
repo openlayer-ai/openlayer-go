@@ -10,6 +10,7 @@ import (
 	"time"
 
 	"github.com/openlayer-ai/openlayer-go/internal/apijson"
+	"github.com/openlayer-ai/openlayer-go/internal/param"
 	"github.com/openlayer-ai/openlayer-go/internal/requestconfig"
 	"github.com/openlayer-ai/openlayer-go/option"
 )
@@ -48,6 +49,18 @@ func (r *InferencePipelineService) Get(ctx context.Context, inferencePipelineID 
 	}
 	path := fmt.Sprintf("inference-pipelines/%s", inferencePipelineID)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
+	return
+}
+
+// Update inference pipeline.
+func (r *InferencePipelineService) Update(ctx context.Context, inferencePipelineID string, body InferencePipelineUpdateParams, opts ...option.RequestOption) (res *InferencePipelineUpdateResponse, err error) {
+	opts = append(r.Options[:], opts...)
+	if inferencePipelineID == "" {
+		err = errors.New("missing required inferencePipelineId parameter")
+		return
+	}
+	path := fmt.Sprintf("inference-pipelines/%s", inferencePipelineID)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, &res, opts...)
 	return
 }
 
@@ -166,4 +179,122 @@ func (r InferencePipelineGetResponseStatus) IsKnown() bool {
 		return true
 	}
 	return false
+}
+
+type InferencePipelineUpdateResponse struct {
+	// The inference pipeline id.
+	ID string `json:"id,required" format:"uuid"`
+	// The creation date.
+	DateCreated time.Time `json:"dateCreated,required" format:"date-time"`
+	// The last test evaluation date.
+	DateLastEvaluated time.Time `json:"dateLastEvaluated,required,nullable" format:"date-time"`
+	// The last data sample received date.
+	DateLastSampleReceived time.Time `json:"dateLastSampleReceived,required,nullable" format:"date-time"`
+	// The next test evaluation date.
+	DateOfNextEvaluation time.Time `json:"dateOfNextEvaluation,required,nullable" format:"date-time"`
+	// The last updated date.
+	DateUpdated time.Time `json:"dateUpdated,required" format:"date-time"`
+	// The inference pipeline description.
+	Description string `json:"description,required,nullable"`
+	// The number of tests failing.
+	FailingGoalCount int64                                `json:"failingGoalCount,required"`
+	Links            InferencePipelineUpdateResponseLinks `json:"links,required"`
+	// The inference pipeline name.
+	Name string `json:"name,required"`
+	// The number of tests passing.
+	PassingGoalCount int64 `json:"passingGoalCount,required"`
+	// The project id.
+	ProjectID string `json:"projectId,required" format:"uuid"`
+	// The status of test evaluation for the inference pipeline.
+	Status InferencePipelineUpdateResponseStatus `json:"status,required"`
+	// The status message of test evaluation for the inference pipeline.
+	StatusMessage string `json:"statusMessage,required,nullable"`
+	// The total number of tests.
+	TotalGoalCount int64                               `json:"totalGoalCount,required"`
+	JSON           inferencePipelineUpdateResponseJSON `json:"-"`
+}
+
+// inferencePipelineUpdateResponseJSON contains the JSON metadata for the struct
+// [InferencePipelineUpdateResponse]
+type inferencePipelineUpdateResponseJSON struct {
+	ID                     apijson.Field
+	DateCreated            apijson.Field
+	DateLastEvaluated      apijson.Field
+	DateLastSampleReceived apijson.Field
+	DateOfNextEvaluation   apijson.Field
+	DateUpdated            apijson.Field
+	Description            apijson.Field
+	FailingGoalCount       apijson.Field
+	Links                  apijson.Field
+	Name                   apijson.Field
+	PassingGoalCount       apijson.Field
+	ProjectID              apijson.Field
+	Status                 apijson.Field
+	StatusMessage          apijson.Field
+	TotalGoalCount         apijson.Field
+	raw                    string
+	ExtraFields            map[string]apijson.Field
+}
+
+func (r *InferencePipelineUpdateResponse) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r inferencePipelineUpdateResponseJSON) RawJSON() string {
+	return r.raw
+}
+
+type InferencePipelineUpdateResponseLinks struct {
+	App  string                                   `json:"app,required"`
+	JSON inferencePipelineUpdateResponseLinksJSON `json:"-"`
+}
+
+// inferencePipelineUpdateResponseLinksJSON contains the JSON metadata for the
+// struct [InferencePipelineUpdateResponseLinks]
+type inferencePipelineUpdateResponseLinksJSON struct {
+	App         apijson.Field
+	raw         string
+	ExtraFields map[string]apijson.Field
+}
+
+func (r *InferencePipelineUpdateResponseLinks) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r inferencePipelineUpdateResponseLinksJSON) RawJSON() string {
+	return r.raw
+}
+
+// The status of test evaluation for the inference pipeline.
+type InferencePipelineUpdateResponseStatus string
+
+const (
+	InferencePipelineUpdateResponseStatusQueued    InferencePipelineUpdateResponseStatus = "queued"
+	InferencePipelineUpdateResponseStatusRunning   InferencePipelineUpdateResponseStatus = "running"
+	InferencePipelineUpdateResponseStatusPaused    InferencePipelineUpdateResponseStatus = "paused"
+	InferencePipelineUpdateResponseStatusFailed    InferencePipelineUpdateResponseStatus = "failed"
+	InferencePipelineUpdateResponseStatusCompleted InferencePipelineUpdateResponseStatus = "completed"
+	InferencePipelineUpdateResponseStatusUnknown   InferencePipelineUpdateResponseStatus = "unknown"
+)
+
+func (r InferencePipelineUpdateResponseStatus) IsKnown() bool {
+	switch r {
+	case InferencePipelineUpdateResponseStatusQueued, InferencePipelineUpdateResponseStatusRunning, InferencePipelineUpdateResponseStatusPaused, InferencePipelineUpdateResponseStatusFailed, InferencePipelineUpdateResponseStatusCompleted, InferencePipelineUpdateResponseStatusUnknown:
+		return true
+	}
+	return false
+}
+
+type InferencePipelineUpdateParams struct {
+	// The inference pipeline description.
+	Description param.Field[string] `json:"description"`
+	// The inference pipeline name.
+	Name param.Field[string] `json:"name"`
+	// The storage uri of your reference dataset. We recommend using the Python SDK or
+	// the UI to handle your reference dataset updates.
+	ReferenceDatasetUri param.Field[string] `json:"referenceDatasetUri"`
+}
+
+func (r InferencePipelineUpdateParams) MarshalJSON() (data []byte, err error) {
+	return apijson.MarshalRoot(r)
 }

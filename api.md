@@ -49,10 +49,12 @@ Methods:
 Response Types:
 
 - <a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#InferencePipelineGetResponse">InferencePipelineGetResponse</a>
+- <a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#InferencePipelineUpdateResponse">InferencePipelineUpdateResponse</a>
 
 Methods:
 
 - <code title="get /inference-pipelines/{inferencePipelineId}">client.InferencePipelines.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#InferencePipelineService.Get">Get</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, inferencePipelineID <a href="https://pkg.go.dev/builtin#string">string</a>) (<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#InferencePipelineGetResponse">InferencePipelineGetResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="put /inference-pipelines/{inferencePipelineId}">client.InferencePipelines.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#InferencePipelineService.Update">Update</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, inferencePipelineID <a href="https://pkg.go.dev/builtin#string">string</a>, body <a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#InferencePipelineUpdateParams">InferencePipelineUpdateParams</a>) (<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#InferencePipelineUpdateResponse">InferencePipelineUpdateResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 - <code title="delete /inference-pipelines/{inferencePipelineId}">client.InferencePipelines.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#InferencePipelineService.Delete">Delete</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, inferencePipelineID <a href="https://pkg.go.dev/builtin#string">string</a>) <a href="https://pkg.go.dev/builtin#error">error</a></code>
 
 ## Data
