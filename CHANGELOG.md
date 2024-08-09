@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.1.0-alpha.5 (2024-08-09)
+
+Full Changelog: [v0.1.0-alpha.4...v0.1.0-alpha.5](https://github.com/openlayer-ai/openlayer-go/compare/v0.1.0-alpha.4...v0.1.0-alpha.5)
+
+### Features
+
+* **api:** OpenAPI spec update via Stainless API ([#19](https://github.com/openlayer-ai/openlayer-go/issues/19)) ([b142e08](https://github.com/openlayer-ai/openlayer-go/commit/b142e0847a75b53b079925803bcc75c7c79e2bc0))
+* **api:** OpenAPI spec update via Stainless API ([#23](https://github.com/openlayer-ai/openlayer-go/issues/23)) ([2529ae2](https://github.com/openlayer-ai/openlayer-go/commit/2529ae228b86f98a147cae383ffdbe74188d8b2c))
+* **api:** OpenAPI spec update via Stainless API ([#24](https://github.com/openlayer-ai/openlayer-go/issues/24)) ([ca8e5fc](https://github.com/openlayer-ai/openlayer-go/commit/ca8e5fcf6aa42d026db5e174e94b98d25496af4d))
+* **api:** update via SDK Studio ([#21](https://github.com/openlayer-ai/openlayer-go/issues/21)) ([f83d4cf](https://github.com/openlayer-ai/openlayer-go/commit/f83d4cf7708169f3ca03e22940a09aab95c3a15d))
+* **api:** update via SDK Studio ([#22](https://github.com/openlayer-ai/openlayer-go/issues/22)) ([4af16b0](https://github.com/openlayer-ai/openlayer-go/commit/4af16b0774291fa1d0646ba33e9e88fe1084216d))
+
+
+### Chores
+
+* **ci:** limit release doctor target branches ([#25](https://github.com/openlayer-ai/openlayer-go/issues/25)) ([e2d8fc3](https://github.com/openlayer-ai/openlayer-go/commit/e2d8fc3b3427c5830f246ef91c0dd8b7020680a0))
+
 ## 0.1.0-alpha.4 (2024-07-08)
 
 Full Changelog: [v0.1.0-alpha.3...v0.1.0-alpha.4](https://github.com/openlayer-ai/openlayer-go/compare/v0.1.0-alpha.3...v0.1.0-alpha.4)
