@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.1.0-alpha.6 (2024-08-14)
+
+Full Changelog: [v0.1.0-alpha.5...v0.1.0-alpha.6](https://github.com/openlayer-ai/openlayer-go/compare/v0.1.0-alpha.5...v0.1.0-alpha.6)
+
+### Bug Fixes
+
+* deserialization of struct unions that implement json.Unmarshaler ([#36](https://github.com/openlayer-ai/openlayer-go/issues/36)) ([bc92d1d](https://github.com/openlayer-ai/openlayer-go/commit/bc92d1dc5ac47f1f7fa17168112d100ac4b0bb65))
+
+
+### Chores
+
+* **ci:** bump prism mock server version ([#35](https://github.com/openlayer-ai/openlayer-go/issues/35)) ([a6ad713](https://github.com/openlayer-ai/openlayer-go/commit/a6ad713106b68733cc84391c9d6348a20a72eab1))
+* **internal:** codegen related update ([#33](https://github.com/openlayer-ai/openlayer-go/issues/33)) ([4b4e1cd](https://github.com/openlayer-ai/openlayer-go/commit/4b4e1cde527d53cf6c7548bb27ccd6bb93c3c108))
+* **internal:** version bump ([#32](https://github.com/openlayer-ai/openlayer-go/issues/32)) ([b0cfc04](https://github.com/openlayer-ai/openlayer-go/commit/b0cfc04e22de46846a7a0d39785b9ba0e99f23f3))
+
 ## 0.1.0-alpha.5 (2024-08-14)
 
 Full Changelog: [v0.1.0-alpha.4...v0.1.0-alpha.5](https://github.com/openlayer-ai/openlayer-go/compare/v0.1.0-alpha.4...v0.1.0-alpha.5)
