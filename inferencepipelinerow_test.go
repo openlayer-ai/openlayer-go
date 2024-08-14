@@ -32,11 +32,11 @@ func TestInferencePipelineRowUpdateWithOptionalParams(t *testing.T) {
 			InferenceID: openlayer.F("inferenceId"),
 			Row:         openlayer.F[any](map[string]interface{}{}),
 			Config: openlayer.F(openlayer.InferencePipelineRowUpdateParamsConfig{
+				GroundTruthColumnName:   openlayer.F("ground_truth"),
+				HumanFeedbackColumnName: openlayer.F("human_feedback"),
 				InferenceIDColumnName:   openlayer.F("id"),
 				LatencyColumnName:       openlayer.F("latency"),
 				TimestampColumnName:     openlayer.F("timestamp"),
-				GroundTruthColumnName:   openlayer.F("ground_truth"),
-				HumanFeedbackColumnName: openlayer.F("human_feedback"),
 			}),
 		},
 	)
