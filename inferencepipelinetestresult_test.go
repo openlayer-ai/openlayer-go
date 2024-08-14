@@ -31,7 +31,7 @@ func TestInferencePipelineTestResultListWithOptionalParams(t *testing.T) {
 		openlayer.InferencePipelineTestResultListParams{
 			Page:    openlayer.F(int64(1)),
 			PerPage: openlayer.F(int64(1)),
-			Status:  openlayer.F(openlayer.InferencePipelineTestResultListParamsStatusPassing),
+			Status:  openlayer.F(openlayer.InferencePipelineTestResultListParamsStatusRunning),
 			Type:    openlayer.F(openlayer.InferencePipelineTestResultListParamsTypeIntegrity),
 		},
 	)
