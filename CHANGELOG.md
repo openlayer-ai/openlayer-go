@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.0-alpha.7 (2024-08-14)
+
+Full Changelog: [v0.1.0-alpha.6...v0.1.0-alpha.7](https://github.com/openlayer-ai/openlayer-go/compare/v0.1.0-alpha.6...v0.1.0-alpha.7)
+
+### Chores
+
+* bump Go to v1.21 ([#38](https://github.com/openlayer-ai/openlayer-go/issues/38)) ([4552823](https://github.com/openlayer-ai/openlayer-go/commit/4552823edf865a06b312274e66135fcdcd36d758))
+* **examples:** minor formatting changes ([#40](https://github.com/openlayer-ai/openlayer-go/issues/40)) ([aa3b623](https://github.com/openlayer-ai/openlayer-go/commit/aa3b6230b77e63ee0b644f81c5f683a28fcf76c0))
+
 ## 0.1.0-alpha.6 (2024-08-14)
 
 Full Changelog: [v0.1.0-alpha.5...v0.1.0-alpha.6](https://github.com/openlayer-ai/openlayer-go/compare/v0.1.0-alpha.5...v0.1.0-alpha.6)
