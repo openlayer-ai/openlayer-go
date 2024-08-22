@@ -64,7 +64,7 @@ func main() {
 				TimestampColumnName:  openlayer.F("timestamp"),
 			}),
 			Rows: openlayer.F([]map[string]interface{}{{
-				"user_query": "what's the meaning of life?",
+				"user_query": "what is the meaning of life?",
 				"output":     "42",
 				"tokens":     map[string]interface{}{},
 				"cost":       map[string]interface{}{},
@@ -205,7 +205,7 @@ _, err := client.InferencePipelines.Data.Stream(
 			TimestampColumnName:  openlayer.F("timestamp"),
 		}),
 		Rows: openlayer.F([]map[string]interface{}{{
-			"user_query": "what's the meaning of life?",
+			"user_query": "what is the meaning of life?",
 			"output":     "42",
 			"tokens":     map[string]interface{}{},
 			"cost":       map[string]interface{}{},
@@ -249,7 +249,7 @@ client.InferencePipelines.Data.Stream(
 			TimestampColumnName:  openlayer.F("timestamp"),
 		}),
 		Rows: openlayer.F([]map[string]interface{}{{
-			"user_query": "what's the meaning of life?",
+			"user_query": "what is the meaning of life?",
 			"output":     "42",
 			"tokens":     map[string]interface{}{},
 			"cost":       map[string]interface{}{},
@@ -301,7 +301,7 @@ client.InferencePipelines.Data.Stream(
 			TimestampColumnName:  openlayer.F("timestamp"),
 		}),
 		Rows: openlayer.F([]map[string]interface{}{{
-			"user_query": "what's the meaning of life?",
+			"user_query": "what is the meaning of life?",
 			"output":     "42",
 			"tokens":     map[string]interface{}{},
 			"cost":       map[string]interface{}{},
