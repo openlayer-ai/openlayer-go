@@ -52,7 +52,6 @@ func (r *InferencePipelineTestResultService) List(ctx context.Context, inference
 }
 
 type InferencePipelineTestResultListResponse struct {
-	Meta  InferencePipelineTestResultListResponse_Meta  `json:"_meta,required"`
 	Items []InferencePipelineTestResultListResponseItem `json:"items,required"`
 	JSON  inferencePipelineTestResultListResponseJSON   `json:"-"`
 }
@@ -60,7 +59,6 @@ type InferencePipelineTestResultListResponse struct {
 // inferencePipelineTestResultListResponseJSON contains the JSON metadata for the
 // struct [InferencePipelineTestResultListResponse]
 type inferencePipelineTestResultListResponseJSON struct {
-	Meta        apijson.Field
 	Items       apijson.Field
 	raw         string
 	ExtraFields map[string]apijson.Field
@@ -71,37 +69,6 @@ func (r *InferencePipelineTestResultListResponse) UnmarshalJSON(data []byte) (er
 }
 
 func (r inferencePipelineTestResultListResponseJSON) RawJSON() string {
-	return r.raw
-}
-
-type InferencePipelineTestResultListResponse_Meta struct {
-	// The current page.
-	Page int64 `json:"page,required"`
-	// The number of items per page.
-	PerPage int64 `json:"perPage,required"`
-	// The total number of items.
-	TotalItems int64 `json:"totalItems,required"`
-	// The total number of pages.
-	TotalPages int64                                           `json:"totalPages,required"`
-	JSON       inferencePipelineTestResultListResponseMetaJSON `json:"-"`
-}
-
-// inferencePipelineTestResultListResponseMetaJSON contains the JSON metadata for
-// the struct [InferencePipelineTestResultListResponse_Meta]
-type inferencePipelineTestResultListResponseMetaJSON struct {
-	Page        apijson.Field
-	PerPage     apijson.Field
-	TotalItems  apijson.Field
-	TotalPages  apijson.Field
-	raw         string
-	ExtraFields map[string]apijson.Field
-}
-
-func (r *InferencePipelineTestResultListResponse_Meta) UnmarshalJSON(data []byte) (err error) {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-func (r inferencePipelineTestResultListResponseMetaJSON) RawJSON() string {
 	return r.raw
 }
 

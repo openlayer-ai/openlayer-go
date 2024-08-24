@@ -221,7 +221,6 @@ func (r projectNewResponseGitRepoJSON) RawJSON() string {
 }
 
 type ProjectListResponse struct {
-	Meta  ProjectListResponse_Meta  `json:"_meta,required"`
 	Items []ProjectListResponseItem `json:"items,required"`
 	JSON  projectListResponseJSON   `json:"-"`
 }
@@ -229,7 +228,6 @@ type ProjectListResponse struct {
 // projectListResponseJSON contains the JSON metadata for the struct
 // [ProjectListResponse]
 type projectListResponseJSON struct {
-	Meta        apijson.Field
 	Items       apijson.Field
 	raw         string
 	ExtraFields map[string]apijson.Field
@@ -240,37 +238,6 @@ func (r *ProjectListResponse) UnmarshalJSON(data []byte) (err error) {
 }
 
 func (r projectListResponseJSON) RawJSON() string {
-	return r.raw
-}
-
-type ProjectListResponse_Meta struct {
-	// The current page.
-	Page int64 `json:"page,required"`
-	// The number of items per page.
-	PerPage int64 `json:"perPage,required"`
-	// The total number of items.
-	TotalItems int64 `json:"totalItems,required"`
-	// The total number of pages.
-	TotalPages int64                       `json:"totalPages,required"`
-	JSON       projectListResponseMetaJSON `json:"-"`
-}
-
-// projectListResponseMetaJSON contains the JSON metadata for the struct
-// [ProjectListResponse_Meta]
-type projectListResponseMetaJSON struct {
-	Page        apijson.Field
-	PerPage     apijson.Field
-	TotalItems  apijson.Field
-	TotalPages  apijson.Field
-	raw         string
-	ExtraFields map[string]apijson.Field
-}
-
-func (r *ProjectListResponse_Meta) UnmarshalJSON(data []byte) (err error) {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-func (r projectListResponseMetaJSON) RawJSON() string {
 	return r.raw
 }
 
