@@ -52,7 +52,6 @@ func (r *CommitTestResultService) List(ctx context.Context, projectVersionID str
 }
 
 type CommitTestResultListResponse struct {
-	Meta  CommitTestResultListResponse_Meta  `json:"_meta,required"`
 	Items []CommitTestResultListResponseItem `json:"items,required"`
 	JSON  commitTestResultListResponseJSON   `json:"-"`
 }
@@ -60,7 +59,6 @@ type CommitTestResultListResponse struct {
 // commitTestResultListResponseJSON contains the JSON metadata for the struct
 // [CommitTestResultListResponse]
 type commitTestResultListResponseJSON struct {
-	Meta        apijson.Field
 	Items       apijson.Field
 	raw         string
 	ExtraFields map[string]apijson.Field
@@ -71,37 +69,6 @@ func (r *CommitTestResultListResponse) UnmarshalJSON(data []byte) (err error) {
 }
 
 func (r commitTestResultListResponseJSON) RawJSON() string {
-	return r.raw
-}
-
-type CommitTestResultListResponse_Meta struct {
-	// The current page.
-	Page int64 `json:"page,required"`
-	// The number of items per page.
-	PerPage int64 `json:"perPage,required"`
-	// The total number of items.
-	TotalItems int64 `json:"totalItems,required"`
-	// The total number of pages.
-	TotalPages int64                                `json:"totalPages,required"`
-	JSON       commitTestResultListResponseMetaJSON `json:"-"`
-}
-
-// commitTestResultListResponseMetaJSON contains the JSON metadata for the struct
-// [CommitTestResultListResponse_Meta]
-type commitTestResultListResponseMetaJSON struct {
-	Page        apijson.Field
-	PerPage     apijson.Field
-	TotalItems  apijson.Field
-	TotalPages  apijson.Field
-	raw         string
-	ExtraFields map[string]apijson.Field
-}
-
-func (r *CommitTestResultListResponse_Meta) UnmarshalJSON(data []byte) (err error) {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-func (r commitTestResultListResponseMetaJSON) RawJSON() string {
 	return r.raw
 }
 

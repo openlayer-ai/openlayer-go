@@ -165,7 +165,6 @@ func (r ProjectInferencePipelineNewResponseStatus) IsKnown() bool {
 }
 
 type ProjectInferencePipelineListResponse struct {
-	Meta  ProjectInferencePipelineListResponse_Meta  `json:"_meta,required"`
 	Items []ProjectInferencePipelineListResponseItem `json:"items,required"`
 	JSON  projectInferencePipelineListResponseJSON   `json:"-"`
 }
@@ -173,7 +172,6 @@ type ProjectInferencePipelineListResponse struct {
 // projectInferencePipelineListResponseJSON contains the JSON metadata for the
 // struct [ProjectInferencePipelineListResponse]
 type projectInferencePipelineListResponseJSON struct {
-	Meta        apijson.Field
 	Items       apijson.Field
 	raw         string
 	ExtraFields map[string]apijson.Field
@@ -184,37 +182,6 @@ func (r *ProjectInferencePipelineListResponse) UnmarshalJSON(data []byte) (err e
 }
 
 func (r projectInferencePipelineListResponseJSON) RawJSON() string {
-	return r.raw
-}
-
-type ProjectInferencePipelineListResponse_Meta struct {
-	// The current page.
-	Page int64 `json:"page,required"`
-	// The number of items per page.
-	PerPage int64 `json:"perPage,required"`
-	// The total number of items.
-	TotalItems int64 `json:"totalItems,required"`
-	// The total number of pages.
-	TotalPages int64                                        `json:"totalPages,required"`
-	JSON       projectInferencePipelineListResponseMetaJSON `json:"-"`
-}
-
-// projectInferencePipelineListResponseMetaJSON contains the JSON metadata for the
-// struct [ProjectInferencePipelineListResponse_Meta]
-type projectInferencePipelineListResponseMetaJSON struct {
-	Page        apijson.Field
-	PerPage     apijson.Field
-	TotalItems  apijson.Field
-	TotalPages  apijson.Field
-	raw         string
-	ExtraFields map[string]apijson.Field
-}
-
-func (r *ProjectInferencePipelineListResponse_Meta) UnmarshalJSON(data []byte) (err error) {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-func (r projectInferencePipelineListResponseMetaJSON) RawJSON() string {
 	return r.raw
 }
 
