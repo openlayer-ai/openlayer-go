@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.0-alpha.8 (2024-09-24)
+
+Full Changelog: [v0.1.0-alpha.7...v0.1.0-alpha.8](https://github.com/openlayer-ai/openlayer-go/compare/v0.1.0-alpha.7...v0.1.0-alpha.8)
+
+### Features
+
+* **api:** OpenAPI spec update via Stainless API ([#45](https://github.com/openlayer-ai/openlayer-go/issues/45)) ([0f1932e](https://github.com/openlayer-ai/openlayer-go/commit/0f1932ea22a9f79f2f6552051a561ab21f049aa3))
+* **api:** update via SDK Studio ([#42](https://github.com/openlayer-ai/openlayer-go/issues/42)) ([a0011e2](https://github.com/openlayer-ai/openlayer-go/commit/a0011e2a8fd344a97eff3f9c4dcc5a3a847677ee))
+* **api:** update via SDK Studio ([#44](https://github.com/openlayer-ai/openlayer-go/issues/44)) ([258b832](https://github.com/openlayer-ai/openlayer-go/commit/258b8323d06d2c6ba62075553eeccb731c7895f7))
+
 ## 0.1.0-alpha.7 (2024-08-14)
 
 Full Changelog: [v0.1.0-alpha.6...v0.1.0-alpha.7](https://github.com/openlayer-ai/openlayer-go/compare/v0.1.0-alpha.6...v0.1.0-alpha.7)
