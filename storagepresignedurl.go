@@ -46,7 +46,7 @@ type StoragePresignedURLNewResponse struct {
 	StorageUri string `json:"storageUri,required"`
 	// The presigned url.
 	URL string `json:"url,required" format:"url"`
-	// Fields to include in the body of the upload. Only needed by s3.
+	// Fields to include in the body of the upload. Only needed by s3
 	Fields interface{}                        `json:"fields"`
 	JSON   storagePresignedURLNewResponseJSON `json:"-"`
 }
