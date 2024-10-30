@@ -24,7 +24,7 @@ func TestUsage(t *testing.T) {
 		option.WithBaseURL(baseURL),
 		option.WithAPIKey("My API Key"),
 	)
-	inferencePipelineDataStreamResponse, err := client.InferencePipelines.Data.Stream(
+	response, err := client.InferencePipelines.Data.Stream(
 		context.TODO(),
 		"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
 		openlayer.InferencePipelineDataStreamParams{
@@ -47,5 +47,5 @@ func TestUsage(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
-	t.Logf("%+v\n", inferencePipelineDataStreamResponse.Success)
+	t.Logf("%+v\n", response.Success)
 }
