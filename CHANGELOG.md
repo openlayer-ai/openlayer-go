@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.1.0-alpha.9 (2024-11-11)
+
+Full Changelog: [v0.1.0-alpha.8...v0.1.0-alpha.9](https://github.com/openlayer-ai/openlayer-go/compare/v0.1.0-alpha.8...v0.1.0-alpha.9)
+
+### Features
+
+* **api:** manual updates ([#49](https://github.com/openlayer-ai/openlayer-go/issues/49)) ([0c75483](https://github.com/openlayer-ai/openlayer-go/commit/0c754834bb8e3fbd493a4a656d785547c64bb532))
+* **api:** update via SDK Studio ([#46](https://github.com/openlayer-ai/openlayer-go/issues/46)) ([0c269b0](https://github.com/openlayer-ai/openlayer-go/commit/0c269b042bba8934c5973214d2d665dc1cf362fc))
+* **api:** update via SDK Studio ([#48](https://github.com/openlayer-ai/openlayer-go/issues/48)) ([27a5a99](https://github.com/openlayer-ai/openlayer-go/commit/27a5a9977c7741bbfcfe7a62d8e32a1a512cabac))
+
+
+### Chores
+
+* custom code changes ([#50](https://github.com/openlayer-ai/openlayer-go/issues/50)) ([3b63bd4](https://github.com/openlayer-ai/openlayer-go/commit/3b63bd474c0ac3d8404d8ed6196007f6eea1bfd0))
+* rebuild project due to codegen change ([#51](https://github.com/openlayer-ai/openlayer-go/issues/51)) ([43b0dae](https://github.com/openlayer-ai/openlayer-go/commit/43b0dae82426763900cdbd37eccf2433c0d093b6))
+
 ## 0.1.0-alpha.8 (2024-09-24)
 
 Full Changelog: [v0.1.0-alpha.7...v0.1.0-alpha.8](https://github.com/openlayer-ai/openlayer-go/compare/v0.1.0-alpha.7...v0.1.0-alpha.8)
