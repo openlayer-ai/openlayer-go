@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.10 (2024-11-14)
+
+Full Changelog: [v0.1.0-alpha.9...v0.1.0-alpha.10](https://github.com/openlayer-ai/openlayer-go/compare/v0.1.0-alpha.9...v0.1.0-alpha.10)
+
+### Chores
+
+* rebuild project due to codegen change ([#53](https://github.com/openlayer-ai/openlayer-go/issues/53)) ([5fbe9a0](https://github.com/openlayer-ai/openlayer-go/commit/5fbe9a0259a190c1cdefda2f4a9aba52ee77f915))
+
 ## 0.1.0-alpha.9 (2024-11-11)
 
 Full Changelog: [v0.1.0-alpha.8...v0.1.0-alpha.9](https://github.com/openlayer-ai/openlayer-go/compare/v0.1.0-alpha.8...v0.1.0-alpha.9)
