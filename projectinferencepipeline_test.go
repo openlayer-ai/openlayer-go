@@ -13,7 +13,7 @@ import (
 	"github.com/openlayer-ai/openlayer-go/option"
 )
 
-func TestProjectInferencePipelineNew(t *testing.T) {
+func TestProjectInferencePipelineNewWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -31,6 +31,18 @@ func TestProjectInferencePipelineNew(t *testing.T) {
 		openlayer.ProjectInferencePipelineNewParams{
 			Description: openlayer.F("This pipeline is used for production."),
 			Name:        openlayer.F("production"),
+			Project: openlayer.F(openlayer.ProjectInferencePipelineNewParamsProject{
+				Name:        openlayer.F("My Project"),
+				TaskType:    openlayer.F(openlayer.ProjectInferencePipelineNewParamsProjectTaskTypeLlmBase),
+				Description: openlayer.F("My project description."),
+			}),
+			Workspace: openlayer.F(openlayer.ProjectInferencePipelineNewParamsWorkspace{
+				Name:            openlayer.F("Openlayer"),
+				Slug:            openlayer.F("openlayer"),
+				InviteCode:      openlayer.F("inviteCode"),
+				SAMLOnlyAccess:  openlayer.F(true),
+				WildcardDomains: openlayer.F([]string{"string"}),
+			}),
 		},
 	)
 	if err != nil {
