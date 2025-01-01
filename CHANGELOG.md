@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.12 (2025-01-01)
+
+Full Changelog: [v0.1.0-alpha.11...v0.1.0-alpha.12](https://github.com/openlayer-ai/openlayer-go/compare/v0.1.0-alpha.11...v0.1.0-alpha.12)
+
+### Chores
+
+* **internal:** codegen related update ([#59](https://github.com/openlayer-ai/openlayer-go/issues/59)) ([5df4e4d](https://github.com/openlayer-ai/openlayer-go/commit/5df4e4d53d5aa087e7e733a20dd52cd4783e5c2b))
+
 ## 0.1.0-alpha.11 (2024-12-19)
 
 Full Changelog: [v0.1.0-alpha.10...v0.1.0-alpha.11](https://github.com/openlayer-ai/openlayer-go/compare/v0.1.0-alpha.10...v0.1.0-alpha.11)
