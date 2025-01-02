@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.13 (2025-01-02)
+
+Full Changelog: [v0.1.0-alpha.12...v0.1.0-alpha.13](https://github.com/openlayer-ai/openlayer-go/compare/v0.1.0-alpha.12...v0.1.0-alpha.13)
+
+### Chores
+
+* **internal:** version bump ([#61](https://github.com/openlayer-ai/openlayer-go/issues/61)) ([f0934b2](https://github.com/openlayer-ai/openlayer-go/commit/f0934b2a2d0421134f7dee60dd1ebd655493ca70))
+
 ## 0.1.0-alpha.12 (2025-01-01)
 
 Full Changelog: [v0.1.0-alpha.11...v0.1.0-alpha.12](https://github.com/openlayer-ai/openlayer-go/compare/v0.1.0-alpha.11...v0.1.0-alpha.12)
