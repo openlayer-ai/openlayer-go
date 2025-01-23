@@ -338,22 +338,34 @@ func (r projectInferencePipelineNewResponseProjectGitRepoJSON) RawJSON() string 
 }
 
 type ProjectInferencePipelineNewResponseWorkspace struct {
-	ID              string                                                     `json:"id,required" format:"uuid"`
-	CreatorID       string                                                     `json:"creatorId,required,nullable" format:"uuid"`
-	DateCreated     time.Time                                                  `json:"dateCreated,required" format:"date-time"`
-	DateUpdated     time.Time                                                  `json:"dateUpdated,required" format:"date-time"`
-	InviteCount     int64                                                      `json:"inviteCount,required"`
-	MemberCount     int64                                                      `json:"memberCount,required"`
-	Name            string                                                     `json:"name,required"`
-	PeriodEndDate   time.Time                                                  `json:"periodEndDate,required,nullable" format:"date-time"`
-	PeriodStartDate time.Time                                                  `json:"periodStartDate,required,nullable" format:"date-time"`
-	ProjectCount    int64                                                      `json:"projectCount,required"`
-	Slug            string                                                     `json:"slug,required"`
-	Status          ProjectInferencePipelineNewResponseWorkspaceStatus         `json:"status,required"`
-	MonthlyUsage    []ProjectInferencePipelineNewResponseWorkspaceMonthlyUsage `json:"monthlyUsage"`
-	SAMLOnlyAccess  bool                                                       `json:"samlOnlyAccess"`
-	WildcardDomains []string                                                   `json:"wildcardDomains"`
-	JSON            projectInferencePipelineNewResponseWorkspaceJSON           `json:"-"`
+	// The workspace id.
+	ID string `json:"id,required" format:"uuid"`
+	// The workspace creator id.
+	CreatorID string `json:"creatorId,required,nullable" format:"uuid"`
+	// The workspace creation date.
+	DateCreated time.Time `json:"dateCreated,required" format:"date-time"`
+	// The workspace last updated date.
+	DateUpdated time.Time `json:"dateUpdated,required" format:"date-time"`
+	// The number of invites in the workspace.
+	InviteCount int64 `json:"inviteCount,required"`
+	// The number of members in the workspace.
+	MemberCount int64 `json:"memberCount,required"`
+	// The workspace name.
+	Name string `json:"name,required"`
+	// The end date of the current billing period.
+	PeriodEndDate time.Time `json:"periodEndDate,required,nullable" format:"date-time"`
+	// The start date of the current billing period.
+	PeriodStartDate time.Time `json:"periodStartDate,required,nullable" format:"date-time"`
+	// The number of projects in the workspace.
+	ProjectCount int64 `json:"projectCount,required"`
+	// The workspace slug.
+	Slug         string                                                     `json:"slug,required"`
+	Status       ProjectInferencePipelineNewResponseWorkspaceStatus         `json:"status,required"`
+	MonthlyUsage []ProjectInferencePipelineNewResponseWorkspaceMonthlyUsage `json:"monthlyUsage"`
+	// Whether the workspace only allows SAML authentication.
+	SAMLOnlyAccess  bool                                             `json:"samlOnlyAccess"`
+	WildcardDomains []string                                         `json:"wildcardDomains"`
+	JSON            projectInferencePipelineNewResponseWorkspaceJSON `json:"-"`
 }
 
 // projectInferencePipelineNewResponseWorkspaceJSON contains the JSON metadata for
@@ -733,22 +745,34 @@ func (r projectInferencePipelineListResponseItemsProjectGitRepoJSON) RawJSON() s
 }
 
 type ProjectInferencePipelineListResponseItemsWorkspace struct {
-	ID              string                                                           `json:"id,required" format:"uuid"`
-	CreatorID       string                                                           `json:"creatorId,required,nullable" format:"uuid"`
-	DateCreated     time.Time                                                        `json:"dateCreated,required" format:"date-time"`
-	DateUpdated     time.Time                                                        `json:"dateUpdated,required" format:"date-time"`
-	InviteCount     int64                                                            `json:"inviteCount,required"`
-	MemberCount     int64                                                            `json:"memberCount,required"`
-	Name            string                                                           `json:"name,required"`
-	PeriodEndDate   time.Time                                                        `json:"periodEndDate,required,nullable" format:"date-time"`
-	PeriodStartDate time.Time                                                        `json:"periodStartDate,required,nullable" format:"date-time"`
-	ProjectCount    int64                                                            `json:"projectCount,required"`
-	Slug            string                                                           `json:"slug,required"`
-	Status          ProjectInferencePipelineListResponseItemsWorkspaceStatus         `json:"status,required"`
-	MonthlyUsage    []ProjectInferencePipelineListResponseItemsWorkspaceMonthlyUsage `json:"monthlyUsage"`
-	SAMLOnlyAccess  bool                                                             `json:"samlOnlyAccess"`
-	WildcardDomains []string                                                         `json:"wildcardDomains"`
-	JSON            projectInferencePipelineListResponseItemsWorkspaceJSON           `json:"-"`
+	// The workspace id.
+	ID string `json:"id,required" format:"uuid"`
+	// The workspace creator id.
+	CreatorID string `json:"creatorId,required,nullable" format:"uuid"`
+	// The workspace creation date.
+	DateCreated time.Time `json:"dateCreated,required" format:"date-time"`
+	// The workspace last updated date.
+	DateUpdated time.Time `json:"dateUpdated,required" format:"date-time"`
+	// The number of invites in the workspace.
+	InviteCount int64 `json:"inviteCount,required"`
+	// The number of members in the workspace.
+	MemberCount int64 `json:"memberCount,required"`
+	// The workspace name.
+	Name string `json:"name,required"`
+	// The end date of the current billing period.
+	PeriodEndDate time.Time `json:"periodEndDate,required,nullable" format:"date-time"`
+	// The start date of the current billing period.
+	PeriodStartDate time.Time `json:"periodStartDate,required,nullable" format:"date-time"`
+	// The number of projects in the workspace.
+	ProjectCount int64 `json:"projectCount,required"`
+	// The workspace slug.
+	Slug         string                                                           `json:"slug,required"`
+	Status       ProjectInferencePipelineListResponseItemsWorkspaceStatus         `json:"status,required"`
+	MonthlyUsage []ProjectInferencePipelineListResponseItemsWorkspaceMonthlyUsage `json:"monthlyUsage"`
+	// Whether the workspace only allows SAML authentication.
+	SAMLOnlyAccess  bool                                                   `json:"samlOnlyAccess"`
+	WildcardDomains []string                                               `json:"wildcardDomains"`
+	JSON            projectInferencePipelineListResponseItemsWorkspaceJSON `json:"-"`
 }
 
 // projectInferencePipelineListResponseItemsWorkspaceJSON contains the JSON
@@ -910,9 +934,13 @@ func (r ProjectInferencePipelineNewParamsProjectGitRepo) MarshalJSON() (data []b
 }
 
 type ProjectInferencePipelineNewParamsWorkspace struct {
-	Name            param.Field[string]   `json:"name,required"`
-	Slug            param.Field[string]   `json:"slug,required"`
-	InviteCode      param.Field[string]   `json:"inviteCode"`
+	// The workspace name.
+	Name param.Field[string] `json:"name,required"`
+	// The workspace slug.
+	Slug param.Field[string] `json:"slug,required"`
+	// The workspace invite code.
+	InviteCode param.Field[string] `json:"inviteCode"`
+	// Whether the workspace only allows SAML authentication.
 	SAMLOnlyAccess  param.Field[bool]     `json:"samlOnlyAccess"`
 	WildcardDomains param.Field[[]string] `json:"wildcardDomains"`
 }
