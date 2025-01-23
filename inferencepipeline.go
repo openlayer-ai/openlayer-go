@@ -357,22 +357,34 @@ func (r inferencePipelineGetResponseProjectGitRepoJSON) RawJSON() string {
 }
 
 type InferencePipelineGetResponseWorkspace struct {
-	ID              string                                              `json:"id,required" format:"uuid"`
-	CreatorID       string                                              `json:"creatorId,required,nullable" format:"uuid"`
-	DateCreated     time.Time                                           `json:"dateCreated,required" format:"date-time"`
-	DateUpdated     time.Time                                           `json:"dateUpdated,required" format:"date-time"`
-	InviteCount     int64                                               `json:"inviteCount,required"`
-	MemberCount     int64                                               `json:"memberCount,required"`
-	Name            string                                              `json:"name,required"`
-	PeriodEndDate   time.Time                                           `json:"periodEndDate,required,nullable" format:"date-time"`
-	PeriodStartDate time.Time                                           `json:"periodStartDate,required,nullable" format:"date-time"`
-	ProjectCount    int64                                               `json:"projectCount,required"`
-	Slug            string                                              `json:"slug,required"`
-	Status          InferencePipelineGetResponseWorkspaceStatus         `json:"status,required"`
-	MonthlyUsage    []InferencePipelineGetResponseWorkspaceMonthlyUsage `json:"monthlyUsage"`
-	SAMLOnlyAccess  bool                                                `json:"samlOnlyAccess"`
-	WildcardDomains []string                                            `json:"wildcardDomains"`
-	JSON            inferencePipelineGetResponseWorkspaceJSON           `json:"-"`
+	// The workspace id.
+	ID string `json:"id,required" format:"uuid"`
+	// The workspace creator id.
+	CreatorID string `json:"creatorId,required,nullable" format:"uuid"`
+	// The workspace creation date.
+	DateCreated time.Time `json:"dateCreated,required" format:"date-time"`
+	// The workspace last updated date.
+	DateUpdated time.Time `json:"dateUpdated,required" format:"date-time"`
+	// The number of invites in the workspace.
+	InviteCount int64 `json:"inviteCount,required"`
+	// The number of members in the workspace.
+	MemberCount int64 `json:"memberCount,required"`
+	// The workspace name.
+	Name string `json:"name,required"`
+	// The end date of the current billing period.
+	PeriodEndDate time.Time `json:"periodEndDate,required,nullable" format:"date-time"`
+	// The start date of the current billing period.
+	PeriodStartDate time.Time `json:"periodStartDate,required,nullable" format:"date-time"`
+	// The number of projects in the workspace.
+	ProjectCount int64 `json:"projectCount,required"`
+	// The workspace slug.
+	Slug         string                                              `json:"slug,required"`
+	Status       InferencePipelineGetResponseWorkspaceStatus         `json:"status,required"`
+	MonthlyUsage []InferencePipelineGetResponseWorkspaceMonthlyUsage `json:"monthlyUsage"`
+	// Whether the workspace only allows SAML authentication.
+	SAMLOnlyAccess  bool                                      `json:"samlOnlyAccess"`
+	WildcardDomains []string                                  `json:"wildcardDomains"`
+	JSON            inferencePipelineGetResponseWorkspaceJSON `json:"-"`
 }
 
 // inferencePipelineGetResponseWorkspaceJSON contains the JSON metadata for the
@@ -729,22 +741,34 @@ func (r inferencePipelineUpdateResponseProjectGitRepoJSON) RawJSON() string {
 }
 
 type InferencePipelineUpdateResponseWorkspace struct {
-	ID              string                                                 `json:"id,required" format:"uuid"`
-	CreatorID       string                                                 `json:"creatorId,required,nullable" format:"uuid"`
-	DateCreated     time.Time                                              `json:"dateCreated,required" format:"date-time"`
-	DateUpdated     time.Time                                              `json:"dateUpdated,required" format:"date-time"`
-	InviteCount     int64                                                  `json:"inviteCount,required"`
-	MemberCount     int64                                                  `json:"memberCount,required"`
-	Name            string                                                 `json:"name,required"`
-	PeriodEndDate   time.Time                                              `json:"periodEndDate,required,nullable" format:"date-time"`
-	PeriodStartDate time.Time                                              `json:"periodStartDate,required,nullable" format:"date-time"`
-	ProjectCount    int64                                                  `json:"projectCount,required"`
-	Slug            string                                                 `json:"slug,required"`
-	Status          InferencePipelineUpdateResponseWorkspaceStatus         `json:"status,required"`
-	MonthlyUsage    []InferencePipelineUpdateResponseWorkspaceMonthlyUsage `json:"monthlyUsage"`
-	SAMLOnlyAccess  bool                                                   `json:"samlOnlyAccess"`
-	WildcardDomains []string                                               `json:"wildcardDomains"`
-	JSON            inferencePipelineUpdateResponseWorkspaceJSON           `json:"-"`
+	// The workspace id.
+	ID string `json:"id,required" format:"uuid"`
+	// The workspace creator id.
+	CreatorID string `json:"creatorId,required,nullable" format:"uuid"`
+	// The workspace creation date.
+	DateCreated time.Time `json:"dateCreated,required" format:"date-time"`
+	// The workspace last updated date.
+	DateUpdated time.Time `json:"dateUpdated,required" format:"date-time"`
+	// The number of invites in the workspace.
+	InviteCount int64 `json:"inviteCount,required"`
+	// The number of members in the workspace.
+	MemberCount int64 `json:"memberCount,required"`
+	// The workspace name.
+	Name string `json:"name,required"`
+	// The end date of the current billing period.
+	PeriodEndDate time.Time `json:"periodEndDate,required,nullable" format:"date-time"`
+	// The start date of the current billing period.
+	PeriodStartDate time.Time `json:"periodStartDate,required,nullable" format:"date-time"`
+	// The number of projects in the workspace.
+	ProjectCount int64 `json:"projectCount,required"`
+	// The workspace slug.
+	Slug         string                                                 `json:"slug,required"`
+	Status       InferencePipelineUpdateResponseWorkspaceStatus         `json:"status,required"`
+	MonthlyUsage []InferencePipelineUpdateResponseWorkspaceMonthlyUsage `json:"monthlyUsage"`
+	// Whether the workspace only allows SAML authentication.
+	SAMLOnlyAccess  bool                                         `json:"samlOnlyAccess"`
+	WildcardDomains []string                                     `json:"wildcardDomains"`
+	JSON            inferencePipelineUpdateResponseWorkspaceJSON `json:"-"`
 }
 
 // inferencePipelineUpdateResponseWorkspaceJSON contains the JSON metadata for the
