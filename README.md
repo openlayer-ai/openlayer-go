@@ -66,9 +66,9 @@ func main() {
 			Rows: openlayer.F([]map[string]interface{}{{
 				"user_query": "what is the meaning of life?",
 				"output":     "42",
-				"tokens":     map[string]interface{}{},
-				"cost":       map[string]interface{}{},
-				"timestamp":  map[string]interface{}{},
+				"tokens":     int64(7),
+				"cost":       0.020000,
+				"timestamp":  int64(1610000000),
 			}}),
 		},
 	)
@@ -207,9 +207,9 @@ _, err := client.InferencePipelines.Data.Stream(
 		Rows: openlayer.F([]map[string]interface{}{{
 			"user_query": "what is the meaning of life?",
 			"output":     "42",
-			"tokens":     map[string]interface{}{},
-			"cost":       map[string]interface{}{},
-			"timestamp":  map[string]interface{}{},
+			"tokens":     int64(7),
+			"cost":       0.020000,
+			"timestamp":  int64(1610000000),
 		}}),
 	},
 )
@@ -251,9 +251,9 @@ client.InferencePipelines.Data.Stream(
 		Rows: openlayer.F([]map[string]interface{}{{
 			"user_query": "what is the meaning of life?",
 			"output":     "42",
-			"tokens":     map[string]interface{}{},
-			"cost":       map[string]interface{}{},
-			"timestamp":  map[string]interface{}{},
+			"tokens":     int64(7),
+			"cost":       0.020000,
+			"timestamp":  int64(1610000000),
 		}}),
 	},
 	// This sets the per-retry timeout
@@ -303,9 +303,9 @@ client.InferencePipelines.Data.Stream(
 		Rows: openlayer.F([]map[string]interface{}{{
 			"user_query": "what is the meaning of life?",
 			"output":     "42",
-			"tokens":     map[string]interface{}{},
-			"cost":       map[string]interface{}{},
-			"timestamp":  map[string]interface{}{},
+			"tokens":     int64(7),
+			"cost":       0.020000,
+			"timestamp":  int64(1610000000),
 		}}),
 	},
 	option.WithMaxRetries(5),
