@@ -51,9 +51,9 @@ func TestUserAgentHeader(t *testing.T) {
 			Rows: openlayer.F([]map[string]interface{}{{
 				"user_query": "what is the meaning of life?",
 				"output":     "42",
-				"tokens":     map[string]interface{}{},
-				"cost":       map[string]interface{}{},
-				"timestamp":  map[string]interface{}{},
+				"tokens":     int64(7),
+				"cost":       0.020000,
+				"timestamp":  int64(1610000000),
 			}}),
 		},
 	)
@@ -93,9 +93,9 @@ func TestRetryAfter(t *testing.T) {
 			Rows: openlayer.F([]map[string]interface{}{{
 				"user_query": "what is the meaning of life?",
 				"output":     "42",
-				"tokens":     map[string]interface{}{},
-				"cost":       map[string]interface{}{},
-				"timestamp":  map[string]interface{}{},
+				"tokens":     int64(7),
+				"cost":       0.020000,
+				"timestamp":  int64(1610000000),
 			}}),
 		},
 	)
@@ -146,9 +146,9 @@ func TestDeleteRetryCountHeader(t *testing.T) {
 			Rows: openlayer.F([]map[string]interface{}{{
 				"user_query": "what is the meaning of life?",
 				"output":     "42",
-				"tokens":     map[string]interface{}{},
-				"cost":       map[string]interface{}{},
-				"timestamp":  map[string]interface{}{},
+				"tokens":     int64(7),
+				"cost":       0.020000,
+				"timestamp":  int64(1610000000),
 			}}),
 		},
 	)
@@ -194,9 +194,9 @@ func TestOverwriteRetryCountHeader(t *testing.T) {
 			Rows: openlayer.F([]map[string]interface{}{{
 				"user_query": "what is the meaning of life?",
 				"output":     "42",
-				"tokens":     map[string]interface{}{},
-				"cost":       map[string]interface{}{},
-				"timestamp":  map[string]interface{}{},
+				"tokens":     int64(7),
+				"cost":       0.020000,
+				"timestamp":  int64(1610000000),
 			}}),
 		},
 	)
@@ -241,9 +241,9 @@ func TestRetryAfterMs(t *testing.T) {
 			Rows: openlayer.F([]map[string]interface{}{{
 				"user_query": "what is the meaning of life?",
 				"output":     "42",
-				"tokens":     map[string]interface{}{},
-				"cost":       map[string]interface{}{},
-				"timestamp":  map[string]interface{}{},
+				"tokens":     int64(7),
+				"cost":       0.020000,
+				"timestamp":  int64(1610000000),
 			}}),
 		},
 	)
@@ -282,9 +282,9 @@ func TestContextCancel(t *testing.T) {
 			Rows: openlayer.F([]map[string]interface{}{{
 				"user_query": "what is the meaning of life?",
 				"output":     "42",
-				"tokens":     map[string]interface{}{},
-				"cost":       map[string]interface{}{},
-				"timestamp":  map[string]interface{}{},
+				"tokens":     int64(7),
+				"cost":       0.020000,
+				"timestamp":  int64(1610000000),
 			}}),
 		},
 	)
@@ -320,9 +320,9 @@ func TestContextCancelDelay(t *testing.T) {
 			Rows: openlayer.F([]map[string]interface{}{{
 				"user_query": "what is the meaning of life?",
 				"output":     "42",
-				"tokens":     map[string]interface{}{},
-				"cost":       map[string]interface{}{},
-				"timestamp":  map[string]interface{}{},
+				"tokens":     int64(7),
+				"cost":       0.020000,
+				"timestamp":  int64(1610000000),
 			}}),
 		},
 	)
@@ -364,9 +364,9 @@ func TestContextDeadline(t *testing.T) {
 				Rows: openlayer.F([]map[string]interface{}{{
 					"user_query": "what is the meaning of life?",
 					"output":     "42",
-					"tokens":     map[string]interface{}{},
-					"cost":       map[string]interface{}{},
-					"timestamp":  map[string]interface{}{},
+					"tokens":     int64(7),
+					"cost":       0.020000,
+					"timestamp":  int64(1610000000),
 				}}),
 			},
 		)

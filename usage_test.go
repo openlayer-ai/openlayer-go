@@ -38,9 +38,9 @@ func TestUsage(t *testing.T) {
 			Rows: openlayer.F([]map[string]interface{}{{
 				"user_query": "what is the meaning of life?",
 				"output":     "42",
-				"tokens":     map[string]interface{}{},
-				"cost":       map[string]interface{}{},
-				"timestamp":  map[string]interface{}{},
+				"tokens":     int64(7),
+				"cost":       0.020000,
+				"timestamp":  int64(1610000000),
 			}}),
 		},
 	)
