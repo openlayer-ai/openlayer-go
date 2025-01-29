@@ -39,6 +39,7 @@ func TestProjectInferencePipelineNewWithOptionalParams(t *testing.T) {
 			Workspace: openlayer.F(openlayer.ProjectInferencePipelineNewParamsWorkspace{
 				Name:            openlayer.F("Openlayer"),
 				Slug:            openlayer.F("openlayer"),
+				InviteCode:      openlayer.F("inviteCode"),
 				SAMLOnlyAccess:  openlayer.F(true),
 				WildcardDomains: openlayer.F([]string{"string"}),
 			}),
