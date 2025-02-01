@@ -312,6 +312,44 @@ client.InferencePipelines.Data.Stream(
 )
 ```
 
+### Accessing raw response data (e.g. response headers)
+
+You can access the raw HTTP response data by using the `option.WithResponseInto()` request option. This is useful when
+you need to examine response headers, status codes, or other details.
+
+```go
+// Create a variable to store the HTTP response
+var response *http.Response
+response, err := client.InferencePipelines.Data.Stream(
+	context.TODO(),
+	"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+	openlayer.InferencePipelineDataStreamParams{
+		Config: openlayer.F[openlayer.InferencePipelineDataStreamParamsConfigUnion](openlayer.InferencePipelineDataStreamParamsConfigLlmData{
+			InputVariableNames:   openlayer.F([]string{"user_query"}),
+			OutputColumnName:     openlayer.F("output"),
+			NumOfTokenColumnName: openlayer.F("tokens"),
+			CostColumnName:       openlayer.F("cost"),
+			TimestampColumnName:  openlayer.F("timestamp"),
+		}),
+		Rows: openlayer.F([]map[string]interface{}{{
+			"user_query": "what is the meaning of life?",
+			"output":     "42",
+			"tokens":     int64(7),
+			"cost":       0.020000,
+			"timestamp":  int64(1610000000),
+		}}),
+	},
+	option.WithResponseInto(&response),
+)
+if err != nil {
+	// handle error
+}
+fmt.Printf("%+v\n", response)
+
+fmt.Printf("Status Code: %d\n", response.StatusCode)
+fmt.Printf("Headers: %+#v\n", response.Header)
+```
+
 ### Making custom/undocumented requests
 
 This library is typed for convenient access to the documented API. If you need to access undocumented
