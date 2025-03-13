@@ -1,5 +1,39 @@
 # Changelog
 
+## 0.1.0-alpha.14 (2025-03-13)
+
+Full Changelog: [v0.1.0-alpha.13...v0.1.0-alpha.14](https://github.com/openlayer-ai/openlayer-go/compare/v0.1.0-alpha.13...v0.1.0-alpha.14)
+
+### Features
+
+* **api:** add endpoint to retrieve commit by id ([#64](https://github.com/openlayer-ai/openlayer-go/issues/64)) ([201cb4a](https://github.com/openlayer-ai/openlayer-go/commit/201cb4acd0e572cecb46ffdc29979c38a52846fb))
+* **api:** api update ([1d5c8e7](https://github.com/openlayer-ai/openlayer-go/commit/1d5c8e7f9a98ab806517fbd7c2ac8c6ac456f04d))
+* **client:** send `X-Stainless-Timeout` header ([d9948ef](https://github.com/openlayer-ai/openlayer-go/commit/d9948ef4b8b56ed71ddd2ea0f4519bf40dc5d52f))
+
+
+### Bug Fixes
+
+* **client:** don't truncate manually specified filenames ([f7b96d9](https://github.com/openlayer-ai/openlayer-go/commit/f7b96d9ebe96937df548fe0797fbbaf8ba77109a))
+* do not call path.Base on ContentType ([0b98d8e](https://github.com/openlayer-ai/openlayer-go/commit/0b98d8e38cb8716cc61ee62f9aa4b58250a4b581))
+* fix early cancel when RequestTimeout is provided for streaming requests ([f0c9a39](https://github.com/openlayer-ai/openlayer-go/commit/f0c9a39e93d5aab9a2f78b95f1a6ee0aa27632ca))
+* fix interface implementation stub names for unions ([0d8c74f](https://github.com/openlayer-ai/openlayer-go/commit/0d8c74f4d02b5d154357d98e892ac074470b474b))
+* fix unicode encoding for json ([cdaee21](https://github.com/openlayer-ai/openlayer-go/commit/cdaee2125cb3c27f1a94cefc70d87ad5e12b79cc))
+
+
+### Chores
+
+* add UnionUnmarshaler for responses that are interfaces ([3295c9b](https://github.com/openlayer-ai/openlayer-go/commit/3295c9bcc892bf7db4f1068120be3a86b86b1281))
+* **internal:** codegen related update ([57b756f](https://github.com/openlayer-ai/openlayer-go/commit/57b756f1e31665115bc2cac4d7527f21965376ad))
+* **internal:** codegen related update ([c2a18b7](https://github.com/openlayer-ai/openlayer-go/commit/c2a18b7d8ebe2df5f23428be410172a0dbd330cd))
+* **internal:** codegen related update ([5582642](https://github.com/openlayer-ai/openlayer-go/commit/5582642f1d2b958566a842f4c9663baea39563cc))
+* **internal:** fix devcontainers setup ([1d42cd7](https://github.com/openlayer-ai/openlayer-go/commit/1d42cd7adbc487450809a3da28cdb47cc11da3db))
+* refactor client tests ([d2732fe](https://github.com/openlayer-ai/openlayer-go/commit/d2732fee321e2f829eafa4374c0c093d6e378f72))
+
+
+### Documentation
+
+* document raw responses ([1c66d2a](https://github.com/openlayer-ai/openlayer-go/commit/1c66d2a1e698e42799d142ff57ad1b2a51630b98))
+
 ## 0.1.0-alpha.13 (2025-01-02)
 
 Full Changelog: [v0.1.0-alpha.12...v0.1.0-alpha.13](https://github.com/openlayer-ai/openlayer-go/compare/v0.1.0-alpha.12...v0.1.0-alpha.13)
