@@ -36,6 +36,14 @@ Methods:
 
 # Commits
 
+Response Types:
+
+- <a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#CommitGetResponse">CommitGetResponse</a>
+
+Methods:
+
+- <code title="get /versions/{projectVersionId}">client.Commits.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#CommitService.Get">Get</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, projectVersionID <a href="https://pkg.go.dev/builtin#string">string</a>) (<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#CommitGetResponse">CommitGetResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+
 ## TestResults
 
 Response Types:
