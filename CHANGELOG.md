@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.16 (2025-03-14)
+
+Full Changelog: [v0.1.0-alpha.15...v0.1.0-alpha.16](https://github.com/openlayer-ai/openlayer-go/compare/v0.1.0-alpha.15...v0.1.0-alpha.16)
+
+### Chores
+
+* **internal:** remove workflow ([466df7b](https://github.com/openlayer-ai/openlayer-go/commit/466df7bd80c4a89431d6f8db27bbac59b6b30dff))
+
 ## 0.1.0-alpha.15 (2025-03-14)
 
 Full Changelog: [v0.1.0-alpha.14...v0.1.0-alpha.15](https://github.com/openlayer-ai/openlayer-go/compare/v0.1.0-alpha.14...v0.1.0-alpha.15)
