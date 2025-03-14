@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.1.0-alpha.15 (2025-03-14)
+
+Full Changelog: [v0.1.0-alpha.14...v0.1.0-alpha.15](https://github.com/openlayer-ai/openlayer-go/compare/v0.1.0-alpha.14...v0.1.0-alpha.15)
+
+### Features
+
+* **client:** accept RFC6838 JSON content types ([#68](https://github.com/openlayer-ai/openlayer-go/issues/68)) ([6596131](https://github.com/openlayer-ai/openlayer-go/commit/659613119e8c7b1574c5613daa610311213957ad))
+* **client:** improve default client options support ([#70](https://github.com/openlayer-ai/openlayer-go/issues/70)) ([b22284c](https://github.com/openlayer-ai/openlayer-go/commit/b22284c7b950b30bd922aed075df97038f54d09c))
+
+
+### Chores
+
+* **internal:** codegen related update ([#66](https://github.com/openlayer-ai/openlayer-go/issues/66)) ([695347c](https://github.com/openlayer-ai/openlayer-go/commit/695347c6b725a93db08983610105f81e435bb913))
+* **internal:** remove extra empty newlines ([#71](https://github.com/openlayer-ai/openlayer-go/issues/71)) ([44dc1c3](https://github.com/openlayer-ai/openlayer-go/commit/44dc1c324cd0c79bebfe46ee50da4b800eea0a2e))
+
+
+### Refactors
+
+* tidy up dependencies ([#69](https://github.com/openlayer-ai/openlayer-go/issues/69)) ([c676b56](https://github.com/openlayer-ai/openlayer-go/commit/c676b5617241008228c0a68138a09b52810506f6))
+
 ## 0.1.0-alpha.14 (2025-03-13)
 
 Full Changelog: [v0.1.0-alpha.13...v0.1.0-alpha.14](https://github.com/openlayer-ai/openlayer-go/compare/v0.1.0-alpha.13...v0.1.0-alpha.14)
