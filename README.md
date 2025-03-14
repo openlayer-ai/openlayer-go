@@ -5,7 +5,7 @@
 The Openlayer Go library provides convenient access to [the Openlayer REST
 API](https://openlayer.com/docs/api-reference/rest/overview) from applications written in Go. The full API of this library can be found in [api.md](api.md).
 
-It is generated with [Stainless](https://www.stainlessapi.com/).
+It is generated with [Stainless](https://www.stainless.com/).
 
 ## Installation
 
