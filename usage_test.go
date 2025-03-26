@@ -46,6 +46,7 @@ func TestUsage(t *testing.T) {
 	)
 	if err != nil {
 		t.Error(err)
+		return
 	}
 	t.Logf("%+v\n", response.Success)
 }
