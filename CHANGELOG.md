@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.1.0-alpha.16 (2025-04-03)
+
+Full Changelog: [v0.1.0-alpha.15...v0.1.0-alpha.16](https://github.com/openlayer-ai/openlayer-go/compare/v0.1.0-alpha.15...v0.1.0-alpha.16)
+
+### Bug Fixes
+
+* **client:** return error on bad custom url instead of panic ([#78](https://github.com/openlayer-ai/openlayer-go/issues/78)) ([7c32753](https://github.com/openlayer-ai/openlayer-go/commit/7c327533032a42dfeb762a95138e940deb636337))
+* **test:** return early after test failure ([#76](https://github.com/openlayer-ai/openlayer-go/issues/76)) ([e3db15b](https://github.com/openlayer-ai/openlayer-go/commit/e3db15bf6fc326d760dd2a3dec8c2a1557243bf4))
+
+
+### Chores
+
+* add request options to client tests ([#75](https://github.com/openlayer-ai/openlayer-go/issues/75)) ([47bbe8f](https://github.com/openlayer-ai/openlayer-go/commit/47bbe8f6fc702b16b17662158b89e447545834d5))
+* **docs:** improve security documentation ([#74](https://github.com/openlayer-ai/openlayer-go/issues/74)) ([ae864fb](https://github.com/openlayer-ai/openlayer-go/commit/ae864fbc0ac02aac9944cfde9974c1966a799871))
+* fix typos ([#77](https://github.com/openlayer-ai/openlayer-go/issues/77)) ([d5225a3](https://github.com/openlayer-ai/openlayer-go/commit/d5225a326c7781b7728234535403b76b2ef91a41))
+* **internal:** remove workflow ([466df7b](https://github.com/openlayer-ai/openlayer-go/commit/466df7bd80c4a89431d6f8db27bbac59b6b30dff))
+
 ## 0.1.0-alpha.15 (2025-03-14)
 
 Full Changelog: [v0.1.0-alpha.14...v0.1.0-alpha.15](https://github.com/openlayer-ai/openlayer-go/compare/v0.1.0-alpha.14...v0.1.0-alpha.15)
