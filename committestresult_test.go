@@ -32,7 +32,7 @@ func TestCommitTestResultListWithOptionalParams(t *testing.T) {
 			IncludeArchived: openlayer.F(true),
 			Page:            openlayer.F(int64(1)),
 			PerPage:         openlayer.F(int64(1)),
-			Status:          openlayer.F(openlayer.CommitTestResultListParamsStatusRunning),
+			Status:          openlayer.F(openlayer.CommitTestResultListParamsStatusPassing),
 			Type:            openlayer.F(openlayer.CommitTestResultListParamsTypeIntegrity),
 		},
 	)
