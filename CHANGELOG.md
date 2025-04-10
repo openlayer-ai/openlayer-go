@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.1.0-alpha.17 (2025-04-10)
+
+Full Changelog: [v0.1.0-alpha.16...v0.1.0-alpha.17](https://github.com/openlayer-ai/openlayer-go/compare/v0.1.0-alpha.16...v0.1.0-alpha.17)
+
+### Features
+
+* **client:** support custom http clients ([#80](https://github.com/openlayer-ai/openlayer-go/issues/80)) ([773c56c](https://github.com/openlayer-ai/openlayer-go/commit/773c56c93858bfec9e73ccb22950919bd968d606))
+
+
+### Chores
+
+* **internal:** expand CI branch coverage ([14067c7](https://github.com/openlayer-ai/openlayer-go/commit/14067c7e9dfa7c1bcdfb9ded29ce3eaea12d1bd2))
+* **internal:** reduce CI branch coverage ([08c00ca](https://github.com/openlayer-ai/openlayer-go/commit/08c00cadee41cd7f6b3bd2873a0a1f18ba997a99))
+* **tests:** improve enum examples ([#82](https://github.com/openlayer-ai/openlayer-go/issues/82)) ([c4047ae](https://github.com/openlayer-ai/openlayer-go/commit/c4047aeebaf1c7ae8aa176572a1615746bee8bb5))
+
 ## 0.1.0-alpha.16 (2025-04-03)
 
 Full Changelog: [v0.1.0-alpha.15...v0.1.0-alpha.16](https://github.com/openlayer-ai/openlayer-go/compare/v0.1.0-alpha.15...v0.1.0-alpha.16)
