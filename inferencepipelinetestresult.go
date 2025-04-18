@@ -229,12 +229,15 @@ func (r inferencePipelineTestResultListResponseItemsGoalJSON) RawJSON() string {
 
 type InferencePipelineTestResultListResponseItemsGoalThreshold struct {
 	// The insight name to be evaluated.
-	InsightName       string        `json:"insightName"`
-	InsightParameters []interface{} `json:"insightParameters"`
+	InsightName string `json:"insightName"`
+	// The insight parameters. Required only for some test subtypes.
+	InsightParameters []InferencePipelineTestResultListResponseItemsGoalThresholdsInsightParameter `json:"insightParameters,nullable"`
 	// The measurement to be evaluated.
 	Measurement string `json:"measurement"`
 	// The operator to be used for the evaluation.
-	Operator string `json:"operator"`
+	Operator InferencePipelineTestResultListResponseItemsGoalThresholdsOperator `json:"operator"`
+	// Whether to use automatic anomaly detection or manual thresholds
+	ThresholdMode InferencePipelineTestResultListResponseItemsGoalThresholdsThresholdMode `json:"thresholdMode"`
 	// The value to be compared.
 	Value InferencePipelineTestResultListResponseItemsGoalThresholdsValueUnion `json:"value"`
 	JSON  inferencePipelineTestResultListResponseItemsGoalThresholdJSON        `json:"-"`
@@ -248,6 +251,7 @@ type inferencePipelineTestResultListResponseItemsGoalThresholdJSON struct {
 	InsightParameters apijson.Field
 	Measurement       apijson.Field
 	Operator          apijson.Field
+	ThresholdMode     apijson.Field
 	Value             apijson.Field
 	raw               string
 	ExtraFields       map[string]apijson.Field
@@ -259,6 +263,67 @@ func (r *InferencePipelineTestResultListResponseItemsGoalThreshold) UnmarshalJSO
 
 func (r inferencePipelineTestResultListResponseItemsGoalThresholdJSON) RawJSON() string {
 	return r.raw
+}
+
+type InferencePipelineTestResultListResponseItemsGoalThresholdsInsightParameter struct {
+	// The name of the insight filter.
+	Name  string                                                                         `json:"name,required"`
+	Value interface{}                                                                    `json:"value,required"`
+	JSON  inferencePipelineTestResultListResponseItemsGoalThresholdsInsightParameterJSON `json:"-"`
+}
+
+// inferencePipelineTestResultListResponseItemsGoalThresholdsInsightParameterJSON
+// contains the JSON metadata for the struct
+// [InferencePipelineTestResultListResponseItemsGoalThresholdsInsightParameter]
+type inferencePipelineTestResultListResponseItemsGoalThresholdsInsightParameterJSON struct {
+	Name        apijson.Field
+	Value       apijson.Field
+	raw         string
+	ExtraFields map[string]apijson.Field
+}
+
+func (r *InferencePipelineTestResultListResponseItemsGoalThresholdsInsightParameter) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r inferencePipelineTestResultListResponseItemsGoalThresholdsInsightParameterJSON) RawJSON() string {
+	return r.raw
+}
+
+// The operator to be used for the evaluation.
+type InferencePipelineTestResultListResponseItemsGoalThresholdsOperator string
+
+const (
+	InferencePipelineTestResultListResponseItemsGoalThresholdsOperatorIs              InferencePipelineTestResultListResponseItemsGoalThresholdsOperator = "is"
+	InferencePipelineTestResultListResponseItemsGoalThresholdsOperatorGreater         InferencePipelineTestResultListResponseItemsGoalThresholdsOperator = ">"
+	InferencePipelineTestResultListResponseItemsGoalThresholdsOperatorGreaterOrEquals InferencePipelineTestResultListResponseItemsGoalThresholdsOperator = ">="
+	InferencePipelineTestResultListResponseItemsGoalThresholdsOperatorLess            InferencePipelineTestResultListResponseItemsGoalThresholdsOperator = "<"
+	InferencePipelineTestResultListResponseItemsGoalThresholdsOperatorLessOrEquals    InferencePipelineTestResultListResponseItemsGoalThresholdsOperator = "<="
+	InferencePipelineTestResultListResponseItemsGoalThresholdsOperatorNotEquals       InferencePipelineTestResultListResponseItemsGoalThresholdsOperator = "!="
+)
+
+func (r InferencePipelineTestResultListResponseItemsGoalThresholdsOperator) IsKnown() bool {
+	switch r {
+	case InferencePipelineTestResultListResponseItemsGoalThresholdsOperatorIs, InferencePipelineTestResultListResponseItemsGoalThresholdsOperatorGreater, InferencePipelineTestResultListResponseItemsGoalThresholdsOperatorGreaterOrEquals, InferencePipelineTestResultListResponseItemsGoalThresholdsOperatorLess, InferencePipelineTestResultListResponseItemsGoalThresholdsOperatorLessOrEquals, InferencePipelineTestResultListResponseItemsGoalThresholdsOperatorNotEquals:
+		return true
+	}
+	return false
+}
+
+// Whether to use automatic anomaly detection or manual thresholds
+type InferencePipelineTestResultListResponseItemsGoalThresholdsThresholdMode string
+
+const (
+	InferencePipelineTestResultListResponseItemsGoalThresholdsThresholdModeAutomatic InferencePipelineTestResultListResponseItemsGoalThresholdsThresholdMode = "automatic"
+	InferencePipelineTestResultListResponseItemsGoalThresholdsThresholdModeManual    InferencePipelineTestResultListResponseItemsGoalThresholdsThresholdMode = "manual"
+)
+
+func (r InferencePipelineTestResultListResponseItemsGoalThresholdsThresholdMode) IsKnown() bool {
+	switch r {
+	case InferencePipelineTestResultListResponseItemsGoalThresholdsThresholdModeAutomatic, InferencePipelineTestResultListResponseItemsGoalThresholdsThresholdModeManual:
+		return true
+	}
+	return false
 }
 
 // The value to be compared.
