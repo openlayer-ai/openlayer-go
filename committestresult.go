@@ -229,12 +229,15 @@ func (r commitTestResultListResponseItemsGoalJSON) RawJSON() string {
 
 type CommitTestResultListResponseItemsGoalThreshold struct {
 	// The insight name to be evaluated.
-	InsightName       string        `json:"insightName"`
-	InsightParameters []interface{} `json:"insightParameters"`
+	InsightName string `json:"insightName"`
+	// The insight parameters. Required only for some test subtypes.
+	InsightParameters []CommitTestResultListResponseItemsGoalThresholdsInsightParameter `json:"insightParameters,nullable"`
 	// The measurement to be evaluated.
 	Measurement string `json:"measurement"`
 	// The operator to be used for the evaluation.
-	Operator string `json:"operator"`
+	Operator CommitTestResultListResponseItemsGoalThresholdsOperator `json:"operator"`
+	// Whether to use automatic anomaly detection or manual thresholds
+	ThresholdMode CommitTestResultListResponseItemsGoalThresholdsThresholdMode `json:"thresholdMode"`
 	// The value to be compared.
 	Value CommitTestResultListResponseItemsGoalThresholdsValueUnion `json:"value"`
 	JSON  commitTestResultListResponseItemsGoalThresholdJSON        `json:"-"`
@@ -247,6 +250,7 @@ type commitTestResultListResponseItemsGoalThresholdJSON struct {
 	InsightParameters apijson.Field
 	Measurement       apijson.Field
 	Operator          apijson.Field
+	ThresholdMode     apijson.Field
 	Value             apijson.Field
 	raw               string
 	ExtraFields       map[string]apijson.Field
@@ -258,6 +262,67 @@ func (r *CommitTestResultListResponseItemsGoalThreshold) UnmarshalJSON(data []by
 
 func (r commitTestResultListResponseItemsGoalThresholdJSON) RawJSON() string {
 	return r.raw
+}
+
+type CommitTestResultListResponseItemsGoalThresholdsInsightParameter struct {
+	// The name of the insight filter.
+	Name  string                                                              `json:"name,required"`
+	Value interface{}                                                         `json:"value,required"`
+	JSON  commitTestResultListResponseItemsGoalThresholdsInsightParameterJSON `json:"-"`
+}
+
+// commitTestResultListResponseItemsGoalThresholdsInsightParameterJSON contains the
+// JSON metadata for the struct
+// [CommitTestResultListResponseItemsGoalThresholdsInsightParameter]
+type commitTestResultListResponseItemsGoalThresholdsInsightParameterJSON struct {
+	Name        apijson.Field
+	Value       apijson.Field
+	raw         string
+	ExtraFields map[string]apijson.Field
+}
+
+func (r *CommitTestResultListResponseItemsGoalThresholdsInsightParameter) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r commitTestResultListResponseItemsGoalThresholdsInsightParameterJSON) RawJSON() string {
+	return r.raw
+}
+
+// The operator to be used for the evaluation.
+type CommitTestResultListResponseItemsGoalThresholdsOperator string
+
+const (
+	CommitTestResultListResponseItemsGoalThresholdsOperatorIs              CommitTestResultListResponseItemsGoalThresholdsOperator = "is"
+	CommitTestResultListResponseItemsGoalThresholdsOperatorGreater         CommitTestResultListResponseItemsGoalThresholdsOperator = ">"
+	CommitTestResultListResponseItemsGoalThresholdsOperatorGreaterOrEquals CommitTestResultListResponseItemsGoalThresholdsOperator = ">="
+	CommitTestResultListResponseItemsGoalThresholdsOperatorLess            CommitTestResultListResponseItemsGoalThresholdsOperator = "<"
+	CommitTestResultListResponseItemsGoalThresholdsOperatorLessOrEquals    CommitTestResultListResponseItemsGoalThresholdsOperator = "<="
+	CommitTestResultListResponseItemsGoalThresholdsOperatorNotEquals       CommitTestResultListResponseItemsGoalThresholdsOperator = "!="
+)
+
+func (r CommitTestResultListResponseItemsGoalThresholdsOperator) IsKnown() bool {
+	switch r {
+	case CommitTestResultListResponseItemsGoalThresholdsOperatorIs, CommitTestResultListResponseItemsGoalThresholdsOperatorGreater, CommitTestResultListResponseItemsGoalThresholdsOperatorGreaterOrEquals, CommitTestResultListResponseItemsGoalThresholdsOperatorLess, CommitTestResultListResponseItemsGoalThresholdsOperatorLessOrEquals, CommitTestResultListResponseItemsGoalThresholdsOperatorNotEquals:
+		return true
+	}
+	return false
+}
+
+// Whether to use automatic anomaly detection or manual thresholds
+type CommitTestResultListResponseItemsGoalThresholdsThresholdMode string
+
+const (
+	CommitTestResultListResponseItemsGoalThresholdsThresholdModeAutomatic CommitTestResultListResponseItemsGoalThresholdsThresholdMode = "automatic"
+	CommitTestResultListResponseItemsGoalThresholdsThresholdModeManual    CommitTestResultListResponseItemsGoalThresholdsThresholdMode = "manual"
+)
+
+func (r CommitTestResultListResponseItemsGoalThresholdsThresholdMode) IsKnown() bool {
+	switch r {
+	case CommitTestResultListResponseItemsGoalThresholdsThresholdModeAutomatic, CommitTestResultListResponseItemsGoalThresholdsThresholdModeManual:
+		return true
+	}
+	return false
 }
 
 // The value to be compared.
