@@ -4,15 +4,21 @@ package shared
 
 type UnionString string
 
+func (UnionString) ImplementsProjectTestNewResponseThresholdsValueUnion()                           {}
+func (UnionString) ImplementsProjectTestNewParamsThresholdsValueUnion()                             {}
 func (UnionString) ImplementsCommitTestResultListResponseItemsGoalThresholdsValueUnion()            {}
 func (UnionString) ImplementsInferencePipelineTestResultListResponseItemsGoalThresholdsValueUnion() {}
 
 type UnionBool bool
 
+func (UnionBool) ImplementsProjectTestNewResponseThresholdsValueUnion()                           {}
+func (UnionBool) ImplementsProjectTestNewParamsThresholdsValueUnion()                             {}
 func (UnionBool) ImplementsCommitTestResultListResponseItemsGoalThresholdsValueUnion()            {}
 func (UnionBool) ImplementsInferencePipelineTestResultListResponseItemsGoalThresholdsValueUnion() {}
 
 type UnionFloat float64
 
+func (UnionFloat) ImplementsProjectTestNewResponseThresholdsValueUnion()                           {}
+func (UnionFloat) ImplementsProjectTestNewParamsThresholdsValueUnion()                             {}
 func (UnionFloat) ImplementsCommitTestResultListResponseItemsGoalThresholdsValueUnion()            {}
 func (UnionFloat) ImplementsInferencePipelineTestResultListResponseItemsGoalThresholdsValueUnion() {}

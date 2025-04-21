@@ -34,6 +34,16 @@ Methods:
 - <code title="post /projects/{projectId}/inference-pipelines">client.Projects.InferencePipelines.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#ProjectInferencePipelineService.New">New</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, projectID <a href="https://pkg.go.dev/builtin#string">string</a>, body <a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#ProjectInferencePipelineNewParams">ProjectInferencePipelineNewParams</a>) (<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#ProjectInferencePipelineNewResponse">ProjectInferencePipelineNewResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 - <code title="get /projects/{projectId}/inference-pipelines">client.Projects.InferencePipelines.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#ProjectInferencePipelineService.List">List</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, projectID <a href="https://pkg.go.dev/builtin#string">string</a>, query <a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#ProjectInferencePipelineListParams">ProjectInferencePipelineListParams</a>) (<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#ProjectInferencePipelineListResponse">ProjectInferencePipelineListResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 
+## Tests
+
+Response Types:
+
+- <a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#ProjectTestNewResponse">ProjectTestNewResponse</a>
+
+Methods:
+
+- <code title="post /projects/{projectId}/tests">client.Projects.Tests.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#ProjectTestService.New">New</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, projectID <a href="https://pkg.go.dev/builtin#string">string</a>, body <a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#ProjectTestNewParams">ProjectTestNewParams</a>) (<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#ProjectTestNewResponse">ProjectTestNewResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+
 # Commits
 
 Response Types:

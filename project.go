@@ -25,6 +25,7 @@ type ProjectService struct {
 	Options            []option.RequestOption
 	Commits            *ProjectCommitService
 	InferencePipelines *ProjectInferencePipelineService
+	Tests              *ProjectTestService
 }
 
 // NewProjectService generates a new service that applies the given options to each
@@ -35,6 +36,7 @@ func NewProjectService(opts ...option.RequestOption) (r *ProjectService) {
 	r.Options = opts
 	r.Commits = NewProjectCommitService(opts...)
 	r.InferencePipelines = NewProjectInferencePipelineService(opts...)
+	r.Tests = NewProjectTestService(opts...)
 	return
 }
 
