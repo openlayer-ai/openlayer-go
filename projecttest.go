@@ -7,10 +7,12 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
+	"net/url"
 	"reflect"
 	"time"
 
 	"github.com/openlayer-ai/openlayer-go/internal/apijson"
+	"github.com/openlayer-ai/openlayer-go/internal/apiquery"
 	"github.com/openlayer-ai/openlayer-go/internal/param"
 	"github.com/openlayer-ai/openlayer-go/internal/requestconfig"
 	"github.com/openlayer-ai/openlayer-go/option"
@@ -46,6 +48,18 @@ func (r *ProjectTestService) New(ctx context.Context, projectID string, body Pro
 	}
 	path := fmt.Sprintf("projects/%s/tests", projectID)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
+	return
+}
+
+// List tests under a project.
+func (r *ProjectTestService) List(ctx context.Context, projectID string, query ProjectTestListParams, opts ...option.RequestOption) (res *ProjectTestListResponse, err error) {
+	opts = append(r.Options[:], opts...)
+	if projectID == "" {
+		err = errors.New("missing required projectId parameter")
+		return
+	}
+	path := fmt.Sprintf("projects/%s/tests", projectID)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
 	return
 }
 
@@ -343,6 +357,354 @@ func (r ProjectTestNewResponseType) IsKnown() bool {
 	return false
 }
 
+type ProjectTestListResponse struct {
+	Meta  ProjectTestListResponse_Meta  `json:"_meta,required"`
+	Items []ProjectTestListResponseItem `json:"items,required"`
+	JSON  projectTestListResponseJSON   `json:"-"`
+}
+
+// projectTestListResponseJSON contains the JSON metadata for the struct
+// [ProjectTestListResponse]
+type projectTestListResponseJSON struct {
+	Meta        apijson.Field
+	Items       apijson.Field
+	raw         string
+	ExtraFields map[string]apijson.Field
+}
+
+func (r *ProjectTestListResponse) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r projectTestListResponseJSON) RawJSON() string {
+	return r.raw
+}
+
+type ProjectTestListResponse_Meta struct {
+	// The current page.
+	Page int64 `json:"page,required"`
+	// The number of items per page.
+	PerPage int64 `json:"perPage,required"`
+	// The total number of items.
+	TotalItems int64 `json:"totalItems,required"`
+	// The total number of pages.
+	TotalPages int64                           `json:"totalPages,required"`
+	JSON       projectTestListResponseMetaJSON `json:"-"`
+}
+
+// projectTestListResponseMetaJSON contains the JSON metadata for the struct
+// [ProjectTestListResponse_Meta]
+type projectTestListResponseMetaJSON struct {
+	Page        apijson.Field
+	PerPage     apijson.Field
+	TotalItems  apijson.Field
+	TotalPages  apijson.Field
+	raw         string
+	ExtraFields map[string]apijson.Field
+}
+
+func (r *ProjectTestListResponse_Meta) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r projectTestListResponseMetaJSON) RawJSON() string {
+	return r.raw
+}
+
+type ProjectTestListResponseItem struct {
+	// The test id.
+	ID string `json:"id,required" format:"uuid"`
+	// The number of comments on the test.
+	CommentCount int64 `json:"commentCount,required"`
+	// The test creator id.
+	CreatorID string `json:"creatorId,required,nullable" format:"uuid"`
+	// The date the test was archived.
+	DateArchived time.Time `json:"dateArchived,required,nullable" format:"date-time"`
+	// The creation date.
+	DateCreated time.Time `json:"dateCreated,required" format:"date-time"`
+	// The last updated date.
+	DateUpdated time.Time `json:"dateUpdated,required" format:"date-time"`
+	// The test description.
+	Description interface{} `json:"description,required,nullable"`
+	// The test name.
+	Name string `json:"name,required"`
+	// The test number.
+	Number int64 `json:"number,required"`
+	// The project version (commit) id where the test was created.
+	OriginProjectVersionID string `json:"originProjectVersionId,required,nullable" format:"uuid"`
+	// The test subtype.
+	Subtype ProjectTestListResponseItemsSubtype `json:"subtype,required"`
+	// Whether the test is suggested or user-created.
+	Suggested  bool                                    `json:"suggested,required"`
+	Thresholds []ProjectTestListResponseItemsThreshold `json:"thresholds,required"`
+	// The test type.
+	Type ProjectTestListResponseItemsType `json:"type,required"`
+	// Whether the test is archived.
+	Archived bool `json:"archived"`
+	// The delay window in seconds. Only applies to tests that use production data.
+	DelayWindow float64 `json:"delayWindow,nullable"`
+	// The evaluation window in seconds. Only applies to tests that use production
+	// data.
+	EvaluationWindow float64 `json:"evaluationWindow,nullable"`
+	// Whether the test uses an ML model.
+	UsesMlModel bool `json:"usesMlModel"`
+	// Whether the test uses production data (monitoring mode only).
+	UsesProductionData bool `json:"usesProductionData"`
+	// Whether the test uses a reference dataset (monitoring mode only).
+	UsesReferenceDataset bool `json:"usesReferenceDataset"`
+	// Whether the test uses a training dataset.
+	UsesTrainingDataset bool `json:"usesTrainingDataset"`
+	// Whether the test uses a validation dataset.
+	UsesValidationDataset bool                            `json:"usesValidationDataset"`
+	JSON                  projectTestListResponseItemJSON `json:"-"`
+}
+
+// projectTestListResponseItemJSON contains the JSON metadata for the struct
+// [ProjectTestListResponseItem]
+type projectTestListResponseItemJSON struct {
+	ID                     apijson.Field
+	CommentCount           apijson.Field
+	CreatorID              apijson.Field
+	DateArchived           apijson.Field
+	DateCreated            apijson.Field
+	DateUpdated            apijson.Field
+	Description            apijson.Field
+	Name                   apijson.Field
+	Number                 apijson.Field
+	OriginProjectVersionID apijson.Field
+	Subtype                apijson.Field
+	Suggested              apijson.Field
+	Thresholds             apijson.Field
+	Type                   apijson.Field
+	Archived               apijson.Field
+	DelayWindow            apijson.Field
+	EvaluationWindow       apijson.Field
+	UsesMlModel            apijson.Field
+	UsesProductionData     apijson.Field
+	UsesReferenceDataset   apijson.Field
+	UsesTrainingDataset    apijson.Field
+	UsesValidationDataset  apijson.Field
+	raw                    string
+	ExtraFields            map[string]apijson.Field
+}
+
+func (r *ProjectTestListResponseItem) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r projectTestListResponseItemJSON) RawJSON() string {
+	return r.raw
+}
+
+// The test subtype.
+type ProjectTestListResponseItemsSubtype string
+
+const (
+	ProjectTestListResponseItemsSubtypeAnomalousColumnCount       ProjectTestListResponseItemsSubtype = "anomalousColumnCount"
+	ProjectTestListResponseItemsSubtypeCharacterLength            ProjectTestListResponseItemsSubtype = "characterLength"
+	ProjectTestListResponseItemsSubtypeClassImbalanceRatio        ProjectTestListResponseItemsSubtype = "classImbalanceRatio"
+	ProjectTestListResponseItemsSubtypeExpectColumnAToBeInColumnB ProjectTestListResponseItemsSubtype = "expectColumnAToBeInColumnB"
+	ProjectTestListResponseItemsSubtypeColumnAverage              ProjectTestListResponseItemsSubtype = "columnAverage"
+	ProjectTestListResponseItemsSubtypeColumnDrift                ProjectTestListResponseItemsSubtype = "columnDrift"
+	ProjectTestListResponseItemsSubtypeColumnStatistic            ProjectTestListResponseItemsSubtype = "columnStatistic"
+	ProjectTestListResponseItemsSubtypeColumnValuesMatch          ProjectTestListResponseItemsSubtype = "columnValuesMatch"
+	ProjectTestListResponseItemsSubtypeConflictingLabelRowCount   ProjectTestListResponseItemsSubtype = "conflictingLabelRowCount"
+	ProjectTestListResponseItemsSubtypeContainsPii                ProjectTestListResponseItemsSubtype = "containsPii"
+	ProjectTestListResponseItemsSubtypeContainsValidURL           ProjectTestListResponseItemsSubtype = "containsValidUrl"
+	ProjectTestListResponseItemsSubtypeCorrelatedFeatureCount     ProjectTestListResponseItemsSubtype = "correlatedFeatureCount"
+	ProjectTestListResponseItemsSubtypeCustomMetricThreshold      ProjectTestListResponseItemsSubtype = "customMetricThreshold"
+	ProjectTestListResponseItemsSubtypeDuplicateRowCount          ProjectTestListResponseItemsSubtype = "duplicateRowCount"
+	ProjectTestListResponseItemsSubtypeEmptyFeature               ProjectTestListResponseItemsSubtype = "emptyFeature"
+	ProjectTestListResponseItemsSubtypeEmptyFeatureCount          ProjectTestListResponseItemsSubtype = "emptyFeatureCount"
+	ProjectTestListResponseItemsSubtypeDriftedFeatureCount        ProjectTestListResponseItemsSubtype = "driftedFeatureCount"
+	ProjectTestListResponseItemsSubtypeFeatureMissingValues       ProjectTestListResponseItemsSubtype = "featureMissingValues"
+	ProjectTestListResponseItemsSubtypeFeatureValueValidation     ProjectTestListResponseItemsSubtype = "featureValueValidation"
+	ProjectTestListResponseItemsSubtypeGreatExpectations          ProjectTestListResponseItemsSubtype = "greatExpectations"
+	ProjectTestListResponseItemsSubtypeGroupByColumnStatsCheck    ProjectTestListResponseItemsSubtype = "groupByColumnStatsCheck"
+	ProjectTestListResponseItemsSubtypeIllFormedRowCount          ProjectTestListResponseItemsSubtype = "illFormedRowCount"
+	ProjectTestListResponseItemsSubtypeIsCode                     ProjectTestListResponseItemsSubtype = "isCode"
+	ProjectTestListResponseItemsSubtypeIsJson                     ProjectTestListResponseItemsSubtype = "isJson"
+	ProjectTestListResponseItemsSubtypeLlmRubricThresholdV2       ProjectTestListResponseItemsSubtype = "llmRubricThresholdV2"
+	ProjectTestListResponseItemsSubtypeLabelDrift                 ProjectTestListResponseItemsSubtype = "labelDrift"
+	ProjectTestListResponseItemsSubtypeMetricThreshold            ProjectTestListResponseItemsSubtype = "metricThreshold"
+	ProjectTestListResponseItemsSubtypeNewCategoryCount           ProjectTestListResponseItemsSubtype = "newCategoryCount"
+	ProjectTestListResponseItemsSubtypeNewLabelCount              ProjectTestListResponseItemsSubtype = "newLabelCount"
+	ProjectTestListResponseItemsSubtypeNullRowCount               ProjectTestListResponseItemsSubtype = "nullRowCount"
+	ProjectTestListResponseItemsSubtypeRowCount                   ProjectTestListResponseItemsSubtype = "rowCount"
+	ProjectTestListResponseItemsSubtypePpScoreValueValidation     ProjectTestListResponseItemsSubtype = "ppScoreValueValidation"
+	ProjectTestListResponseItemsSubtypeQuasiConstantFeature       ProjectTestListResponseItemsSubtype = "quasiConstantFeature"
+	ProjectTestListResponseItemsSubtypeQuasiConstantFeatureCount  ProjectTestListResponseItemsSubtype = "quasiConstantFeatureCount"
+	ProjectTestListResponseItemsSubtypeSqlQuery                   ProjectTestListResponseItemsSubtype = "sqlQuery"
+	ProjectTestListResponseItemsSubtypeDtypeValidation            ProjectTestListResponseItemsSubtype = "dtypeValidation"
+	ProjectTestListResponseItemsSubtypeSentenceLength             ProjectTestListResponseItemsSubtype = "sentenceLength"
+	ProjectTestListResponseItemsSubtypeSizeRatio                  ProjectTestListResponseItemsSubtype = "sizeRatio"
+	ProjectTestListResponseItemsSubtypeSpecialCharactersRatio     ProjectTestListResponseItemsSubtype = "specialCharactersRatio"
+	ProjectTestListResponseItemsSubtypeStringValidation           ProjectTestListResponseItemsSubtype = "stringValidation"
+	ProjectTestListResponseItemsSubtypeTrainValLeakageRowCount    ProjectTestListResponseItemsSubtype = "trainValLeakageRowCount"
+)
+
+func (r ProjectTestListResponseItemsSubtype) IsKnown() bool {
+	switch r {
+	case ProjectTestListResponseItemsSubtypeAnomalousColumnCount, ProjectTestListResponseItemsSubtypeCharacterLength, ProjectTestListResponseItemsSubtypeClassImbalanceRatio, ProjectTestListResponseItemsSubtypeExpectColumnAToBeInColumnB, ProjectTestListResponseItemsSubtypeColumnAverage, ProjectTestListResponseItemsSubtypeColumnDrift, ProjectTestListResponseItemsSubtypeColumnStatistic, ProjectTestListResponseItemsSubtypeColumnValuesMatch, ProjectTestListResponseItemsSubtypeConflictingLabelRowCount, ProjectTestListResponseItemsSubtypeContainsPii, ProjectTestListResponseItemsSubtypeContainsValidURL, ProjectTestListResponseItemsSubtypeCorrelatedFeatureCount, ProjectTestListResponseItemsSubtypeCustomMetricThreshold, ProjectTestListResponseItemsSubtypeDuplicateRowCount, ProjectTestListResponseItemsSubtypeEmptyFeature, ProjectTestListResponseItemsSubtypeEmptyFeatureCount, ProjectTestListResponseItemsSubtypeDriftedFeatureCount, ProjectTestListResponseItemsSubtypeFeatureMissingValues, ProjectTestListResponseItemsSubtypeFeatureValueValidation, ProjectTestListResponseItemsSubtypeGreatExpectations, ProjectTestListResponseItemsSubtypeGroupByColumnStatsCheck, ProjectTestListResponseItemsSubtypeIllFormedRowCount, ProjectTestListResponseItemsSubtypeIsCode, ProjectTestListResponseItemsSubtypeIsJson, ProjectTestListResponseItemsSubtypeLlmRubricThresholdV2, ProjectTestListResponseItemsSubtypeLabelDrift, ProjectTestListResponseItemsSubtypeMetricThreshold, ProjectTestListResponseItemsSubtypeNewCategoryCount, ProjectTestListResponseItemsSubtypeNewLabelCount, ProjectTestListResponseItemsSubtypeNullRowCount, ProjectTestListResponseItemsSubtypeRowCount, ProjectTestListResponseItemsSubtypePpScoreValueValidation, ProjectTestListResponseItemsSubtypeQuasiConstantFeature, ProjectTestListResponseItemsSubtypeQuasiConstantFeatureCount, ProjectTestListResponseItemsSubtypeSqlQuery, ProjectTestListResponseItemsSubtypeDtypeValidation, ProjectTestListResponseItemsSubtypeSentenceLength, ProjectTestListResponseItemsSubtypeSizeRatio, ProjectTestListResponseItemsSubtypeSpecialCharactersRatio, ProjectTestListResponseItemsSubtypeStringValidation, ProjectTestListResponseItemsSubtypeTrainValLeakageRowCount:
+		return true
+	}
+	return false
+}
+
+type ProjectTestListResponseItemsThreshold struct {
+	// The insight name to be evaluated.
+	InsightName string `json:"insightName"`
+	// The insight parameters. Required only for some test subtypes.
+	InsightParameters []ProjectTestListResponseItemsThresholdsInsightParameter `json:"insightParameters,nullable"`
+	// The measurement to be evaluated.
+	Measurement string `json:"measurement"`
+	// The operator to be used for the evaluation.
+	Operator ProjectTestListResponseItemsThresholdsOperator `json:"operator"`
+	// Whether to use automatic anomaly detection or manual thresholds
+	ThresholdMode ProjectTestListResponseItemsThresholdsThresholdMode `json:"thresholdMode"`
+	// The value to be compared.
+	Value ProjectTestListResponseItemsThresholdsValueUnion `json:"value"`
+	JSON  projectTestListResponseItemsThresholdJSON        `json:"-"`
+}
+
+// projectTestListResponseItemsThresholdJSON contains the JSON metadata for the
+// struct [ProjectTestListResponseItemsThreshold]
+type projectTestListResponseItemsThresholdJSON struct {
+	InsightName       apijson.Field
+	InsightParameters apijson.Field
+	Measurement       apijson.Field
+	Operator          apijson.Field
+	ThresholdMode     apijson.Field
+	Value             apijson.Field
+	raw               string
+	ExtraFields       map[string]apijson.Field
+}
+
+func (r *ProjectTestListResponseItemsThreshold) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r projectTestListResponseItemsThresholdJSON) RawJSON() string {
+	return r.raw
+}
+
+type ProjectTestListResponseItemsThresholdsInsightParameter struct {
+	// The name of the insight filter.
+	Name  string                                                     `json:"name,required"`
+	Value interface{}                                                `json:"value,required"`
+	JSON  projectTestListResponseItemsThresholdsInsightParameterJSON `json:"-"`
+}
+
+// projectTestListResponseItemsThresholdsInsightParameterJSON contains the JSON
+// metadata for the struct [ProjectTestListResponseItemsThresholdsInsightParameter]
+type projectTestListResponseItemsThresholdsInsightParameterJSON struct {
+	Name        apijson.Field
+	Value       apijson.Field
+	raw         string
+	ExtraFields map[string]apijson.Field
+}
+
+func (r *ProjectTestListResponseItemsThresholdsInsightParameter) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r projectTestListResponseItemsThresholdsInsightParameterJSON) RawJSON() string {
+	return r.raw
+}
+
+// The operator to be used for the evaluation.
+type ProjectTestListResponseItemsThresholdsOperator string
+
+const (
+	ProjectTestListResponseItemsThresholdsOperatorIs              ProjectTestListResponseItemsThresholdsOperator = "is"
+	ProjectTestListResponseItemsThresholdsOperatorGreater         ProjectTestListResponseItemsThresholdsOperator = ">"
+	ProjectTestListResponseItemsThresholdsOperatorGreaterOrEquals ProjectTestListResponseItemsThresholdsOperator = ">="
+	ProjectTestListResponseItemsThresholdsOperatorLess            ProjectTestListResponseItemsThresholdsOperator = "<"
+	ProjectTestListResponseItemsThresholdsOperatorLessOrEquals    ProjectTestListResponseItemsThresholdsOperator = "<="
+	ProjectTestListResponseItemsThresholdsOperatorNotEquals       ProjectTestListResponseItemsThresholdsOperator = "!="
+)
+
+func (r ProjectTestListResponseItemsThresholdsOperator) IsKnown() bool {
+	switch r {
+	case ProjectTestListResponseItemsThresholdsOperatorIs, ProjectTestListResponseItemsThresholdsOperatorGreater, ProjectTestListResponseItemsThresholdsOperatorGreaterOrEquals, ProjectTestListResponseItemsThresholdsOperatorLess, ProjectTestListResponseItemsThresholdsOperatorLessOrEquals, ProjectTestListResponseItemsThresholdsOperatorNotEquals:
+		return true
+	}
+	return false
+}
+
+// Whether to use automatic anomaly detection or manual thresholds
+type ProjectTestListResponseItemsThresholdsThresholdMode string
+
+const (
+	ProjectTestListResponseItemsThresholdsThresholdModeAutomatic ProjectTestListResponseItemsThresholdsThresholdMode = "automatic"
+	ProjectTestListResponseItemsThresholdsThresholdModeManual    ProjectTestListResponseItemsThresholdsThresholdMode = "manual"
+)
+
+func (r ProjectTestListResponseItemsThresholdsThresholdMode) IsKnown() bool {
+	switch r {
+	case ProjectTestListResponseItemsThresholdsThresholdModeAutomatic, ProjectTestListResponseItemsThresholdsThresholdModeManual:
+		return true
+	}
+	return false
+}
+
+// The value to be compared.
+//
+// Union satisfied by [shared.UnionFloat], [shared.UnionBool], [shared.UnionString]
+// or [ProjectTestListResponseItemsThresholdsValueArray].
+type ProjectTestListResponseItemsThresholdsValueUnion interface {
+	ImplementsProjectTestListResponseItemsThresholdsValueUnion()
+}
+
+func init() {
+	apijson.RegisterUnion(
+		reflect.TypeOf((*ProjectTestListResponseItemsThresholdsValueUnion)(nil)).Elem(),
+		"",
+		apijson.UnionVariant{
+			TypeFilter: gjson.Number,
+			Type:       reflect.TypeOf(shared.UnionFloat(0)),
+		},
+		apijson.UnionVariant{
+			TypeFilter: gjson.True,
+			Type:       reflect.TypeOf(shared.UnionBool(false)),
+		},
+		apijson.UnionVariant{
+			TypeFilter: gjson.False,
+			Type:       reflect.TypeOf(shared.UnionBool(false)),
+		},
+		apijson.UnionVariant{
+			TypeFilter: gjson.String,
+			Type:       reflect.TypeOf(shared.UnionString("")),
+		},
+		apijson.UnionVariant{
+			TypeFilter: gjson.JSON,
+			Type:       reflect.TypeOf(ProjectTestListResponseItemsThresholdsValueArray{}),
+		},
+	)
+}
+
+type ProjectTestListResponseItemsThresholdsValueArray []string
+
+func (r ProjectTestListResponseItemsThresholdsValueArray) ImplementsProjectTestListResponseItemsThresholdsValueUnion() {
+}
+
+// The test type.
+type ProjectTestListResponseItemsType string
+
+const (
+	ProjectTestListResponseItemsTypeIntegrity   ProjectTestListResponseItemsType = "integrity"
+	ProjectTestListResponseItemsTypeConsistency ProjectTestListResponseItemsType = "consistency"
+	ProjectTestListResponseItemsTypePerformance ProjectTestListResponseItemsType = "performance"
+)
+
+func (r ProjectTestListResponseItemsType) IsKnown() bool {
+	switch r {
+	case ProjectTestListResponseItemsTypeIntegrity, ProjectTestListResponseItemsTypeConsistency, ProjectTestListResponseItemsTypePerformance:
+		return true
+	}
+	return false
+}
+
 type ProjectTestNewParams struct {
 	// The test description.
 	Description param.Field[interface{}] `json:"description,required"`
@@ -521,6 +883,52 @@ const (
 func (r ProjectTestNewParamsType) IsKnown() bool {
 	switch r {
 	case ProjectTestNewParamsTypeIntegrity, ProjectTestNewParamsTypeConsistency, ProjectTestNewParamsTypePerformance:
+		return true
+	}
+	return false
+}
+
+type ProjectTestListParams struct {
+	// Filter for archived tests.
+	IncludeArchived param.Field[bool] `query:"includeArchived"`
+	// Retrive tests created by a specific project version.
+	OriginVersionID param.Field[string] `query:"originVersionId" format:"uuid"`
+	// The page to return in a paginated query.
+	Page param.Field[int64] `query:"page"`
+	// Maximum number of items to return per page.
+	PerPage param.Field[int64] `query:"perPage"`
+	// Filter for suggested tests.
+	Suggested param.Field[bool] `query:"suggested"`
+	// Filter objects by test type. Available types are `integrity`, `consistency`,
+	// `performance`, `fairness`, and `robustness`.
+	Type param.Field[ProjectTestListParamsType] `query:"type"`
+	// Retrive tests with usesProductionData (monitoring).
+	UsesProductionData param.Field[bool] `query:"usesProductionData"`
+}
+
+// URLQuery serializes [ProjectTestListParams]'s query parameters as `url.Values`.
+func (r ProjectTestListParams) URLQuery() (v url.Values) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
+
+// Filter objects by test type. Available types are `integrity`, `consistency`,
+// `performance`, `fairness`, and `robustness`.
+type ProjectTestListParamsType string
+
+const (
+	ProjectTestListParamsTypeIntegrity   ProjectTestListParamsType = "integrity"
+	ProjectTestListParamsTypeConsistency ProjectTestListParamsType = "consistency"
+	ProjectTestListParamsTypePerformance ProjectTestListParamsType = "performance"
+	ProjectTestListParamsTypeFairness    ProjectTestListParamsType = "fairness"
+	ProjectTestListParamsTypeRobustness  ProjectTestListParamsType = "robustness"
+)
+
+func (r ProjectTestListParamsType) IsKnown() bool {
+	switch r {
+	case ProjectTestListParamsTypeIntegrity, ProjectTestListParamsTypeConsistency, ProjectTestListParamsTypePerformance, ProjectTestListParamsTypeFairness, ProjectTestListParamsTypeRobustness:
 		return true
 	}
 	return false
