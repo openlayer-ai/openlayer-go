@@ -32,7 +32,7 @@ func TestProjectTestNewWithOptionalParams(t *testing.T) {
 		openlayer.ProjectTestNewParams{
 			Description: openlayer.F[any]("This test checks for duplicate rows in the dataset."),
 			Name:        openlayer.F("No duplicate rows"),
-			Subtype:     openlayer.F("duplicateRowCount"),
+			Subtype:     openlayer.F(openlayer.ProjectTestNewParamsSubtypeDuplicateRowCount),
 			Thresholds: openlayer.F([]openlayer.ProjectTestNewParamsThreshold{{
 				InsightName: openlayer.F("duplicateRowCount"),
 				InsightParameters: openlayer.F([]openlayer.ProjectTestNewParamsThresholdsInsightParameter{{
@@ -44,7 +44,7 @@ func TestProjectTestNewWithOptionalParams(t *testing.T) {
 				ThresholdMode: openlayer.F(openlayer.ProjectTestNewParamsThresholdsThresholdModeAutomatic),
 				Value:         openlayer.F[openlayer.ProjectTestNewParamsThresholdsValueUnion](shared.UnionFloat(0.000000)),
 			}}),
-			Type:                  openlayer.F("integrity"),
+			Type:                  openlayer.F(openlayer.ProjectTestNewParamsTypeIntegrity),
 			Archived:              openlayer.F(false),
 			DelayWindow:           openlayer.F(0.000000),
 			EvaluationWindow:      openlayer.F(3600.000000),
