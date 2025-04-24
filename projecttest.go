@@ -358,7 +358,6 @@ func (r ProjectTestNewResponseType) IsKnown() bool {
 }
 
 type ProjectTestListResponse struct {
-	Meta  ProjectTestListResponse_Meta  `json:"_meta,required"`
 	Items []ProjectTestListResponseItem `json:"items,required"`
 	JSON  projectTestListResponseJSON   `json:"-"`
 }
@@ -366,7 +365,6 @@ type ProjectTestListResponse struct {
 // projectTestListResponseJSON contains the JSON metadata for the struct
 // [ProjectTestListResponse]
 type projectTestListResponseJSON struct {
-	Meta        apijson.Field
 	Items       apijson.Field
 	raw         string
 	ExtraFields map[string]apijson.Field
@@ -377,37 +375,6 @@ func (r *ProjectTestListResponse) UnmarshalJSON(data []byte) (err error) {
 }
 
 func (r projectTestListResponseJSON) RawJSON() string {
-	return r.raw
-}
-
-type ProjectTestListResponse_Meta struct {
-	// The current page.
-	Page int64 `json:"page,required"`
-	// The number of items per page.
-	PerPage int64 `json:"perPage,required"`
-	// The total number of items.
-	TotalItems int64 `json:"totalItems,required"`
-	// The total number of pages.
-	TotalPages int64                           `json:"totalPages,required"`
-	JSON       projectTestListResponseMetaJSON `json:"-"`
-}
-
-// projectTestListResponseMetaJSON contains the JSON metadata for the struct
-// [ProjectTestListResponse_Meta]
-type projectTestListResponseMetaJSON struct {
-	Page        apijson.Field
-	PerPage     apijson.Field
-	TotalItems  apijson.Field
-	TotalPages  apijson.Field
-	raw         string
-	ExtraFields map[string]apijson.Field
-}
-
-func (r *ProjectTestListResponse_Meta) UnmarshalJSON(data []byte) (err error) {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-func (r projectTestListResponseMetaJSON) RawJSON() string {
 	return r.raw
 }
 
