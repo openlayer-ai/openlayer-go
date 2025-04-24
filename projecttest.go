@@ -71,12 +71,12 @@ type ProjectTestNewResponse struct {
 	// The project version (commit) id where the test was created.
 	OriginProjectVersionID string `json:"originProjectVersionId,required,nullable" format:"uuid"`
 	// The test subtype.
-	Subtype string `json:"subtype,required"`
+	Subtype ProjectTestNewResponseSubtype `json:"subtype,required"`
 	// Whether the test is suggested or user-created.
 	Suggested  bool                              `json:"suggested,required"`
 	Thresholds []ProjectTestNewResponseThreshold `json:"thresholds,required"`
 	// The test type.
-	Type string `json:"type,required"`
+	Type ProjectTestNewResponseType `json:"type,required"`
 	// Whether the test is archived.
 	Archived bool `json:"archived"`
 	// The delay window in seconds. Only applies to tests that use production data.
@@ -132,6 +132,61 @@ func (r *ProjectTestNewResponse) UnmarshalJSON(data []byte) (err error) {
 
 func (r projectTestNewResponseJSON) RawJSON() string {
 	return r.raw
+}
+
+// The test subtype.
+type ProjectTestNewResponseSubtype string
+
+const (
+	ProjectTestNewResponseSubtypeAnomalousColumnCount       ProjectTestNewResponseSubtype = "anomalousColumnCount"
+	ProjectTestNewResponseSubtypeCharacterLength            ProjectTestNewResponseSubtype = "characterLength"
+	ProjectTestNewResponseSubtypeClassImbalanceRatio        ProjectTestNewResponseSubtype = "classImbalanceRatio"
+	ProjectTestNewResponseSubtypeExpectColumnAToBeInColumnB ProjectTestNewResponseSubtype = "expectColumnAToBeInColumnB"
+	ProjectTestNewResponseSubtypeColumnAverage              ProjectTestNewResponseSubtype = "columnAverage"
+	ProjectTestNewResponseSubtypeColumnDrift                ProjectTestNewResponseSubtype = "columnDrift"
+	ProjectTestNewResponseSubtypeColumnStatistic            ProjectTestNewResponseSubtype = "columnStatistic"
+	ProjectTestNewResponseSubtypeColumnValuesMatch          ProjectTestNewResponseSubtype = "columnValuesMatch"
+	ProjectTestNewResponseSubtypeConflictingLabelRowCount   ProjectTestNewResponseSubtype = "conflictingLabelRowCount"
+	ProjectTestNewResponseSubtypeContainsPii                ProjectTestNewResponseSubtype = "containsPii"
+	ProjectTestNewResponseSubtypeContainsValidURL           ProjectTestNewResponseSubtype = "containsValidUrl"
+	ProjectTestNewResponseSubtypeCorrelatedFeatureCount     ProjectTestNewResponseSubtype = "correlatedFeatureCount"
+	ProjectTestNewResponseSubtypeCustomMetricThreshold      ProjectTestNewResponseSubtype = "customMetricThreshold"
+	ProjectTestNewResponseSubtypeDuplicateRowCount          ProjectTestNewResponseSubtype = "duplicateRowCount"
+	ProjectTestNewResponseSubtypeEmptyFeature               ProjectTestNewResponseSubtype = "emptyFeature"
+	ProjectTestNewResponseSubtypeEmptyFeatureCount          ProjectTestNewResponseSubtype = "emptyFeatureCount"
+	ProjectTestNewResponseSubtypeDriftedFeatureCount        ProjectTestNewResponseSubtype = "driftedFeatureCount"
+	ProjectTestNewResponseSubtypeFeatureMissingValues       ProjectTestNewResponseSubtype = "featureMissingValues"
+	ProjectTestNewResponseSubtypeFeatureValueValidation     ProjectTestNewResponseSubtype = "featureValueValidation"
+	ProjectTestNewResponseSubtypeGreatExpectations          ProjectTestNewResponseSubtype = "greatExpectations"
+	ProjectTestNewResponseSubtypeGroupByColumnStatsCheck    ProjectTestNewResponseSubtype = "groupByColumnStatsCheck"
+	ProjectTestNewResponseSubtypeIllFormedRowCount          ProjectTestNewResponseSubtype = "illFormedRowCount"
+	ProjectTestNewResponseSubtypeIsCode                     ProjectTestNewResponseSubtype = "isCode"
+	ProjectTestNewResponseSubtypeIsJson                     ProjectTestNewResponseSubtype = "isJson"
+	ProjectTestNewResponseSubtypeLlmRubricThresholdV2       ProjectTestNewResponseSubtype = "llmRubricThresholdV2"
+	ProjectTestNewResponseSubtypeLabelDrift                 ProjectTestNewResponseSubtype = "labelDrift"
+	ProjectTestNewResponseSubtypeMetricThreshold            ProjectTestNewResponseSubtype = "metricThreshold"
+	ProjectTestNewResponseSubtypeNewCategoryCount           ProjectTestNewResponseSubtype = "newCategoryCount"
+	ProjectTestNewResponseSubtypeNewLabelCount              ProjectTestNewResponseSubtype = "newLabelCount"
+	ProjectTestNewResponseSubtypeNullRowCount               ProjectTestNewResponseSubtype = "nullRowCount"
+	ProjectTestNewResponseSubtypeRowCount                   ProjectTestNewResponseSubtype = "rowCount"
+	ProjectTestNewResponseSubtypePpScoreValueValidation     ProjectTestNewResponseSubtype = "ppScoreValueValidation"
+	ProjectTestNewResponseSubtypeQuasiConstantFeature       ProjectTestNewResponseSubtype = "quasiConstantFeature"
+	ProjectTestNewResponseSubtypeQuasiConstantFeatureCount  ProjectTestNewResponseSubtype = "quasiConstantFeatureCount"
+	ProjectTestNewResponseSubtypeSqlQuery                   ProjectTestNewResponseSubtype = "sqlQuery"
+	ProjectTestNewResponseSubtypeDtypeValidation            ProjectTestNewResponseSubtype = "dtypeValidation"
+	ProjectTestNewResponseSubtypeSentenceLength             ProjectTestNewResponseSubtype = "sentenceLength"
+	ProjectTestNewResponseSubtypeSizeRatio                  ProjectTestNewResponseSubtype = "sizeRatio"
+	ProjectTestNewResponseSubtypeSpecialCharactersRatio     ProjectTestNewResponseSubtype = "specialCharactersRatio"
+	ProjectTestNewResponseSubtypeStringValidation           ProjectTestNewResponseSubtype = "stringValidation"
+	ProjectTestNewResponseSubtypeTrainValLeakageRowCount    ProjectTestNewResponseSubtype = "trainValLeakageRowCount"
+)
+
+func (r ProjectTestNewResponseSubtype) IsKnown() bool {
+	switch r {
+	case ProjectTestNewResponseSubtypeAnomalousColumnCount, ProjectTestNewResponseSubtypeCharacterLength, ProjectTestNewResponseSubtypeClassImbalanceRatio, ProjectTestNewResponseSubtypeExpectColumnAToBeInColumnB, ProjectTestNewResponseSubtypeColumnAverage, ProjectTestNewResponseSubtypeColumnDrift, ProjectTestNewResponseSubtypeColumnStatistic, ProjectTestNewResponseSubtypeColumnValuesMatch, ProjectTestNewResponseSubtypeConflictingLabelRowCount, ProjectTestNewResponseSubtypeContainsPii, ProjectTestNewResponseSubtypeContainsValidURL, ProjectTestNewResponseSubtypeCorrelatedFeatureCount, ProjectTestNewResponseSubtypeCustomMetricThreshold, ProjectTestNewResponseSubtypeDuplicateRowCount, ProjectTestNewResponseSubtypeEmptyFeature, ProjectTestNewResponseSubtypeEmptyFeatureCount, ProjectTestNewResponseSubtypeDriftedFeatureCount, ProjectTestNewResponseSubtypeFeatureMissingValues, ProjectTestNewResponseSubtypeFeatureValueValidation, ProjectTestNewResponseSubtypeGreatExpectations, ProjectTestNewResponseSubtypeGroupByColumnStatsCheck, ProjectTestNewResponseSubtypeIllFormedRowCount, ProjectTestNewResponseSubtypeIsCode, ProjectTestNewResponseSubtypeIsJson, ProjectTestNewResponseSubtypeLlmRubricThresholdV2, ProjectTestNewResponseSubtypeLabelDrift, ProjectTestNewResponseSubtypeMetricThreshold, ProjectTestNewResponseSubtypeNewCategoryCount, ProjectTestNewResponseSubtypeNewLabelCount, ProjectTestNewResponseSubtypeNullRowCount, ProjectTestNewResponseSubtypeRowCount, ProjectTestNewResponseSubtypePpScoreValueValidation, ProjectTestNewResponseSubtypeQuasiConstantFeature, ProjectTestNewResponseSubtypeQuasiConstantFeatureCount, ProjectTestNewResponseSubtypeSqlQuery, ProjectTestNewResponseSubtypeDtypeValidation, ProjectTestNewResponseSubtypeSentenceLength, ProjectTestNewResponseSubtypeSizeRatio, ProjectTestNewResponseSubtypeSpecialCharactersRatio, ProjectTestNewResponseSubtypeStringValidation, ProjectTestNewResponseSubtypeTrainValLeakageRowCount:
+		return true
+	}
+	return false
 }
 
 type ProjectTestNewResponseThreshold struct {
@@ -271,16 +326,33 @@ type ProjectTestNewResponseThresholdsValueArray []string
 func (r ProjectTestNewResponseThresholdsValueArray) ImplementsProjectTestNewResponseThresholdsValueUnion() {
 }
 
+// The test type.
+type ProjectTestNewResponseType string
+
+const (
+	ProjectTestNewResponseTypeIntegrity   ProjectTestNewResponseType = "integrity"
+	ProjectTestNewResponseTypeConsistency ProjectTestNewResponseType = "consistency"
+	ProjectTestNewResponseTypePerformance ProjectTestNewResponseType = "performance"
+)
+
+func (r ProjectTestNewResponseType) IsKnown() bool {
+	switch r {
+	case ProjectTestNewResponseTypeIntegrity, ProjectTestNewResponseTypeConsistency, ProjectTestNewResponseTypePerformance:
+		return true
+	}
+	return false
+}
+
 type ProjectTestNewParams struct {
 	// The test description.
 	Description param.Field[interface{}] `json:"description,required"`
 	// The test name.
 	Name param.Field[string] `json:"name,required"`
 	// The test subtype.
-	Subtype    param.Field[string]                          `json:"subtype,required"`
+	Subtype    param.Field[ProjectTestNewParamsSubtype]     `json:"subtype,required"`
 	Thresholds param.Field[[]ProjectTestNewParamsThreshold] `json:"thresholds,required"`
 	// The test type.
-	Type param.Field[string] `json:"type,required"`
+	Type param.Field[ProjectTestNewParamsType] `json:"type,required"`
 	// Whether the test is archived.
 	Archived param.Field[bool] `json:"archived"`
 	// The delay window in seconds. Only applies to tests that use production data.
@@ -302,6 +374,61 @@ type ProjectTestNewParams struct {
 
 func (r ProjectTestNewParams) MarshalJSON() (data []byte, err error) {
 	return apijson.MarshalRoot(r)
+}
+
+// The test subtype.
+type ProjectTestNewParamsSubtype string
+
+const (
+	ProjectTestNewParamsSubtypeAnomalousColumnCount       ProjectTestNewParamsSubtype = "anomalousColumnCount"
+	ProjectTestNewParamsSubtypeCharacterLength            ProjectTestNewParamsSubtype = "characterLength"
+	ProjectTestNewParamsSubtypeClassImbalanceRatio        ProjectTestNewParamsSubtype = "classImbalanceRatio"
+	ProjectTestNewParamsSubtypeExpectColumnAToBeInColumnB ProjectTestNewParamsSubtype = "expectColumnAToBeInColumnB"
+	ProjectTestNewParamsSubtypeColumnAverage              ProjectTestNewParamsSubtype = "columnAverage"
+	ProjectTestNewParamsSubtypeColumnDrift                ProjectTestNewParamsSubtype = "columnDrift"
+	ProjectTestNewParamsSubtypeColumnStatistic            ProjectTestNewParamsSubtype = "columnStatistic"
+	ProjectTestNewParamsSubtypeColumnValuesMatch          ProjectTestNewParamsSubtype = "columnValuesMatch"
+	ProjectTestNewParamsSubtypeConflictingLabelRowCount   ProjectTestNewParamsSubtype = "conflictingLabelRowCount"
+	ProjectTestNewParamsSubtypeContainsPii                ProjectTestNewParamsSubtype = "containsPii"
+	ProjectTestNewParamsSubtypeContainsValidURL           ProjectTestNewParamsSubtype = "containsValidUrl"
+	ProjectTestNewParamsSubtypeCorrelatedFeatureCount     ProjectTestNewParamsSubtype = "correlatedFeatureCount"
+	ProjectTestNewParamsSubtypeCustomMetricThreshold      ProjectTestNewParamsSubtype = "customMetricThreshold"
+	ProjectTestNewParamsSubtypeDuplicateRowCount          ProjectTestNewParamsSubtype = "duplicateRowCount"
+	ProjectTestNewParamsSubtypeEmptyFeature               ProjectTestNewParamsSubtype = "emptyFeature"
+	ProjectTestNewParamsSubtypeEmptyFeatureCount          ProjectTestNewParamsSubtype = "emptyFeatureCount"
+	ProjectTestNewParamsSubtypeDriftedFeatureCount        ProjectTestNewParamsSubtype = "driftedFeatureCount"
+	ProjectTestNewParamsSubtypeFeatureMissingValues       ProjectTestNewParamsSubtype = "featureMissingValues"
+	ProjectTestNewParamsSubtypeFeatureValueValidation     ProjectTestNewParamsSubtype = "featureValueValidation"
+	ProjectTestNewParamsSubtypeGreatExpectations          ProjectTestNewParamsSubtype = "greatExpectations"
+	ProjectTestNewParamsSubtypeGroupByColumnStatsCheck    ProjectTestNewParamsSubtype = "groupByColumnStatsCheck"
+	ProjectTestNewParamsSubtypeIllFormedRowCount          ProjectTestNewParamsSubtype = "illFormedRowCount"
+	ProjectTestNewParamsSubtypeIsCode                     ProjectTestNewParamsSubtype = "isCode"
+	ProjectTestNewParamsSubtypeIsJson                     ProjectTestNewParamsSubtype = "isJson"
+	ProjectTestNewParamsSubtypeLlmRubricThresholdV2       ProjectTestNewParamsSubtype = "llmRubricThresholdV2"
+	ProjectTestNewParamsSubtypeLabelDrift                 ProjectTestNewParamsSubtype = "labelDrift"
+	ProjectTestNewParamsSubtypeMetricThreshold            ProjectTestNewParamsSubtype = "metricThreshold"
+	ProjectTestNewParamsSubtypeNewCategoryCount           ProjectTestNewParamsSubtype = "newCategoryCount"
+	ProjectTestNewParamsSubtypeNewLabelCount              ProjectTestNewParamsSubtype = "newLabelCount"
+	ProjectTestNewParamsSubtypeNullRowCount               ProjectTestNewParamsSubtype = "nullRowCount"
+	ProjectTestNewParamsSubtypeRowCount                   ProjectTestNewParamsSubtype = "rowCount"
+	ProjectTestNewParamsSubtypePpScoreValueValidation     ProjectTestNewParamsSubtype = "ppScoreValueValidation"
+	ProjectTestNewParamsSubtypeQuasiConstantFeature       ProjectTestNewParamsSubtype = "quasiConstantFeature"
+	ProjectTestNewParamsSubtypeQuasiConstantFeatureCount  ProjectTestNewParamsSubtype = "quasiConstantFeatureCount"
+	ProjectTestNewParamsSubtypeSqlQuery                   ProjectTestNewParamsSubtype = "sqlQuery"
+	ProjectTestNewParamsSubtypeDtypeValidation            ProjectTestNewParamsSubtype = "dtypeValidation"
+	ProjectTestNewParamsSubtypeSentenceLength             ProjectTestNewParamsSubtype = "sentenceLength"
+	ProjectTestNewParamsSubtypeSizeRatio                  ProjectTestNewParamsSubtype = "sizeRatio"
+	ProjectTestNewParamsSubtypeSpecialCharactersRatio     ProjectTestNewParamsSubtype = "specialCharactersRatio"
+	ProjectTestNewParamsSubtypeStringValidation           ProjectTestNewParamsSubtype = "stringValidation"
+	ProjectTestNewParamsSubtypeTrainValLeakageRowCount    ProjectTestNewParamsSubtype = "trainValLeakageRowCount"
+)
+
+func (r ProjectTestNewParamsSubtype) IsKnown() bool {
+	switch r {
+	case ProjectTestNewParamsSubtypeAnomalousColumnCount, ProjectTestNewParamsSubtypeCharacterLength, ProjectTestNewParamsSubtypeClassImbalanceRatio, ProjectTestNewParamsSubtypeExpectColumnAToBeInColumnB, ProjectTestNewParamsSubtypeColumnAverage, ProjectTestNewParamsSubtypeColumnDrift, ProjectTestNewParamsSubtypeColumnStatistic, ProjectTestNewParamsSubtypeColumnValuesMatch, ProjectTestNewParamsSubtypeConflictingLabelRowCount, ProjectTestNewParamsSubtypeContainsPii, ProjectTestNewParamsSubtypeContainsValidURL, ProjectTestNewParamsSubtypeCorrelatedFeatureCount, ProjectTestNewParamsSubtypeCustomMetricThreshold, ProjectTestNewParamsSubtypeDuplicateRowCount, ProjectTestNewParamsSubtypeEmptyFeature, ProjectTestNewParamsSubtypeEmptyFeatureCount, ProjectTestNewParamsSubtypeDriftedFeatureCount, ProjectTestNewParamsSubtypeFeatureMissingValues, ProjectTestNewParamsSubtypeFeatureValueValidation, ProjectTestNewParamsSubtypeGreatExpectations, ProjectTestNewParamsSubtypeGroupByColumnStatsCheck, ProjectTestNewParamsSubtypeIllFormedRowCount, ProjectTestNewParamsSubtypeIsCode, ProjectTestNewParamsSubtypeIsJson, ProjectTestNewParamsSubtypeLlmRubricThresholdV2, ProjectTestNewParamsSubtypeLabelDrift, ProjectTestNewParamsSubtypeMetricThreshold, ProjectTestNewParamsSubtypeNewCategoryCount, ProjectTestNewParamsSubtypeNewLabelCount, ProjectTestNewParamsSubtypeNullRowCount, ProjectTestNewParamsSubtypeRowCount, ProjectTestNewParamsSubtypePpScoreValueValidation, ProjectTestNewParamsSubtypeQuasiConstantFeature, ProjectTestNewParamsSubtypeQuasiConstantFeatureCount, ProjectTestNewParamsSubtypeSqlQuery, ProjectTestNewParamsSubtypeDtypeValidation, ProjectTestNewParamsSubtypeSentenceLength, ProjectTestNewParamsSubtypeSizeRatio, ProjectTestNewParamsSubtypeSpecialCharactersRatio, ProjectTestNewParamsSubtypeStringValidation, ProjectTestNewParamsSubtypeTrainValLeakageRowCount:
+		return true
+	}
+	return false
 }
 
 type ProjectTestNewParamsThreshold struct {
@@ -380,4 +507,21 @@ type ProjectTestNewParamsThresholdsValueUnion interface {
 type ProjectTestNewParamsThresholdsValueArray []string
 
 func (r ProjectTestNewParamsThresholdsValueArray) ImplementsProjectTestNewParamsThresholdsValueUnion() {
+}
+
+// The test type.
+type ProjectTestNewParamsType string
+
+const (
+	ProjectTestNewParamsTypeIntegrity   ProjectTestNewParamsType = "integrity"
+	ProjectTestNewParamsTypeConsistency ProjectTestNewParamsType = "consistency"
+	ProjectTestNewParamsTypePerformance ProjectTestNewParamsType = "performance"
+)
+
+func (r ProjectTestNewParamsType) IsKnown() bool {
+	switch r {
+	case ProjectTestNewParamsTypeIntegrity, ProjectTestNewParamsTypeConsistency, ProjectTestNewParamsTypePerformance:
+		return true
+	}
+	return false
 }

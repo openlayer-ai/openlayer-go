@@ -164,12 +164,12 @@ type CommitTestResultListResponseItemsGoal struct {
 	// The project version (commit) id where the test was created.
 	OriginProjectVersionID string `json:"originProjectVersionId,required,nullable" format:"uuid"`
 	// The test subtype.
-	Subtype string `json:"subtype,required"`
+	Subtype CommitTestResultListResponseItemsGoalSubtype `json:"subtype,required"`
 	// Whether the test is suggested or user-created.
 	Suggested  bool                                             `json:"suggested,required"`
 	Thresholds []CommitTestResultListResponseItemsGoalThreshold `json:"thresholds,required"`
 	// The test type.
-	Type string `json:"type,required"`
+	Type CommitTestResultListResponseItemsGoalType `json:"type,required"`
 	// Whether the test is archived.
 	Archived bool `json:"archived"`
 	// The delay window in seconds. Only applies to tests that use production data.
@@ -225,6 +225,61 @@ func (r *CommitTestResultListResponseItemsGoal) UnmarshalJSON(data []byte) (err 
 
 func (r commitTestResultListResponseItemsGoalJSON) RawJSON() string {
 	return r.raw
+}
+
+// The test subtype.
+type CommitTestResultListResponseItemsGoalSubtype string
+
+const (
+	CommitTestResultListResponseItemsGoalSubtypeAnomalousColumnCount       CommitTestResultListResponseItemsGoalSubtype = "anomalousColumnCount"
+	CommitTestResultListResponseItemsGoalSubtypeCharacterLength            CommitTestResultListResponseItemsGoalSubtype = "characterLength"
+	CommitTestResultListResponseItemsGoalSubtypeClassImbalanceRatio        CommitTestResultListResponseItemsGoalSubtype = "classImbalanceRatio"
+	CommitTestResultListResponseItemsGoalSubtypeExpectColumnAToBeInColumnB CommitTestResultListResponseItemsGoalSubtype = "expectColumnAToBeInColumnB"
+	CommitTestResultListResponseItemsGoalSubtypeColumnAverage              CommitTestResultListResponseItemsGoalSubtype = "columnAverage"
+	CommitTestResultListResponseItemsGoalSubtypeColumnDrift                CommitTestResultListResponseItemsGoalSubtype = "columnDrift"
+	CommitTestResultListResponseItemsGoalSubtypeColumnStatistic            CommitTestResultListResponseItemsGoalSubtype = "columnStatistic"
+	CommitTestResultListResponseItemsGoalSubtypeColumnValuesMatch          CommitTestResultListResponseItemsGoalSubtype = "columnValuesMatch"
+	CommitTestResultListResponseItemsGoalSubtypeConflictingLabelRowCount   CommitTestResultListResponseItemsGoalSubtype = "conflictingLabelRowCount"
+	CommitTestResultListResponseItemsGoalSubtypeContainsPii                CommitTestResultListResponseItemsGoalSubtype = "containsPii"
+	CommitTestResultListResponseItemsGoalSubtypeContainsValidURL           CommitTestResultListResponseItemsGoalSubtype = "containsValidUrl"
+	CommitTestResultListResponseItemsGoalSubtypeCorrelatedFeatureCount     CommitTestResultListResponseItemsGoalSubtype = "correlatedFeatureCount"
+	CommitTestResultListResponseItemsGoalSubtypeCustomMetricThreshold      CommitTestResultListResponseItemsGoalSubtype = "customMetricThreshold"
+	CommitTestResultListResponseItemsGoalSubtypeDuplicateRowCount          CommitTestResultListResponseItemsGoalSubtype = "duplicateRowCount"
+	CommitTestResultListResponseItemsGoalSubtypeEmptyFeature               CommitTestResultListResponseItemsGoalSubtype = "emptyFeature"
+	CommitTestResultListResponseItemsGoalSubtypeEmptyFeatureCount          CommitTestResultListResponseItemsGoalSubtype = "emptyFeatureCount"
+	CommitTestResultListResponseItemsGoalSubtypeDriftedFeatureCount        CommitTestResultListResponseItemsGoalSubtype = "driftedFeatureCount"
+	CommitTestResultListResponseItemsGoalSubtypeFeatureMissingValues       CommitTestResultListResponseItemsGoalSubtype = "featureMissingValues"
+	CommitTestResultListResponseItemsGoalSubtypeFeatureValueValidation     CommitTestResultListResponseItemsGoalSubtype = "featureValueValidation"
+	CommitTestResultListResponseItemsGoalSubtypeGreatExpectations          CommitTestResultListResponseItemsGoalSubtype = "greatExpectations"
+	CommitTestResultListResponseItemsGoalSubtypeGroupByColumnStatsCheck    CommitTestResultListResponseItemsGoalSubtype = "groupByColumnStatsCheck"
+	CommitTestResultListResponseItemsGoalSubtypeIllFormedRowCount          CommitTestResultListResponseItemsGoalSubtype = "illFormedRowCount"
+	CommitTestResultListResponseItemsGoalSubtypeIsCode                     CommitTestResultListResponseItemsGoalSubtype = "isCode"
+	CommitTestResultListResponseItemsGoalSubtypeIsJson                     CommitTestResultListResponseItemsGoalSubtype = "isJson"
+	CommitTestResultListResponseItemsGoalSubtypeLlmRubricThresholdV2       CommitTestResultListResponseItemsGoalSubtype = "llmRubricThresholdV2"
+	CommitTestResultListResponseItemsGoalSubtypeLabelDrift                 CommitTestResultListResponseItemsGoalSubtype = "labelDrift"
+	CommitTestResultListResponseItemsGoalSubtypeMetricThreshold            CommitTestResultListResponseItemsGoalSubtype = "metricThreshold"
+	CommitTestResultListResponseItemsGoalSubtypeNewCategoryCount           CommitTestResultListResponseItemsGoalSubtype = "newCategoryCount"
+	CommitTestResultListResponseItemsGoalSubtypeNewLabelCount              CommitTestResultListResponseItemsGoalSubtype = "newLabelCount"
+	CommitTestResultListResponseItemsGoalSubtypeNullRowCount               CommitTestResultListResponseItemsGoalSubtype = "nullRowCount"
+	CommitTestResultListResponseItemsGoalSubtypeRowCount                   CommitTestResultListResponseItemsGoalSubtype = "rowCount"
+	CommitTestResultListResponseItemsGoalSubtypePpScoreValueValidation     CommitTestResultListResponseItemsGoalSubtype = "ppScoreValueValidation"
+	CommitTestResultListResponseItemsGoalSubtypeQuasiConstantFeature       CommitTestResultListResponseItemsGoalSubtype = "quasiConstantFeature"
+	CommitTestResultListResponseItemsGoalSubtypeQuasiConstantFeatureCount  CommitTestResultListResponseItemsGoalSubtype = "quasiConstantFeatureCount"
+	CommitTestResultListResponseItemsGoalSubtypeSqlQuery                   CommitTestResultListResponseItemsGoalSubtype = "sqlQuery"
+	CommitTestResultListResponseItemsGoalSubtypeDtypeValidation            CommitTestResultListResponseItemsGoalSubtype = "dtypeValidation"
+	CommitTestResultListResponseItemsGoalSubtypeSentenceLength             CommitTestResultListResponseItemsGoalSubtype = "sentenceLength"
+	CommitTestResultListResponseItemsGoalSubtypeSizeRatio                  CommitTestResultListResponseItemsGoalSubtype = "sizeRatio"
+	CommitTestResultListResponseItemsGoalSubtypeSpecialCharactersRatio     CommitTestResultListResponseItemsGoalSubtype = "specialCharactersRatio"
+	CommitTestResultListResponseItemsGoalSubtypeStringValidation           CommitTestResultListResponseItemsGoalSubtype = "stringValidation"
+	CommitTestResultListResponseItemsGoalSubtypeTrainValLeakageRowCount    CommitTestResultListResponseItemsGoalSubtype = "trainValLeakageRowCount"
+)
+
+func (r CommitTestResultListResponseItemsGoalSubtype) IsKnown() bool {
+	switch r {
+	case CommitTestResultListResponseItemsGoalSubtypeAnomalousColumnCount, CommitTestResultListResponseItemsGoalSubtypeCharacterLength, CommitTestResultListResponseItemsGoalSubtypeClassImbalanceRatio, CommitTestResultListResponseItemsGoalSubtypeExpectColumnAToBeInColumnB, CommitTestResultListResponseItemsGoalSubtypeColumnAverage, CommitTestResultListResponseItemsGoalSubtypeColumnDrift, CommitTestResultListResponseItemsGoalSubtypeColumnStatistic, CommitTestResultListResponseItemsGoalSubtypeColumnValuesMatch, CommitTestResultListResponseItemsGoalSubtypeConflictingLabelRowCount, CommitTestResultListResponseItemsGoalSubtypeContainsPii, CommitTestResultListResponseItemsGoalSubtypeContainsValidURL, CommitTestResultListResponseItemsGoalSubtypeCorrelatedFeatureCount, CommitTestResultListResponseItemsGoalSubtypeCustomMetricThreshold, CommitTestResultListResponseItemsGoalSubtypeDuplicateRowCount, CommitTestResultListResponseItemsGoalSubtypeEmptyFeature, CommitTestResultListResponseItemsGoalSubtypeEmptyFeatureCount, CommitTestResultListResponseItemsGoalSubtypeDriftedFeatureCount, CommitTestResultListResponseItemsGoalSubtypeFeatureMissingValues, CommitTestResultListResponseItemsGoalSubtypeFeatureValueValidation, CommitTestResultListResponseItemsGoalSubtypeGreatExpectations, CommitTestResultListResponseItemsGoalSubtypeGroupByColumnStatsCheck, CommitTestResultListResponseItemsGoalSubtypeIllFormedRowCount, CommitTestResultListResponseItemsGoalSubtypeIsCode, CommitTestResultListResponseItemsGoalSubtypeIsJson, CommitTestResultListResponseItemsGoalSubtypeLlmRubricThresholdV2, CommitTestResultListResponseItemsGoalSubtypeLabelDrift, CommitTestResultListResponseItemsGoalSubtypeMetricThreshold, CommitTestResultListResponseItemsGoalSubtypeNewCategoryCount, CommitTestResultListResponseItemsGoalSubtypeNewLabelCount, CommitTestResultListResponseItemsGoalSubtypeNullRowCount, CommitTestResultListResponseItemsGoalSubtypeRowCount, CommitTestResultListResponseItemsGoalSubtypePpScoreValueValidation, CommitTestResultListResponseItemsGoalSubtypeQuasiConstantFeature, CommitTestResultListResponseItemsGoalSubtypeQuasiConstantFeatureCount, CommitTestResultListResponseItemsGoalSubtypeSqlQuery, CommitTestResultListResponseItemsGoalSubtypeDtypeValidation, CommitTestResultListResponseItemsGoalSubtypeSentenceLength, CommitTestResultListResponseItemsGoalSubtypeSizeRatio, CommitTestResultListResponseItemsGoalSubtypeSpecialCharactersRatio, CommitTestResultListResponseItemsGoalSubtypeStringValidation, CommitTestResultListResponseItemsGoalSubtypeTrainValLeakageRowCount:
+		return true
+	}
+	return false
 }
 
 type CommitTestResultListResponseItemsGoalThreshold struct {
@@ -365,8 +420,25 @@ type CommitTestResultListResponseItemsGoalThresholdsValueArray []string
 func (r CommitTestResultListResponseItemsGoalThresholdsValueArray) ImplementsCommitTestResultListResponseItemsGoalThresholdsValueUnion() {
 }
 
+// The test type.
+type CommitTestResultListResponseItemsGoalType string
+
+const (
+	CommitTestResultListResponseItemsGoalTypeIntegrity   CommitTestResultListResponseItemsGoalType = "integrity"
+	CommitTestResultListResponseItemsGoalTypeConsistency CommitTestResultListResponseItemsGoalType = "consistency"
+	CommitTestResultListResponseItemsGoalTypePerformance CommitTestResultListResponseItemsGoalType = "performance"
+)
+
+func (r CommitTestResultListResponseItemsGoalType) IsKnown() bool {
+	switch r {
+	case CommitTestResultListResponseItemsGoalTypeIntegrity, CommitTestResultListResponseItemsGoalTypeConsistency, CommitTestResultListResponseItemsGoalTypePerformance:
+		return true
+	}
+	return false
+}
+
 type CommitTestResultListParams struct {
-	// Include archived goals.
+	// Filter for archived tests.
 	IncludeArchived param.Field[bool] `query:"includeArchived"`
 	// The page to return in a paginated query.
 	Page param.Field[int64] `query:"page"`
