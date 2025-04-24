@@ -164,12 +164,12 @@ type InferencePipelineTestResultListResponseItemsGoal struct {
 	// The project version (commit) id where the test was created.
 	OriginProjectVersionID string `json:"originProjectVersionId,required,nullable" format:"uuid"`
 	// The test subtype.
-	Subtype string `json:"subtype,required"`
+	Subtype InferencePipelineTestResultListResponseItemsGoalSubtype `json:"subtype,required"`
 	// Whether the test is suggested or user-created.
 	Suggested  bool                                                        `json:"suggested,required"`
 	Thresholds []InferencePipelineTestResultListResponseItemsGoalThreshold `json:"thresholds,required"`
 	// The test type.
-	Type string `json:"type,required"`
+	Type InferencePipelineTestResultListResponseItemsGoalType `json:"type,required"`
 	// Whether the test is archived.
 	Archived bool `json:"archived"`
 	// The delay window in seconds. Only applies to tests that use production data.
@@ -225,6 +225,61 @@ func (r *InferencePipelineTestResultListResponseItemsGoal) UnmarshalJSON(data []
 
 func (r inferencePipelineTestResultListResponseItemsGoalJSON) RawJSON() string {
 	return r.raw
+}
+
+// The test subtype.
+type InferencePipelineTestResultListResponseItemsGoalSubtype string
+
+const (
+	InferencePipelineTestResultListResponseItemsGoalSubtypeAnomalousColumnCount       InferencePipelineTestResultListResponseItemsGoalSubtype = "anomalousColumnCount"
+	InferencePipelineTestResultListResponseItemsGoalSubtypeCharacterLength            InferencePipelineTestResultListResponseItemsGoalSubtype = "characterLength"
+	InferencePipelineTestResultListResponseItemsGoalSubtypeClassImbalanceRatio        InferencePipelineTestResultListResponseItemsGoalSubtype = "classImbalanceRatio"
+	InferencePipelineTestResultListResponseItemsGoalSubtypeExpectColumnAToBeInColumnB InferencePipelineTestResultListResponseItemsGoalSubtype = "expectColumnAToBeInColumnB"
+	InferencePipelineTestResultListResponseItemsGoalSubtypeColumnAverage              InferencePipelineTestResultListResponseItemsGoalSubtype = "columnAverage"
+	InferencePipelineTestResultListResponseItemsGoalSubtypeColumnDrift                InferencePipelineTestResultListResponseItemsGoalSubtype = "columnDrift"
+	InferencePipelineTestResultListResponseItemsGoalSubtypeColumnStatistic            InferencePipelineTestResultListResponseItemsGoalSubtype = "columnStatistic"
+	InferencePipelineTestResultListResponseItemsGoalSubtypeColumnValuesMatch          InferencePipelineTestResultListResponseItemsGoalSubtype = "columnValuesMatch"
+	InferencePipelineTestResultListResponseItemsGoalSubtypeConflictingLabelRowCount   InferencePipelineTestResultListResponseItemsGoalSubtype = "conflictingLabelRowCount"
+	InferencePipelineTestResultListResponseItemsGoalSubtypeContainsPii                InferencePipelineTestResultListResponseItemsGoalSubtype = "containsPii"
+	InferencePipelineTestResultListResponseItemsGoalSubtypeContainsValidURL           InferencePipelineTestResultListResponseItemsGoalSubtype = "containsValidUrl"
+	InferencePipelineTestResultListResponseItemsGoalSubtypeCorrelatedFeatureCount     InferencePipelineTestResultListResponseItemsGoalSubtype = "correlatedFeatureCount"
+	InferencePipelineTestResultListResponseItemsGoalSubtypeCustomMetricThreshold      InferencePipelineTestResultListResponseItemsGoalSubtype = "customMetricThreshold"
+	InferencePipelineTestResultListResponseItemsGoalSubtypeDuplicateRowCount          InferencePipelineTestResultListResponseItemsGoalSubtype = "duplicateRowCount"
+	InferencePipelineTestResultListResponseItemsGoalSubtypeEmptyFeature               InferencePipelineTestResultListResponseItemsGoalSubtype = "emptyFeature"
+	InferencePipelineTestResultListResponseItemsGoalSubtypeEmptyFeatureCount          InferencePipelineTestResultListResponseItemsGoalSubtype = "emptyFeatureCount"
+	InferencePipelineTestResultListResponseItemsGoalSubtypeDriftedFeatureCount        InferencePipelineTestResultListResponseItemsGoalSubtype = "driftedFeatureCount"
+	InferencePipelineTestResultListResponseItemsGoalSubtypeFeatureMissingValues       InferencePipelineTestResultListResponseItemsGoalSubtype = "featureMissingValues"
+	InferencePipelineTestResultListResponseItemsGoalSubtypeFeatureValueValidation     InferencePipelineTestResultListResponseItemsGoalSubtype = "featureValueValidation"
+	InferencePipelineTestResultListResponseItemsGoalSubtypeGreatExpectations          InferencePipelineTestResultListResponseItemsGoalSubtype = "greatExpectations"
+	InferencePipelineTestResultListResponseItemsGoalSubtypeGroupByColumnStatsCheck    InferencePipelineTestResultListResponseItemsGoalSubtype = "groupByColumnStatsCheck"
+	InferencePipelineTestResultListResponseItemsGoalSubtypeIllFormedRowCount          InferencePipelineTestResultListResponseItemsGoalSubtype = "illFormedRowCount"
+	InferencePipelineTestResultListResponseItemsGoalSubtypeIsCode                     InferencePipelineTestResultListResponseItemsGoalSubtype = "isCode"
+	InferencePipelineTestResultListResponseItemsGoalSubtypeIsJson                     InferencePipelineTestResultListResponseItemsGoalSubtype = "isJson"
+	InferencePipelineTestResultListResponseItemsGoalSubtypeLlmRubricThresholdV2       InferencePipelineTestResultListResponseItemsGoalSubtype = "llmRubricThresholdV2"
+	InferencePipelineTestResultListResponseItemsGoalSubtypeLabelDrift                 InferencePipelineTestResultListResponseItemsGoalSubtype = "labelDrift"
+	InferencePipelineTestResultListResponseItemsGoalSubtypeMetricThreshold            InferencePipelineTestResultListResponseItemsGoalSubtype = "metricThreshold"
+	InferencePipelineTestResultListResponseItemsGoalSubtypeNewCategoryCount           InferencePipelineTestResultListResponseItemsGoalSubtype = "newCategoryCount"
+	InferencePipelineTestResultListResponseItemsGoalSubtypeNewLabelCount              InferencePipelineTestResultListResponseItemsGoalSubtype = "newLabelCount"
+	InferencePipelineTestResultListResponseItemsGoalSubtypeNullRowCount               InferencePipelineTestResultListResponseItemsGoalSubtype = "nullRowCount"
+	InferencePipelineTestResultListResponseItemsGoalSubtypeRowCount                   InferencePipelineTestResultListResponseItemsGoalSubtype = "rowCount"
+	InferencePipelineTestResultListResponseItemsGoalSubtypePpScoreValueValidation     InferencePipelineTestResultListResponseItemsGoalSubtype = "ppScoreValueValidation"
+	InferencePipelineTestResultListResponseItemsGoalSubtypeQuasiConstantFeature       InferencePipelineTestResultListResponseItemsGoalSubtype = "quasiConstantFeature"
+	InferencePipelineTestResultListResponseItemsGoalSubtypeQuasiConstantFeatureCount  InferencePipelineTestResultListResponseItemsGoalSubtype = "quasiConstantFeatureCount"
+	InferencePipelineTestResultListResponseItemsGoalSubtypeSqlQuery                   InferencePipelineTestResultListResponseItemsGoalSubtype = "sqlQuery"
+	InferencePipelineTestResultListResponseItemsGoalSubtypeDtypeValidation            InferencePipelineTestResultListResponseItemsGoalSubtype = "dtypeValidation"
+	InferencePipelineTestResultListResponseItemsGoalSubtypeSentenceLength             InferencePipelineTestResultListResponseItemsGoalSubtype = "sentenceLength"
+	InferencePipelineTestResultListResponseItemsGoalSubtypeSizeRatio                  InferencePipelineTestResultListResponseItemsGoalSubtype = "sizeRatio"
+	InferencePipelineTestResultListResponseItemsGoalSubtypeSpecialCharactersRatio     InferencePipelineTestResultListResponseItemsGoalSubtype = "specialCharactersRatio"
+	InferencePipelineTestResultListResponseItemsGoalSubtypeStringValidation           InferencePipelineTestResultListResponseItemsGoalSubtype = "stringValidation"
+	InferencePipelineTestResultListResponseItemsGoalSubtypeTrainValLeakageRowCount    InferencePipelineTestResultListResponseItemsGoalSubtype = "trainValLeakageRowCount"
+)
+
+func (r InferencePipelineTestResultListResponseItemsGoalSubtype) IsKnown() bool {
+	switch r {
+	case InferencePipelineTestResultListResponseItemsGoalSubtypeAnomalousColumnCount, InferencePipelineTestResultListResponseItemsGoalSubtypeCharacterLength, InferencePipelineTestResultListResponseItemsGoalSubtypeClassImbalanceRatio, InferencePipelineTestResultListResponseItemsGoalSubtypeExpectColumnAToBeInColumnB, InferencePipelineTestResultListResponseItemsGoalSubtypeColumnAverage, InferencePipelineTestResultListResponseItemsGoalSubtypeColumnDrift, InferencePipelineTestResultListResponseItemsGoalSubtypeColumnStatistic, InferencePipelineTestResultListResponseItemsGoalSubtypeColumnValuesMatch, InferencePipelineTestResultListResponseItemsGoalSubtypeConflictingLabelRowCount, InferencePipelineTestResultListResponseItemsGoalSubtypeContainsPii, InferencePipelineTestResultListResponseItemsGoalSubtypeContainsValidURL, InferencePipelineTestResultListResponseItemsGoalSubtypeCorrelatedFeatureCount, InferencePipelineTestResultListResponseItemsGoalSubtypeCustomMetricThreshold, InferencePipelineTestResultListResponseItemsGoalSubtypeDuplicateRowCount, InferencePipelineTestResultListResponseItemsGoalSubtypeEmptyFeature, InferencePipelineTestResultListResponseItemsGoalSubtypeEmptyFeatureCount, InferencePipelineTestResultListResponseItemsGoalSubtypeDriftedFeatureCount, InferencePipelineTestResultListResponseItemsGoalSubtypeFeatureMissingValues, InferencePipelineTestResultListResponseItemsGoalSubtypeFeatureValueValidation, InferencePipelineTestResultListResponseItemsGoalSubtypeGreatExpectations, InferencePipelineTestResultListResponseItemsGoalSubtypeGroupByColumnStatsCheck, InferencePipelineTestResultListResponseItemsGoalSubtypeIllFormedRowCount, InferencePipelineTestResultListResponseItemsGoalSubtypeIsCode, InferencePipelineTestResultListResponseItemsGoalSubtypeIsJson, InferencePipelineTestResultListResponseItemsGoalSubtypeLlmRubricThresholdV2, InferencePipelineTestResultListResponseItemsGoalSubtypeLabelDrift, InferencePipelineTestResultListResponseItemsGoalSubtypeMetricThreshold, InferencePipelineTestResultListResponseItemsGoalSubtypeNewCategoryCount, InferencePipelineTestResultListResponseItemsGoalSubtypeNewLabelCount, InferencePipelineTestResultListResponseItemsGoalSubtypeNullRowCount, InferencePipelineTestResultListResponseItemsGoalSubtypeRowCount, InferencePipelineTestResultListResponseItemsGoalSubtypePpScoreValueValidation, InferencePipelineTestResultListResponseItemsGoalSubtypeQuasiConstantFeature, InferencePipelineTestResultListResponseItemsGoalSubtypeQuasiConstantFeatureCount, InferencePipelineTestResultListResponseItemsGoalSubtypeSqlQuery, InferencePipelineTestResultListResponseItemsGoalSubtypeDtypeValidation, InferencePipelineTestResultListResponseItemsGoalSubtypeSentenceLength, InferencePipelineTestResultListResponseItemsGoalSubtypeSizeRatio, InferencePipelineTestResultListResponseItemsGoalSubtypeSpecialCharactersRatio, InferencePipelineTestResultListResponseItemsGoalSubtypeStringValidation, InferencePipelineTestResultListResponseItemsGoalSubtypeTrainValLeakageRowCount:
+		return true
+	}
+	return false
 }
 
 type InferencePipelineTestResultListResponseItemsGoalThreshold struct {
@@ -364,6 +419,23 @@ func init() {
 type InferencePipelineTestResultListResponseItemsGoalThresholdsValueArray []string
 
 func (r InferencePipelineTestResultListResponseItemsGoalThresholdsValueArray) ImplementsInferencePipelineTestResultListResponseItemsGoalThresholdsValueUnion() {
+}
+
+// The test type.
+type InferencePipelineTestResultListResponseItemsGoalType string
+
+const (
+	InferencePipelineTestResultListResponseItemsGoalTypeIntegrity   InferencePipelineTestResultListResponseItemsGoalType = "integrity"
+	InferencePipelineTestResultListResponseItemsGoalTypeConsistency InferencePipelineTestResultListResponseItemsGoalType = "consistency"
+	InferencePipelineTestResultListResponseItemsGoalTypePerformance InferencePipelineTestResultListResponseItemsGoalType = "performance"
+)
+
+func (r InferencePipelineTestResultListResponseItemsGoalType) IsKnown() bool {
+	switch r {
+	case InferencePipelineTestResultListResponseItemsGoalTypeIntegrity, InferencePipelineTestResultListResponseItemsGoalTypeConsistency, InferencePipelineTestResultListResponseItemsGoalTypePerformance:
+		return true
+	}
+	return false
 }
 
 type InferencePipelineTestResultListParams struct {
