@@ -63,3 +63,37 @@ func TestProjectTestNewWithOptionalParams(t *testing.T) {
 		t.Fatalf("err should be nil: %s", err.Error())
 	}
 }
+
+func TestProjectTestListWithOptionalParams(t *testing.T) {
+	baseURL := "http://localhost:4010"
+	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
+		baseURL = envURL
+	}
+	if !testutil.CheckTestServer(t, baseURL) {
+		return
+	}
+	client := openlayer.NewClient(
+		option.WithBaseURL(baseURL),
+		option.WithAPIKey("My API Key"),
+	)
+	_, err := client.Projects.Tests.List(
+		context.TODO(),
+		"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+		openlayer.ProjectTestListParams{
+			IncludeArchived:    openlayer.F(true),
+			OriginVersionID:    openlayer.F("3fa85f64-5717-4562-b3fc-2c963f66afa6"),
+			Page:               openlayer.F(int64(1)),
+			PerPage:            openlayer.F(int64(1)),
+			Suggested:          openlayer.F(true),
+			Type:               openlayer.F(openlayer.ProjectTestListParamsTypeIntegrity),
+			UsesProductionData: openlayer.F(true),
+		},
+	)
+	if err != nil {
+		var apierr *openlayer.Error
+		if errors.As(err, &apierr) {
+			t.Log(string(apierr.DumpRequest(true)))
+		}
+		t.Fatalf("err should be nil: %s", err.Error())
+	}
+}
