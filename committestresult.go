@@ -284,8 +284,10 @@ func (r CommitTestResultListResponseItemsGoalSubtype) IsKnown() bool {
 
 type CommitTestResultListResponseItemsGoalThreshold struct {
 	// The insight name to be evaluated.
-	InsightName string `json:"insightName"`
-	// The insight parameters. Required only for some test subtypes.
+	InsightName CommitTestResultListResponseItemsGoalThresholdsInsightName `json:"insightName"`
+	// The insight parameters. Required only for some test subtypes. For example, for
+	// tests that require a column name, the insight parameters will be [{'name':
+	// 'column_name', 'value': 'Age'}]
 	InsightParameters []CommitTestResultListResponseItemsGoalThresholdsInsightParameter `json:"insightParameters,nullable"`
 	// The measurement to be evaluated.
 	Measurement string `json:"measurement"`
@@ -317,6 +319,54 @@ func (r *CommitTestResultListResponseItemsGoalThreshold) UnmarshalJSON(data []by
 
 func (r commitTestResultListResponseItemsGoalThresholdJSON) RawJSON() string {
 	return r.raw
+}
+
+// The insight name to be evaluated.
+type CommitTestResultListResponseItemsGoalThresholdsInsightName string
+
+const (
+	CommitTestResultListResponseItemsGoalThresholdsInsightNameCharacterLength            CommitTestResultListResponseItemsGoalThresholdsInsightName = "characterLength"
+	CommitTestResultListResponseItemsGoalThresholdsInsightNameClassImbalance             CommitTestResultListResponseItemsGoalThresholdsInsightName = "classImbalance"
+	CommitTestResultListResponseItemsGoalThresholdsInsightNameExpectColumnAToBeInColumnB CommitTestResultListResponseItemsGoalThresholdsInsightName = "expectColumnAToBeInColumnB"
+	CommitTestResultListResponseItemsGoalThresholdsInsightNameColumnAverage              CommitTestResultListResponseItemsGoalThresholdsInsightName = "columnAverage"
+	CommitTestResultListResponseItemsGoalThresholdsInsightNameColumnDrift                CommitTestResultListResponseItemsGoalThresholdsInsightName = "columnDrift"
+	CommitTestResultListResponseItemsGoalThresholdsInsightNameColumnValuesMatch          CommitTestResultListResponseItemsGoalThresholdsInsightName = "columnValuesMatch"
+	CommitTestResultListResponseItemsGoalThresholdsInsightNameConfidenceDistribution     CommitTestResultListResponseItemsGoalThresholdsInsightName = "confidenceDistribution"
+	CommitTestResultListResponseItemsGoalThresholdsInsightNameConflictingLabelRowCount   CommitTestResultListResponseItemsGoalThresholdsInsightName = "conflictingLabelRowCount"
+	CommitTestResultListResponseItemsGoalThresholdsInsightNameContainsPii                CommitTestResultListResponseItemsGoalThresholdsInsightName = "containsPii"
+	CommitTestResultListResponseItemsGoalThresholdsInsightNameContainsValidURL           CommitTestResultListResponseItemsGoalThresholdsInsightName = "containsValidUrl"
+	CommitTestResultListResponseItemsGoalThresholdsInsightNameCorrelatedFeatures         CommitTestResultListResponseItemsGoalThresholdsInsightName = "correlatedFeatures"
+	CommitTestResultListResponseItemsGoalThresholdsInsightNameCustomMetric               CommitTestResultListResponseItemsGoalThresholdsInsightName = "customMetric"
+	CommitTestResultListResponseItemsGoalThresholdsInsightNameDuplicateRowCount          CommitTestResultListResponseItemsGoalThresholdsInsightName = "duplicateRowCount"
+	CommitTestResultListResponseItemsGoalThresholdsInsightNameEmptyFeatures              CommitTestResultListResponseItemsGoalThresholdsInsightName = "emptyFeatures"
+	CommitTestResultListResponseItemsGoalThresholdsInsightNameFeatureDrift               CommitTestResultListResponseItemsGoalThresholdsInsightName = "featureDrift"
+	CommitTestResultListResponseItemsGoalThresholdsInsightNameFeatureProfile             CommitTestResultListResponseItemsGoalThresholdsInsightName = "featureProfile"
+	CommitTestResultListResponseItemsGoalThresholdsInsightNameGreatExpectations          CommitTestResultListResponseItemsGoalThresholdsInsightName = "greatExpectations"
+	CommitTestResultListResponseItemsGoalThresholdsInsightNameGroupByColumnStatsCheck    CommitTestResultListResponseItemsGoalThresholdsInsightName = "groupByColumnStatsCheck"
+	CommitTestResultListResponseItemsGoalThresholdsInsightNameIllFormedRowCount          CommitTestResultListResponseItemsGoalThresholdsInsightName = "illFormedRowCount"
+	CommitTestResultListResponseItemsGoalThresholdsInsightNameIsCode                     CommitTestResultListResponseItemsGoalThresholdsInsightName = "isCode"
+	CommitTestResultListResponseItemsGoalThresholdsInsightNameIsJson                     CommitTestResultListResponseItemsGoalThresholdsInsightName = "isJson"
+	CommitTestResultListResponseItemsGoalThresholdsInsightNameLlmRubricV2                CommitTestResultListResponseItemsGoalThresholdsInsightName = "llmRubricV2"
+	CommitTestResultListResponseItemsGoalThresholdsInsightNameLabelDrift                 CommitTestResultListResponseItemsGoalThresholdsInsightName = "labelDrift"
+	CommitTestResultListResponseItemsGoalThresholdsInsightNameMetrics                    CommitTestResultListResponseItemsGoalThresholdsInsightName = "metrics"
+	CommitTestResultListResponseItemsGoalThresholdsInsightNameNewCategories              CommitTestResultListResponseItemsGoalThresholdsInsightName = "newCategories"
+	CommitTestResultListResponseItemsGoalThresholdsInsightNameNewLabels                  CommitTestResultListResponseItemsGoalThresholdsInsightName = "newLabels"
+	CommitTestResultListResponseItemsGoalThresholdsInsightNameNullRowCount               CommitTestResultListResponseItemsGoalThresholdsInsightName = "nullRowCount"
+	CommitTestResultListResponseItemsGoalThresholdsInsightNamePpScore                    CommitTestResultListResponseItemsGoalThresholdsInsightName = "ppScore"
+	CommitTestResultListResponseItemsGoalThresholdsInsightNameQuasiConstantFeatures      CommitTestResultListResponseItemsGoalThresholdsInsightName = "quasiConstantFeatures"
+	CommitTestResultListResponseItemsGoalThresholdsInsightNameSentenceLength             CommitTestResultListResponseItemsGoalThresholdsInsightName = "sentenceLength"
+	CommitTestResultListResponseItemsGoalThresholdsInsightNameSizeRatio                  CommitTestResultListResponseItemsGoalThresholdsInsightName = "sizeRatio"
+	CommitTestResultListResponseItemsGoalThresholdsInsightNameSpecialCharacters          CommitTestResultListResponseItemsGoalThresholdsInsightName = "specialCharacters"
+	CommitTestResultListResponseItemsGoalThresholdsInsightNameStringValidation           CommitTestResultListResponseItemsGoalThresholdsInsightName = "stringValidation"
+	CommitTestResultListResponseItemsGoalThresholdsInsightNameTrainValLeakageRowCount    CommitTestResultListResponseItemsGoalThresholdsInsightName = "trainValLeakageRowCount"
+)
+
+func (r CommitTestResultListResponseItemsGoalThresholdsInsightName) IsKnown() bool {
+	switch r {
+	case CommitTestResultListResponseItemsGoalThresholdsInsightNameCharacterLength, CommitTestResultListResponseItemsGoalThresholdsInsightNameClassImbalance, CommitTestResultListResponseItemsGoalThresholdsInsightNameExpectColumnAToBeInColumnB, CommitTestResultListResponseItemsGoalThresholdsInsightNameColumnAverage, CommitTestResultListResponseItemsGoalThresholdsInsightNameColumnDrift, CommitTestResultListResponseItemsGoalThresholdsInsightNameColumnValuesMatch, CommitTestResultListResponseItemsGoalThresholdsInsightNameConfidenceDistribution, CommitTestResultListResponseItemsGoalThresholdsInsightNameConflictingLabelRowCount, CommitTestResultListResponseItemsGoalThresholdsInsightNameContainsPii, CommitTestResultListResponseItemsGoalThresholdsInsightNameContainsValidURL, CommitTestResultListResponseItemsGoalThresholdsInsightNameCorrelatedFeatures, CommitTestResultListResponseItemsGoalThresholdsInsightNameCustomMetric, CommitTestResultListResponseItemsGoalThresholdsInsightNameDuplicateRowCount, CommitTestResultListResponseItemsGoalThresholdsInsightNameEmptyFeatures, CommitTestResultListResponseItemsGoalThresholdsInsightNameFeatureDrift, CommitTestResultListResponseItemsGoalThresholdsInsightNameFeatureProfile, CommitTestResultListResponseItemsGoalThresholdsInsightNameGreatExpectations, CommitTestResultListResponseItemsGoalThresholdsInsightNameGroupByColumnStatsCheck, CommitTestResultListResponseItemsGoalThresholdsInsightNameIllFormedRowCount, CommitTestResultListResponseItemsGoalThresholdsInsightNameIsCode, CommitTestResultListResponseItemsGoalThresholdsInsightNameIsJson, CommitTestResultListResponseItemsGoalThresholdsInsightNameLlmRubricV2, CommitTestResultListResponseItemsGoalThresholdsInsightNameLabelDrift, CommitTestResultListResponseItemsGoalThresholdsInsightNameMetrics, CommitTestResultListResponseItemsGoalThresholdsInsightNameNewCategories, CommitTestResultListResponseItemsGoalThresholdsInsightNameNewLabels, CommitTestResultListResponseItemsGoalThresholdsInsightNameNullRowCount, CommitTestResultListResponseItemsGoalThresholdsInsightNamePpScore, CommitTestResultListResponseItemsGoalThresholdsInsightNameQuasiConstantFeatures, CommitTestResultListResponseItemsGoalThresholdsInsightNameSentenceLength, CommitTestResultListResponseItemsGoalThresholdsInsightNameSizeRatio, CommitTestResultListResponseItemsGoalThresholdsInsightNameSpecialCharacters, CommitTestResultListResponseItemsGoalThresholdsInsightNameStringValidation, CommitTestResultListResponseItemsGoalThresholdsInsightNameTrainValLeakageRowCount:
+		return true
+	}
+	return false
 }
 
 type CommitTestResultListResponseItemsGoalThresholdsInsightParameter struct {

@@ -205,8 +205,10 @@ func (r ProjectTestNewResponseSubtype) IsKnown() bool {
 
 type ProjectTestNewResponseThreshold struct {
 	// The insight name to be evaluated.
-	InsightName string `json:"insightName"`
-	// The insight parameters. Required only for some test subtypes.
+	InsightName ProjectTestNewResponseThresholdsInsightName `json:"insightName"`
+	// The insight parameters. Required only for some test subtypes. For example, for
+	// tests that require a column name, the insight parameters will be [{'name':
+	// 'column_name', 'value': 'Age'}]
 	InsightParameters []ProjectTestNewResponseThresholdsInsightParameter `json:"insightParameters,nullable"`
 	// The measurement to be evaluated.
 	Measurement string `json:"measurement"`
@@ -238,6 +240,54 @@ func (r *ProjectTestNewResponseThreshold) UnmarshalJSON(data []byte) (err error)
 
 func (r projectTestNewResponseThresholdJSON) RawJSON() string {
 	return r.raw
+}
+
+// The insight name to be evaluated.
+type ProjectTestNewResponseThresholdsInsightName string
+
+const (
+	ProjectTestNewResponseThresholdsInsightNameCharacterLength            ProjectTestNewResponseThresholdsInsightName = "characterLength"
+	ProjectTestNewResponseThresholdsInsightNameClassImbalance             ProjectTestNewResponseThresholdsInsightName = "classImbalance"
+	ProjectTestNewResponseThresholdsInsightNameExpectColumnAToBeInColumnB ProjectTestNewResponseThresholdsInsightName = "expectColumnAToBeInColumnB"
+	ProjectTestNewResponseThresholdsInsightNameColumnAverage              ProjectTestNewResponseThresholdsInsightName = "columnAverage"
+	ProjectTestNewResponseThresholdsInsightNameColumnDrift                ProjectTestNewResponseThresholdsInsightName = "columnDrift"
+	ProjectTestNewResponseThresholdsInsightNameColumnValuesMatch          ProjectTestNewResponseThresholdsInsightName = "columnValuesMatch"
+	ProjectTestNewResponseThresholdsInsightNameConfidenceDistribution     ProjectTestNewResponseThresholdsInsightName = "confidenceDistribution"
+	ProjectTestNewResponseThresholdsInsightNameConflictingLabelRowCount   ProjectTestNewResponseThresholdsInsightName = "conflictingLabelRowCount"
+	ProjectTestNewResponseThresholdsInsightNameContainsPii                ProjectTestNewResponseThresholdsInsightName = "containsPii"
+	ProjectTestNewResponseThresholdsInsightNameContainsValidURL           ProjectTestNewResponseThresholdsInsightName = "containsValidUrl"
+	ProjectTestNewResponseThresholdsInsightNameCorrelatedFeatures         ProjectTestNewResponseThresholdsInsightName = "correlatedFeatures"
+	ProjectTestNewResponseThresholdsInsightNameCustomMetric               ProjectTestNewResponseThresholdsInsightName = "customMetric"
+	ProjectTestNewResponseThresholdsInsightNameDuplicateRowCount          ProjectTestNewResponseThresholdsInsightName = "duplicateRowCount"
+	ProjectTestNewResponseThresholdsInsightNameEmptyFeatures              ProjectTestNewResponseThresholdsInsightName = "emptyFeatures"
+	ProjectTestNewResponseThresholdsInsightNameFeatureDrift               ProjectTestNewResponseThresholdsInsightName = "featureDrift"
+	ProjectTestNewResponseThresholdsInsightNameFeatureProfile             ProjectTestNewResponseThresholdsInsightName = "featureProfile"
+	ProjectTestNewResponseThresholdsInsightNameGreatExpectations          ProjectTestNewResponseThresholdsInsightName = "greatExpectations"
+	ProjectTestNewResponseThresholdsInsightNameGroupByColumnStatsCheck    ProjectTestNewResponseThresholdsInsightName = "groupByColumnStatsCheck"
+	ProjectTestNewResponseThresholdsInsightNameIllFormedRowCount          ProjectTestNewResponseThresholdsInsightName = "illFormedRowCount"
+	ProjectTestNewResponseThresholdsInsightNameIsCode                     ProjectTestNewResponseThresholdsInsightName = "isCode"
+	ProjectTestNewResponseThresholdsInsightNameIsJson                     ProjectTestNewResponseThresholdsInsightName = "isJson"
+	ProjectTestNewResponseThresholdsInsightNameLlmRubricV2                ProjectTestNewResponseThresholdsInsightName = "llmRubricV2"
+	ProjectTestNewResponseThresholdsInsightNameLabelDrift                 ProjectTestNewResponseThresholdsInsightName = "labelDrift"
+	ProjectTestNewResponseThresholdsInsightNameMetrics                    ProjectTestNewResponseThresholdsInsightName = "metrics"
+	ProjectTestNewResponseThresholdsInsightNameNewCategories              ProjectTestNewResponseThresholdsInsightName = "newCategories"
+	ProjectTestNewResponseThresholdsInsightNameNewLabels                  ProjectTestNewResponseThresholdsInsightName = "newLabels"
+	ProjectTestNewResponseThresholdsInsightNameNullRowCount               ProjectTestNewResponseThresholdsInsightName = "nullRowCount"
+	ProjectTestNewResponseThresholdsInsightNamePpScore                    ProjectTestNewResponseThresholdsInsightName = "ppScore"
+	ProjectTestNewResponseThresholdsInsightNameQuasiConstantFeatures      ProjectTestNewResponseThresholdsInsightName = "quasiConstantFeatures"
+	ProjectTestNewResponseThresholdsInsightNameSentenceLength             ProjectTestNewResponseThresholdsInsightName = "sentenceLength"
+	ProjectTestNewResponseThresholdsInsightNameSizeRatio                  ProjectTestNewResponseThresholdsInsightName = "sizeRatio"
+	ProjectTestNewResponseThresholdsInsightNameSpecialCharacters          ProjectTestNewResponseThresholdsInsightName = "specialCharacters"
+	ProjectTestNewResponseThresholdsInsightNameStringValidation           ProjectTestNewResponseThresholdsInsightName = "stringValidation"
+	ProjectTestNewResponseThresholdsInsightNameTrainValLeakageRowCount    ProjectTestNewResponseThresholdsInsightName = "trainValLeakageRowCount"
+)
+
+func (r ProjectTestNewResponseThresholdsInsightName) IsKnown() bool {
+	switch r {
+	case ProjectTestNewResponseThresholdsInsightNameCharacterLength, ProjectTestNewResponseThresholdsInsightNameClassImbalance, ProjectTestNewResponseThresholdsInsightNameExpectColumnAToBeInColumnB, ProjectTestNewResponseThresholdsInsightNameColumnAverage, ProjectTestNewResponseThresholdsInsightNameColumnDrift, ProjectTestNewResponseThresholdsInsightNameColumnValuesMatch, ProjectTestNewResponseThresholdsInsightNameConfidenceDistribution, ProjectTestNewResponseThresholdsInsightNameConflictingLabelRowCount, ProjectTestNewResponseThresholdsInsightNameContainsPii, ProjectTestNewResponseThresholdsInsightNameContainsValidURL, ProjectTestNewResponseThresholdsInsightNameCorrelatedFeatures, ProjectTestNewResponseThresholdsInsightNameCustomMetric, ProjectTestNewResponseThresholdsInsightNameDuplicateRowCount, ProjectTestNewResponseThresholdsInsightNameEmptyFeatures, ProjectTestNewResponseThresholdsInsightNameFeatureDrift, ProjectTestNewResponseThresholdsInsightNameFeatureProfile, ProjectTestNewResponseThresholdsInsightNameGreatExpectations, ProjectTestNewResponseThresholdsInsightNameGroupByColumnStatsCheck, ProjectTestNewResponseThresholdsInsightNameIllFormedRowCount, ProjectTestNewResponseThresholdsInsightNameIsCode, ProjectTestNewResponseThresholdsInsightNameIsJson, ProjectTestNewResponseThresholdsInsightNameLlmRubricV2, ProjectTestNewResponseThresholdsInsightNameLabelDrift, ProjectTestNewResponseThresholdsInsightNameMetrics, ProjectTestNewResponseThresholdsInsightNameNewCategories, ProjectTestNewResponseThresholdsInsightNameNewLabels, ProjectTestNewResponseThresholdsInsightNameNullRowCount, ProjectTestNewResponseThresholdsInsightNamePpScore, ProjectTestNewResponseThresholdsInsightNameQuasiConstantFeatures, ProjectTestNewResponseThresholdsInsightNameSentenceLength, ProjectTestNewResponseThresholdsInsightNameSizeRatio, ProjectTestNewResponseThresholdsInsightNameSpecialCharacters, ProjectTestNewResponseThresholdsInsightNameStringValidation, ProjectTestNewResponseThresholdsInsightNameTrainValLeakageRowCount:
+		return true
+	}
+	return false
 }
 
 type ProjectTestNewResponseThresholdsInsightParameter struct {
@@ -358,7 +408,6 @@ func (r ProjectTestNewResponseType) IsKnown() bool {
 }
 
 type ProjectTestListResponse struct {
-	Meta  ProjectTestListResponse_Meta  `json:"_meta,required"`
 	Items []ProjectTestListResponseItem `json:"items,required"`
 	JSON  projectTestListResponseJSON   `json:"-"`
 }
@@ -366,7 +415,6 @@ type ProjectTestListResponse struct {
 // projectTestListResponseJSON contains the JSON metadata for the struct
 // [ProjectTestListResponse]
 type projectTestListResponseJSON struct {
-	Meta        apijson.Field
 	Items       apijson.Field
 	raw         string
 	ExtraFields map[string]apijson.Field
@@ -377,37 +425,6 @@ func (r *ProjectTestListResponse) UnmarshalJSON(data []byte) (err error) {
 }
 
 func (r projectTestListResponseJSON) RawJSON() string {
-	return r.raw
-}
-
-type ProjectTestListResponse_Meta struct {
-	// The current page.
-	Page int64 `json:"page,required"`
-	// The number of items per page.
-	PerPage int64 `json:"perPage,required"`
-	// The total number of items.
-	TotalItems int64 `json:"totalItems,required"`
-	// The total number of pages.
-	TotalPages int64                           `json:"totalPages,required"`
-	JSON       projectTestListResponseMetaJSON `json:"-"`
-}
-
-// projectTestListResponseMetaJSON contains the JSON metadata for the struct
-// [ProjectTestListResponse_Meta]
-type projectTestListResponseMetaJSON struct {
-	Page        apijson.Field
-	PerPage     apijson.Field
-	TotalItems  apijson.Field
-	TotalPages  apijson.Field
-	raw         string
-	ExtraFields map[string]apijson.Field
-}
-
-func (r *ProjectTestListResponse_Meta) UnmarshalJSON(data []byte) (err error) {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-func (r projectTestListResponseMetaJSON) RawJSON() string {
 	return r.raw
 }
 
@@ -553,8 +570,10 @@ func (r ProjectTestListResponseItemsSubtype) IsKnown() bool {
 
 type ProjectTestListResponseItemsThreshold struct {
 	// The insight name to be evaluated.
-	InsightName string `json:"insightName"`
-	// The insight parameters. Required only for some test subtypes.
+	InsightName ProjectTestListResponseItemsThresholdsInsightName `json:"insightName"`
+	// The insight parameters. Required only for some test subtypes. For example, for
+	// tests that require a column name, the insight parameters will be [{'name':
+	// 'column_name', 'value': 'Age'}]
 	InsightParameters []ProjectTestListResponseItemsThresholdsInsightParameter `json:"insightParameters,nullable"`
 	// The measurement to be evaluated.
 	Measurement string `json:"measurement"`
@@ -586,6 +605,54 @@ func (r *ProjectTestListResponseItemsThreshold) UnmarshalJSON(data []byte) (err 
 
 func (r projectTestListResponseItemsThresholdJSON) RawJSON() string {
 	return r.raw
+}
+
+// The insight name to be evaluated.
+type ProjectTestListResponseItemsThresholdsInsightName string
+
+const (
+	ProjectTestListResponseItemsThresholdsInsightNameCharacterLength            ProjectTestListResponseItemsThresholdsInsightName = "characterLength"
+	ProjectTestListResponseItemsThresholdsInsightNameClassImbalance             ProjectTestListResponseItemsThresholdsInsightName = "classImbalance"
+	ProjectTestListResponseItemsThresholdsInsightNameExpectColumnAToBeInColumnB ProjectTestListResponseItemsThresholdsInsightName = "expectColumnAToBeInColumnB"
+	ProjectTestListResponseItemsThresholdsInsightNameColumnAverage              ProjectTestListResponseItemsThresholdsInsightName = "columnAverage"
+	ProjectTestListResponseItemsThresholdsInsightNameColumnDrift                ProjectTestListResponseItemsThresholdsInsightName = "columnDrift"
+	ProjectTestListResponseItemsThresholdsInsightNameColumnValuesMatch          ProjectTestListResponseItemsThresholdsInsightName = "columnValuesMatch"
+	ProjectTestListResponseItemsThresholdsInsightNameConfidenceDistribution     ProjectTestListResponseItemsThresholdsInsightName = "confidenceDistribution"
+	ProjectTestListResponseItemsThresholdsInsightNameConflictingLabelRowCount   ProjectTestListResponseItemsThresholdsInsightName = "conflictingLabelRowCount"
+	ProjectTestListResponseItemsThresholdsInsightNameContainsPii                ProjectTestListResponseItemsThresholdsInsightName = "containsPii"
+	ProjectTestListResponseItemsThresholdsInsightNameContainsValidURL           ProjectTestListResponseItemsThresholdsInsightName = "containsValidUrl"
+	ProjectTestListResponseItemsThresholdsInsightNameCorrelatedFeatures         ProjectTestListResponseItemsThresholdsInsightName = "correlatedFeatures"
+	ProjectTestListResponseItemsThresholdsInsightNameCustomMetric               ProjectTestListResponseItemsThresholdsInsightName = "customMetric"
+	ProjectTestListResponseItemsThresholdsInsightNameDuplicateRowCount          ProjectTestListResponseItemsThresholdsInsightName = "duplicateRowCount"
+	ProjectTestListResponseItemsThresholdsInsightNameEmptyFeatures              ProjectTestListResponseItemsThresholdsInsightName = "emptyFeatures"
+	ProjectTestListResponseItemsThresholdsInsightNameFeatureDrift               ProjectTestListResponseItemsThresholdsInsightName = "featureDrift"
+	ProjectTestListResponseItemsThresholdsInsightNameFeatureProfile             ProjectTestListResponseItemsThresholdsInsightName = "featureProfile"
+	ProjectTestListResponseItemsThresholdsInsightNameGreatExpectations          ProjectTestListResponseItemsThresholdsInsightName = "greatExpectations"
+	ProjectTestListResponseItemsThresholdsInsightNameGroupByColumnStatsCheck    ProjectTestListResponseItemsThresholdsInsightName = "groupByColumnStatsCheck"
+	ProjectTestListResponseItemsThresholdsInsightNameIllFormedRowCount          ProjectTestListResponseItemsThresholdsInsightName = "illFormedRowCount"
+	ProjectTestListResponseItemsThresholdsInsightNameIsCode                     ProjectTestListResponseItemsThresholdsInsightName = "isCode"
+	ProjectTestListResponseItemsThresholdsInsightNameIsJson                     ProjectTestListResponseItemsThresholdsInsightName = "isJson"
+	ProjectTestListResponseItemsThresholdsInsightNameLlmRubricV2                ProjectTestListResponseItemsThresholdsInsightName = "llmRubricV2"
+	ProjectTestListResponseItemsThresholdsInsightNameLabelDrift                 ProjectTestListResponseItemsThresholdsInsightName = "labelDrift"
+	ProjectTestListResponseItemsThresholdsInsightNameMetrics                    ProjectTestListResponseItemsThresholdsInsightName = "metrics"
+	ProjectTestListResponseItemsThresholdsInsightNameNewCategories              ProjectTestListResponseItemsThresholdsInsightName = "newCategories"
+	ProjectTestListResponseItemsThresholdsInsightNameNewLabels                  ProjectTestListResponseItemsThresholdsInsightName = "newLabels"
+	ProjectTestListResponseItemsThresholdsInsightNameNullRowCount               ProjectTestListResponseItemsThresholdsInsightName = "nullRowCount"
+	ProjectTestListResponseItemsThresholdsInsightNamePpScore                    ProjectTestListResponseItemsThresholdsInsightName = "ppScore"
+	ProjectTestListResponseItemsThresholdsInsightNameQuasiConstantFeatures      ProjectTestListResponseItemsThresholdsInsightName = "quasiConstantFeatures"
+	ProjectTestListResponseItemsThresholdsInsightNameSentenceLength             ProjectTestListResponseItemsThresholdsInsightName = "sentenceLength"
+	ProjectTestListResponseItemsThresholdsInsightNameSizeRatio                  ProjectTestListResponseItemsThresholdsInsightName = "sizeRatio"
+	ProjectTestListResponseItemsThresholdsInsightNameSpecialCharacters          ProjectTestListResponseItemsThresholdsInsightName = "specialCharacters"
+	ProjectTestListResponseItemsThresholdsInsightNameStringValidation           ProjectTestListResponseItemsThresholdsInsightName = "stringValidation"
+	ProjectTestListResponseItemsThresholdsInsightNameTrainValLeakageRowCount    ProjectTestListResponseItemsThresholdsInsightName = "trainValLeakageRowCount"
+)
+
+func (r ProjectTestListResponseItemsThresholdsInsightName) IsKnown() bool {
+	switch r {
+	case ProjectTestListResponseItemsThresholdsInsightNameCharacterLength, ProjectTestListResponseItemsThresholdsInsightNameClassImbalance, ProjectTestListResponseItemsThresholdsInsightNameExpectColumnAToBeInColumnB, ProjectTestListResponseItemsThresholdsInsightNameColumnAverage, ProjectTestListResponseItemsThresholdsInsightNameColumnDrift, ProjectTestListResponseItemsThresholdsInsightNameColumnValuesMatch, ProjectTestListResponseItemsThresholdsInsightNameConfidenceDistribution, ProjectTestListResponseItemsThresholdsInsightNameConflictingLabelRowCount, ProjectTestListResponseItemsThresholdsInsightNameContainsPii, ProjectTestListResponseItemsThresholdsInsightNameContainsValidURL, ProjectTestListResponseItemsThresholdsInsightNameCorrelatedFeatures, ProjectTestListResponseItemsThresholdsInsightNameCustomMetric, ProjectTestListResponseItemsThresholdsInsightNameDuplicateRowCount, ProjectTestListResponseItemsThresholdsInsightNameEmptyFeatures, ProjectTestListResponseItemsThresholdsInsightNameFeatureDrift, ProjectTestListResponseItemsThresholdsInsightNameFeatureProfile, ProjectTestListResponseItemsThresholdsInsightNameGreatExpectations, ProjectTestListResponseItemsThresholdsInsightNameGroupByColumnStatsCheck, ProjectTestListResponseItemsThresholdsInsightNameIllFormedRowCount, ProjectTestListResponseItemsThresholdsInsightNameIsCode, ProjectTestListResponseItemsThresholdsInsightNameIsJson, ProjectTestListResponseItemsThresholdsInsightNameLlmRubricV2, ProjectTestListResponseItemsThresholdsInsightNameLabelDrift, ProjectTestListResponseItemsThresholdsInsightNameMetrics, ProjectTestListResponseItemsThresholdsInsightNameNewCategories, ProjectTestListResponseItemsThresholdsInsightNameNewLabels, ProjectTestListResponseItemsThresholdsInsightNameNullRowCount, ProjectTestListResponseItemsThresholdsInsightNamePpScore, ProjectTestListResponseItemsThresholdsInsightNameQuasiConstantFeatures, ProjectTestListResponseItemsThresholdsInsightNameSentenceLength, ProjectTestListResponseItemsThresholdsInsightNameSizeRatio, ProjectTestListResponseItemsThresholdsInsightNameSpecialCharacters, ProjectTestListResponseItemsThresholdsInsightNameStringValidation, ProjectTestListResponseItemsThresholdsInsightNameTrainValLeakageRowCount:
+		return true
+	}
+	return false
 }
 
 type ProjectTestListResponseItemsThresholdsInsightParameter struct {
@@ -795,8 +862,10 @@ func (r ProjectTestNewParamsSubtype) IsKnown() bool {
 
 type ProjectTestNewParamsThreshold struct {
 	// The insight name to be evaluated.
-	InsightName param.Field[string] `json:"insightName"`
-	// The insight parameters. Required only for some test subtypes.
+	InsightName param.Field[ProjectTestNewParamsThresholdsInsightName] `json:"insightName"`
+	// The insight parameters. Required only for some test subtypes. For example, for
+	// tests that require a column name, the insight parameters will be [{'name':
+	// 'column_name', 'value': 'Age'}]
 	InsightParameters param.Field[[]ProjectTestNewParamsThresholdsInsightParameter] `json:"insightParameters"`
 	// The measurement to be evaluated.
 	Measurement param.Field[string] `json:"measurement"`
@@ -810,6 +879,54 @@ type ProjectTestNewParamsThreshold struct {
 
 func (r ProjectTestNewParamsThreshold) MarshalJSON() (data []byte, err error) {
 	return apijson.MarshalRoot(r)
+}
+
+// The insight name to be evaluated.
+type ProjectTestNewParamsThresholdsInsightName string
+
+const (
+	ProjectTestNewParamsThresholdsInsightNameCharacterLength            ProjectTestNewParamsThresholdsInsightName = "characterLength"
+	ProjectTestNewParamsThresholdsInsightNameClassImbalance             ProjectTestNewParamsThresholdsInsightName = "classImbalance"
+	ProjectTestNewParamsThresholdsInsightNameExpectColumnAToBeInColumnB ProjectTestNewParamsThresholdsInsightName = "expectColumnAToBeInColumnB"
+	ProjectTestNewParamsThresholdsInsightNameColumnAverage              ProjectTestNewParamsThresholdsInsightName = "columnAverage"
+	ProjectTestNewParamsThresholdsInsightNameColumnDrift                ProjectTestNewParamsThresholdsInsightName = "columnDrift"
+	ProjectTestNewParamsThresholdsInsightNameColumnValuesMatch          ProjectTestNewParamsThresholdsInsightName = "columnValuesMatch"
+	ProjectTestNewParamsThresholdsInsightNameConfidenceDistribution     ProjectTestNewParamsThresholdsInsightName = "confidenceDistribution"
+	ProjectTestNewParamsThresholdsInsightNameConflictingLabelRowCount   ProjectTestNewParamsThresholdsInsightName = "conflictingLabelRowCount"
+	ProjectTestNewParamsThresholdsInsightNameContainsPii                ProjectTestNewParamsThresholdsInsightName = "containsPii"
+	ProjectTestNewParamsThresholdsInsightNameContainsValidURL           ProjectTestNewParamsThresholdsInsightName = "containsValidUrl"
+	ProjectTestNewParamsThresholdsInsightNameCorrelatedFeatures         ProjectTestNewParamsThresholdsInsightName = "correlatedFeatures"
+	ProjectTestNewParamsThresholdsInsightNameCustomMetric               ProjectTestNewParamsThresholdsInsightName = "customMetric"
+	ProjectTestNewParamsThresholdsInsightNameDuplicateRowCount          ProjectTestNewParamsThresholdsInsightName = "duplicateRowCount"
+	ProjectTestNewParamsThresholdsInsightNameEmptyFeatures              ProjectTestNewParamsThresholdsInsightName = "emptyFeatures"
+	ProjectTestNewParamsThresholdsInsightNameFeatureDrift               ProjectTestNewParamsThresholdsInsightName = "featureDrift"
+	ProjectTestNewParamsThresholdsInsightNameFeatureProfile             ProjectTestNewParamsThresholdsInsightName = "featureProfile"
+	ProjectTestNewParamsThresholdsInsightNameGreatExpectations          ProjectTestNewParamsThresholdsInsightName = "greatExpectations"
+	ProjectTestNewParamsThresholdsInsightNameGroupByColumnStatsCheck    ProjectTestNewParamsThresholdsInsightName = "groupByColumnStatsCheck"
+	ProjectTestNewParamsThresholdsInsightNameIllFormedRowCount          ProjectTestNewParamsThresholdsInsightName = "illFormedRowCount"
+	ProjectTestNewParamsThresholdsInsightNameIsCode                     ProjectTestNewParamsThresholdsInsightName = "isCode"
+	ProjectTestNewParamsThresholdsInsightNameIsJson                     ProjectTestNewParamsThresholdsInsightName = "isJson"
+	ProjectTestNewParamsThresholdsInsightNameLlmRubricV2                ProjectTestNewParamsThresholdsInsightName = "llmRubricV2"
+	ProjectTestNewParamsThresholdsInsightNameLabelDrift                 ProjectTestNewParamsThresholdsInsightName = "labelDrift"
+	ProjectTestNewParamsThresholdsInsightNameMetrics                    ProjectTestNewParamsThresholdsInsightName = "metrics"
+	ProjectTestNewParamsThresholdsInsightNameNewCategories              ProjectTestNewParamsThresholdsInsightName = "newCategories"
+	ProjectTestNewParamsThresholdsInsightNameNewLabels                  ProjectTestNewParamsThresholdsInsightName = "newLabels"
+	ProjectTestNewParamsThresholdsInsightNameNullRowCount               ProjectTestNewParamsThresholdsInsightName = "nullRowCount"
+	ProjectTestNewParamsThresholdsInsightNamePpScore                    ProjectTestNewParamsThresholdsInsightName = "ppScore"
+	ProjectTestNewParamsThresholdsInsightNameQuasiConstantFeatures      ProjectTestNewParamsThresholdsInsightName = "quasiConstantFeatures"
+	ProjectTestNewParamsThresholdsInsightNameSentenceLength             ProjectTestNewParamsThresholdsInsightName = "sentenceLength"
+	ProjectTestNewParamsThresholdsInsightNameSizeRatio                  ProjectTestNewParamsThresholdsInsightName = "sizeRatio"
+	ProjectTestNewParamsThresholdsInsightNameSpecialCharacters          ProjectTestNewParamsThresholdsInsightName = "specialCharacters"
+	ProjectTestNewParamsThresholdsInsightNameStringValidation           ProjectTestNewParamsThresholdsInsightName = "stringValidation"
+	ProjectTestNewParamsThresholdsInsightNameTrainValLeakageRowCount    ProjectTestNewParamsThresholdsInsightName = "trainValLeakageRowCount"
+)
+
+func (r ProjectTestNewParamsThresholdsInsightName) IsKnown() bool {
+	switch r {
+	case ProjectTestNewParamsThresholdsInsightNameCharacterLength, ProjectTestNewParamsThresholdsInsightNameClassImbalance, ProjectTestNewParamsThresholdsInsightNameExpectColumnAToBeInColumnB, ProjectTestNewParamsThresholdsInsightNameColumnAverage, ProjectTestNewParamsThresholdsInsightNameColumnDrift, ProjectTestNewParamsThresholdsInsightNameColumnValuesMatch, ProjectTestNewParamsThresholdsInsightNameConfidenceDistribution, ProjectTestNewParamsThresholdsInsightNameConflictingLabelRowCount, ProjectTestNewParamsThresholdsInsightNameContainsPii, ProjectTestNewParamsThresholdsInsightNameContainsValidURL, ProjectTestNewParamsThresholdsInsightNameCorrelatedFeatures, ProjectTestNewParamsThresholdsInsightNameCustomMetric, ProjectTestNewParamsThresholdsInsightNameDuplicateRowCount, ProjectTestNewParamsThresholdsInsightNameEmptyFeatures, ProjectTestNewParamsThresholdsInsightNameFeatureDrift, ProjectTestNewParamsThresholdsInsightNameFeatureProfile, ProjectTestNewParamsThresholdsInsightNameGreatExpectations, ProjectTestNewParamsThresholdsInsightNameGroupByColumnStatsCheck, ProjectTestNewParamsThresholdsInsightNameIllFormedRowCount, ProjectTestNewParamsThresholdsInsightNameIsCode, ProjectTestNewParamsThresholdsInsightNameIsJson, ProjectTestNewParamsThresholdsInsightNameLlmRubricV2, ProjectTestNewParamsThresholdsInsightNameLabelDrift, ProjectTestNewParamsThresholdsInsightNameMetrics, ProjectTestNewParamsThresholdsInsightNameNewCategories, ProjectTestNewParamsThresholdsInsightNameNewLabels, ProjectTestNewParamsThresholdsInsightNameNullRowCount, ProjectTestNewParamsThresholdsInsightNamePpScore, ProjectTestNewParamsThresholdsInsightNameQuasiConstantFeatures, ProjectTestNewParamsThresholdsInsightNameSentenceLength, ProjectTestNewParamsThresholdsInsightNameSizeRatio, ProjectTestNewParamsThresholdsInsightNameSpecialCharacters, ProjectTestNewParamsThresholdsInsightNameStringValidation, ProjectTestNewParamsThresholdsInsightNameTrainValLeakageRowCount:
+		return true
+	}
+	return false
 }
 
 type ProjectTestNewParamsThresholdsInsightParameter struct {
