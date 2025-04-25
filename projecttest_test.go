@@ -34,7 +34,7 @@ func TestProjectTestNewWithOptionalParams(t *testing.T) {
 			Name:        openlayer.F("No duplicate rows"),
 			Subtype:     openlayer.F(openlayer.ProjectTestNewParamsSubtypeDuplicateRowCount),
 			Thresholds: openlayer.F([]openlayer.ProjectTestNewParamsThreshold{{
-				InsightName: openlayer.F(openlayer.ProjectTestNewParamsThresholdsInsightNameDuplicateRowCount),
+				InsightName: openlayer.F("duplicateRowCount"),
 				InsightParameters: openlayer.F([]openlayer.ProjectTestNewParamsThresholdsInsightParameter{{
 					Name:  openlayer.F("column_name"),
 					Value: openlayer.F[any]("Age"),
