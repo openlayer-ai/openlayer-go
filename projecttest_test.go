@@ -34,7 +34,7 @@ func TestProjectTestNewWithOptionalParams(t *testing.T) {
 			Name:        openlayer.F("No duplicate rows"),
 			Subtype:     openlayer.F(openlayer.ProjectTestNewParamsSubtypeDuplicateRowCount),
 			Thresholds: openlayer.F([]openlayer.ProjectTestNewParamsThreshold{{
-				InsightName: openlayer.F("duplicateRowCount"),
+				InsightName: openlayer.F(openlayer.ProjectTestNewParamsThresholdsInsightNameDuplicateRowCount),
 				InsightParameters: openlayer.F([]openlayer.ProjectTestNewParamsThresholdsInsightParameter{{
 					Name:  openlayer.F("column_name"),
 					Value: openlayer.F[any]("Age"),
@@ -53,6 +53,51 @@ func TestProjectTestNewWithOptionalParams(t *testing.T) {
 			UsesReferenceDataset:  openlayer.F(false),
 			UsesTrainingDataset:   openlayer.F(false),
 			UsesValidationDataset: openlayer.F(true),
+		},
+	)
+	if err != nil {
+		var apierr *openlayer.Error
+		if errors.As(err, &apierr) {
+			t.Log(string(apierr.DumpRequest(true)))
+		}
+		t.Fatalf("err should be nil: %s", err.Error())
+	}
+}
+
+func TestProjectTestUpdate(t *testing.T) {
+	baseURL := "http://localhost:4010"
+	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
+		baseURL = envURL
+	}
+	if !testutil.CheckTestServer(t, baseURL) {
+		return
+	}
+	client := openlayer.NewClient(
+		option.WithBaseURL(baseURL),
+		option.WithAPIKey("My API Key"),
+	)
+	_, err := client.Projects.Tests.Update(
+		context.TODO(),
+		"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+		openlayer.ProjectTestUpdateParams{
+			Payloads: openlayer.F([]openlayer.ProjectTestUpdateParamsPayload{{
+				ID:          openlayer.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),
+				Archived:    openlayer.F(false),
+				Description: openlayer.F[any]("This test checks for duplicate rows in the dataset."),
+				Name:        openlayer.F("No duplicate rows"),
+				Suggested:   openlayer.F(openlayer.ProjectTestUpdateParamsPayloadsSuggestedFalse),
+				Thresholds: openlayer.F([]openlayer.ProjectTestUpdateParamsPayloadsThreshold{{
+					InsightName: openlayer.F(openlayer.ProjectTestUpdateParamsPayloadsThresholdsInsightNameDuplicateRowCount),
+					InsightParameters: openlayer.F([]openlayer.ProjectTestUpdateParamsPayloadsThresholdsInsightParameter{{
+						Name:  openlayer.F("column_name"),
+						Value: openlayer.F[any]("Age"),
+					}}),
+					Measurement:   openlayer.F("duplicateRowCount"),
+					Operator:      openlayer.F(openlayer.ProjectTestUpdateParamsPayloadsThresholdsOperatorLessOrEquals),
+					ThresholdMode: openlayer.F(openlayer.ProjectTestUpdateParamsPayloadsThresholdsThresholdModeAutomatic),
+					Value:         openlayer.F[openlayer.ProjectTestUpdateParamsPayloadsThresholdsValueUnion](shared.UnionFloat(0.000000)),
+				}}),
+			}}),
 		},
 	)
 	if err != nil {
