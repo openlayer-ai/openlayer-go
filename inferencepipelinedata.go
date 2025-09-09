@@ -129,6 +129,8 @@ type InferencePipelineDataStreamParamsConfig struct {
 	// Name of the column with the questions. Applies to RAG use cases. Providing the
 	// question enables RAG-specific metrics.
 	QuestionColumnName param.Field[string] `json:"questionColumnName"`
+	// Name of the column with the session id.
+	SessionIDColumnName param.Field[string] `json:"sessionIdColumnName"`
 	// Name of the column with the targets (ground truth values).
 	TargetColumnName param.Field[string] `json:"targetColumnName"`
 	// Name of the column with the text data.
@@ -136,6 +138,8 @@ type InferencePipelineDataStreamParamsConfig struct {
 	// Name of the column with the timestamps. Timestamps must be in UNIX sec format.
 	// If not provided, the upload timestamp is used.
 	TimestampColumnName param.Field[string] `json:"timestampColumnName"`
+	// Name of the column with the user id.
+	UserIDColumnName param.Field[string] `json:"userIdColumnName"`
 }
 
 func (r InferencePipelineDataStreamParamsConfig) MarshalJSON() (data []byte, err error) {
@@ -184,9 +188,13 @@ type InferencePipelineDataStreamParamsConfigLlmData struct {
 	// Name of the column with the questions. Applies to RAG use cases. Providing the
 	// question enables RAG-specific metrics.
 	QuestionColumnName param.Field[string] `json:"questionColumnName"`
+	// Name of the column with the session id.
+	SessionIDColumnName param.Field[string] `json:"sessionIdColumnName"`
 	// Name of the column with the timestamps. Timestamps must be in UNIX sec format.
 	// If not provided, the upload timestamp is used.
 	TimestampColumnName param.Field[string] `json:"timestampColumnName"`
+	// Name of the column with the user id.
+	UserIDColumnName param.Field[string] `json:"userIdColumnName"`
 }
 
 func (r InferencePipelineDataStreamParamsConfigLlmData) MarshalJSON() (data []byte, err error) {
