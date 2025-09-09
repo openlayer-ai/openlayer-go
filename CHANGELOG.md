@@ -1,5 +1,51 @@
 # Changelog
 
+## 0.1.0-alpha.17 (2025-09-09)
+
+Full Changelog: [v0.1.0-alpha.16...v0.1.0-alpha.17](https://github.com/openlayer-ai/openlayer-go/compare/v0.1.0-alpha.16...v0.1.0-alpha.17)
+
+### Features
+
+* **api:** add test creation endpoint ([50fa1ac](https://github.com/openlayer-ai/openlayer-go/commit/50fa1ac7d9d7bff9402b7be595e176cfab4d18e9))
+* **api:** api update ([6a671cc](https://github.com/openlayer-ai/openlayer-go/commit/6a671cc3207209aabebdcad6ceab28512d25c2d2))
+* **api:** api update ([9ca34f2](https://github.com/openlayer-ai/openlayer-go/commit/9ca34f2376b8e7736bc178b64fb8de6f14dc09f5))
+* **api:** api update ([1464559](https://github.com/openlayer-ai/openlayer-go/commit/146455956798caf86c90a1e76a06663c862ab02a))
+* **api:** api update ([945314e](https://github.com/openlayer-ai/openlayer-go/commit/945314e51ecff9e88c9fafe693a612d3d350c313))
+* **api:** api update ([20c21a5](https://github.com/openlayer-ai/openlayer-go/commit/20c21a5bfc2a02ef41317797e52b966a29880738))
+* **api:** api update ([915af77](https://github.com/openlayer-ai/openlayer-go/commit/915af773e51144f74c1517bb43eb6807867d4015))
+* **api:** expose test retrieval endpoint ([cddc990](https://github.com/openlayer-ai/openlayer-go/commit/cddc990ebb0004ddee4ca0f8c538b543c700d254))
+* **api:** expose test retrieval endpoint ([7ac3c6c](https://github.com/openlayer-ai/openlayer-go/commit/7ac3c6ccac9752d807519538a54b0afe223154fe))
+* **api:** expose test update endpoint ([e8aba5e](https://github.com/openlayer-ai/openlayer-go/commit/e8aba5e6f17d645f5ccb543d259739d534a3da3a))
+* **client:** add support for endpoint-specific base URLs in python ([820ffe8](https://github.com/openlayer-ai/openlayer-go/commit/820ffe88bf9a04be100ea8fb34794865b87d5f52))
+* **client:** add support for reading base URL from environment variable ([9fd2355](https://github.com/openlayer-ai/openlayer-go/commit/9fd23557e5355ae4280fdea454c024eab8d9dc4d))
+* **client:** support custom http clients ([#80](https://github.com/openlayer-ai/openlayer-go/issues/80)) ([773c56c](https://github.com/openlayer-ai/openlayer-go/commit/773c56c93858bfec9e73ccb22950919bd968d606))
+
+
+### Bug Fixes
+
+* **client:** clean up reader resources ([d608b57](https://github.com/openlayer-ai/openlayer-go/commit/d608b57fd158f1bdfeeeea89e9ebb911c3669b35))
+* **client:** correctly update body in WithJSONSet ([e59a983](https://github.com/openlayer-ai/openlayer-go/commit/e59a9832b8dddd3612fdf9492b6c095ecd9eb589))
+* handle empty bodies in WithJSONSet ([dfd870a](https://github.com/openlayer-ai/openlayer-go/commit/dfd870a9923922602af776bf62ae5da696c4f9f1))
+
+
+### Chores
+
+* **ci:** add timeout thresholds for CI jobs ([a41c7b6](https://github.com/openlayer-ai/openlayer-go/commit/a41c7b6366a1b1b380fa714ac527cd4c8a019112))
+* **ci:** only use depot for staging repos ([abc6c92](https://github.com/openlayer-ai/openlayer-go/commit/abc6c92db4e9cbfd5e199571c521f9c3a7b02c73))
+* **docs:** document pre-request options ([6cc0281](https://github.com/openlayer-ai/openlayer-go/commit/6cc028136dc67f77881c5c1f4d466254694a0679))
+* **docs:** grammar improvements ([4dd364b](https://github.com/openlayer-ai/openlayer-go/commit/4dd364b2f9a3382a6b4880a3dc30521d14403a9b))
+* improve devcontainer setup ([1322a10](https://github.com/openlayer-ai/openlayer-go/commit/1322a105c963120fab6553a83ef811cddc333e5d))
+* **internal:** codegen related update ([8ad39a5](https://github.com/openlayer-ai/openlayer-go/commit/8ad39a515b9bc3c3a752682500f37193c6f44a70))
+* **internal:** expand CI branch coverage ([14067c7](https://github.com/openlayer-ai/openlayer-go/commit/14067c7e9dfa7c1bcdfb9ded29ce3eaea12d1bd2))
+* **internal:** reduce CI branch coverage ([08c00ca](https://github.com/openlayer-ai/openlayer-go/commit/08c00cadee41cd7f6b3bd2873a0a1f18ba997a99))
+* make go mod tidy continue on error ([d402983](https://github.com/openlayer-ai/openlayer-go/commit/d402983d853f087862dd3676f7f7bd6fdddd9a96))
+* **tests:** improve enum examples ([#82](https://github.com/openlayer-ai/openlayer-go/issues/82)) ([c4047ae](https://github.com/openlayer-ai/openlayer-go/commit/c4047aeebaf1c7ae8aa176572a1615746bee8bb5))
+
+
+### Documentation
+
+* update documentation links to be more uniform ([6245eac](https://github.com/openlayer-ai/openlayer-go/commit/6245eac124bdfa974d36963c293b4f6d1b791021))
+
 ## 0.1.0-alpha.16 (2025-04-03)
 
 Full Changelog: [v0.1.0-alpha.15...v0.1.0-alpha.16](https://github.com/openlayer-ai/openlayer-go/compare/v0.1.0-alpha.15...v0.1.0-alpha.16)
