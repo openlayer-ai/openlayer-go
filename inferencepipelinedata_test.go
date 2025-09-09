@@ -44,7 +44,9 @@ func TestInferencePipelineDataStreamWithOptionalParams(t *testing.T) {
 					Role:    openlayer.F("user"),
 				}}),
 				QuestionColumnName:  openlayer.F("question"),
+				SessionIDColumnName: openlayer.F("session_id"),
 				TimestampColumnName: openlayer.F("timestamp"),
+				UserIDColumnName:    openlayer.F("user_id"),
 			}),
 			Rows: openlayer.F([]map[string]interface{}{{
 				"user_query": "bar",
