@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"net/url"
 	"reflect"
+	"slices"
 	"time"
 
 	"github.com/openlayer-ai/openlayer-go/internal/apijson"
@@ -41,7 +42,7 @@ func NewInferencePipelineTestResultService(opts ...option.RequestOption) (r *Inf
 
 // List the latest test results for an inference pipeline.
 func (r *InferencePipelineTestResultService) List(ctx context.Context, inferencePipelineID string, query InferencePipelineTestResultListParams, opts ...option.RequestOption) (res *InferencePipelineTestResultListResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if inferencePipelineID == "" {
 		err = errors.New("missing required inferencePipelineId parameter")
 		return

@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/openlayer-ai/openlayer-go/internal/apijson"
@@ -44,7 +45,7 @@ func NewInferencePipelineService(opts ...option.RequestOption) (r *InferencePipe
 
 // Retrieve inference pipeline.
 func (r *InferencePipelineService) Get(ctx context.Context, inferencePipelineID string, query InferencePipelineGetParams, opts ...option.RequestOption) (res *InferencePipelineGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if inferencePipelineID == "" {
 		err = errors.New("missing required inferencePipelineId parameter")
 		return
@@ -56,7 +57,7 @@ func (r *InferencePipelineService) Get(ctx context.Context, inferencePipelineID 
 
 // Update inference pipeline.
 func (r *InferencePipelineService) Update(ctx context.Context, inferencePipelineID string, body InferencePipelineUpdateParams, opts ...option.RequestOption) (res *InferencePipelineUpdateResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if inferencePipelineID == "" {
 		err = errors.New("missing required inferencePipelineId parameter")
 		return
@@ -68,7 +69,7 @@ func (r *InferencePipelineService) Update(ctx context.Context, inferencePipeline
 
 // Delete inference pipeline.
 func (r *InferencePipelineService) Delete(ctx context.Context, inferencePipelineID string, opts ...option.RequestOption) (err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
 	if inferencePipelineID == "" {
 		err = errors.New("missing required inferencePipelineId parameter")

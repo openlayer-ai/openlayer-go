@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/openlayer-ai/openlayer-go/internal/apijson"
@@ -38,7 +39,7 @@ func NewProjectCommitService(opts ...option.RequestOption) (r *ProjectCommitServ
 
 // Create a new commit (project version) in a project.
 func (r *ProjectCommitService) New(ctx context.Context, projectID string, body ProjectCommitNewParams, opts ...option.RequestOption) (res *ProjectCommitNewResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if projectID == "" {
 		err = errors.New("missing required projectId parameter")
 		return
@@ -50,7 +51,7 @@ func (r *ProjectCommitService) New(ctx context.Context, projectID string, body P
 
 // List the commits (project versions) in a project.
 func (r *ProjectCommitService) List(ctx context.Context, projectID string, query ProjectCommitListParams, opts ...option.RequestOption) (res *ProjectCommitListResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if projectID == "" {
 		err = errors.New("missing required projectId parameter")
 		return

@@ -6,6 +6,7 @@ import (
 	"context"
 	"net/http"
 	"net/url"
+	"slices"
 
 	"github.com/openlayer-ai/openlayer-go/internal/apijson"
 	"github.com/openlayer-ai/openlayer-go/internal/apiquery"
@@ -35,7 +36,7 @@ func NewStoragePresignedURLService(opts ...option.RequestOption) (r *StoragePres
 
 // Retrieve a presigned url to post storage artifacts.
 func (r *StoragePresignedURLService) New(ctx context.Context, body StoragePresignedURLNewParams, opts ...option.RequestOption) (res *StoragePresignedURLNewResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	path := "storage/presigned-url"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
 	return

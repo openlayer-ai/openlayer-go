@@ -7,6 +7,7 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
+	"slices"
 	"time"
 
 	"github.com/openlayer-ai/openlayer-go/internal/apijson"
@@ -37,7 +38,7 @@ func NewCommitService(opts ...option.RequestOption) (r *CommitService) {
 
 // Retrieve a project version (commit) by its id.
 func (r *CommitService) Get(ctx context.Context, projectVersionID string, opts ...option.RequestOption) (res *CommitGetResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if projectVersionID == "" {
 		err = errors.New("missing required projectVersionId parameter")
 		return
