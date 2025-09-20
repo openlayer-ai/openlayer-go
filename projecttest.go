@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"net/url"
 	"reflect"
+	"slices"
 	"time"
 
 	"github.com/openlayer-ai/openlayer-go/internal/apijson"
@@ -41,7 +42,7 @@ func NewProjectTestService(opts ...option.RequestOption) (r *ProjectTestService)
 
 // Create a test.
 func (r *ProjectTestService) New(ctx context.Context, projectID string, body ProjectTestNewParams, opts ...option.RequestOption) (res *ProjectTestNewResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if projectID == "" {
 		err = errors.New("missing required projectId parameter")
 		return
@@ -53,7 +54,7 @@ func (r *ProjectTestService) New(ctx context.Context, projectID string, body Pro
 
 // Update tests.
 func (r *ProjectTestService) Update(ctx context.Context, projectID string, body ProjectTestUpdateParams, opts ...option.RequestOption) (res *ProjectTestUpdateResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if projectID == "" {
 		err = errors.New("missing required projectId parameter")
 		return
@@ -65,7 +66,7 @@ func (r *ProjectTestService) Update(ctx context.Context, projectID string, body 
 
 // List tests under a project.
 func (r *ProjectTestService) List(ctx context.Context, projectID string, query ProjectTestListParams, opts ...option.RequestOption) (res *ProjectTestListResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if projectID == "" {
 		err = errors.New("missing required projectId parameter")
 		return

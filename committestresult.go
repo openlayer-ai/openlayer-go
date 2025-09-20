@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"net/url"
 	"reflect"
+	"slices"
 	"time"
 
 	"github.com/openlayer-ai/openlayer-go/internal/apijson"
@@ -41,7 +42,7 @@ func NewCommitTestResultService(opts ...option.RequestOption) (r *CommitTestResu
 
 // List the test results for a project commit (project version).
 func (r *CommitTestResultService) List(ctx context.Context, projectVersionID string, query CommitTestResultListParams, opts ...option.RequestOption) (res *CommitTestResultListResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if projectVersionID == "" {
 		err = errors.New("missing required projectVersionId parameter")
 		return

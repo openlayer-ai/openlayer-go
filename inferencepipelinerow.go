@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 
 	"github.com/openlayer-ai/openlayer-go/internal/apijson"
 	"github.com/openlayer-ai/openlayer-go/internal/apiquery"
@@ -37,7 +38,7 @@ func NewInferencePipelineRowService(opts ...option.RequestOption) (r *InferenceP
 
 // Update an inference data point in an inference pipeline.
 func (r *InferencePipelineRowService) Update(ctx context.Context, inferencePipelineID string, params InferencePipelineRowUpdateParams, opts ...option.RequestOption) (res *InferencePipelineRowUpdateResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if inferencePipelineID == "" {
 		err = errors.New("missing required inferencePipelineId parameter")
 		return
