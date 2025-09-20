@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"slices"
 	"time"
 
 	"github.com/openlayer-ai/openlayer-go/internal/apijson"
@@ -38,7 +39,7 @@ func NewProjectInferencePipelineService(opts ...option.RequestOption) (r *Projec
 
 // Create an inference pipeline in a project.
 func (r *ProjectInferencePipelineService) New(ctx context.Context, projectID string, body ProjectInferencePipelineNewParams, opts ...option.RequestOption) (res *ProjectInferencePipelineNewResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if projectID == "" {
 		err = errors.New("missing required projectId parameter")
 		return
@@ -50,7 +51,7 @@ func (r *ProjectInferencePipelineService) New(ctx context.Context, projectID str
 
 // List the inference pipelines in a project.
 func (r *ProjectInferencePipelineService) List(ctx context.Context, projectID string, query ProjectInferencePipelineListParams, opts ...option.RequestOption) (res *ProjectInferencePipelineListResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if projectID == "" {
 		err = errors.New("missing required projectId parameter")
 		return

@@ -7,6 +7,7 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
+	"slices"
 
 	"github.com/openlayer-ai/openlayer-go/internal/apijson"
 	"github.com/openlayer-ai/openlayer-go/internal/param"
@@ -35,7 +36,7 @@ func NewInferencePipelineDataService(opts ...option.RequestOption) (r *Inference
 
 // Publish an inference data point to an inference pipeline.
 func (r *InferencePipelineDataService) Stream(ctx context.Context, inferencePipelineID string, body InferencePipelineDataStreamParams, opts ...option.RequestOption) (res *InferencePipelineDataStreamResponse, err error) {
-	opts = append(r.Options[:], opts...)
+	opts = slices.Concat(r.Options, opts)
 	if inferencePipelineID == "" {
 		err = errors.New("missing required inferencePipelineId parameter")
 		return
