@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.1.0 (2025-09-22)
+
+Full Changelog: [v0.1.0-alpha.17...v0.1.0](https://github.com/openlayer-ai/openlayer-go/compare/v0.1.0-alpha.17...v0.1.0)
+
+### Bug Fixes
+
+* use slices.Concat instead of sometimes modifying r.Options ([19cb06e](https://github.com/openlayer-ai/openlayer-go/commit/19cb06ee0bd56001bae8e04a0e21147b55da957c))
+
+
+### Chores
+
+* bump minimum go version to 1.22 ([4bbbeb0](https://github.com/openlayer-ai/openlayer-go/commit/4bbbeb01e4132c1775b72c88c95f888b8d7b0131))
+* do not install brew dependencies in ./scripts/bootstrap by default ([039a9bd](https://github.com/openlayer-ai/openlayer-go/commit/039a9bdaef3563687eca21b7667fb968c670febc))
+* update more docs for 1.22 ([8ef189a](https://github.com/openlayer-ai/openlayer-go/commit/8ef189a98c9ffa26c5a41634ae09643390672df7))
+
 ## 0.1.0-alpha.17 (2025-09-09)
 
 Full Changelog: [v0.1.0-alpha.16...v0.1.0-alpha.17](https://github.com/openlayer-ai/openlayer-go/compare/v0.1.0-alpha.16...v0.1.0-alpha.17)
