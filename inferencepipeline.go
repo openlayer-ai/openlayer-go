@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"reflect"
 	"slices"
 	"time"
 
@@ -16,6 +17,7 @@ import (
 	"github.com/openlayer-ai/openlayer-go/internal/param"
 	"github.com/openlayer-ai/openlayer-go/internal/requestconfig"
 	"github.com/openlayer-ai/openlayer-go/option"
+	"github.com/tidwall/gjson"
 )
 
 // InferencePipelineService contains methods and other services that help with
@@ -109,9 +111,14 @@ type InferencePipelineGetResponse struct {
 	// The status message of test evaluation for the inference pipeline.
 	StatusMessage string `json:"statusMessage,required,nullable"`
 	// The total number of tests.
-	TotalGoalCount int64                                 `json:"totalGoalCount,required"`
-	Project        InferencePipelineGetResponseProject   `json:"project,nullable"`
-	Workspace      InferencePipelineGetResponseWorkspace `json:"workspace,nullable"`
+	TotalGoalCount int64                                   `json:"totalGoalCount,required"`
+	DataBackend    InferencePipelineGetResponseDataBackend `json:"dataBackend,nullable"`
+	// The last time the data was polled.
+	DateLastPolled time.Time                           `json:"dateLastPolled,nullable" format:"date-time"`
+	Project        InferencePipelineGetResponseProject `json:"project,nullable"`
+	// The total number of records in the data backend.
+	TotalRecordsCount int64                                 `json:"totalRecordsCount,nullable"`
+	Workspace         InferencePipelineGetResponseWorkspace `json:"workspace,nullable"`
 	// The workspace id.
 	WorkspaceID string                           `json:"workspaceId" format:"uuid"`
 	JSON        inferencePipelineGetResponseJSON `json:"-"`
@@ -135,7 +142,10 @@ type inferencePipelineGetResponseJSON struct {
 	Status                 apijson.Field
 	StatusMessage          apijson.Field
 	TotalGoalCount         apijson.Field
+	DataBackend            apijson.Field
+	DateLastPolled         apijson.Field
 	Project                apijson.Field
+	TotalRecordsCount      apijson.Field
 	Workspace              apijson.Field
 	WorkspaceID            apijson.Field
 	raw                    string
@@ -186,6 +196,270 @@ const (
 func (r InferencePipelineGetResponseStatus) IsKnown() bool {
 	switch r {
 	case InferencePipelineGetResponseStatusQueued, InferencePipelineGetResponseStatusRunning, InferencePipelineGetResponseStatusPaused, InferencePipelineGetResponseStatusFailed, InferencePipelineGetResponseStatusCompleted, InferencePipelineGetResponseStatusUnknown:
+		return true
+	}
+	return false
+}
+
+type InferencePipelineGetResponseDataBackend struct {
+	BackendType          InferencePipelineGetResponseDataBackendBackendType `json:"backendType,required"`
+	BigqueryConnectionID string                                             `json:"bigqueryConnectionId,nullable" format:"uuid"`
+	// This field can have the runtime type of
+	// [InferencePipelineGetResponseDataBackendObjectConfig].
+	Config                    interface{}                                          `json:"config"`
+	Database                  string                                               `json:"database"`
+	DatabricksDtlConnectionID string                                               `json:"databricksDtlConnectionId,nullable" format:"uuid"`
+	DatasetID                 string                                               `json:"datasetId"`
+	PartitionType             InferencePipelineGetResponseDataBackendPartitionType `json:"partitionType,nullable"`
+	PostgresConnectionID      string                                               `json:"postgresConnectionId,nullable" format:"uuid"`
+	ProjectID                 string                                               `json:"projectId"`
+	RedshiftConnectionID      string                                               `json:"redshiftConnectionId,nullable" format:"uuid"`
+	Schema                    string                                               `json:"schema"`
+	SchemaName                string                                               `json:"schemaName"`
+	SnowflakeConnectionID     string                                               `json:"snowflakeConnectionId,nullable" format:"uuid"`
+	Table                     string                                               `json:"table,nullable"`
+	TableID                   string                                               `json:"tableId,nullable"`
+	TableName                 string                                               `json:"tableName"`
+	JSON                      inferencePipelineGetResponseDataBackendJSON          `json:"-"`
+	union                     InferencePipelineGetResponseDataBackendUnion
+}
+
+// inferencePipelineGetResponseDataBackendJSON contains the JSON metadata for the
+// struct [InferencePipelineGetResponseDataBackend]
+type inferencePipelineGetResponseDataBackendJSON struct {
+	BackendType               apijson.Field
+	BigqueryConnectionID      apijson.Field
+	Config                    apijson.Field
+	Database                  apijson.Field
+	DatabricksDtlConnectionID apijson.Field
+	DatasetID                 apijson.Field
+	PartitionType             apijson.Field
+	PostgresConnectionID      apijson.Field
+	ProjectID                 apijson.Field
+	RedshiftConnectionID      apijson.Field
+	Schema                    apijson.Field
+	SchemaName                apijson.Field
+	SnowflakeConnectionID     apijson.Field
+	Table                     apijson.Field
+	TableID                   apijson.Field
+	TableName                 apijson.Field
+	raw                       string
+	ExtraFields               map[string]apijson.Field
+}
+
+func (r inferencePipelineGetResponseDataBackendJSON) RawJSON() string {
+	return r.raw
+}
+
+func (r *InferencePipelineGetResponseDataBackend) UnmarshalJSON(data []byte) (err error) {
+	*r = InferencePipelineGetResponseDataBackend{}
+	err = apijson.UnmarshalRoot(data, &r.union)
+	if err != nil {
+		return err
+	}
+	return apijson.Port(r.union, &r)
+}
+
+// AsUnion returns a [InferencePipelineGetResponseDataBackendUnion] interface which
+// you can cast to the specific types for more type safety.
+//
+// Possible runtime types of the union are
+// [InferencePipelineGetResponseDataBackendObject],
+// [InferencePipelineGetResponseDataBackendBackendType],
+// [InferencePipelineGetResponseDataBackendObject],
+// [InferencePipelineGetResponseDataBackendObject],
+// [InferencePipelineGetResponseDataBackendObject],
+// [InferencePipelineGetResponseDataBackendObject].
+func (r InferencePipelineGetResponseDataBackend) AsUnion() InferencePipelineGetResponseDataBackendUnion {
+	return r.union
+}
+
+// Union satisfied by [InferencePipelineGetResponseDataBackendObject],
+// [InferencePipelineGetResponseDataBackendBackendType],
+// [InferencePipelineGetResponseDataBackendObject],
+// [InferencePipelineGetResponseDataBackendObject],
+// [InferencePipelineGetResponseDataBackendObject] or
+// [InferencePipelineGetResponseDataBackendObject].
+type InferencePipelineGetResponseDataBackendUnion interface {
+	implementsInferencePipelineGetResponseDataBackend()
+}
+
+func init() {
+	apijson.RegisterUnion(
+		reflect.TypeOf((*InferencePipelineGetResponseDataBackendUnion)(nil)).Elem(),
+		"",
+		apijson.UnionVariant{
+			TypeFilter: gjson.JSON,
+			Type:       reflect.TypeOf(InferencePipelineGetResponseDataBackendObject{}),
+		},
+		apijson.UnionVariant{
+			TypeFilter: gjson.JSON,
+			Type:       reflect.TypeOf(InferencePipelineGetResponseDataBackendBackendType{}),
+		},
+		apijson.UnionVariant{
+			TypeFilter: gjson.JSON,
+			Type:       reflect.TypeOf(InferencePipelineGetResponseDataBackendObject{}),
+		},
+		apijson.UnionVariant{
+			TypeFilter: gjson.JSON,
+			Type:       reflect.TypeOf(InferencePipelineGetResponseDataBackendObject{}),
+		},
+		apijson.UnionVariant{
+			TypeFilter: gjson.JSON,
+			Type:       reflect.TypeOf(InferencePipelineGetResponseDataBackendObject{}),
+		},
+		apijson.UnionVariant{
+			TypeFilter: gjson.JSON,
+			Type:       reflect.TypeOf(InferencePipelineGetResponseDataBackendObject{}),
+		},
+	)
+}
+
+type InferencePipelineGetResponseDataBackendObject struct {
+	BackendType          InferencePipelineGetResponseDataBackendObjectBackendType   `json:"backendType,required"`
+	BigqueryConnectionID string                                                     `json:"bigqueryConnectionId,required,nullable" format:"uuid"`
+	DatasetID            string                                                     `json:"datasetId,required"`
+	ProjectID            string                                                     `json:"projectId,required"`
+	TableID              string                                                     `json:"tableId,required,nullable"`
+	PartitionType        InferencePipelineGetResponseDataBackendObjectPartitionType `json:"partitionType,nullable"`
+	JSON                 inferencePipelineGetResponseDataBackendObjectJSON          `json:"-"`
+}
+
+// inferencePipelineGetResponseDataBackendObjectJSON contains the JSON metadata for
+// the struct [InferencePipelineGetResponseDataBackendObject]
+type inferencePipelineGetResponseDataBackendObjectJSON struct {
+	BackendType          apijson.Field
+	BigqueryConnectionID apijson.Field
+	DatasetID            apijson.Field
+	ProjectID            apijson.Field
+	TableID              apijson.Field
+	PartitionType        apijson.Field
+	raw                  string
+	ExtraFields          map[string]apijson.Field
+}
+
+func (r *InferencePipelineGetResponseDataBackendObject) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r inferencePipelineGetResponseDataBackendObjectJSON) RawJSON() string {
+	return r.raw
+}
+
+func (r InferencePipelineGetResponseDataBackendObject) implementsInferencePipelineGetResponseDataBackend() {
+}
+
+type InferencePipelineGetResponseDataBackendObjectBackendType string
+
+const (
+	InferencePipelineGetResponseDataBackendObjectBackendTypeBigquery InferencePipelineGetResponseDataBackendObjectBackendType = "bigquery"
+)
+
+func (r InferencePipelineGetResponseDataBackendObjectBackendType) IsKnown() bool {
+	switch r {
+	case InferencePipelineGetResponseDataBackendObjectBackendTypeBigquery:
+		return true
+	}
+	return false
+}
+
+type InferencePipelineGetResponseDataBackendObjectConfig struct {
+	// Name of the column with the ground truths.
+	GroundTruthColumnName string `json:"groundTruthColumnName,nullable"`
+	// Name of the column with human feedback.
+	HumanFeedbackColumnName string `json:"humanFeedbackColumnName,nullable"`
+	// Name of the column with the latencies.
+	LatencyColumnName string `json:"latencyColumnName,nullable"`
+	// Name of the column with the timestamps. Timestamps must be in UNIX sec format.
+	// If not provided, the upload timestamp is used.
+	TimestampColumnName string                                                  `json:"timestampColumnName,nullable"`
+	JSON                inferencePipelineGetResponseDataBackendObjectConfigJSON `json:"-"`
+}
+
+// inferencePipelineGetResponseDataBackendObjectConfigJSON contains the JSON
+// metadata for the struct [InferencePipelineGetResponseDataBackendObjectConfig]
+type inferencePipelineGetResponseDataBackendObjectConfigJSON struct {
+	GroundTruthColumnName   apijson.Field
+	HumanFeedbackColumnName apijson.Field
+	LatencyColumnName       apijson.Field
+	TimestampColumnName     apijson.Field
+	raw                     string
+	ExtraFields             map[string]apijson.Field
+}
+
+func (r *InferencePipelineGetResponseDataBackendObjectConfig) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r inferencePipelineGetResponseDataBackendObjectConfigJSON) RawJSON() string {
+	return r.raw
+}
+
+type InferencePipelineGetResponseDataBackendObjectPartitionType string
+
+const (
+	InferencePipelineGetResponseDataBackendObjectPartitionTypeDay   InferencePipelineGetResponseDataBackendObjectPartitionType = "DAY"
+	InferencePipelineGetResponseDataBackendObjectPartitionTypeMonth InferencePipelineGetResponseDataBackendObjectPartitionType = "MONTH"
+	InferencePipelineGetResponseDataBackendObjectPartitionTypeYear  InferencePipelineGetResponseDataBackendObjectPartitionType = "YEAR"
+)
+
+func (r InferencePipelineGetResponseDataBackendObjectPartitionType) IsKnown() bool {
+	switch r {
+	case InferencePipelineGetResponseDataBackendObjectPartitionTypeDay, InferencePipelineGetResponseDataBackendObjectPartitionTypeMonth, InferencePipelineGetResponseDataBackendObjectPartitionTypeYear:
+		return true
+	}
+	return false
+}
+
+type InferencePipelineGetResponseDataBackendBackendType struct {
+	BackendType InferencePipelineGetResponseDataBackendBackendTypeBackendType `json:"backendType,required"`
+	JSON        inferencePipelineGetResponseDataBackendBackendTypeJSON        `json:"-"`
+}
+
+// inferencePipelineGetResponseDataBackendBackendTypeJSON contains the JSON
+// metadata for the struct [InferencePipelineGetResponseDataBackendBackendType]
+type inferencePipelineGetResponseDataBackendBackendTypeJSON struct {
+	BackendType apijson.Field
+	raw         string
+	ExtraFields map[string]apijson.Field
+}
+
+func (r *InferencePipelineGetResponseDataBackendBackendType) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r inferencePipelineGetResponseDataBackendBackendTypeJSON) RawJSON() string {
+	return r.raw
+}
+
+func (r InferencePipelineGetResponseDataBackendBackendType) implementsInferencePipelineGetResponseDataBackend() {
+}
+
+type InferencePipelineGetResponseDataBackendBackendTypeBackendType string
+
+const (
+	InferencePipelineGetResponseDataBackendBackendTypeBackendTypeDefault InferencePipelineGetResponseDataBackendBackendTypeBackendType = "default"
+)
+
+func (r InferencePipelineGetResponseDataBackendBackendTypeBackendType) IsKnown() bool {
+	switch r {
+	case InferencePipelineGetResponseDataBackendBackendTypeBackendTypeDefault:
+		return true
+	}
+	return false
+}
+
+type InferencePipelineGetResponseDataBackendPartitionType string
+
+const (
+	InferencePipelineGetResponseDataBackendPartitionTypeDay   InferencePipelineGetResponseDataBackendPartitionType = "DAY"
+	InferencePipelineGetResponseDataBackendPartitionTypeMonth InferencePipelineGetResponseDataBackendPartitionType = "MONTH"
+	InferencePipelineGetResponseDataBackendPartitionTypeYear  InferencePipelineGetResponseDataBackendPartitionType = "YEAR"
+)
+
+func (r InferencePipelineGetResponseDataBackendPartitionType) IsKnown() bool {
+	switch r {
+	case InferencePipelineGetResponseDataBackendPartitionTypeDay, InferencePipelineGetResponseDataBackendPartitionTypeMonth, InferencePipelineGetResponseDataBackendPartitionTypeYear:
 		return true
 	}
 	return false
@@ -493,9 +767,14 @@ type InferencePipelineUpdateResponse struct {
 	// The status message of test evaluation for the inference pipeline.
 	StatusMessage string `json:"statusMessage,required,nullable"`
 	// The total number of tests.
-	TotalGoalCount int64                                    `json:"totalGoalCount,required"`
-	Project        InferencePipelineUpdateResponseProject   `json:"project,nullable"`
-	Workspace      InferencePipelineUpdateResponseWorkspace `json:"workspace,nullable"`
+	TotalGoalCount int64                                      `json:"totalGoalCount,required"`
+	DataBackend    InferencePipelineUpdateResponseDataBackend `json:"dataBackend,nullable"`
+	// The last time the data was polled.
+	DateLastPolled time.Time                              `json:"dateLastPolled,nullable" format:"date-time"`
+	Project        InferencePipelineUpdateResponseProject `json:"project,nullable"`
+	// The total number of records in the data backend.
+	TotalRecordsCount int64                                    `json:"totalRecordsCount,nullable"`
+	Workspace         InferencePipelineUpdateResponseWorkspace `json:"workspace,nullable"`
 	// The workspace id.
 	WorkspaceID string                              `json:"workspaceId" format:"uuid"`
 	JSON        inferencePipelineUpdateResponseJSON `json:"-"`
@@ -519,7 +798,10 @@ type inferencePipelineUpdateResponseJSON struct {
 	Status                 apijson.Field
 	StatusMessage          apijson.Field
 	TotalGoalCount         apijson.Field
+	DataBackend            apijson.Field
+	DateLastPolled         apijson.Field
 	Project                apijson.Field
+	TotalRecordsCount      apijson.Field
 	Workspace              apijson.Field
 	WorkspaceID            apijson.Field
 	raw                    string
@@ -570,6 +852,270 @@ const (
 func (r InferencePipelineUpdateResponseStatus) IsKnown() bool {
 	switch r {
 	case InferencePipelineUpdateResponseStatusQueued, InferencePipelineUpdateResponseStatusRunning, InferencePipelineUpdateResponseStatusPaused, InferencePipelineUpdateResponseStatusFailed, InferencePipelineUpdateResponseStatusCompleted, InferencePipelineUpdateResponseStatusUnknown:
+		return true
+	}
+	return false
+}
+
+type InferencePipelineUpdateResponseDataBackend struct {
+	BackendType          InferencePipelineUpdateResponseDataBackendBackendType `json:"backendType,required"`
+	BigqueryConnectionID string                                                `json:"bigqueryConnectionId,nullable" format:"uuid"`
+	// This field can have the runtime type of
+	// [InferencePipelineUpdateResponseDataBackendObjectConfig].
+	Config                    interface{}                                             `json:"config"`
+	Database                  string                                                  `json:"database"`
+	DatabricksDtlConnectionID string                                                  `json:"databricksDtlConnectionId,nullable" format:"uuid"`
+	DatasetID                 string                                                  `json:"datasetId"`
+	PartitionType             InferencePipelineUpdateResponseDataBackendPartitionType `json:"partitionType,nullable"`
+	PostgresConnectionID      string                                                  `json:"postgresConnectionId,nullable" format:"uuid"`
+	ProjectID                 string                                                  `json:"projectId"`
+	RedshiftConnectionID      string                                                  `json:"redshiftConnectionId,nullable" format:"uuid"`
+	Schema                    string                                                  `json:"schema"`
+	SchemaName                string                                                  `json:"schemaName"`
+	SnowflakeConnectionID     string                                                  `json:"snowflakeConnectionId,nullable" format:"uuid"`
+	Table                     string                                                  `json:"table,nullable"`
+	TableID                   string                                                  `json:"tableId,nullable"`
+	TableName                 string                                                  `json:"tableName"`
+	JSON                      inferencePipelineUpdateResponseDataBackendJSON          `json:"-"`
+	union                     InferencePipelineUpdateResponseDataBackendUnion
+}
+
+// inferencePipelineUpdateResponseDataBackendJSON contains the JSON metadata for
+// the struct [InferencePipelineUpdateResponseDataBackend]
+type inferencePipelineUpdateResponseDataBackendJSON struct {
+	BackendType               apijson.Field
+	BigqueryConnectionID      apijson.Field
+	Config                    apijson.Field
+	Database                  apijson.Field
+	DatabricksDtlConnectionID apijson.Field
+	DatasetID                 apijson.Field
+	PartitionType             apijson.Field
+	PostgresConnectionID      apijson.Field
+	ProjectID                 apijson.Field
+	RedshiftConnectionID      apijson.Field
+	Schema                    apijson.Field
+	SchemaName                apijson.Field
+	SnowflakeConnectionID     apijson.Field
+	Table                     apijson.Field
+	TableID                   apijson.Field
+	TableName                 apijson.Field
+	raw                       string
+	ExtraFields               map[string]apijson.Field
+}
+
+func (r inferencePipelineUpdateResponseDataBackendJSON) RawJSON() string {
+	return r.raw
+}
+
+func (r *InferencePipelineUpdateResponseDataBackend) UnmarshalJSON(data []byte) (err error) {
+	*r = InferencePipelineUpdateResponseDataBackend{}
+	err = apijson.UnmarshalRoot(data, &r.union)
+	if err != nil {
+		return err
+	}
+	return apijson.Port(r.union, &r)
+}
+
+// AsUnion returns a [InferencePipelineUpdateResponseDataBackendUnion] interface
+// which you can cast to the specific types for more type safety.
+//
+// Possible runtime types of the union are
+// [InferencePipelineUpdateResponseDataBackendObject],
+// [InferencePipelineUpdateResponseDataBackendBackendType],
+// [InferencePipelineUpdateResponseDataBackendObject],
+// [InferencePipelineUpdateResponseDataBackendObject],
+// [InferencePipelineUpdateResponseDataBackendObject],
+// [InferencePipelineUpdateResponseDataBackendObject].
+func (r InferencePipelineUpdateResponseDataBackend) AsUnion() InferencePipelineUpdateResponseDataBackendUnion {
+	return r.union
+}
+
+// Union satisfied by [InferencePipelineUpdateResponseDataBackendObject],
+// [InferencePipelineUpdateResponseDataBackendBackendType],
+// [InferencePipelineUpdateResponseDataBackendObject],
+// [InferencePipelineUpdateResponseDataBackendObject],
+// [InferencePipelineUpdateResponseDataBackendObject] or
+// [InferencePipelineUpdateResponseDataBackendObject].
+type InferencePipelineUpdateResponseDataBackendUnion interface {
+	implementsInferencePipelineUpdateResponseDataBackend()
+}
+
+func init() {
+	apijson.RegisterUnion(
+		reflect.TypeOf((*InferencePipelineUpdateResponseDataBackendUnion)(nil)).Elem(),
+		"",
+		apijson.UnionVariant{
+			TypeFilter: gjson.JSON,
+			Type:       reflect.TypeOf(InferencePipelineUpdateResponseDataBackendObject{}),
+		},
+		apijson.UnionVariant{
+			TypeFilter: gjson.JSON,
+			Type:       reflect.TypeOf(InferencePipelineUpdateResponseDataBackendBackendType{}),
+		},
+		apijson.UnionVariant{
+			TypeFilter: gjson.JSON,
+			Type:       reflect.TypeOf(InferencePipelineUpdateResponseDataBackendObject{}),
+		},
+		apijson.UnionVariant{
+			TypeFilter: gjson.JSON,
+			Type:       reflect.TypeOf(InferencePipelineUpdateResponseDataBackendObject{}),
+		},
+		apijson.UnionVariant{
+			TypeFilter: gjson.JSON,
+			Type:       reflect.TypeOf(InferencePipelineUpdateResponseDataBackendObject{}),
+		},
+		apijson.UnionVariant{
+			TypeFilter: gjson.JSON,
+			Type:       reflect.TypeOf(InferencePipelineUpdateResponseDataBackendObject{}),
+		},
+	)
+}
+
+type InferencePipelineUpdateResponseDataBackendObject struct {
+	BackendType          InferencePipelineUpdateResponseDataBackendObjectBackendType   `json:"backendType,required"`
+	BigqueryConnectionID string                                                        `json:"bigqueryConnectionId,required,nullable" format:"uuid"`
+	DatasetID            string                                                        `json:"datasetId,required"`
+	ProjectID            string                                                        `json:"projectId,required"`
+	TableID              string                                                        `json:"tableId,required,nullable"`
+	PartitionType        InferencePipelineUpdateResponseDataBackendObjectPartitionType `json:"partitionType,nullable"`
+	JSON                 inferencePipelineUpdateResponseDataBackendObjectJSON          `json:"-"`
+}
+
+// inferencePipelineUpdateResponseDataBackendObjectJSON contains the JSON metadata
+// for the struct [InferencePipelineUpdateResponseDataBackendObject]
+type inferencePipelineUpdateResponseDataBackendObjectJSON struct {
+	BackendType          apijson.Field
+	BigqueryConnectionID apijson.Field
+	DatasetID            apijson.Field
+	ProjectID            apijson.Field
+	TableID              apijson.Field
+	PartitionType        apijson.Field
+	raw                  string
+	ExtraFields          map[string]apijson.Field
+}
+
+func (r *InferencePipelineUpdateResponseDataBackendObject) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r inferencePipelineUpdateResponseDataBackendObjectJSON) RawJSON() string {
+	return r.raw
+}
+
+func (r InferencePipelineUpdateResponseDataBackendObject) implementsInferencePipelineUpdateResponseDataBackend() {
+}
+
+type InferencePipelineUpdateResponseDataBackendObjectBackendType string
+
+const (
+	InferencePipelineUpdateResponseDataBackendObjectBackendTypeBigquery InferencePipelineUpdateResponseDataBackendObjectBackendType = "bigquery"
+)
+
+func (r InferencePipelineUpdateResponseDataBackendObjectBackendType) IsKnown() bool {
+	switch r {
+	case InferencePipelineUpdateResponseDataBackendObjectBackendTypeBigquery:
+		return true
+	}
+	return false
+}
+
+type InferencePipelineUpdateResponseDataBackendObjectConfig struct {
+	// Name of the column with the ground truths.
+	GroundTruthColumnName string `json:"groundTruthColumnName,nullable"`
+	// Name of the column with human feedback.
+	HumanFeedbackColumnName string `json:"humanFeedbackColumnName,nullable"`
+	// Name of the column with the latencies.
+	LatencyColumnName string `json:"latencyColumnName,nullable"`
+	// Name of the column with the timestamps. Timestamps must be in UNIX sec format.
+	// If not provided, the upload timestamp is used.
+	TimestampColumnName string                                                     `json:"timestampColumnName,nullable"`
+	JSON                inferencePipelineUpdateResponseDataBackendObjectConfigJSON `json:"-"`
+}
+
+// inferencePipelineUpdateResponseDataBackendObjectConfigJSON contains the JSON
+// metadata for the struct [InferencePipelineUpdateResponseDataBackendObjectConfig]
+type inferencePipelineUpdateResponseDataBackendObjectConfigJSON struct {
+	GroundTruthColumnName   apijson.Field
+	HumanFeedbackColumnName apijson.Field
+	LatencyColumnName       apijson.Field
+	TimestampColumnName     apijson.Field
+	raw                     string
+	ExtraFields             map[string]apijson.Field
+}
+
+func (r *InferencePipelineUpdateResponseDataBackendObjectConfig) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r inferencePipelineUpdateResponseDataBackendObjectConfigJSON) RawJSON() string {
+	return r.raw
+}
+
+type InferencePipelineUpdateResponseDataBackendObjectPartitionType string
+
+const (
+	InferencePipelineUpdateResponseDataBackendObjectPartitionTypeDay   InferencePipelineUpdateResponseDataBackendObjectPartitionType = "DAY"
+	InferencePipelineUpdateResponseDataBackendObjectPartitionTypeMonth InferencePipelineUpdateResponseDataBackendObjectPartitionType = "MONTH"
+	InferencePipelineUpdateResponseDataBackendObjectPartitionTypeYear  InferencePipelineUpdateResponseDataBackendObjectPartitionType = "YEAR"
+)
+
+func (r InferencePipelineUpdateResponseDataBackendObjectPartitionType) IsKnown() bool {
+	switch r {
+	case InferencePipelineUpdateResponseDataBackendObjectPartitionTypeDay, InferencePipelineUpdateResponseDataBackendObjectPartitionTypeMonth, InferencePipelineUpdateResponseDataBackendObjectPartitionTypeYear:
+		return true
+	}
+	return false
+}
+
+type InferencePipelineUpdateResponseDataBackendBackendType struct {
+	BackendType InferencePipelineUpdateResponseDataBackendBackendTypeBackendType `json:"backendType,required"`
+	JSON        inferencePipelineUpdateResponseDataBackendBackendTypeJSON        `json:"-"`
+}
+
+// inferencePipelineUpdateResponseDataBackendBackendTypeJSON contains the JSON
+// metadata for the struct [InferencePipelineUpdateResponseDataBackendBackendType]
+type inferencePipelineUpdateResponseDataBackendBackendTypeJSON struct {
+	BackendType apijson.Field
+	raw         string
+	ExtraFields map[string]apijson.Field
+}
+
+func (r *InferencePipelineUpdateResponseDataBackendBackendType) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r inferencePipelineUpdateResponseDataBackendBackendTypeJSON) RawJSON() string {
+	return r.raw
+}
+
+func (r InferencePipelineUpdateResponseDataBackendBackendType) implementsInferencePipelineUpdateResponseDataBackend() {
+}
+
+type InferencePipelineUpdateResponseDataBackendBackendTypeBackendType string
+
+const (
+	InferencePipelineUpdateResponseDataBackendBackendTypeBackendTypeDefault InferencePipelineUpdateResponseDataBackendBackendTypeBackendType = "default"
+)
+
+func (r InferencePipelineUpdateResponseDataBackendBackendTypeBackendType) IsKnown() bool {
+	switch r {
+	case InferencePipelineUpdateResponseDataBackendBackendTypeBackendTypeDefault:
+		return true
+	}
+	return false
+}
+
+type InferencePipelineUpdateResponseDataBackendPartitionType string
+
+const (
+	InferencePipelineUpdateResponseDataBackendPartitionTypeDay   InferencePipelineUpdateResponseDataBackendPartitionType = "DAY"
+	InferencePipelineUpdateResponseDataBackendPartitionTypeMonth InferencePipelineUpdateResponseDataBackendPartitionType = "MONTH"
+	InferencePipelineUpdateResponseDataBackendPartitionTypeYear  InferencePipelineUpdateResponseDataBackendPartitionType = "YEAR"
+)
+
+func (r InferencePipelineUpdateResponseDataBackendPartitionType) IsKnown() bool {
+	switch r {
+	case InferencePipelineUpdateResponseDataBackendPartitionTypeDay, InferencePipelineUpdateResponseDataBackendPartitionTypeMonth, InferencePipelineUpdateResponseDataBackendPartitionTypeYear:
 		return true
 	}
 	return false

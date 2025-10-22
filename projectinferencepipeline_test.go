@@ -31,6 +31,21 @@ func TestProjectInferencePipelineNewWithOptionalParams(t *testing.T) {
 		openlayer.ProjectInferencePipelineNewParams{
 			Description: openlayer.F("This pipeline is used for production."),
 			Name:        openlayer.F("production"),
+			DataBackend: openlayer.F[openlayer.ProjectInferencePipelineNewParamsDataBackendUnion](openlayer.ProjectInferencePipelineNewParamsDataBackendObject{
+				BackendType:          openlayer.F(openlayer.ProjectInferencePipelineNewParamsDataBackendObjectBackendTypeBigquery),
+				BigqueryConnectionID: openlayer.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),
+				Config: openlayer.F(openlayer.ProjectInferencePipelineNewParamsDataBackendObjectConfig{
+					GroundTruthColumnName:   openlayer.F("ground_truth"),
+					HumanFeedbackColumnName: openlayer.F("human_feedback"),
+					InferenceIDColumnName:   openlayer.F("id"),
+					LatencyColumnName:       openlayer.F("latency"),
+					TimestampColumnName:     openlayer.F("timestamp"),
+				}),
+				DatasetID:     openlayer.F("my-dataset"),
+				ProjectID:     openlayer.F("my-project"),
+				TableID:       openlayer.F("my-table"),
+				PartitionType: openlayer.F(openlayer.ProjectInferencePipelineNewParamsDataBackendObjectPartitionTypeDay),
+			}),
 			Project: openlayer.F(openlayer.ProjectInferencePipelineNewParamsProject{
 				Name:        openlayer.F("My Project"),
 				TaskType:    openlayer.F(openlayer.ProjectInferencePipelineNewParamsProjectTaskTypeLlmBase),
