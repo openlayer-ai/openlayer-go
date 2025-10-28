@@ -106,11 +106,23 @@ type ProjectTestNewResponse struct {
 	Type ProjectTestNewResponseType `json:"type,required"`
 	// Whether the test is archived.
 	Archived bool `json:"archived"`
+	// Whether to apply the test to all pipelines (data sources) or to a specific set
+	// of pipelines. Only applies to tests that use production data.
+	DefaultToAllPipelines bool `json:"defaultToAllPipelines,nullable"`
 	// The delay window in seconds. Only applies to tests that use production data.
 	DelayWindow float64 `json:"delayWindow,nullable"`
 	// The evaluation window in seconds. Only applies to tests that use production
 	// data.
 	EvaluationWindow float64 `json:"evaluationWindow,nullable"`
+	// Array of pipelines (data sources) to which the test should not be applied. Only
+	// applies to tests that use production data.
+	ExcludePipelines []string `json:"excludePipelines,nullable" format:"uuid"`
+	// Whether to include historical data in the test result. Only applies to tests
+	// that use production data.
+	IncludeHistoricalData bool `json:"includeHistoricalData,nullable"`
+	// Array of pipelines (data sources) to which the test should be applied. Only
+	// applies to tests that use production data.
+	IncludePipelines []string `json:"includePipelines,nullable" format:"uuid"`
 	// Whether the test uses an ML model.
 	UsesMlModel bool `json:"usesMlModel"`
 	// Whether the test uses production data (monitoring mode only).
@@ -142,8 +154,12 @@ type projectTestNewResponseJSON struct {
 	Thresholds             apijson.Field
 	Type                   apijson.Field
 	Archived               apijson.Field
+	DefaultToAllPipelines  apijson.Field
 	DelayWindow            apijson.Field
 	EvaluationWindow       apijson.Field
+	ExcludePipelines       apijson.Field
+	IncludeHistoricalData  apijson.Field
+	IncludePipelines       apijson.Field
 	UsesMlModel            apijson.Field
 	UsesProductionData     apijson.Field
 	UsesReferenceDataset   apijson.Field
@@ -494,11 +510,23 @@ type ProjectTestListResponseItem struct {
 	Type ProjectTestListResponseItemsType `json:"type,required"`
 	// Whether the test is archived.
 	Archived bool `json:"archived"`
+	// Whether to apply the test to all pipelines (data sources) or to a specific set
+	// of pipelines. Only applies to tests that use production data.
+	DefaultToAllPipelines bool `json:"defaultToAllPipelines,nullable"`
 	// The delay window in seconds. Only applies to tests that use production data.
 	DelayWindow float64 `json:"delayWindow,nullable"`
 	// The evaluation window in seconds. Only applies to tests that use production
 	// data.
 	EvaluationWindow float64 `json:"evaluationWindow,nullable"`
+	// Array of pipelines (data sources) to which the test should not be applied. Only
+	// applies to tests that use production data.
+	ExcludePipelines []string `json:"excludePipelines,nullable" format:"uuid"`
+	// Whether to include historical data in the test result. Only applies to tests
+	// that use production data.
+	IncludeHistoricalData bool `json:"includeHistoricalData,nullable"`
+	// Array of pipelines (data sources) to which the test should be applied. Only
+	// applies to tests that use production data.
+	IncludePipelines []string `json:"includePipelines,nullable" format:"uuid"`
 	// Whether the test uses an ML model.
 	UsesMlModel bool `json:"usesMlModel"`
 	// Whether the test uses production data (monitoring mode only).
@@ -530,8 +558,12 @@ type projectTestListResponseItemJSON struct {
 	Thresholds             apijson.Field
 	Type                   apijson.Field
 	Archived               apijson.Field
+	DefaultToAllPipelines  apijson.Field
 	DelayWindow            apijson.Field
 	EvaluationWindow       apijson.Field
+	ExcludePipelines       apijson.Field
+	IncludeHistoricalData  apijson.Field
+	IncludePipelines       apijson.Field
 	UsesMlModel            apijson.Field
 	UsesProductionData     apijson.Field
 	UsesReferenceDataset   apijson.Field
@@ -820,11 +852,23 @@ type ProjectTestNewParams struct {
 	Type param.Field[ProjectTestNewParamsType] `json:"type,required"`
 	// Whether the test is archived.
 	Archived param.Field[bool] `json:"archived"`
+	// Whether to apply the test to all pipelines (data sources) or to a specific set
+	// of pipelines. Only applies to tests that use production data.
+	DefaultToAllPipelines param.Field[bool] `json:"defaultToAllPipelines"`
 	// The delay window in seconds. Only applies to tests that use production data.
 	DelayWindow param.Field[float64] `json:"delayWindow"`
 	// The evaluation window in seconds. Only applies to tests that use production
 	// data.
 	EvaluationWindow param.Field[float64] `json:"evaluationWindow"`
+	// Array of pipelines (data sources) to which the test should not be applied. Only
+	// applies to tests that use production data.
+	ExcludePipelines param.Field[[]string] `json:"excludePipelines" format:"uuid"`
+	// Whether to include historical data in the test result. Only applies to tests
+	// that use production data.
+	IncludeHistoricalData param.Field[bool] `json:"includeHistoricalData"`
+	// Array of pipelines (data sources) to which the test should be applied. Only
+	// applies to tests that use production data.
+	IncludePipelines param.Field[[]string] `json:"includePipelines" format:"uuid"`
 	// Whether the test uses an ML model.
 	UsesMlModel param.Field[bool] `json:"usesMlModel"`
 	// Whether the test uses production data (monitoring mode only).
