@@ -72,7 +72,7 @@ func (r *InferencePipelineService) Update(ctx context.Context, inferencePipeline
 // Delete inference pipeline.
 func (r *InferencePipelineService) Delete(ctx context.Context, inferencePipelineID string, opts ...option.RequestOption) (err error) {
 	opts = slices.Concat(r.Options, opts)
-	opts = append([]option.RequestOption{option.WithHeader("Accept", "")}, opts...)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if inferencePipelineID == "" {
 		err = errors.New("missing required inferencePipelineId parameter")
 		return
