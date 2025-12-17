@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.2.0 (2025-12-17)
+
+Full Changelog: [v0.1.1...v0.2.0](https://github.com/openlayer-ai/openlayer-go/compare/v0.1.1...v0.2.0)
+
+### Features
+
+* **api:** add test evaluation method ([cb22363](https://github.com/openlayer-ai/openlayer-go/commit/cb22363b161e9bb0a3b3d9a465c346457f6c1e9d))
+* **api:** api update ([c4a4bd2](https://github.com/openlayer-ai/openlayer-go/commit/c4a4bd2460cad43f8a78de5c5c4e14b351746bcc))
+* **api:** api update ([e8f5ac9](https://github.com/openlayer-ai/openlayer-go/commit/e8f5ac904eb179b5d5bfdc19ffe427b55a957efc))
+
+
+### Bug Fixes
+
+* **client:** correctly specify Accept header with */* instead of empty ([7ba0a42](https://github.com/openlayer-ai/openlayer-go/commit/7ba0a42cfbe23939bd1eff8526f63997cd22d5a0))
+
 ## 0.1.1 (2025-09-29)
 
 Full Changelog: [v0.1.0...v0.1.1](https://github.com/openlayer-ai/openlayer-go/compare/v0.1.0...v0.1.1)
