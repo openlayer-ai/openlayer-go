@@ -21,6 +21,7 @@ type Client struct {
 	Commits            *CommitService
 	InferencePipelines *InferencePipelineService
 	Storage            *StorageService
+	Tests              *TestService
 }
 
 // DefaultClientOptions read from the environment (OPENLAYER_API_KEY,
@@ -49,6 +50,7 @@ func NewClient(opts ...option.RequestOption) (r *Client) {
 	r.Commits = NewCommitService(opts...)
 	r.InferencePipelines = NewInferencePipelineService(opts...)
 	r.Storage = NewStorageService(opts...)
+	r.Tests = NewTestService(opts...)
 
 	return
 }
