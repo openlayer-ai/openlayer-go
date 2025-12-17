@@ -122,3 +122,13 @@ Response Types:
 Methods:
 
 - <code title="post /storage/presigned-url">client.Storage.PresignedURL.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#StoragePresignedURLService.New">New</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, body <a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#StoragePresignedURLNewParams">StoragePresignedURLNewParams</a>) (<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#StoragePresignedURLNewResponse">StoragePresignedURLNewResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+
+# Tests
+
+Response Types:
+
+- <a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#TestEvaluateResponse">TestEvaluateResponse</a>
+
+Methods:
+
+- <code title="post /tests/{testId}/evaluate">client.Tests.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#TestService.Evaluate">Evaluate</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, testID <a href="https://pkg.go.dev/builtin#string">string</a>, body <a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#TestEvaluateParams">TestEvaluateParams</a>) (<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#TestEvaluateResponse">TestEvaluateResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
