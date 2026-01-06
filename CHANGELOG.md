@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.1 (2026-01-06)
+
+Full Changelog: [v0.2.0...v0.2.1](https://github.com/openlayer-ai/openlayer-go/compare/v0.2.0...v0.2.1)
+
+### Chores
+
+* **internal:** codegen related update ([4925276](https://github.com/openlayer-ai/openlayer-go/commit/49252767e49299b0b91c705cdb040e579a20b7bc))
+
 ## 0.2.0 (2025-12-17)
 
 Full Changelog: [v0.1.1...v0.2.0](https://github.com/openlayer-ai/openlayer-go/compare/v0.1.1...v0.2.0)
