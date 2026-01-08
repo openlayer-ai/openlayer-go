@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.3.1 (2026-01-08)
+
+Full Changelog: [v0.3.0...v0.3.1](https://github.com/openlayer-ai/openlayer-go/compare/v0.3.0...v0.3.1)
+
+### Chores
+
+* **closes OPEN-8644:** address warnings on Stainless studio ([de613ce](https://github.com/openlayer-ai/openlayer-go/commit/de613cee414f827584da1373a18dde844bc42ecd))
+* remove _meta ([5102af9](https://github.com/openlayer-ai/openlayer-go/commit/5102af92c4592a8547b05e564e33ee661ea9accc))
+
 ## 0.3.0 (2026-01-08)
 
 Full Changelog: [v0.2.1...v0.3.0](https://github.com/openlayer-ai/openlayer-go/compare/v0.2.1...v0.3.0)
