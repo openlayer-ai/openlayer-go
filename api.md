@@ -48,6 +48,40 @@ Methods:
 - <code title="put /projects/{projectId}/tests">client.Projects.Tests.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#ProjectTestService.Update">Update</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, projectID <a href="https://pkg.go.dev/builtin#string">string</a>, body <a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#ProjectTestUpdateParams">ProjectTestUpdateParams</a>) (<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#ProjectTestUpdateResponse">ProjectTestUpdateResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 - <code title="get /projects/{projectId}/tests">client.Projects.Tests.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#ProjectTestService.List">List</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, projectID <a href="https://pkg.go.dev/builtin#string">string</a>, query <a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#ProjectTestListParams">ProjectTestListParams</a>) (<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#ProjectTestListResponse">ProjectTestListResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
 
+# Workspaces
+
+Response Types:
+
+- <a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#WorkspaceGetResponse">WorkspaceGetResponse</a>
+- <a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#WorkspaceUpdateResponse">WorkspaceUpdateResponse</a>
+
+Methods:
+
+- <code title="get /workspaces/{workspaceId}">client.Workspaces.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#WorkspaceService.Get">Get</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, workspaceID <a href="https://pkg.go.dev/builtin#string">string</a>) (<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#WorkspaceGetResponse">WorkspaceGetResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="put /workspaces/{workspaceId}">client.Workspaces.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#WorkspaceService.Update">Update</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, workspaceID <a href="https://pkg.go.dev/builtin#string">string</a>, body <a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#WorkspaceUpdateParams">WorkspaceUpdateParams</a>) (<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#WorkspaceUpdateResponse">WorkspaceUpdateResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+
+## Invites
+
+Response Types:
+
+- <a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#WorkspaceInviteNewResponse">WorkspaceInviteNewResponse</a>
+- <a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#WorkspaceInviteListResponse">WorkspaceInviteListResponse</a>
+
+Methods:
+
+- <code title="post /workspaces/{workspaceId}/invites">client.Workspaces.Invites.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#WorkspaceInviteService.New">New</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, workspaceID <a href="https://pkg.go.dev/builtin#string">string</a>, body <a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#WorkspaceInviteNewParams">WorkspaceInviteNewParams</a>) (<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#WorkspaceInviteNewResponse">WorkspaceInviteNewResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+- <code title="get /workspaces/{workspaceId}/invites">client.Workspaces.Invites.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#WorkspaceInviteService.List">List</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, workspaceID <a href="https://pkg.go.dev/builtin#string">string</a>, query <a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#WorkspaceInviteListParams">WorkspaceInviteListParams</a>) (<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#WorkspaceInviteListResponse">WorkspaceInviteListResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+
+## APIKeys
+
+Response Types:
+
+- <a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#WorkspaceAPIKeyNewResponse">WorkspaceAPIKeyNewResponse</a>
+
+Methods:
+
+- <code title="post /workspaces/{workspaceId}/api-keys">client.Workspaces.APIKeys.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#WorkspaceAPIKeyService.New">New</a>(ctx <a href="https://pkg.go.dev/context">context</a>.<a href="https://pkg.go.dev/context#Context">Context</a>, workspaceID <a href="https://pkg.go.dev/builtin#string">string</a>, body <a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#WorkspaceAPIKeyNewParams">WorkspaceAPIKeyNewParams</a>) (<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go">openlayer</a>.<a href="https://pkg.go.dev/github.com/openlayer-ai/openlayer-go#WorkspaceAPIKeyNewResponse">WorkspaceAPIKeyNewResponse</a>, <a href="https://pkg.go.dev/builtin#error">error</a>)</code>
+
 # Commits
 
 Response Types:
