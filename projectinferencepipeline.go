@@ -186,7 +186,11 @@ type ProjectInferencePipelineNewResponseDataBackend struct {
 	BackendType          ProjectInferencePipelineNewResponseDataBackendBackendType `json:"backendType,required"`
 	BigqueryConnectionID string                                                    `json:"bigqueryConnectionId,nullable" format:"uuid"`
 	// This field can have the runtime type of
-	// [ProjectInferencePipelineNewResponseDataBackendObjectConfig].
+	// [ProjectInferencePipelineNewResponseDataBackendBigQueryDataBackendConfig],
+	// [ProjectInferencePipelineNewResponseDataBackendSnowflakeDataBackendConfig],
+	// [ProjectInferencePipelineNewResponseDataBackendDatabricksDtlDataBackendConfig],
+	// [ProjectInferencePipelineNewResponseDataBackendRedshiftDataBackendConfig],
+	// [ProjectInferencePipelineNewResponseDataBackendPostgresDataBackendConfig].
 	Config                    interface{}                                                 `json:"config"`
 	Database                  string                                                      `json:"database"`
 	DatabricksDtlConnectionID string                                                      `json:"databricksDtlConnectionId,nullable" format:"uuid"`
@@ -245,22 +249,23 @@ func (r *ProjectInferencePipelineNewResponseDataBackend) UnmarshalJSON(data []by
 // interface which you can cast to the specific types for more type safety.
 //
 // Possible runtime types of the union are
-// [ProjectInferencePipelineNewResponseDataBackendObject],
-// [ProjectInferencePipelineNewResponseDataBackendBackendType],
-// [ProjectInferencePipelineNewResponseDataBackendObject],
-// [ProjectInferencePipelineNewResponseDataBackendObject],
-// [ProjectInferencePipelineNewResponseDataBackendObject],
-// [ProjectInferencePipelineNewResponseDataBackendObject].
+// [ProjectInferencePipelineNewResponseDataBackendBigQueryDataBackend],
+// [ProjectInferencePipelineNewResponseDataBackendDefaultDataBackend],
+// [ProjectInferencePipelineNewResponseDataBackendSnowflakeDataBackend],
+// [ProjectInferencePipelineNewResponseDataBackendDatabricksDtlDataBackend],
+// [ProjectInferencePipelineNewResponseDataBackendRedshiftDataBackend],
+// [ProjectInferencePipelineNewResponseDataBackendPostgresDataBackend].
 func (r ProjectInferencePipelineNewResponseDataBackend) AsUnion() ProjectInferencePipelineNewResponseDataBackendUnion {
 	return r.union
 }
 
-// Union satisfied by [ProjectInferencePipelineNewResponseDataBackendObject],
-// [ProjectInferencePipelineNewResponseDataBackendBackendType],
-// [ProjectInferencePipelineNewResponseDataBackendObject],
-// [ProjectInferencePipelineNewResponseDataBackendObject],
-// [ProjectInferencePipelineNewResponseDataBackendObject] or
-// [ProjectInferencePipelineNewResponseDataBackendObject].
+// Union satisfied by
+// [ProjectInferencePipelineNewResponseDataBackendBigQueryDataBackend],
+// [ProjectInferencePipelineNewResponseDataBackendDefaultDataBackend],
+// [ProjectInferencePipelineNewResponseDataBackendSnowflakeDataBackend],
+// [ProjectInferencePipelineNewResponseDataBackendDatabricksDtlDataBackend],
+// [ProjectInferencePipelineNewResponseDataBackendRedshiftDataBackend] or
+// [ProjectInferencePipelineNewResponseDataBackendPostgresDataBackend].
 type ProjectInferencePipelineNewResponseDataBackendUnion interface {
 	implementsProjectInferencePipelineNewResponseDataBackend()
 }
@@ -271,44 +276,45 @@ func init() {
 		"",
 		apijson.UnionVariant{
 			TypeFilter: gjson.JSON,
-			Type:       reflect.TypeOf(ProjectInferencePipelineNewResponseDataBackendObject{}),
+			Type:       reflect.TypeOf(ProjectInferencePipelineNewResponseDataBackendBigQueryDataBackend{}),
 		},
 		apijson.UnionVariant{
 			TypeFilter: gjson.JSON,
-			Type:       reflect.TypeOf(ProjectInferencePipelineNewResponseDataBackendBackendType{}),
+			Type:       reflect.TypeOf(ProjectInferencePipelineNewResponseDataBackendDefaultDataBackend{}),
 		},
 		apijson.UnionVariant{
 			TypeFilter: gjson.JSON,
-			Type:       reflect.TypeOf(ProjectInferencePipelineNewResponseDataBackendObject{}),
+			Type:       reflect.TypeOf(ProjectInferencePipelineNewResponseDataBackendSnowflakeDataBackend{}),
 		},
 		apijson.UnionVariant{
 			TypeFilter: gjson.JSON,
-			Type:       reflect.TypeOf(ProjectInferencePipelineNewResponseDataBackendObject{}),
+			Type:       reflect.TypeOf(ProjectInferencePipelineNewResponseDataBackendDatabricksDtlDataBackend{}),
 		},
 		apijson.UnionVariant{
 			TypeFilter: gjson.JSON,
-			Type:       reflect.TypeOf(ProjectInferencePipelineNewResponseDataBackendObject{}),
+			Type:       reflect.TypeOf(ProjectInferencePipelineNewResponseDataBackendRedshiftDataBackend{}),
 		},
 		apijson.UnionVariant{
 			TypeFilter: gjson.JSON,
-			Type:       reflect.TypeOf(ProjectInferencePipelineNewResponseDataBackendObject{}),
+			Type:       reflect.TypeOf(ProjectInferencePipelineNewResponseDataBackendPostgresDataBackend{}),
 		},
 	)
 }
 
-type ProjectInferencePipelineNewResponseDataBackendObject struct {
-	BackendType          ProjectInferencePipelineNewResponseDataBackendObjectBackendType   `json:"backendType,required"`
-	BigqueryConnectionID string                                                            `json:"bigqueryConnectionId,required,nullable" format:"uuid"`
-	DatasetID            string                                                            `json:"datasetId,required"`
-	ProjectID            string                                                            `json:"projectId,required"`
-	TableID              string                                                            `json:"tableId,required,nullable"`
-	PartitionType        ProjectInferencePipelineNewResponseDataBackendObjectPartitionType `json:"partitionType,nullable"`
-	JSON                 projectInferencePipelineNewResponseDataBackendObjectJSON          `json:"-"`
+type ProjectInferencePipelineNewResponseDataBackendBigQueryDataBackend struct {
+	BackendType          ProjectInferencePipelineNewResponseDataBackendBigQueryDataBackendBackendType   `json:"backendType,required"`
+	BigqueryConnectionID string                                                                         `json:"bigqueryConnectionId,required,nullable" format:"uuid"`
+	DatasetID            string                                                                         `json:"datasetId,required"`
+	ProjectID            string                                                                         `json:"projectId,required"`
+	TableID              string                                                                         `json:"tableId,required,nullable"`
+	PartitionType        ProjectInferencePipelineNewResponseDataBackendBigQueryDataBackendPartitionType `json:"partitionType,nullable"`
+	JSON                 projectInferencePipelineNewResponseDataBackendBigQueryDataBackendJSON          `json:"-"`
 }
 
-// projectInferencePipelineNewResponseDataBackendObjectJSON contains the JSON
-// metadata for the struct [ProjectInferencePipelineNewResponseDataBackendObject]
-type projectInferencePipelineNewResponseDataBackendObjectJSON struct {
+// projectInferencePipelineNewResponseDataBackendBigQueryDataBackendJSON contains
+// the JSON metadata for the struct
+// [ProjectInferencePipelineNewResponseDataBackendBigQueryDataBackend]
+type projectInferencePipelineNewResponseDataBackendBigQueryDataBackendJSON struct {
 	BackendType          apijson.Field
 	BigqueryConnectionID apijson.Field
 	DatasetID            apijson.Field
@@ -319,32 +325,32 @@ type projectInferencePipelineNewResponseDataBackendObjectJSON struct {
 	ExtraFields          map[string]apijson.Field
 }
 
-func (r *ProjectInferencePipelineNewResponseDataBackendObject) UnmarshalJSON(data []byte) (err error) {
+func (r *ProjectInferencePipelineNewResponseDataBackendBigQueryDataBackend) UnmarshalJSON(data []byte) (err error) {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-func (r projectInferencePipelineNewResponseDataBackendObjectJSON) RawJSON() string {
+func (r projectInferencePipelineNewResponseDataBackendBigQueryDataBackendJSON) RawJSON() string {
 	return r.raw
 }
 
-func (r ProjectInferencePipelineNewResponseDataBackendObject) implementsProjectInferencePipelineNewResponseDataBackend() {
+func (r ProjectInferencePipelineNewResponseDataBackendBigQueryDataBackend) implementsProjectInferencePipelineNewResponseDataBackend() {
 }
 
-type ProjectInferencePipelineNewResponseDataBackendObjectBackendType string
+type ProjectInferencePipelineNewResponseDataBackendBigQueryDataBackendBackendType string
 
 const (
-	ProjectInferencePipelineNewResponseDataBackendObjectBackendTypeBigquery ProjectInferencePipelineNewResponseDataBackendObjectBackendType = "bigquery"
+	ProjectInferencePipelineNewResponseDataBackendBigQueryDataBackendBackendTypeBigquery ProjectInferencePipelineNewResponseDataBackendBigQueryDataBackendBackendType = "bigquery"
 )
 
-func (r ProjectInferencePipelineNewResponseDataBackendObjectBackendType) IsKnown() bool {
+func (r ProjectInferencePipelineNewResponseDataBackendBigQueryDataBackendBackendType) IsKnown() bool {
 	switch r {
-	case ProjectInferencePipelineNewResponseDataBackendObjectBackendTypeBigquery:
+	case ProjectInferencePipelineNewResponseDataBackendBigQueryDataBackendBackendTypeBigquery:
 		return true
 	}
 	return false
 }
 
-type ProjectInferencePipelineNewResponseDataBackendObjectConfig struct {
+type ProjectInferencePipelineNewResponseDataBackendBigQueryDataBackendConfig struct {
 	// Name of the column with the ground truths.
 	GroundTruthColumnName string `json:"groundTruthColumnName,nullable"`
 	// Name of the column with human feedback.
@@ -353,14 +359,14 @@ type ProjectInferencePipelineNewResponseDataBackendObjectConfig struct {
 	LatencyColumnName string `json:"latencyColumnName,nullable"`
 	// Name of the column with the timestamps. Timestamps must be in UNIX sec format.
 	// If not provided, the upload timestamp is used.
-	TimestampColumnName string                                                         `json:"timestampColumnName,nullable"`
-	JSON                projectInferencePipelineNewResponseDataBackendObjectConfigJSON `json:"-"`
+	TimestampColumnName string                                                                      `json:"timestampColumnName,nullable"`
+	JSON                projectInferencePipelineNewResponseDataBackendBigQueryDataBackendConfigJSON `json:"-"`
 }
 
-// projectInferencePipelineNewResponseDataBackendObjectConfigJSON contains the JSON
-// metadata for the struct
-// [ProjectInferencePipelineNewResponseDataBackendObjectConfig]
-type projectInferencePipelineNewResponseDataBackendObjectConfigJSON struct {
+// projectInferencePipelineNewResponseDataBackendBigQueryDataBackendConfigJSON
+// contains the JSON metadata for the struct
+// [ProjectInferencePipelineNewResponseDataBackendBigQueryDataBackendConfig]
+type projectInferencePipelineNewResponseDataBackendBigQueryDataBackendConfigJSON struct {
 	GroundTruthColumnName   apijson.Field
 	HumanFeedbackColumnName apijson.Field
 	LatencyColumnName       apijson.Field
@@ -369,64 +375,397 @@ type projectInferencePipelineNewResponseDataBackendObjectConfigJSON struct {
 	ExtraFields             map[string]apijson.Field
 }
 
-func (r *ProjectInferencePipelineNewResponseDataBackendObjectConfig) UnmarshalJSON(data []byte) (err error) {
+func (r *ProjectInferencePipelineNewResponseDataBackendBigQueryDataBackendConfig) UnmarshalJSON(data []byte) (err error) {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-func (r projectInferencePipelineNewResponseDataBackendObjectConfigJSON) RawJSON() string {
+func (r projectInferencePipelineNewResponseDataBackendBigQueryDataBackendConfigJSON) RawJSON() string {
 	return r.raw
 }
 
-type ProjectInferencePipelineNewResponseDataBackendObjectPartitionType string
+type ProjectInferencePipelineNewResponseDataBackendBigQueryDataBackendPartitionType string
 
 const (
-	ProjectInferencePipelineNewResponseDataBackendObjectPartitionTypeDay   ProjectInferencePipelineNewResponseDataBackendObjectPartitionType = "DAY"
-	ProjectInferencePipelineNewResponseDataBackendObjectPartitionTypeMonth ProjectInferencePipelineNewResponseDataBackendObjectPartitionType = "MONTH"
-	ProjectInferencePipelineNewResponseDataBackendObjectPartitionTypeYear  ProjectInferencePipelineNewResponseDataBackendObjectPartitionType = "YEAR"
+	ProjectInferencePipelineNewResponseDataBackendBigQueryDataBackendPartitionTypeDay   ProjectInferencePipelineNewResponseDataBackendBigQueryDataBackendPartitionType = "DAY"
+	ProjectInferencePipelineNewResponseDataBackendBigQueryDataBackendPartitionTypeMonth ProjectInferencePipelineNewResponseDataBackendBigQueryDataBackendPartitionType = "MONTH"
+	ProjectInferencePipelineNewResponseDataBackendBigQueryDataBackendPartitionTypeYear  ProjectInferencePipelineNewResponseDataBackendBigQueryDataBackendPartitionType = "YEAR"
 )
 
-func (r ProjectInferencePipelineNewResponseDataBackendObjectPartitionType) IsKnown() bool {
+func (r ProjectInferencePipelineNewResponseDataBackendBigQueryDataBackendPartitionType) IsKnown() bool {
 	switch r {
-	case ProjectInferencePipelineNewResponseDataBackendObjectPartitionTypeDay, ProjectInferencePipelineNewResponseDataBackendObjectPartitionTypeMonth, ProjectInferencePipelineNewResponseDataBackendObjectPartitionTypeYear:
+	case ProjectInferencePipelineNewResponseDataBackendBigQueryDataBackendPartitionTypeDay, ProjectInferencePipelineNewResponseDataBackendBigQueryDataBackendPartitionTypeMonth, ProjectInferencePipelineNewResponseDataBackendBigQueryDataBackendPartitionTypeYear:
 		return true
 	}
 	return false
 }
 
-type ProjectInferencePipelineNewResponseDataBackendBackendType struct {
-	BackendType ProjectInferencePipelineNewResponseDataBackendBackendTypeBackendType `json:"backendType,required"`
-	JSON        projectInferencePipelineNewResponseDataBackendBackendTypeJSON        `json:"-"`
+type ProjectInferencePipelineNewResponseDataBackendDefaultDataBackend struct {
+	BackendType ProjectInferencePipelineNewResponseDataBackendDefaultDataBackendBackendType `json:"backendType,required"`
+	JSON        projectInferencePipelineNewResponseDataBackendDefaultDataBackendJSON        `json:"-"`
 }
 
-// projectInferencePipelineNewResponseDataBackendBackendTypeJSON contains the JSON
-// metadata for the struct
-// [ProjectInferencePipelineNewResponseDataBackendBackendType]
-type projectInferencePipelineNewResponseDataBackendBackendTypeJSON struct {
+// projectInferencePipelineNewResponseDataBackendDefaultDataBackendJSON contains
+// the JSON metadata for the struct
+// [ProjectInferencePipelineNewResponseDataBackendDefaultDataBackend]
+type projectInferencePipelineNewResponseDataBackendDefaultDataBackendJSON struct {
 	BackendType apijson.Field
 	raw         string
 	ExtraFields map[string]apijson.Field
 }
 
-func (r *ProjectInferencePipelineNewResponseDataBackendBackendType) UnmarshalJSON(data []byte) (err error) {
+func (r *ProjectInferencePipelineNewResponseDataBackendDefaultDataBackend) UnmarshalJSON(data []byte) (err error) {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-func (r projectInferencePipelineNewResponseDataBackendBackendTypeJSON) RawJSON() string {
+func (r projectInferencePipelineNewResponseDataBackendDefaultDataBackendJSON) RawJSON() string {
 	return r.raw
 }
 
-func (r ProjectInferencePipelineNewResponseDataBackendBackendType) implementsProjectInferencePipelineNewResponseDataBackend() {
+func (r ProjectInferencePipelineNewResponseDataBackendDefaultDataBackend) implementsProjectInferencePipelineNewResponseDataBackend() {
 }
 
-type ProjectInferencePipelineNewResponseDataBackendBackendTypeBackendType string
+type ProjectInferencePipelineNewResponseDataBackendDefaultDataBackendBackendType string
 
 const (
-	ProjectInferencePipelineNewResponseDataBackendBackendTypeBackendTypeDefault ProjectInferencePipelineNewResponseDataBackendBackendTypeBackendType = "default"
+	ProjectInferencePipelineNewResponseDataBackendDefaultDataBackendBackendTypeDefault ProjectInferencePipelineNewResponseDataBackendDefaultDataBackendBackendType = "default"
 )
 
-func (r ProjectInferencePipelineNewResponseDataBackendBackendTypeBackendType) IsKnown() bool {
+func (r ProjectInferencePipelineNewResponseDataBackendDefaultDataBackendBackendType) IsKnown() bool {
 	switch r {
-	case ProjectInferencePipelineNewResponseDataBackendBackendTypeBackendTypeDefault:
+	case ProjectInferencePipelineNewResponseDataBackendDefaultDataBackendBackendTypeDefault:
+		return true
+	}
+	return false
+}
+
+type ProjectInferencePipelineNewResponseDataBackendSnowflakeDataBackend struct {
+	BackendType           ProjectInferencePipelineNewResponseDataBackendSnowflakeDataBackendBackendType `json:"backendType,required"`
+	Database              string                                                                        `json:"database,required"`
+	Schema                string                                                                        `json:"schema,required"`
+	SnowflakeConnectionID string                                                                        `json:"snowflakeConnectionId,required,nullable" format:"uuid"`
+	Table                 string                                                                        `json:"table,required,nullable"`
+	JSON                  projectInferencePipelineNewResponseDataBackendSnowflakeDataBackendJSON        `json:"-"`
+}
+
+// projectInferencePipelineNewResponseDataBackendSnowflakeDataBackendJSON contains
+// the JSON metadata for the struct
+// [ProjectInferencePipelineNewResponseDataBackendSnowflakeDataBackend]
+type projectInferencePipelineNewResponseDataBackendSnowflakeDataBackendJSON struct {
+	BackendType           apijson.Field
+	Database              apijson.Field
+	Schema                apijson.Field
+	SnowflakeConnectionID apijson.Field
+	Table                 apijson.Field
+	raw                   string
+	ExtraFields           map[string]apijson.Field
+}
+
+func (r *ProjectInferencePipelineNewResponseDataBackendSnowflakeDataBackend) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r projectInferencePipelineNewResponseDataBackendSnowflakeDataBackendJSON) RawJSON() string {
+	return r.raw
+}
+
+func (r ProjectInferencePipelineNewResponseDataBackendSnowflakeDataBackend) implementsProjectInferencePipelineNewResponseDataBackend() {
+}
+
+type ProjectInferencePipelineNewResponseDataBackendSnowflakeDataBackendBackendType string
+
+const (
+	ProjectInferencePipelineNewResponseDataBackendSnowflakeDataBackendBackendTypeSnowflake ProjectInferencePipelineNewResponseDataBackendSnowflakeDataBackendBackendType = "snowflake"
+)
+
+func (r ProjectInferencePipelineNewResponseDataBackendSnowflakeDataBackendBackendType) IsKnown() bool {
+	switch r {
+	case ProjectInferencePipelineNewResponseDataBackendSnowflakeDataBackendBackendTypeSnowflake:
+		return true
+	}
+	return false
+}
+
+type ProjectInferencePipelineNewResponseDataBackendSnowflakeDataBackendConfig struct {
+	// Name of the column with the ground truths.
+	GroundTruthColumnName string `json:"groundTruthColumnName,nullable"`
+	// Name of the column with human feedback.
+	HumanFeedbackColumnName string `json:"humanFeedbackColumnName,nullable"`
+	// Name of the column with the latencies.
+	LatencyColumnName string `json:"latencyColumnName,nullable"`
+	// Name of the column with the timestamps. Timestamps must be in UNIX sec format.
+	// If not provided, the upload timestamp is used.
+	TimestampColumnName string                                                                       `json:"timestampColumnName,nullable"`
+	JSON                projectInferencePipelineNewResponseDataBackendSnowflakeDataBackendConfigJSON `json:"-"`
+}
+
+// projectInferencePipelineNewResponseDataBackendSnowflakeDataBackendConfigJSON
+// contains the JSON metadata for the struct
+// [ProjectInferencePipelineNewResponseDataBackendSnowflakeDataBackendConfig]
+type projectInferencePipelineNewResponseDataBackendSnowflakeDataBackendConfigJSON struct {
+	GroundTruthColumnName   apijson.Field
+	HumanFeedbackColumnName apijson.Field
+	LatencyColumnName       apijson.Field
+	TimestampColumnName     apijson.Field
+	raw                     string
+	ExtraFields             map[string]apijson.Field
+}
+
+func (r *ProjectInferencePipelineNewResponseDataBackendSnowflakeDataBackendConfig) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r projectInferencePipelineNewResponseDataBackendSnowflakeDataBackendConfigJSON) RawJSON() string {
+	return r.raw
+}
+
+type ProjectInferencePipelineNewResponseDataBackendDatabricksDtlDataBackend struct {
+	BackendType               ProjectInferencePipelineNewResponseDataBackendDatabricksDtlDataBackendBackendType `json:"backendType,required"`
+	DatabricksDtlConnectionID string                                                                            `json:"databricksDtlConnectionId,required,nullable" format:"uuid"`
+	TableID                   string                                                                            `json:"tableId,required,nullable"`
+	JSON                      projectInferencePipelineNewResponseDataBackendDatabricksDtlDataBackendJSON        `json:"-"`
+}
+
+// projectInferencePipelineNewResponseDataBackendDatabricksDtlDataBackendJSON
+// contains the JSON metadata for the struct
+// [ProjectInferencePipelineNewResponseDataBackendDatabricksDtlDataBackend]
+type projectInferencePipelineNewResponseDataBackendDatabricksDtlDataBackendJSON struct {
+	BackendType               apijson.Field
+	DatabricksDtlConnectionID apijson.Field
+	TableID                   apijson.Field
+	raw                       string
+	ExtraFields               map[string]apijson.Field
+}
+
+func (r *ProjectInferencePipelineNewResponseDataBackendDatabricksDtlDataBackend) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r projectInferencePipelineNewResponseDataBackendDatabricksDtlDataBackendJSON) RawJSON() string {
+	return r.raw
+}
+
+func (r ProjectInferencePipelineNewResponseDataBackendDatabricksDtlDataBackend) implementsProjectInferencePipelineNewResponseDataBackend() {
+}
+
+type ProjectInferencePipelineNewResponseDataBackendDatabricksDtlDataBackendBackendType string
+
+const (
+	ProjectInferencePipelineNewResponseDataBackendDatabricksDtlDataBackendBackendTypeDatabricksDtl ProjectInferencePipelineNewResponseDataBackendDatabricksDtlDataBackendBackendType = "databricks_dtl"
+)
+
+func (r ProjectInferencePipelineNewResponseDataBackendDatabricksDtlDataBackendBackendType) IsKnown() bool {
+	switch r {
+	case ProjectInferencePipelineNewResponseDataBackendDatabricksDtlDataBackendBackendTypeDatabricksDtl:
+		return true
+	}
+	return false
+}
+
+type ProjectInferencePipelineNewResponseDataBackendDatabricksDtlDataBackendConfig struct {
+	// Name of the column with the ground truths.
+	GroundTruthColumnName string `json:"groundTruthColumnName,nullable"`
+	// Name of the column with human feedback.
+	HumanFeedbackColumnName string `json:"humanFeedbackColumnName,nullable"`
+	// Name of the column with the latencies.
+	LatencyColumnName string `json:"latencyColumnName,nullable"`
+	// Name of the column with the timestamps. Timestamps must be in UNIX sec format.
+	// If not provided, the upload timestamp is used.
+	TimestampColumnName string                                                                           `json:"timestampColumnName,nullable"`
+	JSON                projectInferencePipelineNewResponseDataBackendDatabricksDtlDataBackendConfigJSON `json:"-"`
+}
+
+// projectInferencePipelineNewResponseDataBackendDatabricksDtlDataBackendConfigJSON
+// contains the JSON metadata for the struct
+// [ProjectInferencePipelineNewResponseDataBackendDatabricksDtlDataBackendConfig]
+type projectInferencePipelineNewResponseDataBackendDatabricksDtlDataBackendConfigJSON struct {
+	GroundTruthColumnName   apijson.Field
+	HumanFeedbackColumnName apijson.Field
+	LatencyColumnName       apijson.Field
+	TimestampColumnName     apijson.Field
+	raw                     string
+	ExtraFields             map[string]apijson.Field
+}
+
+func (r *ProjectInferencePipelineNewResponseDataBackendDatabricksDtlDataBackendConfig) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r projectInferencePipelineNewResponseDataBackendDatabricksDtlDataBackendConfigJSON) RawJSON() string {
+	return r.raw
+}
+
+type ProjectInferencePipelineNewResponseDataBackendRedshiftDataBackend struct {
+	BackendType          ProjectInferencePipelineNewResponseDataBackendRedshiftDataBackendBackendType `json:"backendType,required"`
+	RedshiftConnectionID string                                                                       `json:"redshiftConnectionId,required,nullable" format:"uuid"`
+	SchemaName           string                                                                       `json:"schemaName,required"`
+	TableName            string                                                                       `json:"tableName,required"`
+	JSON                 projectInferencePipelineNewResponseDataBackendRedshiftDataBackendJSON        `json:"-"`
+}
+
+// projectInferencePipelineNewResponseDataBackendRedshiftDataBackendJSON contains
+// the JSON metadata for the struct
+// [ProjectInferencePipelineNewResponseDataBackendRedshiftDataBackend]
+type projectInferencePipelineNewResponseDataBackendRedshiftDataBackendJSON struct {
+	BackendType          apijson.Field
+	RedshiftConnectionID apijson.Field
+	SchemaName           apijson.Field
+	TableName            apijson.Field
+	raw                  string
+	ExtraFields          map[string]apijson.Field
+}
+
+func (r *ProjectInferencePipelineNewResponseDataBackendRedshiftDataBackend) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r projectInferencePipelineNewResponseDataBackendRedshiftDataBackendJSON) RawJSON() string {
+	return r.raw
+}
+
+func (r ProjectInferencePipelineNewResponseDataBackendRedshiftDataBackend) implementsProjectInferencePipelineNewResponseDataBackend() {
+}
+
+type ProjectInferencePipelineNewResponseDataBackendRedshiftDataBackendBackendType string
+
+const (
+	ProjectInferencePipelineNewResponseDataBackendRedshiftDataBackendBackendTypeRedshift ProjectInferencePipelineNewResponseDataBackendRedshiftDataBackendBackendType = "redshift"
+)
+
+func (r ProjectInferencePipelineNewResponseDataBackendRedshiftDataBackendBackendType) IsKnown() bool {
+	switch r {
+	case ProjectInferencePipelineNewResponseDataBackendRedshiftDataBackendBackendTypeRedshift:
+		return true
+	}
+	return false
+}
+
+type ProjectInferencePipelineNewResponseDataBackendRedshiftDataBackendConfig struct {
+	// Name of the column with the ground truths.
+	GroundTruthColumnName string `json:"groundTruthColumnName,nullable"`
+	// Name of the column with human feedback.
+	HumanFeedbackColumnName string `json:"humanFeedbackColumnName,nullable"`
+	// Name of the column with the latencies.
+	LatencyColumnName string `json:"latencyColumnName,nullable"`
+	// Name of the column with the timestamps. Timestamps must be in UNIX sec format.
+	// If not provided, the upload timestamp is used.
+	TimestampColumnName string                                                                      `json:"timestampColumnName,nullable"`
+	JSON                projectInferencePipelineNewResponseDataBackendRedshiftDataBackendConfigJSON `json:"-"`
+}
+
+// projectInferencePipelineNewResponseDataBackendRedshiftDataBackendConfigJSON
+// contains the JSON metadata for the struct
+// [ProjectInferencePipelineNewResponseDataBackendRedshiftDataBackendConfig]
+type projectInferencePipelineNewResponseDataBackendRedshiftDataBackendConfigJSON struct {
+	GroundTruthColumnName   apijson.Field
+	HumanFeedbackColumnName apijson.Field
+	LatencyColumnName       apijson.Field
+	TimestampColumnName     apijson.Field
+	raw                     string
+	ExtraFields             map[string]apijson.Field
+}
+
+func (r *ProjectInferencePipelineNewResponseDataBackendRedshiftDataBackendConfig) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r projectInferencePipelineNewResponseDataBackendRedshiftDataBackendConfigJSON) RawJSON() string {
+	return r.raw
+}
+
+type ProjectInferencePipelineNewResponseDataBackendPostgresDataBackend struct {
+	BackendType          ProjectInferencePipelineNewResponseDataBackendPostgresDataBackendBackendType `json:"backendType,required"`
+	Database             string                                                                       `json:"database,required"`
+	PostgresConnectionID string                                                                       `json:"postgresConnectionId,required,nullable" format:"uuid"`
+	Schema               string                                                                       `json:"schema,required"`
+	Table                string                                                                       `json:"table,required,nullable"`
+	JSON                 projectInferencePipelineNewResponseDataBackendPostgresDataBackendJSON        `json:"-"`
+}
+
+// projectInferencePipelineNewResponseDataBackendPostgresDataBackendJSON contains
+// the JSON metadata for the struct
+// [ProjectInferencePipelineNewResponseDataBackendPostgresDataBackend]
+type projectInferencePipelineNewResponseDataBackendPostgresDataBackendJSON struct {
+	BackendType          apijson.Field
+	Database             apijson.Field
+	PostgresConnectionID apijson.Field
+	Schema               apijson.Field
+	Table                apijson.Field
+	raw                  string
+	ExtraFields          map[string]apijson.Field
+}
+
+func (r *ProjectInferencePipelineNewResponseDataBackendPostgresDataBackend) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r projectInferencePipelineNewResponseDataBackendPostgresDataBackendJSON) RawJSON() string {
+	return r.raw
+}
+
+func (r ProjectInferencePipelineNewResponseDataBackendPostgresDataBackend) implementsProjectInferencePipelineNewResponseDataBackend() {
+}
+
+type ProjectInferencePipelineNewResponseDataBackendPostgresDataBackendBackendType string
+
+const (
+	ProjectInferencePipelineNewResponseDataBackendPostgresDataBackendBackendTypePostgres ProjectInferencePipelineNewResponseDataBackendPostgresDataBackendBackendType = "postgres"
+)
+
+func (r ProjectInferencePipelineNewResponseDataBackendPostgresDataBackendBackendType) IsKnown() bool {
+	switch r {
+	case ProjectInferencePipelineNewResponseDataBackendPostgresDataBackendBackendTypePostgres:
+		return true
+	}
+	return false
+}
+
+type ProjectInferencePipelineNewResponseDataBackendPostgresDataBackendConfig struct {
+	// Name of the column with the ground truths.
+	GroundTruthColumnName string `json:"groundTruthColumnName,nullable"`
+	// Name of the column with human feedback.
+	HumanFeedbackColumnName string `json:"humanFeedbackColumnName,nullable"`
+	// Name of the column with the latencies.
+	LatencyColumnName string `json:"latencyColumnName,nullable"`
+	// Name of the column with the timestamps. Timestamps must be in UNIX sec format.
+	// If not provided, the upload timestamp is used.
+	TimestampColumnName string                                                                      `json:"timestampColumnName,nullable"`
+	JSON                projectInferencePipelineNewResponseDataBackendPostgresDataBackendConfigJSON `json:"-"`
+}
+
+// projectInferencePipelineNewResponseDataBackendPostgresDataBackendConfigJSON
+// contains the JSON metadata for the struct
+// [ProjectInferencePipelineNewResponseDataBackendPostgresDataBackendConfig]
+type projectInferencePipelineNewResponseDataBackendPostgresDataBackendConfigJSON struct {
+	GroundTruthColumnName   apijson.Field
+	HumanFeedbackColumnName apijson.Field
+	LatencyColumnName       apijson.Field
+	TimestampColumnName     apijson.Field
+	raw                     string
+	ExtraFields             map[string]apijson.Field
+}
+
+func (r *ProjectInferencePipelineNewResponseDataBackendPostgresDataBackendConfig) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r projectInferencePipelineNewResponseDataBackendPostgresDataBackendConfigJSON) RawJSON() string {
+	return r.raw
+}
+
+type ProjectInferencePipelineNewResponseDataBackendBackendType string
+
+const (
+	ProjectInferencePipelineNewResponseDataBackendBackendTypeBigquery      ProjectInferencePipelineNewResponseDataBackendBackendType = "bigquery"
+	ProjectInferencePipelineNewResponseDataBackendBackendTypeDefault       ProjectInferencePipelineNewResponseDataBackendBackendType = "default"
+	ProjectInferencePipelineNewResponseDataBackendBackendTypeSnowflake     ProjectInferencePipelineNewResponseDataBackendBackendType = "snowflake"
+	ProjectInferencePipelineNewResponseDataBackendBackendTypeDatabricksDtl ProjectInferencePipelineNewResponseDataBackendBackendType = "databricks_dtl"
+	ProjectInferencePipelineNewResponseDataBackendBackendTypeRedshift      ProjectInferencePipelineNewResponseDataBackendBackendType = "redshift"
+	ProjectInferencePipelineNewResponseDataBackendBackendTypePostgres      ProjectInferencePipelineNewResponseDataBackendBackendType = "postgres"
+)
+
+func (r ProjectInferencePipelineNewResponseDataBackendBackendType) IsKnown() bool {
+	switch r {
+	case ProjectInferencePipelineNewResponseDataBackendBackendTypeBigquery, ProjectInferencePipelineNewResponseDataBackendBackendTypeDefault, ProjectInferencePipelineNewResponseDataBackendBackendTypeSnowflake, ProjectInferencePipelineNewResponseDataBackendBackendTypeDatabricksDtl, ProjectInferencePipelineNewResponseDataBackendBackendTypeRedshift, ProjectInferencePipelineNewResponseDataBackendBackendTypePostgres:
 		return true
 	}
 	return false
@@ -866,7 +1205,11 @@ type ProjectInferencePipelineListResponseItemsDataBackend struct {
 	BackendType          ProjectInferencePipelineListResponseItemsDataBackendBackendType `json:"backendType,required"`
 	BigqueryConnectionID string                                                          `json:"bigqueryConnectionId,nullable" format:"uuid"`
 	// This field can have the runtime type of
-	// [ProjectInferencePipelineListResponseItemsDataBackendObjectConfig].
+	// [ProjectInferencePipelineListResponseItemsDataBackendBigQueryDataBackendConfig],
+	// [ProjectInferencePipelineListResponseItemsDataBackendSnowflakeDataBackendConfig],
+	// [ProjectInferencePipelineListResponseItemsDataBackendDatabricksDtlDataBackendConfig],
+	// [ProjectInferencePipelineListResponseItemsDataBackendRedshiftDataBackendConfig],
+	// [ProjectInferencePipelineListResponseItemsDataBackendPostgresDataBackendConfig].
 	Config                    interface{}                                                       `json:"config"`
 	Database                  string                                                            `json:"database"`
 	DatabricksDtlConnectionID string                                                            `json:"databricksDtlConnectionId,nullable" format:"uuid"`
@@ -925,22 +1268,23 @@ func (r *ProjectInferencePipelineListResponseItemsDataBackend) UnmarshalJSON(dat
 // interface which you can cast to the specific types for more type safety.
 //
 // Possible runtime types of the union are
-// [ProjectInferencePipelineListResponseItemsDataBackendObject],
-// [ProjectInferencePipelineListResponseItemsDataBackendBackendType],
-// [ProjectInferencePipelineListResponseItemsDataBackendObject],
-// [ProjectInferencePipelineListResponseItemsDataBackendObject],
-// [ProjectInferencePipelineListResponseItemsDataBackendObject],
-// [ProjectInferencePipelineListResponseItemsDataBackendObject].
+// [ProjectInferencePipelineListResponseItemsDataBackendBigQueryDataBackend],
+// [ProjectInferencePipelineListResponseItemsDataBackendDefaultDataBackend],
+// [ProjectInferencePipelineListResponseItemsDataBackendSnowflakeDataBackend],
+// [ProjectInferencePipelineListResponseItemsDataBackendDatabricksDtlDataBackend],
+// [ProjectInferencePipelineListResponseItemsDataBackendRedshiftDataBackend],
+// [ProjectInferencePipelineListResponseItemsDataBackendPostgresDataBackend].
 func (r ProjectInferencePipelineListResponseItemsDataBackend) AsUnion() ProjectInferencePipelineListResponseItemsDataBackendUnion {
 	return r.union
 }
 
-// Union satisfied by [ProjectInferencePipelineListResponseItemsDataBackendObject],
-// [ProjectInferencePipelineListResponseItemsDataBackendBackendType],
-// [ProjectInferencePipelineListResponseItemsDataBackendObject],
-// [ProjectInferencePipelineListResponseItemsDataBackendObject],
-// [ProjectInferencePipelineListResponseItemsDataBackendObject] or
-// [ProjectInferencePipelineListResponseItemsDataBackendObject].
+// Union satisfied by
+// [ProjectInferencePipelineListResponseItemsDataBackendBigQueryDataBackend],
+// [ProjectInferencePipelineListResponseItemsDataBackendDefaultDataBackend],
+// [ProjectInferencePipelineListResponseItemsDataBackendSnowflakeDataBackend],
+// [ProjectInferencePipelineListResponseItemsDataBackendDatabricksDtlDataBackend],
+// [ProjectInferencePipelineListResponseItemsDataBackendRedshiftDataBackend] or
+// [ProjectInferencePipelineListResponseItemsDataBackendPostgresDataBackend].
 type ProjectInferencePipelineListResponseItemsDataBackendUnion interface {
 	implementsProjectInferencePipelineListResponseItemsDataBackend()
 }
@@ -951,45 +1295,45 @@ func init() {
 		"",
 		apijson.UnionVariant{
 			TypeFilter: gjson.JSON,
-			Type:       reflect.TypeOf(ProjectInferencePipelineListResponseItemsDataBackendObject{}),
+			Type:       reflect.TypeOf(ProjectInferencePipelineListResponseItemsDataBackendBigQueryDataBackend{}),
 		},
 		apijson.UnionVariant{
 			TypeFilter: gjson.JSON,
-			Type:       reflect.TypeOf(ProjectInferencePipelineListResponseItemsDataBackendBackendType{}),
+			Type:       reflect.TypeOf(ProjectInferencePipelineListResponseItemsDataBackendDefaultDataBackend{}),
 		},
 		apijson.UnionVariant{
 			TypeFilter: gjson.JSON,
-			Type:       reflect.TypeOf(ProjectInferencePipelineListResponseItemsDataBackendObject{}),
+			Type:       reflect.TypeOf(ProjectInferencePipelineListResponseItemsDataBackendSnowflakeDataBackend{}),
 		},
 		apijson.UnionVariant{
 			TypeFilter: gjson.JSON,
-			Type:       reflect.TypeOf(ProjectInferencePipelineListResponseItemsDataBackendObject{}),
+			Type:       reflect.TypeOf(ProjectInferencePipelineListResponseItemsDataBackendDatabricksDtlDataBackend{}),
 		},
 		apijson.UnionVariant{
 			TypeFilter: gjson.JSON,
-			Type:       reflect.TypeOf(ProjectInferencePipelineListResponseItemsDataBackendObject{}),
+			Type:       reflect.TypeOf(ProjectInferencePipelineListResponseItemsDataBackendRedshiftDataBackend{}),
 		},
 		apijson.UnionVariant{
 			TypeFilter: gjson.JSON,
-			Type:       reflect.TypeOf(ProjectInferencePipelineListResponseItemsDataBackendObject{}),
+			Type:       reflect.TypeOf(ProjectInferencePipelineListResponseItemsDataBackendPostgresDataBackend{}),
 		},
 	)
 }
 
-type ProjectInferencePipelineListResponseItemsDataBackendObject struct {
-	BackendType          ProjectInferencePipelineListResponseItemsDataBackendObjectBackendType   `json:"backendType,required"`
-	BigqueryConnectionID string                                                                  `json:"bigqueryConnectionId,required,nullable" format:"uuid"`
-	DatasetID            string                                                                  `json:"datasetId,required"`
-	ProjectID            string                                                                  `json:"projectId,required"`
-	TableID              string                                                                  `json:"tableId,required,nullable"`
-	PartitionType        ProjectInferencePipelineListResponseItemsDataBackendObjectPartitionType `json:"partitionType,nullable"`
-	JSON                 projectInferencePipelineListResponseItemsDataBackendObjectJSON          `json:"-"`
+type ProjectInferencePipelineListResponseItemsDataBackendBigQueryDataBackend struct {
+	BackendType          ProjectInferencePipelineListResponseItemsDataBackendBigQueryDataBackendBackendType   `json:"backendType,required"`
+	BigqueryConnectionID string                                                                               `json:"bigqueryConnectionId,required,nullable" format:"uuid"`
+	DatasetID            string                                                                               `json:"datasetId,required"`
+	ProjectID            string                                                                               `json:"projectId,required"`
+	TableID              string                                                                               `json:"tableId,required,nullable"`
+	PartitionType        ProjectInferencePipelineListResponseItemsDataBackendBigQueryDataBackendPartitionType `json:"partitionType,nullable"`
+	JSON                 projectInferencePipelineListResponseItemsDataBackendBigQueryDataBackendJSON          `json:"-"`
 }
 
-// projectInferencePipelineListResponseItemsDataBackendObjectJSON contains the JSON
-// metadata for the struct
-// [ProjectInferencePipelineListResponseItemsDataBackendObject]
-type projectInferencePipelineListResponseItemsDataBackendObjectJSON struct {
+// projectInferencePipelineListResponseItemsDataBackendBigQueryDataBackendJSON
+// contains the JSON metadata for the struct
+// [ProjectInferencePipelineListResponseItemsDataBackendBigQueryDataBackend]
+type projectInferencePipelineListResponseItemsDataBackendBigQueryDataBackendJSON struct {
 	BackendType          apijson.Field
 	BigqueryConnectionID apijson.Field
 	DatasetID            apijson.Field
@@ -1000,32 +1344,32 @@ type projectInferencePipelineListResponseItemsDataBackendObjectJSON struct {
 	ExtraFields          map[string]apijson.Field
 }
 
-func (r *ProjectInferencePipelineListResponseItemsDataBackendObject) UnmarshalJSON(data []byte) (err error) {
+func (r *ProjectInferencePipelineListResponseItemsDataBackendBigQueryDataBackend) UnmarshalJSON(data []byte) (err error) {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-func (r projectInferencePipelineListResponseItemsDataBackendObjectJSON) RawJSON() string {
+func (r projectInferencePipelineListResponseItemsDataBackendBigQueryDataBackendJSON) RawJSON() string {
 	return r.raw
 }
 
-func (r ProjectInferencePipelineListResponseItemsDataBackendObject) implementsProjectInferencePipelineListResponseItemsDataBackend() {
+func (r ProjectInferencePipelineListResponseItemsDataBackendBigQueryDataBackend) implementsProjectInferencePipelineListResponseItemsDataBackend() {
 }
 
-type ProjectInferencePipelineListResponseItemsDataBackendObjectBackendType string
+type ProjectInferencePipelineListResponseItemsDataBackendBigQueryDataBackendBackendType string
 
 const (
-	ProjectInferencePipelineListResponseItemsDataBackendObjectBackendTypeBigquery ProjectInferencePipelineListResponseItemsDataBackendObjectBackendType = "bigquery"
+	ProjectInferencePipelineListResponseItemsDataBackendBigQueryDataBackendBackendTypeBigquery ProjectInferencePipelineListResponseItemsDataBackendBigQueryDataBackendBackendType = "bigquery"
 )
 
-func (r ProjectInferencePipelineListResponseItemsDataBackendObjectBackendType) IsKnown() bool {
+func (r ProjectInferencePipelineListResponseItemsDataBackendBigQueryDataBackendBackendType) IsKnown() bool {
 	switch r {
-	case ProjectInferencePipelineListResponseItemsDataBackendObjectBackendTypeBigquery:
+	case ProjectInferencePipelineListResponseItemsDataBackendBigQueryDataBackendBackendTypeBigquery:
 		return true
 	}
 	return false
 }
 
-type ProjectInferencePipelineListResponseItemsDataBackendObjectConfig struct {
+type ProjectInferencePipelineListResponseItemsDataBackendBigQueryDataBackendConfig struct {
 	// Name of the column with the ground truths.
 	GroundTruthColumnName string `json:"groundTruthColumnName,nullable"`
 	// Name of the column with human feedback.
@@ -1034,14 +1378,14 @@ type ProjectInferencePipelineListResponseItemsDataBackendObjectConfig struct {
 	LatencyColumnName string `json:"latencyColumnName,nullable"`
 	// Name of the column with the timestamps. Timestamps must be in UNIX sec format.
 	// If not provided, the upload timestamp is used.
-	TimestampColumnName string                                                               `json:"timestampColumnName,nullable"`
-	JSON                projectInferencePipelineListResponseItemsDataBackendObjectConfigJSON `json:"-"`
+	TimestampColumnName string                                                                            `json:"timestampColumnName,nullable"`
+	JSON                projectInferencePipelineListResponseItemsDataBackendBigQueryDataBackendConfigJSON `json:"-"`
 }
 
-// projectInferencePipelineListResponseItemsDataBackendObjectConfigJSON contains
-// the JSON metadata for the struct
-// [ProjectInferencePipelineListResponseItemsDataBackendObjectConfig]
-type projectInferencePipelineListResponseItemsDataBackendObjectConfigJSON struct {
+// projectInferencePipelineListResponseItemsDataBackendBigQueryDataBackendConfigJSON
+// contains the JSON metadata for the struct
+// [ProjectInferencePipelineListResponseItemsDataBackendBigQueryDataBackendConfig]
+type projectInferencePipelineListResponseItemsDataBackendBigQueryDataBackendConfigJSON struct {
 	GroundTruthColumnName   apijson.Field
 	HumanFeedbackColumnName apijson.Field
 	LatencyColumnName       apijson.Field
@@ -1050,64 +1394,397 @@ type projectInferencePipelineListResponseItemsDataBackendObjectConfigJSON struct
 	ExtraFields             map[string]apijson.Field
 }
 
-func (r *ProjectInferencePipelineListResponseItemsDataBackendObjectConfig) UnmarshalJSON(data []byte) (err error) {
+func (r *ProjectInferencePipelineListResponseItemsDataBackendBigQueryDataBackendConfig) UnmarshalJSON(data []byte) (err error) {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-func (r projectInferencePipelineListResponseItemsDataBackendObjectConfigJSON) RawJSON() string {
+func (r projectInferencePipelineListResponseItemsDataBackendBigQueryDataBackendConfigJSON) RawJSON() string {
 	return r.raw
 }
 
-type ProjectInferencePipelineListResponseItemsDataBackendObjectPartitionType string
+type ProjectInferencePipelineListResponseItemsDataBackendBigQueryDataBackendPartitionType string
 
 const (
-	ProjectInferencePipelineListResponseItemsDataBackendObjectPartitionTypeDay   ProjectInferencePipelineListResponseItemsDataBackendObjectPartitionType = "DAY"
-	ProjectInferencePipelineListResponseItemsDataBackendObjectPartitionTypeMonth ProjectInferencePipelineListResponseItemsDataBackendObjectPartitionType = "MONTH"
-	ProjectInferencePipelineListResponseItemsDataBackendObjectPartitionTypeYear  ProjectInferencePipelineListResponseItemsDataBackendObjectPartitionType = "YEAR"
+	ProjectInferencePipelineListResponseItemsDataBackendBigQueryDataBackendPartitionTypeDay   ProjectInferencePipelineListResponseItemsDataBackendBigQueryDataBackendPartitionType = "DAY"
+	ProjectInferencePipelineListResponseItemsDataBackendBigQueryDataBackendPartitionTypeMonth ProjectInferencePipelineListResponseItemsDataBackendBigQueryDataBackendPartitionType = "MONTH"
+	ProjectInferencePipelineListResponseItemsDataBackendBigQueryDataBackendPartitionTypeYear  ProjectInferencePipelineListResponseItemsDataBackendBigQueryDataBackendPartitionType = "YEAR"
 )
 
-func (r ProjectInferencePipelineListResponseItemsDataBackendObjectPartitionType) IsKnown() bool {
+func (r ProjectInferencePipelineListResponseItemsDataBackendBigQueryDataBackendPartitionType) IsKnown() bool {
 	switch r {
-	case ProjectInferencePipelineListResponseItemsDataBackendObjectPartitionTypeDay, ProjectInferencePipelineListResponseItemsDataBackendObjectPartitionTypeMonth, ProjectInferencePipelineListResponseItemsDataBackendObjectPartitionTypeYear:
+	case ProjectInferencePipelineListResponseItemsDataBackendBigQueryDataBackendPartitionTypeDay, ProjectInferencePipelineListResponseItemsDataBackendBigQueryDataBackendPartitionTypeMonth, ProjectInferencePipelineListResponseItemsDataBackendBigQueryDataBackendPartitionTypeYear:
 		return true
 	}
 	return false
 }
 
-type ProjectInferencePipelineListResponseItemsDataBackendBackendType struct {
-	BackendType ProjectInferencePipelineListResponseItemsDataBackendBackendTypeBackendType `json:"backendType,required"`
-	JSON        projectInferencePipelineListResponseItemsDataBackendBackendTypeJSON        `json:"-"`
+type ProjectInferencePipelineListResponseItemsDataBackendDefaultDataBackend struct {
+	BackendType ProjectInferencePipelineListResponseItemsDataBackendDefaultDataBackendBackendType `json:"backendType,required"`
+	JSON        projectInferencePipelineListResponseItemsDataBackendDefaultDataBackendJSON        `json:"-"`
 }
 
-// projectInferencePipelineListResponseItemsDataBackendBackendTypeJSON contains the
-// JSON metadata for the struct
-// [ProjectInferencePipelineListResponseItemsDataBackendBackendType]
-type projectInferencePipelineListResponseItemsDataBackendBackendTypeJSON struct {
+// projectInferencePipelineListResponseItemsDataBackendDefaultDataBackendJSON
+// contains the JSON metadata for the struct
+// [ProjectInferencePipelineListResponseItemsDataBackendDefaultDataBackend]
+type projectInferencePipelineListResponseItemsDataBackendDefaultDataBackendJSON struct {
 	BackendType apijson.Field
 	raw         string
 	ExtraFields map[string]apijson.Field
 }
 
-func (r *ProjectInferencePipelineListResponseItemsDataBackendBackendType) UnmarshalJSON(data []byte) (err error) {
+func (r *ProjectInferencePipelineListResponseItemsDataBackendDefaultDataBackend) UnmarshalJSON(data []byte) (err error) {
 	return apijson.UnmarshalRoot(data, r)
 }
 
-func (r projectInferencePipelineListResponseItemsDataBackendBackendTypeJSON) RawJSON() string {
+func (r projectInferencePipelineListResponseItemsDataBackendDefaultDataBackendJSON) RawJSON() string {
 	return r.raw
 }
 
-func (r ProjectInferencePipelineListResponseItemsDataBackendBackendType) implementsProjectInferencePipelineListResponseItemsDataBackend() {
+func (r ProjectInferencePipelineListResponseItemsDataBackendDefaultDataBackend) implementsProjectInferencePipelineListResponseItemsDataBackend() {
 }
 
-type ProjectInferencePipelineListResponseItemsDataBackendBackendTypeBackendType string
+type ProjectInferencePipelineListResponseItemsDataBackendDefaultDataBackendBackendType string
 
 const (
-	ProjectInferencePipelineListResponseItemsDataBackendBackendTypeBackendTypeDefault ProjectInferencePipelineListResponseItemsDataBackendBackendTypeBackendType = "default"
+	ProjectInferencePipelineListResponseItemsDataBackendDefaultDataBackendBackendTypeDefault ProjectInferencePipelineListResponseItemsDataBackendDefaultDataBackendBackendType = "default"
 )
 
-func (r ProjectInferencePipelineListResponseItemsDataBackendBackendTypeBackendType) IsKnown() bool {
+func (r ProjectInferencePipelineListResponseItemsDataBackendDefaultDataBackendBackendType) IsKnown() bool {
 	switch r {
-	case ProjectInferencePipelineListResponseItemsDataBackendBackendTypeBackendTypeDefault:
+	case ProjectInferencePipelineListResponseItemsDataBackendDefaultDataBackendBackendTypeDefault:
+		return true
+	}
+	return false
+}
+
+type ProjectInferencePipelineListResponseItemsDataBackendSnowflakeDataBackend struct {
+	BackendType           ProjectInferencePipelineListResponseItemsDataBackendSnowflakeDataBackendBackendType `json:"backendType,required"`
+	Database              string                                                                              `json:"database,required"`
+	Schema                string                                                                              `json:"schema,required"`
+	SnowflakeConnectionID string                                                                              `json:"snowflakeConnectionId,required,nullable" format:"uuid"`
+	Table                 string                                                                              `json:"table,required,nullable"`
+	JSON                  projectInferencePipelineListResponseItemsDataBackendSnowflakeDataBackendJSON        `json:"-"`
+}
+
+// projectInferencePipelineListResponseItemsDataBackendSnowflakeDataBackendJSON
+// contains the JSON metadata for the struct
+// [ProjectInferencePipelineListResponseItemsDataBackendSnowflakeDataBackend]
+type projectInferencePipelineListResponseItemsDataBackendSnowflakeDataBackendJSON struct {
+	BackendType           apijson.Field
+	Database              apijson.Field
+	Schema                apijson.Field
+	SnowflakeConnectionID apijson.Field
+	Table                 apijson.Field
+	raw                   string
+	ExtraFields           map[string]apijson.Field
+}
+
+func (r *ProjectInferencePipelineListResponseItemsDataBackendSnowflakeDataBackend) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r projectInferencePipelineListResponseItemsDataBackendSnowflakeDataBackendJSON) RawJSON() string {
+	return r.raw
+}
+
+func (r ProjectInferencePipelineListResponseItemsDataBackendSnowflakeDataBackend) implementsProjectInferencePipelineListResponseItemsDataBackend() {
+}
+
+type ProjectInferencePipelineListResponseItemsDataBackendSnowflakeDataBackendBackendType string
+
+const (
+	ProjectInferencePipelineListResponseItemsDataBackendSnowflakeDataBackendBackendTypeSnowflake ProjectInferencePipelineListResponseItemsDataBackendSnowflakeDataBackendBackendType = "snowflake"
+)
+
+func (r ProjectInferencePipelineListResponseItemsDataBackendSnowflakeDataBackendBackendType) IsKnown() bool {
+	switch r {
+	case ProjectInferencePipelineListResponseItemsDataBackendSnowflakeDataBackendBackendTypeSnowflake:
+		return true
+	}
+	return false
+}
+
+type ProjectInferencePipelineListResponseItemsDataBackendSnowflakeDataBackendConfig struct {
+	// Name of the column with the ground truths.
+	GroundTruthColumnName string `json:"groundTruthColumnName,nullable"`
+	// Name of the column with human feedback.
+	HumanFeedbackColumnName string `json:"humanFeedbackColumnName,nullable"`
+	// Name of the column with the latencies.
+	LatencyColumnName string `json:"latencyColumnName,nullable"`
+	// Name of the column with the timestamps. Timestamps must be in UNIX sec format.
+	// If not provided, the upload timestamp is used.
+	TimestampColumnName string                                                                             `json:"timestampColumnName,nullable"`
+	JSON                projectInferencePipelineListResponseItemsDataBackendSnowflakeDataBackendConfigJSON `json:"-"`
+}
+
+// projectInferencePipelineListResponseItemsDataBackendSnowflakeDataBackendConfigJSON
+// contains the JSON metadata for the struct
+// [ProjectInferencePipelineListResponseItemsDataBackendSnowflakeDataBackendConfig]
+type projectInferencePipelineListResponseItemsDataBackendSnowflakeDataBackendConfigJSON struct {
+	GroundTruthColumnName   apijson.Field
+	HumanFeedbackColumnName apijson.Field
+	LatencyColumnName       apijson.Field
+	TimestampColumnName     apijson.Field
+	raw                     string
+	ExtraFields             map[string]apijson.Field
+}
+
+func (r *ProjectInferencePipelineListResponseItemsDataBackendSnowflakeDataBackendConfig) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r projectInferencePipelineListResponseItemsDataBackendSnowflakeDataBackendConfigJSON) RawJSON() string {
+	return r.raw
+}
+
+type ProjectInferencePipelineListResponseItemsDataBackendDatabricksDtlDataBackend struct {
+	BackendType               ProjectInferencePipelineListResponseItemsDataBackendDatabricksDtlDataBackendBackendType `json:"backendType,required"`
+	DatabricksDtlConnectionID string                                                                                  `json:"databricksDtlConnectionId,required,nullable" format:"uuid"`
+	TableID                   string                                                                                  `json:"tableId,required,nullable"`
+	JSON                      projectInferencePipelineListResponseItemsDataBackendDatabricksDtlDataBackendJSON        `json:"-"`
+}
+
+// projectInferencePipelineListResponseItemsDataBackendDatabricksDtlDataBackendJSON
+// contains the JSON metadata for the struct
+// [ProjectInferencePipelineListResponseItemsDataBackendDatabricksDtlDataBackend]
+type projectInferencePipelineListResponseItemsDataBackendDatabricksDtlDataBackendJSON struct {
+	BackendType               apijson.Field
+	DatabricksDtlConnectionID apijson.Field
+	TableID                   apijson.Field
+	raw                       string
+	ExtraFields               map[string]apijson.Field
+}
+
+func (r *ProjectInferencePipelineListResponseItemsDataBackendDatabricksDtlDataBackend) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r projectInferencePipelineListResponseItemsDataBackendDatabricksDtlDataBackendJSON) RawJSON() string {
+	return r.raw
+}
+
+func (r ProjectInferencePipelineListResponseItemsDataBackendDatabricksDtlDataBackend) implementsProjectInferencePipelineListResponseItemsDataBackend() {
+}
+
+type ProjectInferencePipelineListResponseItemsDataBackendDatabricksDtlDataBackendBackendType string
+
+const (
+	ProjectInferencePipelineListResponseItemsDataBackendDatabricksDtlDataBackendBackendTypeDatabricksDtl ProjectInferencePipelineListResponseItemsDataBackendDatabricksDtlDataBackendBackendType = "databricks_dtl"
+)
+
+func (r ProjectInferencePipelineListResponseItemsDataBackendDatabricksDtlDataBackendBackendType) IsKnown() bool {
+	switch r {
+	case ProjectInferencePipelineListResponseItemsDataBackendDatabricksDtlDataBackendBackendTypeDatabricksDtl:
+		return true
+	}
+	return false
+}
+
+type ProjectInferencePipelineListResponseItemsDataBackendDatabricksDtlDataBackendConfig struct {
+	// Name of the column with the ground truths.
+	GroundTruthColumnName string `json:"groundTruthColumnName,nullable"`
+	// Name of the column with human feedback.
+	HumanFeedbackColumnName string `json:"humanFeedbackColumnName,nullable"`
+	// Name of the column with the latencies.
+	LatencyColumnName string `json:"latencyColumnName,nullable"`
+	// Name of the column with the timestamps. Timestamps must be in UNIX sec format.
+	// If not provided, the upload timestamp is used.
+	TimestampColumnName string                                                                                 `json:"timestampColumnName,nullable"`
+	JSON                projectInferencePipelineListResponseItemsDataBackendDatabricksDtlDataBackendConfigJSON `json:"-"`
+}
+
+// projectInferencePipelineListResponseItemsDataBackendDatabricksDtlDataBackendConfigJSON
+// contains the JSON metadata for the struct
+// [ProjectInferencePipelineListResponseItemsDataBackendDatabricksDtlDataBackendConfig]
+type projectInferencePipelineListResponseItemsDataBackendDatabricksDtlDataBackendConfigJSON struct {
+	GroundTruthColumnName   apijson.Field
+	HumanFeedbackColumnName apijson.Field
+	LatencyColumnName       apijson.Field
+	TimestampColumnName     apijson.Field
+	raw                     string
+	ExtraFields             map[string]apijson.Field
+}
+
+func (r *ProjectInferencePipelineListResponseItemsDataBackendDatabricksDtlDataBackendConfig) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r projectInferencePipelineListResponseItemsDataBackendDatabricksDtlDataBackendConfigJSON) RawJSON() string {
+	return r.raw
+}
+
+type ProjectInferencePipelineListResponseItemsDataBackendRedshiftDataBackend struct {
+	BackendType          ProjectInferencePipelineListResponseItemsDataBackendRedshiftDataBackendBackendType `json:"backendType,required"`
+	RedshiftConnectionID string                                                                             `json:"redshiftConnectionId,required,nullable" format:"uuid"`
+	SchemaName           string                                                                             `json:"schemaName,required"`
+	TableName            string                                                                             `json:"tableName,required"`
+	JSON                 projectInferencePipelineListResponseItemsDataBackendRedshiftDataBackendJSON        `json:"-"`
+}
+
+// projectInferencePipelineListResponseItemsDataBackendRedshiftDataBackendJSON
+// contains the JSON metadata for the struct
+// [ProjectInferencePipelineListResponseItemsDataBackendRedshiftDataBackend]
+type projectInferencePipelineListResponseItemsDataBackendRedshiftDataBackendJSON struct {
+	BackendType          apijson.Field
+	RedshiftConnectionID apijson.Field
+	SchemaName           apijson.Field
+	TableName            apijson.Field
+	raw                  string
+	ExtraFields          map[string]apijson.Field
+}
+
+func (r *ProjectInferencePipelineListResponseItemsDataBackendRedshiftDataBackend) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r projectInferencePipelineListResponseItemsDataBackendRedshiftDataBackendJSON) RawJSON() string {
+	return r.raw
+}
+
+func (r ProjectInferencePipelineListResponseItemsDataBackendRedshiftDataBackend) implementsProjectInferencePipelineListResponseItemsDataBackend() {
+}
+
+type ProjectInferencePipelineListResponseItemsDataBackendRedshiftDataBackendBackendType string
+
+const (
+	ProjectInferencePipelineListResponseItemsDataBackendRedshiftDataBackendBackendTypeRedshift ProjectInferencePipelineListResponseItemsDataBackendRedshiftDataBackendBackendType = "redshift"
+)
+
+func (r ProjectInferencePipelineListResponseItemsDataBackendRedshiftDataBackendBackendType) IsKnown() bool {
+	switch r {
+	case ProjectInferencePipelineListResponseItemsDataBackendRedshiftDataBackendBackendTypeRedshift:
+		return true
+	}
+	return false
+}
+
+type ProjectInferencePipelineListResponseItemsDataBackendRedshiftDataBackendConfig struct {
+	// Name of the column with the ground truths.
+	GroundTruthColumnName string `json:"groundTruthColumnName,nullable"`
+	// Name of the column with human feedback.
+	HumanFeedbackColumnName string `json:"humanFeedbackColumnName,nullable"`
+	// Name of the column with the latencies.
+	LatencyColumnName string `json:"latencyColumnName,nullable"`
+	// Name of the column with the timestamps. Timestamps must be in UNIX sec format.
+	// If not provided, the upload timestamp is used.
+	TimestampColumnName string                                                                            `json:"timestampColumnName,nullable"`
+	JSON                projectInferencePipelineListResponseItemsDataBackendRedshiftDataBackendConfigJSON `json:"-"`
+}
+
+// projectInferencePipelineListResponseItemsDataBackendRedshiftDataBackendConfigJSON
+// contains the JSON metadata for the struct
+// [ProjectInferencePipelineListResponseItemsDataBackendRedshiftDataBackendConfig]
+type projectInferencePipelineListResponseItemsDataBackendRedshiftDataBackendConfigJSON struct {
+	GroundTruthColumnName   apijson.Field
+	HumanFeedbackColumnName apijson.Field
+	LatencyColumnName       apijson.Field
+	TimestampColumnName     apijson.Field
+	raw                     string
+	ExtraFields             map[string]apijson.Field
+}
+
+func (r *ProjectInferencePipelineListResponseItemsDataBackendRedshiftDataBackendConfig) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r projectInferencePipelineListResponseItemsDataBackendRedshiftDataBackendConfigJSON) RawJSON() string {
+	return r.raw
+}
+
+type ProjectInferencePipelineListResponseItemsDataBackendPostgresDataBackend struct {
+	BackendType          ProjectInferencePipelineListResponseItemsDataBackendPostgresDataBackendBackendType `json:"backendType,required"`
+	Database             string                                                                             `json:"database,required"`
+	PostgresConnectionID string                                                                             `json:"postgresConnectionId,required,nullable" format:"uuid"`
+	Schema               string                                                                             `json:"schema,required"`
+	Table                string                                                                             `json:"table,required,nullable"`
+	JSON                 projectInferencePipelineListResponseItemsDataBackendPostgresDataBackendJSON        `json:"-"`
+}
+
+// projectInferencePipelineListResponseItemsDataBackendPostgresDataBackendJSON
+// contains the JSON metadata for the struct
+// [ProjectInferencePipelineListResponseItemsDataBackendPostgresDataBackend]
+type projectInferencePipelineListResponseItemsDataBackendPostgresDataBackendJSON struct {
+	BackendType          apijson.Field
+	Database             apijson.Field
+	PostgresConnectionID apijson.Field
+	Schema               apijson.Field
+	Table                apijson.Field
+	raw                  string
+	ExtraFields          map[string]apijson.Field
+}
+
+func (r *ProjectInferencePipelineListResponseItemsDataBackendPostgresDataBackend) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r projectInferencePipelineListResponseItemsDataBackendPostgresDataBackendJSON) RawJSON() string {
+	return r.raw
+}
+
+func (r ProjectInferencePipelineListResponseItemsDataBackendPostgresDataBackend) implementsProjectInferencePipelineListResponseItemsDataBackend() {
+}
+
+type ProjectInferencePipelineListResponseItemsDataBackendPostgresDataBackendBackendType string
+
+const (
+	ProjectInferencePipelineListResponseItemsDataBackendPostgresDataBackendBackendTypePostgres ProjectInferencePipelineListResponseItemsDataBackendPostgresDataBackendBackendType = "postgres"
+)
+
+func (r ProjectInferencePipelineListResponseItemsDataBackendPostgresDataBackendBackendType) IsKnown() bool {
+	switch r {
+	case ProjectInferencePipelineListResponseItemsDataBackendPostgresDataBackendBackendTypePostgres:
+		return true
+	}
+	return false
+}
+
+type ProjectInferencePipelineListResponseItemsDataBackendPostgresDataBackendConfig struct {
+	// Name of the column with the ground truths.
+	GroundTruthColumnName string `json:"groundTruthColumnName,nullable"`
+	// Name of the column with human feedback.
+	HumanFeedbackColumnName string `json:"humanFeedbackColumnName,nullable"`
+	// Name of the column with the latencies.
+	LatencyColumnName string `json:"latencyColumnName,nullable"`
+	// Name of the column with the timestamps. Timestamps must be in UNIX sec format.
+	// If not provided, the upload timestamp is used.
+	TimestampColumnName string                                                                            `json:"timestampColumnName,nullable"`
+	JSON                projectInferencePipelineListResponseItemsDataBackendPostgresDataBackendConfigJSON `json:"-"`
+}
+
+// projectInferencePipelineListResponseItemsDataBackendPostgresDataBackendConfigJSON
+// contains the JSON metadata for the struct
+// [ProjectInferencePipelineListResponseItemsDataBackendPostgresDataBackendConfig]
+type projectInferencePipelineListResponseItemsDataBackendPostgresDataBackendConfigJSON struct {
+	GroundTruthColumnName   apijson.Field
+	HumanFeedbackColumnName apijson.Field
+	LatencyColumnName       apijson.Field
+	TimestampColumnName     apijson.Field
+	raw                     string
+	ExtraFields             map[string]apijson.Field
+}
+
+func (r *ProjectInferencePipelineListResponseItemsDataBackendPostgresDataBackendConfig) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r projectInferencePipelineListResponseItemsDataBackendPostgresDataBackendConfigJSON) RawJSON() string {
+	return r.raw
+}
+
+type ProjectInferencePipelineListResponseItemsDataBackendBackendType string
+
+const (
+	ProjectInferencePipelineListResponseItemsDataBackendBackendTypeBigquery      ProjectInferencePipelineListResponseItemsDataBackendBackendType = "bigquery"
+	ProjectInferencePipelineListResponseItemsDataBackendBackendTypeDefault       ProjectInferencePipelineListResponseItemsDataBackendBackendType = "default"
+	ProjectInferencePipelineListResponseItemsDataBackendBackendTypeSnowflake     ProjectInferencePipelineListResponseItemsDataBackendBackendType = "snowflake"
+	ProjectInferencePipelineListResponseItemsDataBackendBackendTypeDatabricksDtl ProjectInferencePipelineListResponseItemsDataBackendBackendType = "databricks_dtl"
+	ProjectInferencePipelineListResponseItemsDataBackendBackendTypeRedshift      ProjectInferencePipelineListResponseItemsDataBackendBackendType = "redshift"
+	ProjectInferencePipelineListResponseItemsDataBackendBackendTypePostgres      ProjectInferencePipelineListResponseItemsDataBackendBackendType = "postgres"
+)
+
+func (r ProjectInferencePipelineListResponseItemsDataBackendBackendType) IsKnown() bool {
+	switch r {
+	case ProjectInferencePipelineListResponseItemsDataBackendBackendTypeBigquery, ProjectInferencePipelineListResponseItemsDataBackendBackendTypeDefault, ProjectInferencePipelineListResponseItemsDataBackendBackendTypeSnowflake, ProjectInferencePipelineListResponseItemsDataBackendBackendTypeDatabricksDtl, ProjectInferencePipelineListResponseItemsDataBackendBackendTypeRedshift, ProjectInferencePipelineListResponseItemsDataBackendBackendTypePostgres:
 		return true
 	}
 	return false
@@ -1444,49 +2121,49 @@ func (r ProjectInferencePipelineNewParamsDataBackend) MarshalJSON() (data []byte
 func (r ProjectInferencePipelineNewParamsDataBackend) implementsProjectInferencePipelineNewParamsDataBackendUnion() {
 }
 
-// Satisfied by [ProjectInferencePipelineNewParamsDataBackendObject],
-// [ProjectInferencePipelineNewParamsDataBackendBackendType],
-// [ProjectInferencePipelineNewParamsDataBackendObject],
-// [ProjectInferencePipelineNewParamsDataBackendObject],
-// [ProjectInferencePipelineNewParamsDataBackendObject],
-// [ProjectInferencePipelineNewParamsDataBackendObject],
+// Satisfied by [ProjectInferencePipelineNewParamsDataBackendBigQueryDataBackend],
+// [ProjectInferencePipelineNewParamsDataBackendDefaultDataBackend],
+// [ProjectInferencePipelineNewParamsDataBackendSnowflakeDataBackend],
+// [ProjectInferencePipelineNewParamsDataBackendDatabricksDtlDataBackend],
+// [ProjectInferencePipelineNewParamsDataBackendRedshiftDataBackend],
+// [ProjectInferencePipelineNewParamsDataBackendPostgresDataBackend],
 // [ProjectInferencePipelineNewParamsDataBackend].
 type ProjectInferencePipelineNewParamsDataBackendUnion interface {
 	implementsProjectInferencePipelineNewParamsDataBackendUnion()
 }
 
-type ProjectInferencePipelineNewParamsDataBackendObject struct {
-	BackendType          param.Field[ProjectInferencePipelineNewParamsDataBackendObjectBackendType]   `json:"backendType,required"`
-	BigqueryConnectionID param.Field[string]                                                          `json:"bigqueryConnectionId,required" format:"uuid"`
-	Config               param.Field[ProjectInferencePipelineNewParamsDataBackendObjectConfig]        `json:"config,required"`
-	DatasetID            param.Field[string]                                                          `json:"datasetId,required"`
-	ProjectID            param.Field[string]                                                          `json:"projectId,required"`
-	TableID              param.Field[string]                                                          `json:"tableId,required"`
-	PartitionType        param.Field[ProjectInferencePipelineNewParamsDataBackendObjectPartitionType] `json:"partitionType"`
+type ProjectInferencePipelineNewParamsDataBackendBigQueryDataBackend struct {
+	BackendType          param.Field[ProjectInferencePipelineNewParamsDataBackendBigQueryDataBackendBackendType]   `json:"backendType,required"`
+	BigqueryConnectionID param.Field[string]                                                                       `json:"bigqueryConnectionId,required" format:"uuid"`
+	Config               param.Field[ProjectInferencePipelineNewParamsDataBackendBigQueryDataBackendConfig]        `json:"config,required"`
+	DatasetID            param.Field[string]                                                                       `json:"datasetId,required"`
+	ProjectID            param.Field[string]                                                                       `json:"projectId,required"`
+	TableID              param.Field[string]                                                                       `json:"tableId,required"`
+	PartitionType        param.Field[ProjectInferencePipelineNewParamsDataBackendBigQueryDataBackendPartitionType] `json:"partitionType"`
 }
 
-func (r ProjectInferencePipelineNewParamsDataBackendObject) MarshalJSON() (data []byte, err error) {
+func (r ProjectInferencePipelineNewParamsDataBackendBigQueryDataBackend) MarshalJSON() (data []byte, err error) {
 	return apijson.MarshalRoot(r)
 }
 
-func (r ProjectInferencePipelineNewParamsDataBackendObject) implementsProjectInferencePipelineNewParamsDataBackendUnion() {
+func (r ProjectInferencePipelineNewParamsDataBackendBigQueryDataBackend) implementsProjectInferencePipelineNewParamsDataBackendUnion() {
 }
 
-type ProjectInferencePipelineNewParamsDataBackendObjectBackendType string
+type ProjectInferencePipelineNewParamsDataBackendBigQueryDataBackendBackendType string
 
 const (
-	ProjectInferencePipelineNewParamsDataBackendObjectBackendTypeBigquery ProjectInferencePipelineNewParamsDataBackendObjectBackendType = "bigquery"
+	ProjectInferencePipelineNewParamsDataBackendBigQueryDataBackendBackendTypeBigquery ProjectInferencePipelineNewParamsDataBackendBigQueryDataBackendBackendType = "bigquery"
 )
 
-func (r ProjectInferencePipelineNewParamsDataBackendObjectBackendType) IsKnown() bool {
+func (r ProjectInferencePipelineNewParamsDataBackendBigQueryDataBackendBackendType) IsKnown() bool {
 	switch r {
-	case ProjectInferencePipelineNewParamsDataBackendObjectBackendTypeBigquery:
+	case ProjectInferencePipelineNewParamsDataBackendBigQueryDataBackendBackendTypeBigquery:
 		return true
 	}
 	return false
 }
 
-type ProjectInferencePipelineNewParamsDataBackendObjectConfig struct {
+type ProjectInferencePipelineNewParamsDataBackendBigQueryDataBackendConfig struct {
 	// Name of the column with the ground truths.
 	GroundTruthColumnName param.Field[string] `json:"groundTruthColumnName"`
 	// Name of the column with human feedback.
@@ -1502,46 +2179,262 @@ type ProjectInferencePipelineNewParamsDataBackendObjectConfig struct {
 	TimestampColumnName param.Field[string] `json:"timestampColumnName"`
 }
 
-func (r ProjectInferencePipelineNewParamsDataBackendObjectConfig) MarshalJSON() (data []byte, err error) {
+func (r ProjectInferencePipelineNewParamsDataBackendBigQueryDataBackendConfig) MarshalJSON() (data []byte, err error) {
 	return apijson.MarshalRoot(r)
 }
 
-type ProjectInferencePipelineNewParamsDataBackendObjectPartitionType string
+type ProjectInferencePipelineNewParamsDataBackendBigQueryDataBackendPartitionType string
 
 const (
-	ProjectInferencePipelineNewParamsDataBackendObjectPartitionTypeDay   ProjectInferencePipelineNewParamsDataBackendObjectPartitionType = "DAY"
-	ProjectInferencePipelineNewParamsDataBackendObjectPartitionTypeMonth ProjectInferencePipelineNewParamsDataBackendObjectPartitionType = "MONTH"
-	ProjectInferencePipelineNewParamsDataBackendObjectPartitionTypeYear  ProjectInferencePipelineNewParamsDataBackendObjectPartitionType = "YEAR"
+	ProjectInferencePipelineNewParamsDataBackendBigQueryDataBackendPartitionTypeDay   ProjectInferencePipelineNewParamsDataBackendBigQueryDataBackendPartitionType = "DAY"
+	ProjectInferencePipelineNewParamsDataBackendBigQueryDataBackendPartitionTypeMonth ProjectInferencePipelineNewParamsDataBackendBigQueryDataBackendPartitionType = "MONTH"
+	ProjectInferencePipelineNewParamsDataBackendBigQueryDataBackendPartitionTypeYear  ProjectInferencePipelineNewParamsDataBackendBigQueryDataBackendPartitionType = "YEAR"
 )
 
-func (r ProjectInferencePipelineNewParamsDataBackendObjectPartitionType) IsKnown() bool {
+func (r ProjectInferencePipelineNewParamsDataBackendBigQueryDataBackendPartitionType) IsKnown() bool {
 	switch r {
-	case ProjectInferencePipelineNewParamsDataBackendObjectPartitionTypeDay, ProjectInferencePipelineNewParamsDataBackendObjectPartitionTypeMonth, ProjectInferencePipelineNewParamsDataBackendObjectPartitionTypeYear:
+	case ProjectInferencePipelineNewParamsDataBackendBigQueryDataBackendPartitionTypeDay, ProjectInferencePipelineNewParamsDataBackendBigQueryDataBackendPartitionTypeMonth, ProjectInferencePipelineNewParamsDataBackendBigQueryDataBackendPartitionTypeYear:
 		return true
 	}
 	return false
 }
 
-type ProjectInferencePipelineNewParamsDataBackendBackendType struct {
-	BackendType param.Field[ProjectInferencePipelineNewParamsDataBackendBackendTypeBackendType] `json:"backendType,required"`
+type ProjectInferencePipelineNewParamsDataBackendDefaultDataBackend struct {
+	BackendType param.Field[ProjectInferencePipelineNewParamsDataBackendDefaultDataBackendBackendType] `json:"backendType,required"`
 }
 
-func (r ProjectInferencePipelineNewParamsDataBackendBackendType) MarshalJSON() (data []byte, err error) {
+func (r ProjectInferencePipelineNewParamsDataBackendDefaultDataBackend) MarshalJSON() (data []byte, err error) {
 	return apijson.MarshalRoot(r)
 }
 
-func (r ProjectInferencePipelineNewParamsDataBackendBackendType) implementsProjectInferencePipelineNewParamsDataBackendUnion() {
+func (r ProjectInferencePipelineNewParamsDataBackendDefaultDataBackend) implementsProjectInferencePipelineNewParamsDataBackendUnion() {
 }
 
-type ProjectInferencePipelineNewParamsDataBackendBackendTypeBackendType string
+type ProjectInferencePipelineNewParamsDataBackendDefaultDataBackendBackendType string
 
 const (
-	ProjectInferencePipelineNewParamsDataBackendBackendTypeBackendTypeDefault ProjectInferencePipelineNewParamsDataBackendBackendTypeBackendType = "default"
+	ProjectInferencePipelineNewParamsDataBackendDefaultDataBackendBackendTypeDefault ProjectInferencePipelineNewParamsDataBackendDefaultDataBackendBackendType = "default"
 )
 
-func (r ProjectInferencePipelineNewParamsDataBackendBackendTypeBackendType) IsKnown() bool {
+func (r ProjectInferencePipelineNewParamsDataBackendDefaultDataBackendBackendType) IsKnown() bool {
 	switch r {
-	case ProjectInferencePipelineNewParamsDataBackendBackendTypeBackendTypeDefault:
+	case ProjectInferencePipelineNewParamsDataBackendDefaultDataBackendBackendTypeDefault:
+		return true
+	}
+	return false
+}
+
+type ProjectInferencePipelineNewParamsDataBackendSnowflakeDataBackend struct {
+	BackendType           param.Field[ProjectInferencePipelineNewParamsDataBackendSnowflakeDataBackendBackendType] `json:"backendType,required"`
+	Config                param.Field[ProjectInferencePipelineNewParamsDataBackendSnowflakeDataBackendConfig]      `json:"config,required"`
+	Database              param.Field[string]                                                                      `json:"database,required"`
+	Schema                param.Field[string]                                                                      `json:"schema,required"`
+	SnowflakeConnectionID param.Field[string]                                                                      `json:"snowflakeConnectionId,required" format:"uuid"`
+	Table                 param.Field[string]                                                                      `json:"table,required"`
+}
+
+func (r ProjectInferencePipelineNewParamsDataBackendSnowflakeDataBackend) MarshalJSON() (data []byte, err error) {
+	return apijson.MarshalRoot(r)
+}
+
+func (r ProjectInferencePipelineNewParamsDataBackendSnowflakeDataBackend) implementsProjectInferencePipelineNewParamsDataBackendUnion() {
+}
+
+type ProjectInferencePipelineNewParamsDataBackendSnowflakeDataBackendBackendType string
+
+const (
+	ProjectInferencePipelineNewParamsDataBackendSnowflakeDataBackendBackendTypeSnowflake ProjectInferencePipelineNewParamsDataBackendSnowflakeDataBackendBackendType = "snowflake"
+)
+
+func (r ProjectInferencePipelineNewParamsDataBackendSnowflakeDataBackendBackendType) IsKnown() bool {
+	switch r {
+	case ProjectInferencePipelineNewParamsDataBackendSnowflakeDataBackendBackendTypeSnowflake:
+		return true
+	}
+	return false
+}
+
+type ProjectInferencePipelineNewParamsDataBackendSnowflakeDataBackendConfig struct {
+	// Name of the column with the ground truths.
+	GroundTruthColumnName param.Field[string] `json:"groundTruthColumnName"`
+	// Name of the column with human feedback.
+	HumanFeedbackColumnName param.Field[string] `json:"humanFeedbackColumnName"`
+	// Name of the column with the inference ids. This is useful if you want to update
+	// rows at a later point in time. If not provided, a unique id is generated by
+	// Openlayer.
+	InferenceIDColumnName param.Field[string] `json:"inferenceIdColumnName"`
+	// Name of the column with the latencies.
+	LatencyColumnName param.Field[string] `json:"latencyColumnName"`
+	// Name of the column with the timestamps. Timestamps must be in UNIX sec format.
+	// If not provided, the upload timestamp is used.
+	TimestampColumnName param.Field[string] `json:"timestampColumnName"`
+}
+
+func (r ProjectInferencePipelineNewParamsDataBackendSnowflakeDataBackendConfig) MarshalJSON() (data []byte, err error) {
+	return apijson.MarshalRoot(r)
+}
+
+type ProjectInferencePipelineNewParamsDataBackendDatabricksDtlDataBackend struct {
+	BackendType               param.Field[ProjectInferencePipelineNewParamsDataBackendDatabricksDtlDataBackendBackendType] `json:"backendType,required"`
+	Config                    param.Field[ProjectInferencePipelineNewParamsDataBackendDatabricksDtlDataBackendConfig]      `json:"config,required"`
+	DatabricksDtlConnectionID param.Field[string]                                                                          `json:"databricksDtlConnectionId,required" format:"uuid"`
+	TableID                   param.Field[string]                                                                          `json:"tableId,required"`
+}
+
+func (r ProjectInferencePipelineNewParamsDataBackendDatabricksDtlDataBackend) MarshalJSON() (data []byte, err error) {
+	return apijson.MarshalRoot(r)
+}
+
+func (r ProjectInferencePipelineNewParamsDataBackendDatabricksDtlDataBackend) implementsProjectInferencePipelineNewParamsDataBackendUnion() {
+}
+
+type ProjectInferencePipelineNewParamsDataBackendDatabricksDtlDataBackendBackendType string
+
+const (
+	ProjectInferencePipelineNewParamsDataBackendDatabricksDtlDataBackendBackendTypeDatabricksDtl ProjectInferencePipelineNewParamsDataBackendDatabricksDtlDataBackendBackendType = "databricks_dtl"
+)
+
+func (r ProjectInferencePipelineNewParamsDataBackendDatabricksDtlDataBackendBackendType) IsKnown() bool {
+	switch r {
+	case ProjectInferencePipelineNewParamsDataBackendDatabricksDtlDataBackendBackendTypeDatabricksDtl:
+		return true
+	}
+	return false
+}
+
+type ProjectInferencePipelineNewParamsDataBackendDatabricksDtlDataBackendConfig struct {
+	// Name of the column with the ground truths.
+	GroundTruthColumnName param.Field[string] `json:"groundTruthColumnName"`
+	// Name of the column with human feedback.
+	HumanFeedbackColumnName param.Field[string] `json:"humanFeedbackColumnName"`
+	// Name of the column with the inference ids. This is useful if you want to update
+	// rows at a later point in time. If not provided, a unique id is generated by
+	// Openlayer.
+	InferenceIDColumnName param.Field[string] `json:"inferenceIdColumnName"`
+	// Name of the column with the latencies.
+	LatencyColumnName param.Field[string] `json:"latencyColumnName"`
+	// Name of the column with the timestamps. Timestamps must be in UNIX sec format.
+	// If not provided, the upload timestamp is used.
+	TimestampColumnName param.Field[string] `json:"timestampColumnName"`
+}
+
+func (r ProjectInferencePipelineNewParamsDataBackendDatabricksDtlDataBackendConfig) MarshalJSON() (data []byte, err error) {
+	return apijson.MarshalRoot(r)
+}
+
+type ProjectInferencePipelineNewParamsDataBackendRedshiftDataBackend struct {
+	BackendType          param.Field[ProjectInferencePipelineNewParamsDataBackendRedshiftDataBackendBackendType] `json:"backendType,required"`
+	Config               param.Field[ProjectInferencePipelineNewParamsDataBackendRedshiftDataBackendConfig]      `json:"config,required"`
+	RedshiftConnectionID param.Field[string]                                                                     `json:"redshiftConnectionId,required" format:"uuid"`
+	SchemaName           param.Field[string]                                                                     `json:"schemaName,required"`
+	TableName            param.Field[string]                                                                     `json:"tableName,required"`
+}
+
+func (r ProjectInferencePipelineNewParamsDataBackendRedshiftDataBackend) MarshalJSON() (data []byte, err error) {
+	return apijson.MarshalRoot(r)
+}
+
+func (r ProjectInferencePipelineNewParamsDataBackendRedshiftDataBackend) implementsProjectInferencePipelineNewParamsDataBackendUnion() {
+}
+
+type ProjectInferencePipelineNewParamsDataBackendRedshiftDataBackendBackendType string
+
+const (
+	ProjectInferencePipelineNewParamsDataBackendRedshiftDataBackendBackendTypeRedshift ProjectInferencePipelineNewParamsDataBackendRedshiftDataBackendBackendType = "redshift"
+)
+
+func (r ProjectInferencePipelineNewParamsDataBackendRedshiftDataBackendBackendType) IsKnown() bool {
+	switch r {
+	case ProjectInferencePipelineNewParamsDataBackendRedshiftDataBackendBackendTypeRedshift:
+		return true
+	}
+	return false
+}
+
+type ProjectInferencePipelineNewParamsDataBackendRedshiftDataBackendConfig struct {
+	// Name of the column with the ground truths.
+	GroundTruthColumnName param.Field[string] `json:"groundTruthColumnName"`
+	// Name of the column with human feedback.
+	HumanFeedbackColumnName param.Field[string] `json:"humanFeedbackColumnName"`
+	// Name of the column with the inference ids. This is useful if you want to update
+	// rows at a later point in time. If not provided, a unique id is generated by
+	// Openlayer.
+	InferenceIDColumnName param.Field[string] `json:"inferenceIdColumnName"`
+	// Name of the column with the latencies.
+	LatencyColumnName param.Field[string] `json:"latencyColumnName"`
+	// Name of the column with the timestamps. Timestamps must be in UNIX sec format.
+	// If not provided, the upload timestamp is used.
+	TimestampColumnName param.Field[string] `json:"timestampColumnName"`
+}
+
+func (r ProjectInferencePipelineNewParamsDataBackendRedshiftDataBackendConfig) MarshalJSON() (data []byte, err error) {
+	return apijson.MarshalRoot(r)
+}
+
+type ProjectInferencePipelineNewParamsDataBackendPostgresDataBackend struct {
+	BackendType          param.Field[ProjectInferencePipelineNewParamsDataBackendPostgresDataBackendBackendType] `json:"backendType,required"`
+	Config               param.Field[ProjectInferencePipelineNewParamsDataBackendPostgresDataBackendConfig]      `json:"config,required"`
+	Database             param.Field[string]                                                                     `json:"database,required"`
+	PostgresConnectionID param.Field[string]                                                                     `json:"postgresConnectionId,required" format:"uuid"`
+	Schema               param.Field[string]                                                                     `json:"schema,required"`
+	Table                param.Field[string]                                                                     `json:"table,required"`
+}
+
+func (r ProjectInferencePipelineNewParamsDataBackendPostgresDataBackend) MarshalJSON() (data []byte, err error) {
+	return apijson.MarshalRoot(r)
+}
+
+func (r ProjectInferencePipelineNewParamsDataBackendPostgresDataBackend) implementsProjectInferencePipelineNewParamsDataBackendUnion() {
+}
+
+type ProjectInferencePipelineNewParamsDataBackendPostgresDataBackendBackendType string
+
+const (
+	ProjectInferencePipelineNewParamsDataBackendPostgresDataBackendBackendTypePostgres ProjectInferencePipelineNewParamsDataBackendPostgresDataBackendBackendType = "postgres"
+)
+
+func (r ProjectInferencePipelineNewParamsDataBackendPostgresDataBackendBackendType) IsKnown() bool {
+	switch r {
+	case ProjectInferencePipelineNewParamsDataBackendPostgresDataBackendBackendTypePostgres:
+		return true
+	}
+	return false
+}
+
+type ProjectInferencePipelineNewParamsDataBackendPostgresDataBackendConfig struct {
+	// Name of the column with the ground truths.
+	GroundTruthColumnName param.Field[string] `json:"groundTruthColumnName"`
+	// Name of the column with human feedback.
+	HumanFeedbackColumnName param.Field[string] `json:"humanFeedbackColumnName"`
+	// Name of the column with the inference ids. This is useful if you want to update
+	// rows at a later point in time. If not provided, a unique id is generated by
+	// Openlayer.
+	InferenceIDColumnName param.Field[string] `json:"inferenceIdColumnName"`
+	// Name of the column with the latencies.
+	LatencyColumnName param.Field[string] `json:"latencyColumnName"`
+	// Name of the column with the timestamps. Timestamps must be in UNIX sec format.
+	// If not provided, the upload timestamp is used.
+	TimestampColumnName param.Field[string] `json:"timestampColumnName"`
+}
+
+func (r ProjectInferencePipelineNewParamsDataBackendPostgresDataBackendConfig) MarshalJSON() (data []byte, err error) {
+	return apijson.MarshalRoot(r)
+}
+
+type ProjectInferencePipelineNewParamsDataBackendBackendType string
+
+const (
+	ProjectInferencePipelineNewParamsDataBackendBackendTypeBigquery      ProjectInferencePipelineNewParamsDataBackendBackendType = "bigquery"
+	ProjectInferencePipelineNewParamsDataBackendBackendTypeDefault       ProjectInferencePipelineNewParamsDataBackendBackendType = "default"
+	ProjectInferencePipelineNewParamsDataBackendBackendTypeSnowflake     ProjectInferencePipelineNewParamsDataBackendBackendType = "snowflake"
+	ProjectInferencePipelineNewParamsDataBackendBackendTypeDatabricksDtl ProjectInferencePipelineNewParamsDataBackendBackendType = "databricks_dtl"
+	ProjectInferencePipelineNewParamsDataBackendBackendTypeRedshift      ProjectInferencePipelineNewParamsDataBackendBackendType = "redshift"
+	ProjectInferencePipelineNewParamsDataBackendBackendTypePostgres      ProjectInferencePipelineNewParamsDataBackendBackendType = "postgres"
+)
+
+func (r ProjectInferencePipelineNewParamsDataBackendBackendType) IsKnown() bool {
+	switch r {
+	case ProjectInferencePipelineNewParamsDataBackendBackendTypeBigquery, ProjectInferencePipelineNewParamsDataBackendBackendTypeDefault, ProjectInferencePipelineNewParamsDataBackendBackendTypeSnowflake, ProjectInferencePipelineNewParamsDataBackendBackendTypeDatabricksDtl, ProjectInferencePipelineNewParamsDataBackendBackendTypeRedshift, ProjectInferencePipelineNewParamsDataBackendBackendTypePostgres:
 		return true
 	}
 	return false
