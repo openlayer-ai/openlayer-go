@@ -31,10 +31,10 @@ func TestProjectInferencePipelineNewWithOptionalParams(t *testing.T) {
 		openlayer.ProjectInferencePipelineNewParams{
 			Description: openlayer.F("This pipeline is used for production."),
 			Name:        openlayer.F("production"),
-			DataBackend: openlayer.F[openlayer.ProjectInferencePipelineNewParamsDataBackendUnion](openlayer.ProjectInferencePipelineNewParamsDataBackendObject{
-				BackendType:          openlayer.F(openlayer.ProjectInferencePipelineNewParamsDataBackendObjectBackendTypeBigquery),
+			DataBackend: openlayer.F[openlayer.ProjectInferencePipelineNewParamsDataBackendUnion](openlayer.ProjectInferencePipelineNewParamsDataBackendBigQueryDataBackend{
+				BackendType:          openlayer.F(openlayer.ProjectInferencePipelineNewParamsDataBackendBigQueryDataBackendBackendTypeBigquery),
 				BigqueryConnectionID: openlayer.F("182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e"),
-				Config: openlayer.F(openlayer.ProjectInferencePipelineNewParamsDataBackendObjectConfig{
+				Config: openlayer.F(openlayer.ProjectInferencePipelineNewParamsDataBackendBigQueryDataBackendConfig{
 					GroundTruthColumnName:   openlayer.F("ground_truth"),
 					HumanFeedbackColumnName: openlayer.F("human_feedback"),
 					InferenceIDColumnName:   openlayer.F("id"),
@@ -44,7 +44,7 @@ func TestProjectInferencePipelineNewWithOptionalParams(t *testing.T) {
 				DatasetID:     openlayer.F("my-dataset"),
 				ProjectID:     openlayer.F("my-project"),
 				TableID:       openlayer.F("my-table"),
-				PartitionType: openlayer.F(openlayer.ProjectInferencePipelineNewParamsDataBackendObjectPartitionTypeDay),
+				PartitionType: openlayer.F(openlayer.ProjectInferencePipelineNewParamsDataBackendBigQueryDataBackendPartitionTypeDay),
 			}),
 			Project: openlayer.F(openlayer.ProjectInferencePipelineNewParamsProject{
 				Name:        openlayer.F("My Project"),
