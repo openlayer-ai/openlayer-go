@@ -211,7 +211,6 @@ func (r workspaceInviteNewResponseItemsWorkspaceJSON) RawJSON() string {
 }
 
 type WorkspaceInviteListResponse struct {
-	Meta  WorkspaceInviteListResponse_Meta  `json:"_meta,required"`
 	Items []WorkspaceInviteListResponseItem `json:"items,required"`
 	JSON  workspaceInviteListResponseJSON   `json:"-"`
 }
@@ -219,7 +218,6 @@ type WorkspaceInviteListResponse struct {
 // workspaceInviteListResponseJSON contains the JSON metadata for the struct
 // [WorkspaceInviteListResponse]
 type workspaceInviteListResponseJSON struct {
-	Meta        apijson.Field
 	Items       apijson.Field
 	raw         string
 	ExtraFields map[string]apijson.Field
@@ -230,37 +228,6 @@ func (r *WorkspaceInviteListResponse) UnmarshalJSON(data []byte) (err error) {
 }
 
 func (r workspaceInviteListResponseJSON) RawJSON() string {
-	return r.raw
-}
-
-type WorkspaceInviteListResponse_Meta struct {
-	// The current page.
-	Page int64 `json:"page,required"`
-	// The number of items per page.
-	PerPage int64 `json:"perPage,required"`
-	// The total number of items.
-	TotalItems int64 `json:"totalItems,required"`
-	// The total number of pages.
-	TotalPages int64                               `json:"totalPages,required"`
-	JSON       workspaceInviteListResponseMetaJSON `json:"-"`
-}
-
-// workspaceInviteListResponseMetaJSON contains the JSON metadata for the struct
-// [WorkspaceInviteListResponse_Meta]
-type workspaceInviteListResponseMetaJSON struct {
-	Page        apijson.Field
-	PerPage     apijson.Field
-	TotalItems  apijson.Field
-	TotalPages  apijson.Field
-	raw         string
-	ExtraFields map[string]apijson.Field
-}
-
-func (r *WorkspaceInviteListResponse_Meta) UnmarshalJSON(data []byte) (err error) {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-func (r workspaceInviteListResponseMetaJSON) RawJSON() string {
 	return r.raw
 }
 
