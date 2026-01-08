@@ -18,6 +18,7 @@ import (
 type Client struct {
 	Options            []option.RequestOption
 	Projects           *ProjectService
+	Workspaces         *WorkspaceService
 	Commits            *CommitService
 	InferencePipelines *InferencePipelineService
 	Storage            *StorageService
@@ -47,6 +48,7 @@ func NewClient(opts ...option.RequestOption) (r *Client) {
 	r = &Client{Options: opts}
 
 	r.Projects = NewProjectService(opts...)
+	r.Workspaces = NewWorkspaceService(opts...)
 	r.Commits = NewCommitService(opts...)
 	r.InferencePipelines = NewInferencePipelineService(opts...)
 	r.Storage = NewStorageService(opts...)
