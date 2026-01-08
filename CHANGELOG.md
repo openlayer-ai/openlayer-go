@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.0 (2026-01-08)
+
+Full Changelog: [v0.2.1...v0.3.0](https://github.com/openlayer-ai/openlayer-go/compare/v0.2.1...v0.3.0)
+
+### Features
+
+* **api:** add missing endpoints ([144444a](https://github.com/openlayer-ai/openlayer-go/commit/144444a432c251ac659830e9cba3235c32f9b8cf))
+
 ## 0.2.1 (2026-01-06)
 
 Full Changelog: [v0.2.0...v0.2.1](https://github.com/openlayer-ai/openlayer-go/compare/v0.2.0...v0.2.1)
