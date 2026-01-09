@@ -4,27 +4,65 @@ package shared
 
 type UnionString string
 
-func (UnionString) ImplementsProjectTestNewResponseThresholdsValueUnion()                           {}
-func (UnionString) ImplementsProjectTestListResponseItemsThresholdsValueUnion()                     {}
-func (UnionString) ImplementsProjectTestNewParamsThresholdsValueUnion()                             {}
-func (UnionString) ImplementsProjectTestUpdateParamsPayloadsThresholdsValueUnion()                  {}
-func (UnionString) ImplementsCommitTestResultListResponseItemsGoalThresholdsValueUnion()            {}
+func (UnionString) ImplementsProjectTestNewResponseThresholdsValueUnion()                {}
+func (UnionString) ImplementsProjectTestListResponseItemsThresholdsValueUnion()          {}
+func (UnionString) ImplementsProjectTestNewParamsThresholdsValueUnion()                  {}
+func (UnionString) ImplementsProjectTestUpdateParamsPayloadsThresholdsValueUnion()       {}
+func (UnionString) ImplementsCommitTestResultListResponseItemsGoalThresholdsValueUnion() {}
+func (UnionString) ImplementsCommitTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterValueUnion() {
+}
+func (UnionString) ImplementsCommitTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilterValueUnion() {
+}
 func (UnionString) ImplementsInferencePipelineTestResultListResponseItemsGoalThresholdsValueUnion() {}
+func (UnionString) ImplementsInferencePipelineTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterValueUnion() {
+}
+func (UnionString) ImplementsInferencePipelineTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilterValueUnion() {
+}
+func (UnionString) ImplementsTestListResultsResponseItemsGoalThresholdsValueUnion() {}
+func (UnionString) ImplementsTestListResultsResponseItemsRowsBodyColumnFiltersSetColumnFilterValueUnion() {
+}
+func (UnionString) ImplementsTestListResultsResponseItemsRowsBodyColumnFiltersStringColumnFilterValueUnion() {
+}
+func (UnionString) ImplementsTestListResultsResponseLastUnskippedResultGoalThresholdsValueUnion() {}
+func (UnionString) ImplementsTestListResultsResponseLastUnskippedResultRowsBodyColumnFiltersSetColumnFilterValueUnion() {
+}
+func (UnionString) ImplementsTestListResultsResponseLastUnskippedResultRowsBodyColumnFiltersStringColumnFilterValueUnion() {
+}
 
 type UnionBool bool
 
-func (UnionBool) ImplementsProjectTestNewResponseThresholdsValueUnion()                           {}
-func (UnionBool) ImplementsProjectTestListResponseItemsThresholdsValueUnion()                     {}
-func (UnionBool) ImplementsProjectTestNewParamsThresholdsValueUnion()                             {}
-func (UnionBool) ImplementsProjectTestUpdateParamsPayloadsThresholdsValueUnion()                  {}
-func (UnionBool) ImplementsCommitTestResultListResponseItemsGoalThresholdsValueUnion()            {}
+func (UnionBool) ImplementsProjectTestNewResponseThresholdsValueUnion()                {}
+func (UnionBool) ImplementsProjectTestListResponseItemsThresholdsValueUnion()          {}
+func (UnionBool) ImplementsProjectTestNewParamsThresholdsValueUnion()                  {}
+func (UnionBool) ImplementsProjectTestUpdateParamsPayloadsThresholdsValueUnion()       {}
+func (UnionBool) ImplementsCommitTestResultListResponseItemsGoalThresholdsValueUnion() {}
+func (UnionBool) ImplementsCommitTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilterValueUnion() {
+}
 func (UnionBool) ImplementsInferencePipelineTestResultListResponseItemsGoalThresholdsValueUnion() {}
+func (UnionBool) ImplementsInferencePipelineTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilterValueUnion() {
+}
+func (UnionBool) ImplementsTestListResultsResponseItemsGoalThresholdsValueUnion() {}
+func (UnionBool) ImplementsTestListResultsResponseItemsRowsBodyColumnFiltersStringColumnFilterValueUnion() {
+}
+func (UnionBool) ImplementsTestListResultsResponseLastUnskippedResultGoalThresholdsValueUnion() {}
+func (UnionBool) ImplementsTestListResultsResponseLastUnskippedResultRowsBodyColumnFiltersStringColumnFilterValueUnion() {
+}
 
 type UnionFloat float64
 
-func (UnionFloat) ImplementsProjectTestNewResponseThresholdsValueUnion()                           {}
-func (UnionFloat) ImplementsProjectTestListResponseItemsThresholdsValueUnion()                     {}
-func (UnionFloat) ImplementsProjectTestNewParamsThresholdsValueUnion()                             {}
-func (UnionFloat) ImplementsProjectTestUpdateParamsPayloadsThresholdsValueUnion()                  {}
-func (UnionFloat) ImplementsCommitTestResultListResponseItemsGoalThresholdsValueUnion()            {}
+func (UnionFloat) ImplementsProjectTestNewResponseThresholdsValueUnion()                {}
+func (UnionFloat) ImplementsProjectTestListResponseItemsThresholdsValueUnion()          {}
+func (UnionFloat) ImplementsProjectTestNewParamsThresholdsValueUnion()                  {}
+func (UnionFloat) ImplementsProjectTestUpdateParamsPayloadsThresholdsValueUnion()       {}
+func (UnionFloat) ImplementsCommitTestResultListResponseItemsGoalThresholdsValueUnion() {}
+func (UnionFloat) ImplementsCommitTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterValueUnion() {
+}
 func (UnionFloat) ImplementsInferencePipelineTestResultListResponseItemsGoalThresholdsValueUnion() {}
+func (UnionFloat) ImplementsInferencePipelineTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterValueUnion() {
+}
+func (UnionFloat) ImplementsTestListResultsResponseItemsGoalThresholdsValueUnion() {}
+func (UnionFloat) ImplementsTestListResultsResponseItemsRowsBodyColumnFiltersSetColumnFilterValueUnion() {
+}
+func (UnionFloat) ImplementsTestListResultsResponseLastUnskippedResultGoalThresholdsValueUnion() {}
+func (UnionFloat) ImplementsTestListResultsResponseLastUnskippedResultRowsBodyColumnFiltersSetColumnFilterValueUnion() {
+}

@@ -91,11 +91,16 @@ type CommitTestResultListResponseItem struct {
 	// The status of the test.
 	Status CommitTestResultListResponseItemsStatus `json:"status,required"`
 	// The status message.
-	StatusMessage string                                `json:"statusMessage,required,nullable"`
-	Goal          CommitTestResultListResponseItemsGoal `json:"goal"`
+	StatusMessage  string                                           `json:"statusMessage,required,nullable"`
+	ExpectedValues []CommitTestResultListResponseItemsExpectedValue `json:"expectedValues"`
+	Goal           CommitTestResultListResponseItemsGoal            `json:"goal"`
 	// The test id.
-	GoalID string                               `json:"goalId,nullable" format:"uuid"`
-	JSON   commitTestResultListResponseItemJSON `json:"-"`
+	GoalID string `json:"goalId,nullable" format:"uuid"`
+	// The URL to the rows of the test result.
+	Rows string `json:"rows"`
+	// The body of the rows request.
+	RowsBody CommitTestResultListResponseItemsRowsBody `json:"rowsBody,nullable"`
+	JSON     commitTestResultListResponseItemJSON      `json:"-"`
 }
 
 // commitTestResultListResponseItemJSON contains the JSON metadata for the struct
@@ -110,8 +115,11 @@ type commitTestResultListResponseItemJSON struct {
 	ProjectVersionID    apijson.Field
 	Status              apijson.Field
 	StatusMessage       apijson.Field
+	ExpectedValues      apijson.Field
 	Goal                apijson.Field
 	GoalID              apijson.Field
+	Rows                apijson.Field
+	RowsBody            apijson.Field
 	raw                 string
 	ExtraFields         map[string]apijson.Field
 }
@@ -141,6 +149,34 @@ func (r CommitTestResultListResponseItemsStatus) IsKnown() bool {
 		return true
 	}
 	return false
+}
+
+type CommitTestResultListResponseItemsExpectedValue struct {
+	// the lower threshold for the expected value
+	LowerThreshold float64 `json:"lowerThreshold,nullable"`
+	// One of the `measurement` values in the test's thresholds
+	Measurement string `json:"measurement"`
+	// The upper threshold for the expected value
+	UpperThreshold float64                                            `json:"upperThreshold,nullable"`
+	JSON           commitTestResultListResponseItemsExpectedValueJSON `json:"-"`
+}
+
+// commitTestResultListResponseItemsExpectedValueJSON contains the JSON metadata
+// for the struct [CommitTestResultListResponseItemsExpectedValue]
+type commitTestResultListResponseItemsExpectedValueJSON struct {
+	LowerThreshold apijson.Field
+	Measurement    apijson.Field
+	UpperThreshold apijson.Field
+	raw            string
+	ExtraFields    map[string]apijson.Field
+}
+
+func (r *CommitTestResultListResponseItemsExpectedValue) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r commitTestResultListResponseItemsExpectedValueJSON) RawJSON() string {
+	return r.raw
 }
 
 type CommitTestResultListResponseItemsGoal struct {
@@ -483,6 +519,324 @@ const (
 func (r CommitTestResultListResponseItemsGoalType) IsKnown() bool {
 	switch r {
 	case CommitTestResultListResponseItemsGoalTypeIntegrity, CommitTestResultListResponseItemsGoalTypeConsistency, CommitTestResultListResponseItemsGoalTypePerformance:
+		return true
+	}
+	return false
+}
+
+// The body of the rows request.
+type CommitTestResultListResponseItemsRowsBody struct {
+	ColumnFilters     []CommitTestResultListResponseItemsRowsBodyColumnFilter `json:"columnFilters,nullable"`
+	ExcludeRowIDList  []int64                                                 `json:"excludeRowIdList,nullable"`
+	NotSearchQueryAnd []string                                                `json:"notSearchQueryAnd,nullable"`
+	NotSearchQueryOr  []string                                                `json:"notSearchQueryOr,nullable"`
+	RowIDList         []int64                                                 `json:"rowIdList,nullable"`
+	SearchQueryAnd    []string                                                `json:"searchQueryAnd,nullable"`
+	SearchQueryOr     []string                                                `json:"searchQueryOr,nullable"`
+	JSON              commitTestResultListResponseItemsRowsBodyJSON           `json:"-"`
+}
+
+// commitTestResultListResponseItemsRowsBodyJSON contains the JSON metadata for the
+// struct [CommitTestResultListResponseItemsRowsBody]
+type commitTestResultListResponseItemsRowsBodyJSON struct {
+	ColumnFilters     apijson.Field
+	ExcludeRowIDList  apijson.Field
+	NotSearchQueryAnd apijson.Field
+	NotSearchQueryOr  apijson.Field
+	RowIDList         apijson.Field
+	SearchQueryAnd    apijson.Field
+	SearchQueryOr     apijson.Field
+	raw               string
+	ExtraFields       map[string]apijson.Field
+}
+
+func (r *CommitTestResultListResponseItemsRowsBody) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r commitTestResultListResponseItemsRowsBodyJSON) RawJSON() string {
+	return r.raw
+}
+
+type CommitTestResultListResponseItemsRowsBodyColumnFilter struct {
+	// The name of the column.
+	Measurement string                                                         `json:"measurement,required"`
+	Operator    CommitTestResultListResponseItemsRowsBodyColumnFiltersOperator `json:"operator,required"`
+	// This field can have the runtime type of
+	// [[]CommitTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterValueUnion],
+	// [float64],
+	// [CommitTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilterValueUnion].
+	Value interface{}                                               `json:"value,required"`
+	JSON  commitTestResultListResponseItemsRowsBodyColumnFilterJSON `json:"-"`
+	union CommitTestResultListResponseItemsRowsBodyColumnFiltersUnion
+}
+
+// commitTestResultListResponseItemsRowsBodyColumnFilterJSON contains the JSON
+// metadata for the struct [CommitTestResultListResponseItemsRowsBodyColumnFilter]
+type commitTestResultListResponseItemsRowsBodyColumnFilterJSON struct {
+	Measurement apijson.Field
+	Operator    apijson.Field
+	Value       apijson.Field
+	raw         string
+	ExtraFields map[string]apijson.Field
+}
+
+func (r commitTestResultListResponseItemsRowsBodyColumnFilterJSON) RawJSON() string {
+	return r.raw
+}
+
+func (r *CommitTestResultListResponseItemsRowsBodyColumnFilter) UnmarshalJSON(data []byte) (err error) {
+	*r = CommitTestResultListResponseItemsRowsBodyColumnFilter{}
+	err = apijson.UnmarshalRoot(data, &r.union)
+	if err != nil {
+		return err
+	}
+	return apijson.Port(r.union, &r)
+}
+
+// AsUnion returns a [CommitTestResultListResponseItemsRowsBodyColumnFiltersUnion]
+// interface which you can cast to the specific types for more type safety.
+//
+// Possible runtime types of the union are
+// [CommitTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilter],
+// [CommitTestResultListResponseItemsRowsBodyColumnFiltersNumericColumnFilter],
+// [CommitTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilter].
+func (r CommitTestResultListResponseItemsRowsBodyColumnFilter) AsUnion() CommitTestResultListResponseItemsRowsBodyColumnFiltersUnion {
+	return r.union
+}
+
+// Union satisfied by
+// [CommitTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilter],
+// [CommitTestResultListResponseItemsRowsBodyColumnFiltersNumericColumnFilter] or
+// [CommitTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilter].
+type CommitTestResultListResponseItemsRowsBodyColumnFiltersUnion interface {
+	implementsCommitTestResultListResponseItemsRowsBodyColumnFilter()
+}
+
+func init() {
+	apijson.RegisterUnion(
+		reflect.TypeOf((*CommitTestResultListResponseItemsRowsBodyColumnFiltersUnion)(nil)).Elem(),
+		"",
+		apijson.UnionVariant{
+			TypeFilter: gjson.JSON,
+			Type:       reflect.TypeOf(CommitTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilter{}),
+		},
+		apijson.UnionVariant{
+			TypeFilter: gjson.JSON,
+			Type:       reflect.TypeOf(CommitTestResultListResponseItemsRowsBodyColumnFiltersNumericColumnFilter{}),
+		},
+		apijson.UnionVariant{
+			TypeFilter: gjson.JSON,
+			Type:       reflect.TypeOf(CommitTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilter{}),
+		},
+	)
+}
+
+type CommitTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilter struct {
+	// The name of the column.
+	Measurement string                                                                            `json:"measurement,required"`
+	Operator    CommitTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterOperator     `json:"operator,required"`
+	Value       []CommitTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterValueUnion `json:"value,required"`
+	JSON        commitTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterJSON         `json:"-"`
+}
+
+// commitTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterJSON
+// contains the JSON metadata for the struct
+// [CommitTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilter]
+type commitTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterJSON struct {
+	Measurement apijson.Field
+	Operator    apijson.Field
+	Value       apijson.Field
+	raw         string
+	ExtraFields map[string]apijson.Field
+}
+
+func (r *CommitTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilter) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r commitTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterJSON) RawJSON() string {
+	return r.raw
+}
+
+func (r CommitTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilter) implementsCommitTestResultListResponseItemsRowsBodyColumnFilter() {
+}
+
+type CommitTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterOperator string
+
+const (
+	CommitTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterOperatorContainsNone CommitTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterOperator = "contains_none"
+	CommitTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterOperatorContainsAny  CommitTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterOperator = "contains_any"
+	CommitTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterOperatorContainsAll  CommitTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterOperator = "contains_all"
+	CommitTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterOperatorOneOf        CommitTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterOperator = "one_of"
+	CommitTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterOperatorNoneOf       CommitTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterOperator = "none_of"
+)
+
+func (r CommitTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterOperator) IsKnown() bool {
+	switch r {
+	case CommitTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterOperatorContainsNone, CommitTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterOperatorContainsAny, CommitTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterOperatorContainsAll, CommitTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterOperatorOneOf, CommitTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterOperatorNoneOf:
+		return true
+	}
+	return false
+}
+
+// Union satisfied by [shared.UnionString] or [shared.UnionFloat].
+type CommitTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterValueUnion interface {
+	ImplementsCommitTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterValueUnion()
+}
+
+func init() {
+	apijson.RegisterUnion(
+		reflect.TypeOf((*CommitTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterValueUnion)(nil)).Elem(),
+		"",
+		apijson.UnionVariant{
+			TypeFilter: gjson.String,
+			Type:       reflect.TypeOf(shared.UnionString("")),
+		},
+		apijson.UnionVariant{
+			TypeFilter: gjson.Number,
+			Type:       reflect.TypeOf(shared.UnionFloat(0)),
+		},
+	)
+}
+
+type CommitTestResultListResponseItemsRowsBodyColumnFiltersNumericColumnFilter struct {
+	// The name of the column.
+	Measurement string                                                                            `json:"measurement,required"`
+	Operator    CommitTestResultListResponseItemsRowsBodyColumnFiltersNumericColumnFilterOperator `json:"operator,required"`
+	Value       float64                                                                           `json:"value,required,nullable"`
+	JSON        commitTestResultListResponseItemsRowsBodyColumnFiltersNumericColumnFilterJSON     `json:"-"`
+}
+
+// commitTestResultListResponseItemsRowsBodyColumnFiltersNumericColumnFilterJSON
+// contains the JSON metadata for the struct
+// [CommitTestResultListResponseItemsRowsBodyColumnFiltersNumericColumnFilter]
+type commitTestResultListResponseItemsRowsBodyColumnFiltersNumericColumnFilterJSON struct {
+	Measurement apijson.Field
+	Operator    apijson.Field
+	Value       apijson.Field
+	raw         string
+	ExtraFields map[string]apijson.Field
+}
+
+func (r *CommitTestResultListResponseItemsRowsBodyColumnFiltersNumericColumnFilter) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r commitTestResultListResponseItemsRowsBodyColumnFiltersNumericColumnFilterJSON) RawJSON() string {
+	return r.raw
+}
+
+func (r CommitTestResultListResponseItemsRowsBodyColumnFiltersNumericColumnFilter) implementsCommitTestResultListResponseItemsRowsBodyColumnFilter() {
+}
+
+type CommitTestResultListResponseItemsRowsBodyColumnFiltersNumericColumnFilterOperator string
+
+const (
+	CommitTestResultListResponseItemsRowsBodyColumnFiltersNumericColumnFilterOperatorGreater         CommitTestResultListResponseItemsRowsBodyColumnFiltersNumericColumnFilterOperator = ">"
+	CommitTestResultListResponseItemsRowsBodyColumnFiltersNumericColumnFilterOperatorGreaterOrEquals CommitTestResultListResponseItemsRowsBodyColumnFiltersNumericColumnFilterOperator = ">="
+	CommitTestResultListResponseItemsRowsBodyColumnFiltersNumericColumnFilterOperatorIs              CommitTestResultListResponseItemsRowsBodyColumnFiltersNumericColumnFilterOperator = "is"
+	CommitTestResultListResponseItemsRowsBodyColumnFiltersNumericColumnFilterOperatorLess            CommitTestResultListResponseItemsRowsBodyColumnFiltersNumericColumnFilterOperator = "<"
+	CommitTestResultListResponseItemsRowsBodyColumnFiltersNumericColumnFilterOperatorLessOrEquals    CommitTestResultListResponseItemsRowsBodyColumnFiltersNumericColumnFilterOperator = "<="
+	CommitTestResultListResponseItemsRowsBodyColumnFiltersNumericColumnFilterOperatorNotEquals       CommitTestResultListResponseItemsRowsBodyColumnFiltersNumericColumnFilterOperator = "!="
+)
+
+func (r CommitTestResultListResponseItemsRowsBodyColumnFiltersNumericColumnFilterOperator) IsKnown() bool {
+	switch r {
+	case CommitTestResultListResponseItemsRowsBodyColumnFiltersNumericColumnFilterOperatorGreater, CommitTestResultListResponseItemsRowsBodyColumnFiltersNumericColumnFilterOperatorGreaterOrEquals, CommitTestResultListResponseItemsRowsBodyColumnFiltersNumericColumnFilterOperatorIs, CommitTestResultListResponseItemsRowsBodyColumnFiltersNumericColumnFilterOperatorLess, CommitTestResultListResponseItemsRowsBodyColumnFiltersNumericColumnFilterOperatorLessOrEquals, CommitTestResultListResponseItemsRowsBodyColumnFiltersNumericColumnFilterOperatorNotEquals:
+		return true
+	}
+	return false
+}
+
+type CommitTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilter struct {
+	// The name of the column.
+	Measurement string                                                                             `json:"measurement,required"`
+	Operator    CommitTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilterOperator   `json:"operator,required"`
+	Value       CommitTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilterValueUnion `json:"value,required"`
+	JSON        commitTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilterJSON       `json:"-"`
+}
+
+// commitTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilterJSON
+// contains the JSON metadata for the struct
+// [CommitTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilter]
+type commitTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilterJSON struct {
+	Measurement apijson.Field
+	Operator    apijson.Field
+	Value       apijson.Field
+	raw         string
+	ExtraFields map[string]apijson.Field
+}
+
+func (r *CommitTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilter) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r commitTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilterJSON) RawJSON() string {
+	return r.raw
+}
+
+func (r CommitTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilter) implementsCommitTestResultListResponseItemsRowsBodyColumnFilter() {
+}
+
+type CommitTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilterOperator string
+
+const (
+	CommitTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilterOperatorIs        CommitTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilterOperator = "is"
+	CommitTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilterOperatorNotEquals CommitTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilterOperator = "!="
+)
+
+func (r CommitTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilterOperator) IsKnown() bool {
+	switch r {
+	case CommitTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilterOperatorIs, CommitTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilterOperatorNotEquals:
+		return true
+	}
+	return false
+}
+
+// Union satisfied by [shared.UnionString] or [shared.UnionBool].
+type CommitTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilterValueUnion interface {
+	ImplementsCommitTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilterValueUnion()
+}
+
+func init() {
+	apijson.RegisterUnion(
+		reflect.TypeOf((*CommitTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilterValueUnion)(nil)).Elem(),
+		"",
+		apijson.UnionVariant{
+			TypeFilter: gjson.String,
+			Type:       reflect.TypeOf(shared.UnionString("")),
+		},
+		apijson.UnionVariant{
+			TypeFilter: gjson.True,
+			Type:       reflect.TypeOf(shared.UnionBool(false)),
+		},
+		apijson.UnionVariant{
+			TypeFilter: gjson.False,
+			Type:       reflect.TypeOf(shared.UnionBool(false)),
+		},
+	)
+}
+
+type CommitTestResultListResponseItemsRowsBodyColumnFiltersOperator string
+
+const (
+	CommitTestResultListResponseItemsRowsBodyColumnFiltersOperatorContainsNone    CommitTestResultListResponseItemsRowsBodyColumnFiltersOperator = "contains_none"
+	CommitTestResultListResponseItemsRowsBodyColumnFiltersOperatorContainsAny     CommitTestResultListResponseItemsRowsBodyColumnFiltersOperator = "contains_any"
+	CommitTestResultListResponseItemsRowsBodyColumnFiltersOperatorContainsAll     CommitTestResultListResponseItemsRowsBodyColumnFiltersOperator = "contains_all"
+	CommitTestResultListResponseItemsRowsBodyColumnFiltersOperatorOneOf           CommitTestResultListResponseItemsRowsBodyColumnFiltersOperator = "one_of"
+	CommitTestResultListResponseItemsRowsBodyColumnFiltersOperatorNoneOf          CommitTestResultListResponseItemsRowsBodyColumnFiltersOperator = "none_of"
+	CommitTestResultListResponseItemsRowsBodyColumnFiltersOperatorGreater         CommitTestResultListResponseItemsRowsBodyColumnFiltersOperator = ">"
+	CommitTestResultListResponseItemsRowsBodyColumnFiltersOperatorGreaterOrEquals CommitTestResultListResponseItemsRowsBodyColumnFiltersOperator = ">="
+	CommitTestResultListResponseItemsRowsBodyColumnFiltersOperatorIs              CommitTestResultListResponseItemsRowsBodyColumnFiltersOperator = "is"
+	CommitTestResultListResponseItemsRowsBodyColumnFiltersOperatorLess            CommitTestResultListResponseItemsRowsBodyColumnFiltersOperator = "<"
+	CommitTestResultListResponseItemsRowsBodyColumnFiltersOperatorLessOrEquals    CommitTestResultListResponseItemsRowsBodyColumnFiltersOperator = "<="
+	CommitTestResultListResponseItemsRowsBodyColumnFiltersOperatorNotEquals       CommitTestResultListResponseItemsRowsBodyColumnFiltersOperator = "!="
+)
+
+func (r CommitTestResultListResponseItemsRowsBodyColumnFiltersOperator) IsKnown() bool {
+	switch r {
+	case CommitTestResultListResponseItemsRowsBodyColumnFiltersOperatorContainsNone, CommitTestResultListResponseItemsRowsBodyColumnFiltersOperatorContainsAny, CommitTestResultListResponseItemsRowsBodyColumnFiltersOperatorContainsAll, CommitTestResultListResponseItemsRowsBodyColumnFiltersOperatorOneOf, CommitTestResultListResponseItemsRowsBodyColumnFiltersOperatorNoneOf, CommitTestResultListResponseItemsRowsBodyColumnFiltersOperatorGreater, CommitTestResultListResponseItemsRowsBodyColumnFiltersOperatorGreaterOrEquals, CommitTestResultListResponseItemsRowsBodyColumnFiltersOperatorIs, CommitTestResultListResponseItemsRowsBodyColumnFiltersOperatorLess, CommitTestResultListResponseItemsRowsBodyColumnFiltersOperatorLessOrEquals, CommitTestResultListResponseItemsRowsBodyColumnFiltersOperatorNotEquals:
 		return true
 	}
 	return false
