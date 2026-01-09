@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.4.0 (2026-01-09)
+
+Full Changelog: [v0.3.1...v0.4.0](https://github.com/openlayer-ai/openlayer-go/compare/v0.3.1...v0.4.0)
+
+### Features
+
+* **closes OPEN-8532:** expose 'tests/{id}/results' endpoint ([89ab28e](https://github.com/openlayer-ai/openlayer-go/commit/89ab28e5418f2576b6dec6e168e868496db3268e))
+
 ## 0.3.1 (2026-01-08)
 
 Full Changelog: [v0.3.0...v0.3.1](https://github.com/openlayer-ai/openlayer-go/compare/v0.3.0...v0.3.1)
