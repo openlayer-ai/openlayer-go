@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.4.1 (2026-01-12)
+
+Full Changelog: [v0.4.0...v0.4.1](https://github.com/openlayer-ai/openlayer-go/compare/v0.4.0...v0.4.1)
+
+### Chores
+
+* **closes OPEN-8576:** expose delete project endpoint ([a93f9cb](https://github.com/openlayer-ai/openlayer-go/commit/a93f9cb29561b5d98350315b65a174a4ba52d62b))
+
 ## 0.4.0 (2026-01-09)
 
 Full Changelog: [v0.3.1...v0.4.0](https://github.com/openlayer-ai/openlayer-go/compare/v0.3.1...v0.4.0)
