@@ -4,6 +4,8 @@ package openlayer
 
 import (
 	"context"
+	"errors"
+	"fmt"
 	"net/http"
 	"net/url"
 	"slices"
@@ -54,6 +56,19 @@ func (r *ProjectService) List(ctx context.Context, query ProjectListParams, opts
 	opts = slices.Concat(r.Options, opts)
 	path := "projects"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
+	return
+}
+
+// Delete a project by its ID.
+func (r *ProjectService) Delete(ctx context.Context, projectID string, opts ...option.RequestOption) (err error) {
+	opts = slices.Concat(r.Options, opts)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
+	if projectID == "" {
+		err = errors.New("missing required projectId parameter")
+		return
+	}
+	path := fmt.Sprintf("projects/%s", projectID)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, nil, opts...)
 	return
 }
 
