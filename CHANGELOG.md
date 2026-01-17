@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.4.2 (2026-01-17)
+
+Full Changelog: [v0.4.1...v0.4.2](https://github.com/openlayer-ai/openlayer-go/compare/v0.4.1...v0.4.2)
+
+### Bug Fixes
+
+* **docs:** add missing pointer prefix to api.md return types ([f075168](https://github.com/openlayer-ai/openlayer-go/commit/f0751689d48f37baf97fdfa2633eab1bb1facc27))
+
+
+### Chores
+
+* **internal:** update `actions/checkout` version ([c8a442a](https://github.com/openlayer-ai/openlayer-go/commit/c8a442aba77929b6e0ca1691e37536caadb92b6e))
+
 ## 0.4.1 (2026-01-12)
 
 Full Changelog: [v0.4.0...v0.4.1](https://github.com/openlayer-ai/openlayer-go/compare/v0.4.0...v0.4.1)
