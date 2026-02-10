@@ -82,6 +82,22 @@ func (r *InferencePipelineService) Delete(ctx context.Context, inferencePipeline
 	return
 }
 
+// Get aggregated user data for an inference pipeline with pagination and metadata.
+//
+// Returns a list of users who have interacted with the inference pipeline,
+// including their activity statistics such as session counts, record counts, token
+// usage, and costs.
+func (r *InferencePipelineService) GetUsers(ctx context.Context, inferencePipelineID string, query InferencePipelineGetUsersParams, opts ...option.RequestOption) (res *InferencePipelineGetUsersResponse, err error) {
+	opts = slices.Concat(r.Options, opts)
+	if inferencePipelineID == "" {
+		err = errors.New("missing required inferencePipelineId parameter")
+		return
+	}
+	path := fmt.Sprintf("inference-pipelines/%s/users", inferencePipelineID)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
+	return
+}
+
 type InferencePipelineGetResponse struct {
 	// The inference pipeline id.
 	ID string `json:"id,required" format:"uuid"`
@@ -2075,6 +2091,68 @@ func (r inferencePipelineUpdateResponseWorkspaceMonthlyUsageJSON) RawJSON() stri
 	return r.raw
 }
 
+type InferencePipelineGetUsersResponse struct {
+	// Array of user aggregation data
+	Items []InferencePipelineGetUsersResponseItem `json:"items,required"`
+	JSON  inferencePipelineGetUsersResponseJSON   `json:"-"`
+}
+
+// inferencePipelineGetUsersResponseJSON contains the JSON metadata for the struct
+// [InferencePipelineGetUsersResponse]
+type inferencePipelineGetUsersResponseJSON struct {
+	Items       apijson.Field
+	raw         string
+	ExtraFields map[string]apijson.Field
+}
+
+func (r *InferencePipelineGetUsersResponse) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r inferencePipelineGetUsersResponseJSON) RawJSON() string {
+	return r.raw
+}
+
+type InferencePipelineGetUsersResponseItem struct {
+	// The unique user identifier
+	ID string `json:"id,required"`
+	// Total cost for this user
+	Cost float64 `json:"cost,required"`
+	// Timestamp of the user's first event/trace
+	DateOfFirstRecord time.Time `json:"dateOfFirstRecord,required" format:"date-time"`
+	// Timestamp of the user's last event/trace
+	DateOfLastRecord time.Time `json:"dateOfLastRecord,required" format:"date-time"`
+	// Total number of traces/rows for this user
+	Records int64 `json:"records,required"`
+	// Count of unique sessions for this user
+	Sessions int64 `json:"sessions,required"`
+	// Total token count for this user
+	Tokens float64                                   `json:"tokens,required"`
+	JSON   inferencePipelineGetUsersResponseItemJSON `json:"-"`
+}
+
+// inferencePipelineGetUsersResponseItemJSON contains the JSON metadata for the
+// struct [InferencePipelineGetUsersResponseItem]
+type inferencePipelineGetUsersResponseItemJSON struct {
+	ID                apijson.Field
+	Cost              apijson.Field
+	DateOfFirstRecord apijson.Field
+	DateOfLastRecord  apijson.Field
+	Records           apijson.Field
+	Sessions          apijson.Field
+	Tokens            apijson.Field
+	raw               string
+	ExtraFields       map[string]apijson.Field
+}
+
+func (r *InferencePipelineGetUsersResponseItem) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r inferencePipelineGetUsersResponseItemJSON) RawJSON() string {
+	return r.raw
+}
+
 type InferencePipelineGetParams struct {
 	// Expand specific nested objects.
 	Expand param.Field[[]InferencePipelineGetParamsExpand] `query:"expand"`
@@ -2116,4 +2194,20 @@ type InferencePipelineUpdateParams struct {
 
 func (r InferencePipelineUpdateParams) MarshalJSON() (data []byte, err error) {
 	return apijson.MarshalRoot(r)
+}
+
+type InferencePipelineGetUsersParams struct {
+	// The page to return in a paginated query.
+	Page param.Field[int64] `query:"page"`
+	// Maximum number of items to return per page.
+	PerPage param.Field[int64] `query:"perPage"`
+}
+
+// URLQuery serializes [InferencePipelineGetUsersParams]'s query parameters as
+// `url.Values`.
+func (r InferencePipelineGetUsersParams) URLQuery() (v url.Values) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
 }
