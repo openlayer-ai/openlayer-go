@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.4.3 (2026-02-10)
+
+Full Changelog: [v0.4.2...v0.4.3](https://github.com/openlayer-ai/openlayer-go/compare/v0.4.2...v0.4.3)
+
+### Chores
+
+* **closes OPEN-8647:** add endpoint to retrieve aggregated user data for inference pipelines ([2cd6aad](https://github.com/openlayer-ai/openlayer-go/commit/2cd6aad02a03b4fd96c2f030ca50ba0e7e4c6667))
+
 ## 0.4.2 (2026-01-17)
 
 Full Changelog: [v0.4.1...v0.4.2](https://github.com/openlayer-ai/openlayer-go/compare/v0.4.1...v0.4.2)
