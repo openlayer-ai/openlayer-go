@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.4.4 (2026-02-20)
+
+Full Changelog: [v0.4.3...v0.4.4](https://github.com/openlayer-ai/openlayer-go/compare/v0.4.3...v0.4.4)
+
+### Bug Fixes
+
+* allow canceling a request while it is waiting to retry ([e430748](https://github.com/openlayer-ai/openlayer-go/commit/e4307488ac1876da5c76568cc868f0ffe73b189f))
+
+
+### Chores
+
+* update mock server docs ([2dc63a0](https://github.com/openlayer-ai/openlayer-go/commit/2dc63a09eca3d9092eda767bf67a4286c60683ab))
+
 ## 0.4.3 (2026-02-10)
 
 Full Changelog: [v0.4.2...v0.4.3](https://github.com/openlayer-ai/openlayer-go/compare/v0.4.2...v0.4.3)
