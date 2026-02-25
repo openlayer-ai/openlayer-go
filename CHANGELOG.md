@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.4.5 (2026-02-25)
+
+Full Changelog: [v0.4.4...v0.4.5](https://github.com/openlayer-ai/openlayer-go/compare/v0.4.4...v0.4.5)
+
+### Chores
+
+* **internal:** move custom custom `json` tags to `api` ([25c7ddd](https://github.com/openlayer-ai/openlayer-go/commit/25c7dddac169f317e69e47ab4713bba597390ed0))
+
 ## 0.4.4 (2026-02-20)
 
 Full Changelog: [v0.4.3...v0.4.4](https://github.com/openlayer-ai/openlayer-go/compare/v0.4.3...v0.4.4)
