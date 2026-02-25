@@ -65,41 +65,41 @@ func (r *ProjectInferencePipelineService) List(ctx context.Context, projectID st
 
 type ProjectInferencePipelineNewResponse struct {
 	// The inference pipeline id.
-	ID string `json:"id,required" format:"uuid"`
+	ID string `json:"id" api:"required" format:"uuid"`
 	// The creation date.
-	DateCreated time.Time `json:"dateCreated,required" format:"date-time"`
+	DateCreated time.Time `json:"dateCreated" api:"required" format:"date-time"`
 	// The last test evaluation date.
-	DateLastEvaluated time.Time `json:"dateLastEvaluated,required,nullable" format:"date-time"`
+	DateLastEvaluated time.Time `json:"dateLastEvaluated" api:"required,nullable" format:"date-time"`
 	// The last data sample received date.
-	DateLastSampleReceived time.Time `json:"dateLastSampleReceived,required,nullable" format:"date-time"`
+	DateLastSampleReceived time.Time `json:"dateLastSampleReceived" api:"required,nullable" format:"date-time"`
 	// The next test evaluation date.
-	DateOfNextEvaluation time.Time `json:"dateOfNextEvaluation,required,nullable" format:"date-time"`
+	DateOfNextEvaluation time.Time `json:"dateOfNextEvaluation" api:"required,nullable" format:"date-time"`
 	// The last updated date.
-	DateUpdated time.Time `json:"dateUpdated,required" format:"date-time"`
+	DateUpdated time.Time `json:"dateUpdated" api:"required" format:"date-time"`
 	// The inference pipeline description.
-	Description string `json:"description,required,nullable"`
+	Description string `json:"description" api:"required,nullable"`
 	// The number of tests failing.
-	FailingGoalCount int64                                    `json:"failingGoalCount,required"`
-	Links            ProjectInferencePipelineNewResponseLinks `json:"links,required"`
+	FailingGoalCount int64                                    `json:"failingGoalCount" api:"required"`
+	Links            ProjectInferencePipelineNewResponseLinks `json:"links" api:"required"`
 	// The inference pipeline name.
-	Name string `json:"name,required"`
+	Name string `json:"name" api:"required"`
 	// The number of tests passing.
-	PassingGoalCount int64 `json:"passingGoalCount,required"`
+	PassingGoalCount int64 `json:"passingGoalCount" api:"required"`
 	// The project id.
-	ProjectID string `json:"projectId,required" format:"uuid"`
+	ProjectID string `json:"projectId" api:"required" format:"uuid"`
 	// The status of test evaluation for the inference pipeline.
-	Status ProjectInferencePipelineNewResponseStatus `json:"status,required"`
+	Status ProjectInferencePipelineNewResponseStatus `json:"status" api:"required"`
 	// The status message of test evaluation for the inference pipeline.
-	StatusMessage string `json:"statusMessage,required,nullable"`
+	StatusMessage string `json:"statusMessage" api:"required,nullable"`
 	// The total number of tests.
-	TotalGoalCount int64                                          `json:"totalGoalCount,required"`
-	DataBackend    ProjectInferencePipelineNewResponseDataBackend `json:"dataBackend,nullable"`
+	TotalGoalCount int64                                          `json:"totalGoalCount" api:"required"`
+	DataBackend    ProjectInferencePipelineNewResponseDataBackend `json:"dataBackend" api:"nullable"`
 	// The last time the data was polled.
-	DateLastPolled time.Time                                  `json:"dateLastPolled,nullable" format:"date-time"`
-	Project        ProjectInferencePipelineNewResponseProject `json:"project,nullable"`
+	DateLastPolled time.Time                                  `json:"dateLastPolled" api:"nullable" format:"date-time"`
+	Project        ProjectInferencePipelineNewResponseProject `json:"project" api:"nullable"`
 	// The total number of records in the data backend.
-	TotalRecordsCount int64                                        `json:"totalRecordsCount,nullable"`
-	Workspace         ProjectInferencePipelineNewResponseWorkspace `json:"workspace,nullable"`
+	TotalRecordsCount int64                                        `json:"totalRecordsCount" api:"nullable"`
+	Workspace         ProjectInferencePipelineNewResponseWorkspace `json:"workspace" api:"nullable"`
 	// The workspace id.
 	WorkspaceID string                                  `json:"workspaceId" format:"uuid"`
 	JSON        projectInferencePipelineNewResponseJSON `json:"-"`
@@ -142,7 +142,7 @@ func (r projectInferencePipelineNewResponseJSON) RawJSON() string {
 }
 
 type ProjectInferencePipelineNewResponseLinks struct {
-	App  string                                       `json:"app,required"`
+	App  string                                       `json:"app" api:"required"`
 	JSON projectInferencePipelineNewResponseLinksJSON `json:"-"`
 }
 
@@ -183,8 +183,8 @@ func (r ProjectInferencePipelineNewResponseStatus) IsKnown() bool {
 }
 
 type ProjectInferencePipelineNewResponseDataBackend struct {
-	BackendType          ProjectInferencePipelineNewResponseDataBackendBackendType `json:"backendType,required"`
-	BigqueryConnectionID string                                                    `json:"bigqueryConnectionId,nullable" format:"uuid"`
+	BackendType          ProjectInferencePipelineNewResponseDataBackendBackendType `json:"backendType" api:"required"`
+	BigqueryConnectionID string                                                    `json:"bigqueryConnectionId" api:"nullable" format:"uuid"`
 	// This field can have the runtime type of
 	// [ProjectInferencePipelineNewResponseDataBackendBigQueryDataBackendConfig],
 	// [ProjectInferencePipelineNewResponseDataBackendSnowflakeDataBackendConfig],
@@ -193,17 +193,17 @@ type ProjectInferencePipelineNewResponseDataBackend struct {
 	// [ProjectInferencePipelineNewResponseDataBackendPostgresDataBackendConfig].
 	Config                    interface{}                                                 `json:"config"`
 	Database                  string                                                      `json:"database"`
-	DatabricksDtlConnectionID string                                                      `json:"databricksDtlConnectionId,nullable" format:"uuid"`
+	DatabricksDtlConnectionID string                                                      `json:"databricksDtlConnectionId" api:"nullable" format:"uuid"`
 	DatasetID                 string                                                      `json:"datasetId"`
-	PartitionType             ProjectInferencePipelineNewResponseDataBackendPartitionType `json:"partitionType,nullable"`
-	PostgresConnectionID      string                                                      `json:"postgresConnectionId,nullable" format:"uuid"`
+	PartitionType             ProjectInferencePipelineNewResponseDataBackendPartitionType `json:"partitionType" api:"nullable"`
+	PostgresConnectionID      string                                                      `json:"postgresConnectionId" api:"nullable" format:"uuid"`
 	ProjectID                 string                                                      `json:"projectId"`
-	RedshiftConnectionID      string                                                      `json:"redshiftConnectionId,nullable" format:"uuid"`
+	RedshiftConnectionID      string                                                      `json:"redshiftConnectionId" api:"nullable" format:"uuid"`
 	Schema                    string                                                      `json:"schema"`
 	SchemaName                string                                                      `json:"schemaName"`
-	SnowflakeConnectionID     string                                                      `json:"snowflakeConnectionId,nullable" format:"uuid"`
-	Table                     string                                                      `json:"table,nullable"`
-	TableID                   string                                                      `json:"tableId,nullable"`
+	SnowflakeConnectionID     string                                                      `json:"snowflakeConnectionId" api:"nullable" format:"uuid"`
+	Table                     string                                                      `json:"table" api:"nullable"`
+	TableID                   string                                                      `json:"tableId" api:"nullable"`
 	TableName                 string                                                      `json:"tableName"`
 	JSON                      projectInferencePipelineNewResponseDataBackendJSON          `json:"-"`
 	union                     ProjectInferencePipelineNewResponseDataBackendUnion
@@ -302,12 +302,12 @@ func init() {
 }
 
 type ProjectInferencePipelineNewResponseDataBackendBigQueryDataBackend struct {
-	BackendType          ProjectInferencePipelineNewResponseDataBackendBigQueryDataBackendBackendType   `json:"backendType,required"`
-	BigqueryConnectionID string                                                                         `json:"bigqueryConnectionId,required,nullable" format:"uuid"`
-	DatasetID            string                                                                         `json:"datasetId,required"`
-	ProjectID            string                                                                         `json:"projectId,required"`
-	TableID              string                                                                         `json:"tableId,required,nullable"`
-	PartitionType        ProjectInferencePipelineNewResponseDataBackendBigQueryDataBackendPartitionType `json:"partitionType,nullable"`
+	BackendType          ProjectInferencePipelineNewResponseDataBackendBigQueryDataBackendBackendType   `json:"backendType" api:"required"`
+	BigqueryConnectionID string                                                                         `json:"bigqueryConnectionId" api:"required,nullable" format:"uuid"`
+	DatasetID            string                                                                         `json:"datasetId" api:"required"`
+	ProjectID            string                                                                         `json:"projectId" api:"required"`
+	TableID              string                                                                         `json:"tableId" api:"required,nullable"`
+	PartitionType        ProjectInferencePipelineNewResponseDataBackendBigQueryDataBackendPartitionType `json:"partitionType" api:"nullable"`
 	JSON                 projectInferencePipelineNewResponseDataBackendBigQueryDataBackendJSON          `json:"-"`
 }
 
@@ -352,14 +352,14 @@ func (r ProjectInferencePipelineNewResponseDataBackendBigQueryDataBackendBackend
 
 type ProjectInferencePipelineNewResponseDataBackendBigQueryDataBackendConfig struct {
 	// Name of the column with the ground truths.
-	GroundTruthColumnName string `json:"groundTruthColumnName,nullable"`
+	GroundTruthColumnName string `json:"groundTruthColumnName" api:"nullable"`
 	// Name of the column with human feedback.
-	HumanFeedbackColumnName string `json:"humanFeedbackColumnName,nullable"`
+	HumanFeedbackColumnName string `json:"humanFeedbackColumnName" api:"nullable"`
 	// Name of the column with the latencies.
-	LatencyColumnName string `json:"latencyColumnName,nullable"`
+	LatencyColumnName string `json:"latencyColumnName" api:"nullable"`
 	// Name of the column with the timestamps. Timestamps must be in UNIX sec format.
 	// If not provided, the upload timestamp is used.
-	TimestampColumnName string                                                                      `json:"timestampColumnName,nullable"`
+	TimestampColumnName string                                                                      `json:"timestampColumnName" api:"nullable"`
 	JSON                projectInferencePipelineNewResponseDataBackendBigQueryDataBackendConfigJSON `json:"-"`
 }
 
@@ -400,7 +400,7 @@ func (r ProjectInferencePipelineNewResponseDataBackendBigQueryDataBackendPartiti
 }
 
 type ProjectInferencePipelineNewResponseDataBackendDefaultDataBackend struct {
-	BackendType ProjectInferencePipelineNewResponseDataBackendDefaultDataBackendBackendType `json:"backendType,required"`
+	BackendType ProjectInferencePipelineNewResponseDataBackendDefaultDataBackendBackendType `json:"backendType" api:"required"`
 	JSON        projectInferencePipelineNewResponseDataBackendDefaultDataBackendJSON        `json:"-"`
 }
 
@@ -439,11 +439,11 @@ func (r ProjectInferencePipelineNewResponseDataBackendDefaultDataBackendBackendT
 }
 
 type ProjectInferencePipelineNewResponseDataBackendSnowflakeDataBackend struct {
-	BackendType           ProjectInferencePipelineNewResponseDataBackendSnowflakeDataBackendBackendType `json:"backendType,required"`
-	Database              string                                                                        `json:"database,required"`
-	Schema                string                                                                        `json:"schema,required"`
-	SnowflakeConnectionID string                                                                        `json:"snowflakeConnectionId,required,nullable" format:"uuid"`
-	Table                 string                                                                        `json:"table,required,nullable"`
+	BackendType           ProjectInferencePipelineNewResponseDataBackendSnowflakeDataBackendBackendType `json:"backendType" api:"required"`
+	Database              string                                                                        `json:"database" api:"required"`
+	Schema                string                                                                        `json:"schema" api:"required"`
+	SnowflakeConnectionID string                                                                        `json:"snowflakeConnectionId" api:"required,nullable" format:"uuid"`
+	Table                 string                                                                        `json:"table" api:"required,nullable"`
 	JSON                  projectInferencePipelineNewResponseDataBackendSnowflakeDataBackendJSON        `json:"-"`
 }
 
@@ -487,14 +487,14 @@ func (r ProjectInferencePipelineNewResponseDataBackendSnowflakeDataBackendBacken
 
 type ProjectInferencePipelineNewResponseDataBackendSnowflakeDataBackendConfig struct {
 	// Name of the column with the ground truths.
-	GroundTruthColumnName string `json:"groundTruthColumnName,nullable"`
+	GroundTruthColumnName string `json:"groundTruthColumnName" api:"nullable"`
 	// Name of the column with human feedback.
-	HumanFeedbackColumnName string `json:"humanFeedbackColumnName,nullable"`
+	HumanFeedbackColumnName string `json:"humanFeedbackColumnName" api:"nullable"`
 	// Name of the column with the latencies.
-	LatencyColumnName string `json:"latencyColumnName,nullable"`
+	LatencyColumnName string `json:"latencyColumnName" api:"nullable"`
 	// Name of the column with the timestamps. Timestamps must be in UNIX sec format.
 	// If not provided, the upload timestamp is used.
-	TimestampColumnName string                                                                       `json:"timestampColumnName,nullable"`
+	TimestampColumnName string                                                                       `json:"timestampColumnName" api:"nullable"`
 	JSON                projectInferencePipelineNewResponseDataBackendSnowflakeDataBackendConfigJSON `json:"-"`
 }
 
@@ -519,9 +519,9 @@ func (r projectInferencePipelineNewResponseDataBackendSnowflakeDataBackendConfig
 }
 
 type ProjectInferencePipelineNewResponseDataBackendDatabricksDtlDataBackend struct {
-	BackendType               ProjectInferencePipelineNewResponseDataBackendDatabricksDtlDataBackendBackendType `json:"backendType,required"`
-	DatabricksDtlConnectionID string                                                                            `json:"databricksDtlConnectionId,required,nullable" format:"uuid"`
-	TableID                   string                                                                            `json:"tableId,required,nullable"`
+	BackendType               ProjectInferencePipelineNewResponseDataBackendDatabricksDtlDataBackendBackendType `json:"backendType" api:"required"`
+	DatabricksDtlConnectionID string                                                                            `json:"databricksDtlConnectionId" api:"required,nullable" format:"uuid"`
+	TableID                   string                                                                            `json:"tableId" api:"required,nullable"`
 	JSON                      projectInferencePipelineNewResponseDataBackendDatabricksDtlDataBackendJSON        `json:"-"`
 }
 
@@ -563,14 +563,14 @@ func (r ProjectInferencePipelineNewResponseDataBackendDatabricksDtlDataBackendBa
 
 type ProjectInferencePipelineNewResponseDataBackendDatabricksDtlDataBackendConfig struct {
 	// Name of the column with the ground truths.
-	GroundTruthColumnName string `json:"groundTruthColumnName,nullable"`
+	GroundTruthColumnName string `json:"groundTruthColumnName" api:"nullable"`
 	// Name of the column with human feedback.
-	HumanFeedbackColumnName string `json:"humanFeedbackColumnName,nullable"`
+	HumanFeedbackColumnName string `json:"humanFeedbackColumnName" api:"nullable"`
 	// Name of the column with the latencies.
-	LatencyColumnName string `json:"latencyColumnName,nullable"`
+	LatencyColumnName string `json:"latencyColumnName" api:"nullable"`
 	// Name of the column with the timestamps. Timestamps must be in UNIX sec format.
 	// If not provided, the upload timestamp is used.
-	TimestampColumnName string                                                                           `json:"timestampColumnName,nullable"`
+	TimestampColumnName string                                                                           `json:"timestampColumnName" api:"nullable"`
 	JSON                projectInferencePipelineNewResponseDataBackendDatabricksDtlDataBackendConfigJSON `json:"-"`
 }
 
@@ -595,10 +595,10 @@ func (r projectInferencePipelineNewResponseDataBackendDatabricksDtlDataBackendCo
 }
 
 type ProjectInferencePipelineNewResponseDataBackendRedshiftDataBackend struct {
-	BackendType          ProjectInferencePipelineNewResponseDataBackendRedshiftDataBackendBackendType `json:"backendType,required"`
-	RedshiftConnectionID string                                                                       `json:"redshiftConnectionId,required,nullable" format:"uuid"`
-	SchemaName           string                                                                       `json:"schemaName,required"`
-	TableName            string                                                                       `json:"tableName,required"`
+	BackendType          ProjectInferencePipelineNewResponseDataBackendRedshiftDataBackendBackendType `json:"backendType" api:"required"`
+	RedshiftConnectionID string                                                                       `json:"redshiftConnectionId" api:"required,nullable" format:"uuid"`
+	SchemaName           string                                                                       `json:"schemaName" api:"required"`
+	TableName            string                                                                       `json:"tableName" api:"required"`
 	JSON                 projectInferencePipelineNewResponseDataBackendRedshiftDataBackendJSON        `json:"-"`
 }
 
@@ -641,14 +641,14 @@ func (r ProjectInferencePipelineNewResponseDataBackendRedshiftDataBackendBackend
 
 type ProjectInferencePipelineNewResponseDataBackendRedshiftDataBackendConfig struct {
 	// Name of the column with the ground truths.
-	GroundTruthColumnName string `json:"groundTruthColumnName,nullable"`
+	GroundTruthColumnName string `json:"groundTruthColumnName" api:"nullable"`
 	// Name of the column with human feedback.
-	HumanFeedbackColumnName string `json:"humanFeedbackColumnName,nullable"`
+	HumanFeedbackColumnName string `json:"humanFeedbackColumnName" api:"nullable"`
 	// Name of the column with the latencies.
-	LatencyColumnName string `json:"latencyColumnName,nullable"`
+	LatencyColumnName string `json:"latencyColumnName" api:"nullable"`
 	// Name of the column with the timestamps. Timestamps must be in UNIX sec format.
 	// If not provided, the upload timestamp is used.
-	TimestampColumnName string                                                                      `json:"timestampColumnName,nullable"`
+	TimestampColumnName string                                                                      `json:"timestampColumnName" api:"nullable"`
 	JSON                projectInferencePipelineNewResponseDataBackendRedshiftDataBackendConfigJSON `json:"-"`
 }
 
@@ -673,11 +673,11 @@ func (r projectInferencePipelineNewResponseDataBackendRedshiftDataBackendConfigJ
 }
 
 type ProjectInferencePipelineNewResponseDataBackendPostgresDataBackend struct {
-	BackendType          ProjectInferencePipelineNewResponseDataBackendPostgresDataBackendBackendType `json:"backendType,required"`
-	Database             string                                                                       `json:"database,required"`
-	PostgresConnectionID string                                                                       `json:"postgresConnectionId,required,nullable" format:"uuid"`
-	Schema               string                                                                       `json:"schema,required"`
-	Table                string                                                                       `json:"table,required,nullable"`
+	BackendType          ProjectInferencePipelineNewResponseDataBackendPostgresDataBackendBackendType `json:"backendType" api:"required"`
+	Database             string                                                                       `json:"database" api:"required"`
+	PostgresConnectionID string                                                                       `json:"postgresConnectionId" api:"required,nullable" format:"uuid"`
+	Schema               string                                                                       `json:"schema" api:"required"`
+	Table                string                                                                       `json:"table" api:"required,nullable"`
 	JSON                 projectInferencePipelineNewResponseDataBackendPostgresDataBackendJSON        `json:"-"`
 }
 
@@ -721,14 +721,14 @@ func (r ProjectInferencePipelineNewResponseDataBackendPostgresDataBackendBackend
 
 type ProjectInferencePipelineNewResponseDataBackendPostgresDataBackendConfig struct {
 	// Name of the column with the ground truths.
-	GroundTruthColumnName string `json:"groundTruthColumnName,nullable"`
+	GroundTruthColumnName string `json:"groundTruthColumnName" api:"nullable"`
 	// Name of the column with human feedback.
-	HumanFeedbackColumnName string `json:"humanFeedbackColumnName,nullable"`
+	HumanFeedbackColumnName string `json:"humanFeedbackColumnName" api:"nullable"`
 	// Name of the column with the latencies.
-	LatencyColumnName string `json:"latencyColumnName,nullable"`
+	LatencyColumnName string `json:"latencyColumnName" api:"nullable"`
 	// Name of the column with the timestamps. Timestamps must be in UNIX sec format.
 	// If not provided, the upload timestamp is used.
-	TimestampColumnName string                                                                      `json:"timestampColumnName,nullable"`
+	TimestampColumnName string                                                                      `json:"timestampColumnName" api:"nullable"`
 	JSON                projectInferencePipelineNewResponseDataBackendPostgresDataBackendConfigJSON `json:"-"`
 }
 
@@ -789,36 +789,36 @@ func (r ProjectInferencePipelineNewResponseDataBackendPartitionType) IsKnown() b
 
 type ProjectInferencePipelineNewResponseProject struct {
 	// The project id.
-	ID string `json:"id,required" format:"uuid"`
+	ID string `json:"id" api:"required" format:"uuid"`
 	// The project creator id.
-	CreatorID string `json:"creatorId,required,nullable" format:"uuid"`
+	CreatorID string `json:"creatorId" api:"required,nullable" format:"uuid"`
 	// The project creation date.
-	DateCreated time.Time `json:"dateCreated,required" format:"date-time"`
+	DateCreated time.Time `json:"dateCreated" api:"required" format:"date-time"`
 	// The project last updated date.
-	DateUpdated time.Time `json:"dateUpdated,required" format:"date-time"`
+	DateUpdated time.Time `json:"dateUpdated" api:"required" format:"date-time"`
 	// The number of tests in the development mode of the project.
-	DevelopmentGoalCount int64 `json:"developmentGoalCount,required"`
+	DevelopmentGoalCount int64 `json:"developmentGoalCount" api:"required"`
 	// The total number of tests in the project.
-	GoalCount int64 `json:"goalCount,required"`
+	GoalCount int64 `json:"goalCount" api:"required"`
 	// The number of inference pipelines in the project.
-	InferencePipelineCount int64 `json:"inferencePipelineCount,required"`
+	InferencePipelineCount int64 `json:"inferencePipelineCount" api:"required"`
 	// Links to the project.
-	Links ProjectInferencePipelineNewResponseProjectLinks `json:"links,required"`
+	Links ProjectInferencePipelineNewResponseProjectLinks `json:"links" api:"required"`
 	// The number of tests in the monitoring mode of the project.
-	MonitoringGoalCount int64 `json:"monitoringGoalCount,required"`
+	MonitoringGoalCount int64 `json:"monitoringGoalCount" api:"required"`
 	// The project name.
-	Name string `json:"name,required"`
+	Name string `json:"name" api:"required"`
 	// The source of the project.
-	Source ProjectInferencePipelineNewResponseProjectSource `json:"source,required,nullable"`
+	Source ProjectInferencePipelineNewResponseProjectSource `json:"source" api:"required,nullable"`
 	// The task type of the project.
-	TaskType ProjectInferencePipelineNewResponseProjectTaskType `json:"taskType,required"`
+	TaskType ProjectInferencePipelineNewResponseProjectTaskType `json:"taskType" api:"required"`
 	// The number of versions (commits) in the project.
-	VersionCount int64 `json:"versionCount,required"`
+	VersionCount int64 `json:"versionCount" api:"required"`
 	// The workspace id.
-	WorkspaceID string `json:"workspaceId,required,nullable" format:"uuid"`
+	WorkspaceID string `json:"workspaceId" api:"required,nullable" format:"uuid"`
 	// The project description.
-	Description string                                            `json:"description,nullable"`
-	GitRepo     ProjectInferencePipelineNewResponseProjectGitRepo `json:"gitRepo,nullable"`
+	Description string                                            `json:"description" api:"nullable"`
+	GitRepo     ProjectInferencePipelineNewResponseProjectGitRepo `json:"gitRepo" api:"nullable"`
 	JSON        projectInferencePipelineNewResponseProjectJSON    `json:"-"`
 }
 
@@ -855,7 +855,7 @@ func (r projectInferencePipelineNewResponseProjectJSON) RawJSON() string {
 
 // Links to the project.
 type ProjectInferencePipelineNewResponseProjectLinks struct {
-	App  string                                              `json:"app,required"`
+	App  string                                              `json:"app" api:"required"`
 	JSON projectInferencePipelineNewResponseProjectLinksJSON `json:"-"`
 }
 
@@ -911,16 +911,16 @@ func (r ProjectInferencePipelineNewResponseProjectTaskType) IsKnown() bool {
 }
 
 type ProjectInferencePipelineNewResponseProjectGitRepo struct {
-	ID            string                                                `json:"id,required" format:"uuid"`
-	DateConnected time.Time                                             `json:"dateConnected,required" format:"date-time"`
-	DateUpdated   time.Time                                             `json:"dateUpdated,required" format:"date-time"`
-	GitAccountID  string                                                `json:"gitAccountId,required" format:"uuid"`
-	GitID         int64                                                 `json:"gitId,required"`
-	Name          string                                                `json:"name,required"`
-	Private       bool                                                  `json:"private,required"`
-	ProjectID     string                                                `json:"projectId,required" format:"uuid"`
-	Slug          string                                                `json:"slug,required"`
-	URL           string                                                `json:"url,required" format:"url"`
+	ID            string                                                `json:"id" api:"required" format:"uuid"`
+	DateConnected time.Time                                             `json:"dateConnected" api:"required" format:"date-time"`
+	DateUpdated   time.Time                                             `json:"dateUpdated" api:"required" format:"date-time"`
+	GitAccountID  string                                                `json:"gitAccountId" api:"required" format:"uuid"`
+	GitID         int64                                                 `json:"gitId" api:"required"`
+	Name          string                                                `json:"name" api:"required"`
+	Private       bool                                                  `json:"private" api:"required"`
+	ProjectID     string                                                `json:"projectId" api:"required" format:"uuid"`
+	Slug          string                                                `json:"slug" api:"required"`
+	URL           string                                                `json:"url" api:"required" format:"url"`
 	Branch        string                                                `json:"branch"`
 	RootDir       string                                                `json:"rootDir"`
 	JSON          projectInferencePipelineNewResponseProjectGitRepoJSON `json:"-"`
@@ -955,28 +955,28 @@ func (r projectInferencePipelineNewResponseProjectGitRepoJSON) RawJSON() string 
 
 type ProjectInferencePipelineNewResponseWorkspace struct {
 	// The workspace id.
-	ID string `json:"id,required" format:"uuid"`
+	ID string `json:"id" api:"required" format:"uuid"`
 	// The workspace creator id.
-	CreatorID string `json:"creatorId,required,nullable" format:"uuid"`
+	CreatorID string `json:"creatorId" api:"required,nullable" format:"uuid"`
 	// The workspace creation date.
-	DateCreated time.Time `json:"dateCreated,required" format:"date-time"`
+	DateCreated time.Time `json:"dateCreated" api:"required" format:"date-time"`
 	// The workspace last updated date.
-	DateUpdated time.Time `json:"dateUpdated,required" format:"date-time"`
+	DateUpdated time.Time `json:"dateUpdated" api:"required" format:"date-time"`
 	// The number of invites in the workspace.
-	InviteCount int64 `json:"inviteCount,required"`
+	InviteCount int64 `json:"inviteCount" api:"required"`
 	// The number of members in the workspace.
-	MemberCount int64 `json:"memberCount,required"`
+	MemberCount int64 `json:"memberCount" api:"required"`
 	// The workspace name.
-	Name string `json:"name,required"`
+	Name string `json:"name" api:"required"`
 	// The end date of the current billing period.
-	PeriodEndDate time.Time `json:"periodEndDate,required,nullable" format:"date-time"`
+	PeriodEndDate time.Time `json:"periodEndDate" api:"required,nullable" format:"date-time"`
 	// The start date of the current billing period.
-	PeriodStartDate time.Time `json:"periodStartDate,required,nullable" format:"date-time"`
+	PeriodStartDate time.Time `json:"periodStartDate" api:"required,nullable" format:"date-time"`
 	// The number of projects in the workspace.
-	ProjectCount int64 `json:"projectCount,required"`
+	ProjectCount int64 `json:"projectCount" api:"required"`
 	// The workspace slug.
-	Slug         string                                                     `json:"slug,required"`
-	Status       ProjectInferencePipelineNewResponseWorkspaceStatus         `json:"status,required"`
+	Slug         string                                                     `json:"slug" api:"required"`
+	Status       ProjectInferencePipelineNewResponseWorkspaceStatus         `json:"status" api:"required"`
 	MonthlyUsage []ProjectInferencePipelineNewResponseWorkspaceMonthlyUsage `json:"monthlyUsage"`
 	// Whether the workspace only allows SAML authentication.
 	SAMLOnlyAccess  bool                                             `json:"samlOnlyAccess"`
@@ -1036,7 +1036,7 @@ func (r ProjectInferencePipelineNewResponseWorkspaceStatus) IsKnown() bool {
 }
 
 type ProjectInferencePipelineNewResponseWorkspaceMonthlyUsage struct {
-	ExecutionTimeMs int64                                                        `json:"executionTimeMs,nullable"`
+	ExecutionTimeMs int64                                                        `json:"executionTimeMs" api:"nullable"`
 	MonthYear       time.Time                                                    `json:"monthYear" format:"date"`
 	PredictionCount int64                                                        `json:"predictionCount"`
 	JSON            projectInferencePipelineNewResponseWorkspaceMonthlyUsageJSON `json:"-"`
@@ -1062,7 +1062,7 @@ func (r projectInferencePipelineNewResponseWorkspaceMonthlyUsageJSON) RawJSON() 
 }
 
 type ProjectInferencePipelineListResponse struct {
-	Items []ProjectInferencePipelineListResponseItem `json:"items,required"`
+	Items []ProjectInferencePipelineListResponseItem `json:"items" api:"required"`
 	JSON  projectInferencePipelineListResponseJSON   `json:"-"`
 }
 
@@ -1084,41 +1084,41 @@ func (r projectInferencePipelineListResponseJSON) RawJSON() string {
 
 type ProjectInferencePipelineListResponseItem struct {
 	// The inference pipeline id.
-	ID string `json:"id,required" format:"uuid"`
+	ID string `json:"id" api:"required" format:"uuid"`
 	// The creation date.
-	DateCreated time.Time `json:"dateCreated,required" format:"date-time"`
+	DateCreated time.Time `json:"dateCreated" api:"required" format:"date-time"`
 	// The last test evaluation date.
-	DateLastEvaluated time.Time `json:"dateLastEvaluated,required,nullable" format:"date-time"`
+	DateLastEvaluated time.Time `json:"dateLastEvaluated" api:"required,nullable" format:"date-time"`
 	// The last data sample received date.
-	DateLastSampleReceived time.Time `json:"dateLastSampleReceived,required,nullable" format:"date-time"`
+	DateLastSampleReceived time.Time `json:"dateLastSampleReceived" api:"required,nullable" format:"date-time"`
 	// The next test evaluation date.
-	DateOfNextEvaluation time.Time `json:"dateOfNextEvaluation,required,nullable" format:"date-time"`
+	DateOfNextEvaluation time.Time `json:"dateOfNextEvaluation" api:"required,nullable" format:"date-time"`
 	// The last updated date.
-	DateUpdated time.Time `json:"dateUpdated,required" format:"date-time"`
+	DateUpdated time.Time `json:"dateUpdated" api:"required" format:"date-time"`
 	// The inference pipeline description.
-	Description string `json:"description,required,nullable"`
+	Description string `json:"description" api:"required,nullable"`
 	// The number of tests failing.
-	FailingGoalCount int64                                          `json:"failingGoalCount,required"`
-	Links            ProjectInferencePipelineListResponseItemsLinks `json:"links,required"`
+	FailingGoalCount int64                                          `json:"failingGoalCount" api:"required"`
+	Links            ProjectInferencePipelineListResponseItemsLinks `json:"links" api:"required"`
 	// The inference pipeline name.
-	Name string `json:"name,required"`
+	Name string `json:"name" api:"required"`
 	// The number of tests passing.
-	PassingGoalCount int64 `json:"passingGoalCount,required"`
+	PassingGoalCount int64 `json:"passingGoalCount" api:"required"`
 	// The project id.
-	ProjectID string `json:"projectId,required" format:"uuid"`
+	ProjectID string `json:"projectId" api:"required" format:"uuid"`
 	// The status of test evaluation for the inference pipeline.
-	Status ProjectInferencePipelineListResponseItemsStatus `json:"status,required"`
+	Status ProjectInferencePipelineListResponseItemsStatus `json:"status" api:"required"`
 	// The status message of test evaluation for the inference pipeline.
-	StatusMessage string `json:"statusMessage,required,nullable"`
+	StatusMessage string `json:"statusMessage" api:"required,nullable"`
 	// The total number of tests.
-	TotalGoalCount int64                                                `json:"totalGoalCount,required"`
-	DataBackend    ProjectInferencePipelineListResponseItemsDataBackend `json:"dataBackend,nullable"`
+	TotalGoalCount int64                                                `json:"totalGoalCount" api:"required"`
+	DataBackend    ProjectInferencePipelineListResponseItemsDataBackend `json:"dataBackend" api:"nullable"`
 	// The last time the data was polled.
-	DateLastPolled time.Time                                        `json:"dateLastPolled,nullable" format:"date-time"`
-	Project        ProjectInferencePipelineListResponseItemsProject `json:"project,nullable"`
+	DateLastPolled time.Time                                        `json:"dateLastPolled" api:"nullable" format:"date-time"`
+	Project        ProjectInferencePipelineListResponseItemsProject `json:"project" api:"nullable"`
 	// The total number of records in the data backend.
-	TotalRecordsCount int64                                              `json:"totalRecordsCount,nullable"`
-	Workspace         ProjectInferencePipelineListResponseItemsWorkspace `json:"workspace,nullable"`
+	TotalRecordsCount int64                                              `json:"totalRecordsCount" api:"nullable"`
+	Workspace         ProjectInferencePipelineListResponseItemsWorkspace `json:"workspace" api:"nullable"`
 	// The workspace id.
 	WorkspaceID string                                       `json:"workspaceId" format:"uuid"`
 	JSON        projectInferencePipelineListResponseItemJSON `json:"-"`
@@ -1161,7 +1161,7 @@ func (r projectInferencePipelineListResponseItemJSON) RawJSON() string {
 }
 
 type ProjectInferencePipelineListResponseItemsLinks struct {
-	App  string                                             `json:"app,required"`
+	App  string                                             `json:"app" api:"required"`
 	JSON projectInferencePipelineListResponseItemsLinksJSON `json:"-"`
 }
 
@@ -1202,8 +1202,8 @@ func (r ProjectInferencePipelineListResponseItemsStatus) IsKnown() bool {
 }
 
 type ProjectInferencePipelineListResponseItemsDataBackend struct {
-	BackendType          ProjectInferencePipelineListResponseItemsDataBackendBackendType `json:"backendType,required"`
-	BigqueryConnectionID string                                                          `json:"bigqueryConnectionId,nullable" format:"uuid"`
+	BackendType          ProjectInferencePipelineListResponseItemsDataBackendBackendType `json:"backendType" api:"required"`
+	BigqueryConnectionID string                                                          `json:"bigqueryConnectionId" api:"nullable" format:"uuid"`
 	// This field can have the runtime type of
 	// [ProjectInferencePipelineListResponseItemsDataBackendBigQueryDataBackendConfig],
 	// [ProjectInferencePipelineListResponseItemsDataBackendSnowflakeDataBackendConfig],
@@ -1212,17 +1212,17 @@ type ProjectInferencePipelineListResponseItemsDataBackend struct {
 	// [ProjectInferencePipelineListResponseItemsDataBackendPostgresDataBackendConfig].
 	Config                    interface{}                                                       `json:"config"`
 	Database                  string                                                            `json:"database"`
-	DatabricksDtlConnectionID string                                                            `json:"databricksDtlConnectionId,nullable" format:"uuid"`
+	DatabricksDtlConnectionID string                                                            `json:"databricksDtlConnectionId" api:"nullable" format:"uuid"`
 	DatasetID                 string                                                            `json:"datasetId"`
-	PartitionType             ProjectInferencePipelineListResponseItemsDataBackendPartitionType `json:"partitionType,nullable"`
-	PostgresConnectionID      string                                                            `json:"postgresConnectionId,nullable" format:"uuid"`
+	PartitionType             ProjectInferencePipelineListResponseItemsDataBackendPartitionType `json:"partitionType" api:"nullable"`
+	PostgresConnectionID      string                                                            `json:"postgresConnectionId" api:"nullable" format:"uuid"`
 	ProjectID                 string                                                            `json:"projectId"`
-	RedshiftConnectionID      string                                                            `json:"redshiftConnectionId,nullable" format:"uuid"`
+	RedshiftConnectionID      string                                                            `json:"redshiftConnectionId" api:"nullable" format:"uuid"`
 	Schema                    string                                                            `json:"schema"`
 	SchemaName                string                                                            `json:"schemaName"`
-	SnowflakeConnectionID     string                                                            `json:"snowflakeConnectionId,nullable" format:"uuid"`
-	Table                     string                                                            `json:"table,nullable"`
-	TableID                   string                                                            `json:"tableId,nullable"`
+	SnowflakeConnectionID     string                                                            `json:"snowflakeConnectionId" api:"nullable" format:"uuid"`
+	Table                     string                                                            `json:"table" api:"nullable"`
+	TableID                   string                                                            `json:"tableId" api:"nullable"`
 	TableName                 string                                                            `json:"tableName"`
 	JSON                      projectInferencePipelineListResponseItemsDataBackendJSON          `json:"-"`
 	union                     ProjectInferencePipelineListResponseItemsDataBackendUnion
@@ -1321,12 +1321,12 @@ func init() {
 }
 
 type ProjectInferencePipelineListResponseItemsDataBackendBigQueryDataBackend struct {
-	BackendType          ProjectInferencePipelineListResponseItemsDataBackendBigQueryDataBackendBackendType   `json:"backendType,required"`
-	BigqueryConnectionID string                                                                               `json:"bigqueryConnectionId,required,nullable" format:"uuid"`
-	DatasetID            string                                                                               `json:"datasetId,required"`
-	ProjectID            string                                                                               `json:"projectId,required"`
-	TableID              string                                                                               `json:"tableId,required,nullable"`
-	PartitionType        ProjectInferencePipelineListResponseItemsDataBackendBigQueryDataBackendPartitionType `json:"partitionType,nullable"`
+	BackendType          ProjectInferencePipelineListResponseItemsDataBackendBigQueryDataBackendBackendType   `json:"backendType" api:"required"`
+	BigqueryConnectionID string                                                                               `json:"bigqueryConnectionId" api:"required,nullable" format:"uuid"`
+	DatasetID            string                                                                               `json:"datasetId" api:"required"`
+	ProjectID            string                                                                               `json:"projectId" api:"required"`
+	TableID              string                                                                               `json:"tableId" api:"required,nullable"`
+	PartitionType        ProjectInferencePipelineListResponseItemsDataBackendBigQueryDataBackendPartitionType `json:"partitionType" api:"nullable"`
 	JSON                 projectInferencePipelineListResponseItemsDataBackendBigQueryDataBackendJSON          `json:"-"`
 }
 
@@ -1371,14 +1371,14 @@ func (r ProjectInferencePipelineListResponseItemsDataBackendBigQueryDataBackendB
 
 type ProjectInferencePipelineListResponseItemsDataBackendBigQueryDataBackendConfig struct {
 	// Name of the column with the ground truths.
-	GroundTruthColumnName string `json:"groundTruthColumnName,nullable"`
+	GroundTruthColumnName string `json:"groundTruthColumnName" api:"nullable"`
 	// Name of the column with human feedback.
-	HumanFeedbackColumnName string `json:"humanFeedbackColumnName,nullable"`
+	HumanFeedbackColumnName string `json:"humanFeedbackColumnName" api:"nullable"`
 	// Name of the column with the latencies.
-	LatencyColumnName string `json:"latencyColumnName,nullable"`
+	LatencyColumnName string `json:"latencyColumnName" api:"nullable"`
 	// Name of the column with the timestamps. Timestamps must be in UNIX sec format.
 	// If not provided, the upload timestamp is used.
-	TimestampColumnName string                                                                            `json:"timestampColumnName,nullable"`
+	TimestampColumnName string                                                                            `json:"timestampColumnName" api:"nullable"`
 	JSON                projectInferencePipelineListResponseItemsDataBackendBigQueryDataBackendConfigJSON `json:"-"`
 }
 
@@ -1419,7 +1419,7 @@ func (r ProjectInferencePipelineListResponseItemsDataBackendBigQueryDataBackendP
 }
 
 type ProjectInferencePipelineListResponseItemsDataBackendDefaultDataBackend struct {
-	BackendType ProjectInferencePipelineListResponseItemsDataBackendDefaultDataBackendBackendType `json:"backendType,required"`
+	BackendType ProjectInferencePipelineListResponseItemsDataBackendDefaultDataBackendBackendType `json:"backendType" api:"required"`
 	JSON        projectInferencePipelineListResponseItemsDataBackendDefaultDataBackendJSON        `json:"-"`
 }
 
@@ -1458,11 +1458,11 @@ func (r ProjectInferencePipelineListResponseItemsDataBackendDefaultDataBackendBa
 }
 
 type ProjectInferencePipelineListResponseItemsDataBackendSnowflakeDataBackend struct {
-	BackendType           ProjectInferencePipelineListResponseItemsDataBackendSnowflakeDataBackendBackendType `json:"backendType,required"`
-	Database              string                                                                              `json:"database,required"`
-	Schema                string                                                                              `json:"schema,required"`
-	SnowflakeConnectionID string                                                                              `json:"snowflakeConnectionId,required,nullable" format:"uuid"`
-	Table                 string                                                                              `json:"table,required,nullable"`
+	BackendType           ProjectInferencePipelineListResponseItemsDataBackendSnowflakeDataBackendBackendType `json:"backendType" api:"required"`
+	Database              string                                                                              `json:"database" api:"required"`
+	Schema                string                                                                              `json:"schema" api:"required"`
+	SnowflakeConnectionID string                                                                              `json:"snowflakeConnectionId" api:"required,nullable" format:"uuid"`
+	Table                 string                                                                              `json:"table" api:"required,nullable"`
 	JSON                  projectInferencePipelineListResponseItemsDataBackendSnowflakeDataBackendJSON        `json:"-"`
 }
 
@@ -1506,14 +1506,14 @@ func (r ProjectInferencePipelineListResponseItemsDataBackendSnowflakeDataBackend
 
 type ProjectInferencePipelineListResponseItemsDataBackendSnowflakeDataBackendConfig struct {
 	// Name of the column with the ground truths.
-	GroundTruthColumnName string `json:"groundTruthColumnName,nullable"`
+	GroundTruthColumnName string `json:"groundTruthColumnName" api:"nullable"`
 	// Name of the column with human feedback.
-	HumanFeedbackColumnName string `json:"humanFeedbackColumnName,nullable"`
+	HumanFeedbackColumnName string `json:"humanFeedbackColumnName" api:"nullable"`
 	// Name of the column with the latencies.
-	LatencyColumnName string `json:"latencyColumnName,nullable"`
+	LatencyColumnName string `json:"latencyColumnName" api:"nullable"`
 	// Name of the column with the timestamps. Timestamps must be in UNIX sec format.
 	// If not provided, the upload timestamp is used.
-	TimestampColumnName string                                                                             `json:"timestampColumnName,nullable"`
+	TimestampColumnName string                                                                             `json:"timestampColumnName" api:"nullable"`
 	JSON                projectInferencePipelineListResponseItemsDataBackendSnowflakeDataBackendConfigJSON `json:"-"`
 }
 
@@ -1538,9 +1538,9 @@ func (r projectInferencePipelineListResponseItemsDataBackendSnowflakeDataBackend
 }
 
 type ProjectInferencePipelineListResponseItemsDataBackendDatabricksDtlDataBackend struct {
-	BackendType               ProjectInferencePipelineListResponseItemsDataBackendDatabricksDtlDataBackendBackendType `json:"backendType,required"`
-	DatabricksDtlConnectionID string                                                                                  `json:"databricksDtlConnectionId,required,nullable" format:"uuid"`
-	TableID                   string                                                                                  `json:"tableId,required,nullable"`
+	BackendType               ProjectInferencePipelineListResponseItemsDataBackendDatabricksDtlDataBackendBackendType `json:"backendType" api:"required"`
+	DatabricksDtlConnectionID string                                                                                  `json:"databricksDtlConnectionId" api:"required,nullable" format:"uuid"`
+	TableID                   string                                                                                  `json:"tableId" api:"required,nullable"`
 	JSON                      projectInferencePipelineListResponseItemsDataBackendDatabricksDtlDataBackendJSON        `json:"-"`
 }
 
@@ -1582,14 +1582,14 @@ func (r ProjectInferencePipelineListResponseItemsDataBackendDatabricksDtlDataBac
 
 type ProjectInferencePipelineListResponseItemsDataBackendDatabricksDtlDataBackendConfig struct {
 	// Name of the column with the ground truths.
-	GroundTruthColumnName string `json:"groundTruthColumnName,nullable"`
+	GroundTruthColumnName string `json:"groundTruthColumnName" api:"nullable"`
 	// Name of the column with human feedback.
-	HumanFeedbackColumnName string `json:"humanFeedbackColumnName,nullable"`
+	HumanFeedbackColumnName string `json:"humanFeedbackColumnName" api:"nullable"`
 	// Name of the column with the latencies.
-	LatencyColumnName string `json:"latencyColumnName,nullable"`
+	LatencyColumnName string `json:"latencyColumnName" api:"nullable"`
 	// Name of the column with the timestamps. Timestamps must be in UNIX sec format.
 	// If not provided, the upload timestamp is used.
-	TimestampColumnName string                                                                                 `json:"timestampColumnName,nullable"`
+	TimestampColumnName string                                                                                 `json:"timestampColumnName" api:"nullable"`
 	JSON                projectInferencePipelineListResponseItemsDataBackendDatabricksDtlDataBackendConfigJSON `json:"-"`
 }
 
@@ -1614,10 +1614,10 @@ func (r projectInferencePipelineListResponseItemsDataBackendDatabricksDtlDataBac
 }
 
 type ProjectInferencePipelineListResponseItemsDataBackendRedshiftDataBackend struct {
-	BackendType          ProjectInferencePipelineListResponseItemsDataBackendRedshiftDataBackendBackendType `json:"backendType,required"`
-	RedshiftConnectionID string                                                                             `json:"redshiftConnectionId,required,nullable" format:"uuid"`
-	SchemaName           string                                                                             `json:"schemaName,required"`
-	TableName            string                                                                             `json:"tableName,required"`
+	BackendType          ProjectInferencePipelineListResponseItemsDataBackendRedshiftDataBackendBackendType `json:"backendType" api:"required"`
+	RedshiftConnectionID string                                                                             `json:"redshiftConnectionId" api:"required,nullable" format:"uuid"`
+	SchemaName           string                                                                             `json:"schemaName" api:"required"`
+	TableName            string                                                                             `json:"tableName" api:"required"`
 	JSON                 projectInferencePipelineListResponseItemsDataBackendRedshiftDataBackendJSON        `json:"-"`
 }
 
@@ -1660,14 +1660,14 @@ func (r ProjectInferencePipelineListResponseItemsDataBackendRedshiftDataBackendB
 
 type ProjectInferencePipelineListResponseItemsDataBackendRedshiftDataBackendConfig struct {
 	// Name of the column with the ground truths.
-	GroundTruthColumnName string `json:"groundTruthColumnName,nullable"`
+	GroundTruthColumnName string `json:"groundTruthColumnName" api:"nullable"`
 	// Name of the column with human feedback.
-	HumanFeedbackColumnName string `json:"humanFeedbackColumnName,nullable"`
+	HumanFeedbackColumnName string `json:"humanFeedbackColumnName" api:"nullable"`
 	// Name of the column with the latencies.
-	LatencyColumnName string `json:"latencyColumnName,nullable"`
+	LatencyColumnName string `json:"latencyColumnName" api:"nullable"`
 	// Name of the column with the timestamps. Timestamps must be in UNIX sec format.
 	// If not provided, the upload timestamp is used.
-	TimestampColumnName string                                                                            `json:"timestampColumnName,nullable"`
+	TimestampColumnName string                                                                            `json:"timestampColumnName" api:"nullable"`
 	JSON                projectInferencePipelineListResponseItemsDataBackendRedshiftDataBackendConfigJSON `json:"-"`
 }
 
@@ -1692,11 +1692,11 @@ func (r projectInferencePipelineListResponseItemsDataBackendRedshiftDataBackendC
 }
 
 type ProjectInferencePipelineListResponseItemsDataBackendPostgresDataBackend struct {
-	BackendType          ProjectInferencePipelineListResponseItemsDataBackendPostgresDataBackendBackendType `json:"backendType,required"`
-	Database             string                                                                             `json:"database,required"`
-	PostgresConnectionID string                                                                             `json:"postgresConnectionId,required,nullable" format:"uuid"`
-	Schema               string                                                                             `json:"schema,required"`
-	Table                string                                                                             `json:"table,required,nullable"`
+	BackendType          ProjectInferencePipelineListResponseItemsDataBackendPostgresDataBackendBackendType `json:"backendType" api:"required"`
+	Database             string                                                                             `json:"database" api:"required"`
+	PostgresConnectionID string                                                                             `json:"postgresConnectionId" api:"required,nullable" format:"uuid"`
+	Schema               string                                                                             `json:"schema" api:"required"`
+	Table                string                                                                             `json:"table" api:"required,nullable"`
 	JSON                 projectInferencePipelineListResponseItemsDataBackendPostgresDataBackendJSON        `json:"-"`
 }
 
@@ -1740,14 +1740,14 @@ func (r ProjectInferencePipelineListResponseItemsDataBackendPostgresDataBackendB
 
 type ProjectInferencePipelineListResponseItemsDataBackendPostgresDataBackendConfig struct {
 	// Name of the column with the ground truths.
-	GroundTruthColumnName string `json:"groundTruthColumnName,nullable"`
+	GroundTruthColumnName string `json:"groundTruthColumnName" api:"nullable"`
 	// Name of the column with human feedback.
-	HumanFeedbackColumnName string `json:"humanFeedbackColumnName,nullable"`
+	HumanFeedbackColumnName string `json:"humanFeedbackColumnName" api:"nullable"`
 	// Name of the column with the latencies.
-	LatencyColumnName string `json:"latencyColumnName,nullable"`
+	LatencyColumnName string `json:"latencyColumnName" api:"nullable"`
 	// Name of the column with the timestamps. Timestamps must be in UNIX sec format.
 	// If not provided, the upload timestamp is used.
-	TimestampColumnName string                                                                            `json:"timestampColumnName,nullable"`
+	TimestampColumnName string                                                                            `json:"timestampColumnName" api:"nullable"`
 	JSON                projectInferencePipelineListResponseItemsDataBackendPostgresDataBackendConfigJSON `json:"-"`
 }
 
@@ -1808,36 +1808,36 @@ func (r ProjectInferencePipelineListResponseItemsDataBackendPartitionType) IsKno
 
 type ProjectInferencePipelineListResponseItemsProject struct {
 	// The project id.
-	ID string `json:"id,required" format:"uuid"`
+	ID string `json:"id" api:"required" format:"uuid"`
 	// The project creator id.
-	CreatorID string `json:"creatorId,required,nullable" format:"uuid"`
+	CreatorID string `json:"creatorId" api:"required,nullable" format:"uuid"`
 	// The project creation date.
-	DateCreated time.Time `json:"dateCreated,required" format:"date-time"`
+	DateCreated time.Time `json:"dateCreated" api:"required" format:"date-time"`
 	// The project last updated date.
-	DateUpdated time.Time `json:"dateUpdated,required" format:"date-time"`
+	DateUpdated time.Time `json:"dateUpdated" api:"required" format:"date-time"`
 	// The number of tests in the development mode of the project.
-	DevelopmentGoalCount int64 `json:"developmentGoalCount,required"`
+	DevelopmentGoalCount int64 `json:"developmentGoalCount" api:"required"`
 	// The total number of tests in the project.
-	GoalCount int64 `json:"goalCount,required"`
+	GoalCount int64 `json:"goalCount" api:"required"`
 	// The number of inference pipelines in the project.
-	InferencePipelineCount int64 `json:"inferencePipelineCount,required"`
+	InferencePipelineCount int64 `json:"inferencePipelineCount" api:"required"`
 	// Links to the project.
-	Links ProjectInferencePipelineListResponseItemsProjectLinks `json:"links,required"`
+	Links ProjectInferencePipelineListResponseItemsProjectLinks `json:"links" api:"required"`
 	// The number of tests in the monitoring mode of the project.
-	MonitoringGoalCount int64 `json:"monitoringGoalCount,required"`
+	MonitoringGoalCount int64 `json:"monitoringGoalCount" api:"required"`
 	// The project name.
-	Name string `json:"name,required"`
+	Name string `json:"name" api:"required"`
 	// The source of the project.
-	Source ProjectInferencePipelineListResponseItemsProjectSource `json:"source,required,nullable"`
+	Source ProjectInferencePipelineListResponseItemsProjectSource `json:"source" api:"required,nullable"`
 	// The task type of the project.
-	TaskType ProjectInferencePipelineListResponseItemsProjectTaskType `json:"taskType,required"`
+	TaskType ProjectInferencePipelineListResponseItemsProjectTaskType `json:"taskType" api:"required"`
 	// The number of versions (commits) in the project.
-	VersionCount int64 `json:"versionCount,required"`
+	VersionCount int64 `json:"versionCount" api:"required"`
 	// The workspace id.
-	WorkspaceID string `json:"workspaceId,required,nullable" format:"uuid"`
+	WorkspaceID string `json:"workspaceId" api:"required,nullable" format:"uuid"`
 	// The project description.
-	Description string                                                  `json:"description,nullable"`
-	GitRepo     ProjectInferencePipelineListResponseItemsProjectGitRepo `json:"gitRepo,nullable"`
+	Description string                                                  `json:"description" api:"nullable"`
+	GitRepo     ProjectInferencePipelineListResponseItemsProjectGitRepo `json:"gitRepo" api:"nullable"`
 	JSON        projectInferencePipelineListResponseItemsProjectJSON    `json:"-"`
 }
 
@@ -1874,7 +1874,7 @@ func (r projectInferencePipelineListResponseItemsProjectJSON) RawJSON() string {
 
 // Links to the project.
 type ProjectInferencePipelineListResponseItemsProjectLinks struct {
-	App  string                                                    `json:"app,required"`
+	App  string                                                    `json:"app" api:"required"`
 	JSON projectInferencePipelineListResponseItemsProjectLinksJSON `json:"-"`
 }
 
@@ -1930,16 +1930,16 @@ func (r ProjectInferencePipelineListResponseItemsProjectTaskType) IsKnown() bool
 }
 
 type ProjectInferencePipelineListResponseItemsProjectGitRepo struct {
-	ID            string                                                      `json:"id,required" format:"uuid"`
-	DateConnected time.Time                                                   `json:"dateConnected,required" format:"date-time"`
-	DateUpdated   time.Time                                                   `json:"dateUpdated,required" format:"date-time"`
-	GitAccountID  string                                                      `json:"gitAccountId,required" format:"uuid"`
-	GitID         int64                                                       `json:"gitId,required"`
-	Name          string                                                      `json:"name,required"`
-	Private       bool                                                        `json:"private,required"`
-	ProjectID     string                                                      `json:"projectId,required" format:"uuid"`
-	Slug          string                                                      `json:"slug,required"`
-	URL           string                                                      `json:"url,required" format:"url"`
+	ID            string                                                      `json:"id" api:"required" format:"uuid"`
+	DateConnected time.Time                                                   `json:"dateConnected" api:"required" format:"date-time"`
+	DateUpdated   time.Time                                                   `json:"dateUpdated" api:"required" format:"date-time"`
+	GitAccountID  string                                                      `json:"gitAccountId" api:"required" format:"uuid"`
+	GitID         int64                                                       `json:"gitId" api:"required"`
+	Name          string                                                      `json:"name" api:"required"`
+	Private       bool                                                        `json:"private" api:"required"`
+	ProjectID     string                                                      `json:"projectId" api:"required" format:"uuid"`
+	Slug          string                                                      `json:"slug" api:"required"`
+	URL           string                                                      `json:"url" api:"required" format:"url"`
 	Branch        string                                                      `json:"branch"`
 	RootDir       string                                                      `json:"rootDir"`
 	JSON          projectInferencePipelineListResponseItemsProjectGitRepoJSON `json:"-"`
@@ -1975,28 +1975,28 @@ func (r projectInferencePipelineListResponseItemsProjectGitRepoJSON) RawJSON() s
 
 type ProjectInferencePipelineListResponseItemsWorkspace struct {
 	// The workspace id.
-	ID string `json:"id,required" format:"uuid"`
+	ID string `json:"id" api:"required" format:"uuid"`
 	// The workspace creator id.
-	CreatorID string `json:"creatorId,required,nullable" format:"uuid"`
+	CreatorID string `json:"creatorId" api:"required,nullable" format:"uuid"`
 	// The workspace creation date.
-	DateCreated time.Time `json:"dateCreated,required" format:"date-time"`
+	DateCreated time.Time `json:"dateCreated" api:"required" format:"date-time"`
 	// The workspace last updated date.
-	DateUpdated time.Time `json:"dateUpdated,required" format:"date-time"`
+	DateUpdated time.Time `json:"dateUpdated" api:"required" format:"date-time"`
 	// The number of invites in the workspace.
-	InviteCount int64 `json:"inviteCount,required"`
+	InviteCount int64 `json:"inviteCount" api:"required"`
 	// The number of members in the workspace.
-	MemberCount int64 `json:"memberCount,required"`
+	MemberCount int64 `json:"memberCount" api:"required"`
 	// The workspace name.
-	Name string `json:"name,required"`
+	Name string `json:"name" api:"required"`
 	// The end date of the current billing period.
-	PeriodEndDate time.Time `json:"periodEndDate,required,nullable" format:"date-time"`
+	PeriodEndDate time.Time `json:"periodEndDate" api:"required,nullable" format:"date-time"`
 	// The start date of the current billing period.
-	PeriodStartDate time.Time `json:"periodStartDate,required,nullable" format:"date-time"`
+	PeriodStartDate time.Time `json:"periodStartDate" api:"required,nullable" format:"date-time"`
 	// The number of projects in the workspace.
-	ProjectCount int64 `json:"projectCount,required"`
+	ProjectCount int64 `json:"projectCount" api:"required"`
 	// The workspace slug.
-	Slug         string                                                           `json:"slug,required"`
-	Status       ProjectInferencePipelineListResponseItemsWorkspaceStatus         `json:"status,required"`
+	Slug         string                                                           `json:"slug" api:"required"`
+	Status       ProjectInferencePipelineListResponseItemsWorkspaceStatus         `json:"status" api:"required"`
 	MonthlyUsage []ProjectInferencePipelineListResponseItemsWorkspaceMonthlyUsage `json:"monthlyUsage"`
 	// Whether the workspace only allows SAML authentication.
 	SAMLOnlyAccess  bool                                                   `json:"samlOnlyAccess"`
@@ -2056,7 +2056,7 @@ func (r ProjectInferencePipelineListResponseItemsWorkspaceStatus) IsKnown() bool
 }
 
 type ProjectInferencePipelineListResponseItemsWorkspaceMonthlyUsage struct {
-	ExecutionTimeMs int64                                                              `json:"executionTimeMs,nullable"`
+	ExecutionTimeMs int64                                                              `json:"executionTimeMs" api:"nullable"`
 	MonthYear       time.Time                                                          `json:"monthYear" format:"date"`
 	PredictionCount int64                                                              `json:"predictionCount"`
 	JSON            projectInferencePipelineListResponseItemsWorkspaceMonthlyUsageJSON `json:"-"`
@@ -2083,9 +2083,9 @@ func (r projectInferencePipelineListResponseItemsWorkspaceMonthlyUsageJSON) RawJ
 
 type ProjectInferencePipelineNewParams struct {
 	// The inference pipeline description.
-	Description param.Field[string] `json:"description,required"`
+	Description param.Field[string] `json:"description" api:"required"`
 	// The inference pipeline name.
-	Name        param.Field[string]                                            `json:"name,required"`
+	Name        param.Field[string]                                            `json:"name" api:"required"`
 	DataBackend param.Field[ProjectInferencePipelineNewParamsDataBackendUnion] `json:"dataBackend"`
 	Project     param.Field[ProjectInferencePipelineNewParamsProject]          `json:"project"`
 	Workspace   param.Field[ProjectInferencePipelineNewParamsWorkspace]        `json:"workspace"`
@@ -2096,7 +2096,7 @@ func (r ProjectInferencePipelineNewParams) MarshalJSON() (data []byte, err error
 }
 
 type ProjectInferencePipelineNewParamsDataBackend struct {
-	BackendType               param.Field[ProjectInferencePipelineNewParamsDataBackendBackendType]   `json:"backendType,required"`
+	BackendType               param.Field[ProjectInferencePipelineNewParamsDataBackendBackendType]   `json:"backendType" api:"required"`
 	BigqueryConnectionID      param.Field[string]                                                    `json:"bigqueryConnectionId" format:"uuid"`
 	Config                    param.Field[interface{}]                                               `json:"config"`
 	Database                  param.Field[string]                                                    `json:"database"`
@@ -2133,12 +2133,12 @@ type ProjectInferencePipelineNewParamsDataBackendUnion interface {
 }
 
 type ProjectInferencePipelineNewParamsDataBackendBigQueryDataBackend struct {
-	BackendType          param.Field[ProjectInferencePipelineNewParamsDataBackendBigQueryDataBackendBackendType]   `json:"backendType,required"`
-	BigqueryConnectionID param.Field[string]                                                                       `json:"bigqueryConnectionId,required" format:"uuid"`
-	Config               param.Field[ProjectInferencePipelineNewParamsDataBackendBigQueryDataBackendConfig]        `json:"config,required"`
-	DatasetID            param.Field[string]                                                                       `json:"datasetId,required"`
-	ProjectID            param.Field[string]                                                                       `json:"projectId,required"`
-	TableID              param.Field[string]                                                                       `json:"tableId,required"`
+	BackendType          param.Field[ProjectInferencePipelineNewParamsDataBackendBigQueryDataBackendBackendType]   `json:"backendType" api:"required"`
+	BigqueryConnectionID param.Field[string]                                                                       `json:"bigqueryConnectionId" api:"required" format:"uuid"`
+	Config               param.Field[ProjectInferencePipelineNewParamsDataBackendBigQueryDataBackendConfig]        `json:"config" api:"required"`
+	DatasetID            param.Field[string]                                                                       `json:"datasetId" api:"required"`
+	ProjectID            param.Field[string]                                                                       `json:"projectId" api:"required"`
+	TableID              param.Field[string]                                                                       `json:"tableId" api:"required"`
 	PartitionType        param.Field[ProjectInferencePipelineNewParamsDataBackendBigQueryDataBackendPartitionType] `json:"partitionType"`
 }
 
@@ -2200,7 +2200,7 @@ func (r ProjectInferencePipelineNewParamsDataBackendBigQueryDataBackendPartition
 }
 
 type ProjectInferencePipelineNewParamsDataBackendDefaultDataBackend struct {
-	BackendType param.Field[ProjectInferencePipelineNewParamsDataBackendDefaultDataBackendBackendType] `json:"backendType,required"`
+	BackendType param.Field[ProjectInferencePipelineNewParamsDataBackendDefaultDataBackendBackendType] `json:"backendType" api:"required"`
 }
 
 func (r ProjectInferencePipelineNewParamsDataBackendDefaultDataBackend) MarshalJSON() (data []byte, err error) {
@@ -2225,12 +2225,12 @@ func (r ProjectInferencePipelineNewParamsDataBackendDefaultDataBackendBackendTyp
 }
 
 type ProjectInferencePipelineNewParamsDataBackendSnowflakeDataBackend struct {
-	BackendType           param.Field[ProjectInferencePipelineNewParamsDataBackendSnowflakeDataBackendBackendType] `json:"backendType,required"`
-	Config                param.Field[ProjectInferencePipelineNewParamsDataBackendSnowflakeDataBackendConfig]      `json:"config,required"`
-	Database              param.Field[string]                                                                      `json:"database,required"`
-	Schema                param.Field[string]                                                                      `json:"schema,required"`
-	SnowflakeConnectionID param.Field[string]                                                                      `json:"snowflakeConnectionId,required" format:"uuid"`
-	Table                 param.Field[string]                                                                      `json:"table,required"`
+	BackendType           param.Field[ProjectInferencePipelineNewParamsDataBackendSnowflakeDataBackendBackendType] `json:"backendType" api:"required"`
+	Config                param.Field[ProjectInferencePipelineNewParamsDataBackendSnowflakeDataBackendConfig]      `json:"config" api:"required"`
+	Database              param.Field[string]                                                                      `json:"database" api:"required"`
+	Schema                param.Field[string]                                                                      `json:"schema" api:"required"`
+	SnowflakeConnectionID param.Field[string]                                                                      `json:"snowflakeConnectionId" api:"required" format:"uuid"`
+	Table                 param.Field[string]                                                                      `json:"table" api:"required"`
 }
 
 func (r ProjectInferencePipelineNewParamsDataBackendSnowflakeDataBackend) MarshalJSON() (data []byte, err error) {
@@ -2275,10 +2275,10 @@ func (r ProjectInferencePipelineNewParamsDataBackendSnowflakeDataBackendConfig) 
 }
 
 type ProjectInferencePipelineNewParamsDataBackendDatabricksDtlDataBackend struct {
-	BackendType               param.Field[ProjectInferencePipelineNewParamsDataBackendDatabricksDtlDataBackendBackendType] `json:"backendType,required"`
-	Config                    param.Field[ProjectInferencePipelineNewParamsDataBackendDatabricksDtlDataBackendConfig]      `json:"config,required"`
-	DatabricksDtlConnectionID param.Field[string]                                                                          `json:"databricksDtlConnectionId,required" format:"uuid"`
-	TableID                   param.Field[string]                                                                          `json:"tableId,required"`
+	BackendType               param.Field[ProjectInferencePipelineNewParamsDataBackendDatabricksDtlDataBackendBackendType] `json:"backendType" api:"required"`
+	Config                    param.Field[ProjectInferencePipelineNewParamsDataBackendDatabricksDtlDataBackendConfig]      `json:"config" api:"required"`
+	DatabricksDtlConnectionID param.Field[string]                                                                          `json:"databricksDtlConnectionId" api:"required" format:"uuid"`
+	TableID                   param.Field[string]                                                                          `json:"tableId" api:"required"`
 }
 
 func (r ProjectInferencePipelineNewParamsDataBackendDatabricksDtlDataBackend) MarshalJSON() (data []byte, err error) {
@@ -2323,11 +2323,11 @@ func (r ProjectInferencePipelineNewParamsDataBackendDatabricksDtlDataBackendConf
 }
 
 type ProjectInferencePipelineNewParamsDataBackendRedshiftDataBackend struct {
-	BackendType          param.Field[ProjectInferencePipelineNewParamsDataBackendRedshiftDataBackendBackendType] `json:"backendType,required"`
-	Config               param.Field[ProjectInferencePipelineNewParamsDataBackendRedshiftDataBackendConfig]      `json:"config,required"`
-	RedshiftConnectionID param.Field[string]                                                                     `json:"redshiftConnectionId,required" format:"uuid"`
-	SchemaName           param.Field[string]                                                                     `json:"schemaName,required"`
-	TableName            param.Field[string]                                                                     `json:"tableName,required"`
+	BackendType          param.Field[ProjectInferencePipelineNewParamsDataBackendRedshiftDataBackendBackendType] `json:"backendType" api:"required"`
+	Config               param.Field[ProjectInferencePipelineNewParamsDataBackendRedshiftDataBackendConfig]      `json:"config" api:"required"`
+	RedshiftConnectionID param.Field[string]                                                                     `json:"redshiftConnectionId" api:"required" format:"uuid"`
+	SchemaName           param.Field[string]                                                                     `json:"schemaName" api:"required"`
+	TableName            param.Field[string]                                                                     `json:"tableName" api:"required"`
 }
 
 func (r ProjectInferencePipelineNewParamsDataBackendRedshiftDataBackend) MarshalJSON() (data []byte, err error) {
@@ -2372,12 +2372,12 @@ func (r ProjectInferencePipelineNewParamsDataBackendRedshiftDataBackendConfig) M
 }
 
 type ProjectInferencePipelineNewParamsDataBackendPostgresDataBackend struct {
-	BackendType          param.Field[ProjectInferencePipelineNewParamsDataBackendPostgresDataBackendBackendType] `json:"backendType,required"`
-	Config               param.Field[ProjectInferencePipelineNewParamsDataBackendPostgresDataBackendConfig]      `json:"config,required"`
-	Database             param.Field[string]                                                                     `json:"database,required"`
-	PostgresConnectionID param.Field[string]                                                                     `json:"postgresConnectionId,required" format:"uuid"`
-	Schema               param.Field[string]                                                                     `json:"schema,required"`
-	Table                param.Field[string]                                                                     `json:"table,required"`
+	BackendType          param.Field[ProjectInferencePipelineNewParamsDataBackendPostgresDataBackendBackendType] `json:"backendType" api:"required"`
+	Config               param.Field[ProjectInferencePipelineNewParamsDataBackendPostgresDataBackendConfig]      `json:"config" api:"required"`
+	Database             param.Field[string]                                                                     `json:"database" api:"required"`
+	PostgresConnectionID param.Field[string]                                                                     `json:"postgresConnectionId" api:"required" format:"uuid"`
+	Schema               param.Field[string]                                                                     `json:"schema" api:"required"`
+	Table                param.Field[string]                                                                     `json:"table" api:"required"`
 }
 
 func (r ProjectInferencePipelineNewParamsDataBackendPostgresDataBackend) MarshalJSON() (data []byte, err error) {
@@ -2458,9 +2458,9 @@ func (r ProjectInferencePipelineNewParamsDataBackendPartitionType) IsKnown() boo
 
 type ProjectInferencePipelineNewParamsProject struct {
 	// The project name.
-	Name param.Field[string] `json:"name,required"`
+	Name param.Field[string] `json:"name" api:"required"`
 	// The task type of the project.
-	TaskType param.Field[ProjectInferencePipelineNewParamsProjectTaskType] `json:"taskType,required"`
+	TaskType param.Field[ProjectInferencePipelineNewParamsProjectTaskType] `json:"taskType" api:"required"`
 	// The project description.
 	Description param.Field[string] `json:"description"`
 }
@@ -2471,7 +2471,7 @@ func (r ProjectInferencePipelineNewParamsProject) MarshalJSON() (data []byte, er
 
 // Links to the project.
 type ProjectInferencePipelineNewParamsProjectLinks struct {
-	App param.Field[string] `json:"app,required"`
+	App param.Field[string] `json:"app" api:"required"`
 }
 
 func (r ProjectInferencePipelineNewParamsProjectLinks) MarshalJSON() (data []byte, err error) {
@@ -2514,8 +2514,8 @@ func (r ProjectInferencePipelineNewParamsProjectTaskType) IsKnown() bool {
 }
 
 type ProjectInferencePipelineNewParamsProjectGitRepo struct {
-	GitAccountID param.Field[string] `json:"gitAccountId,required" format:"uuid"`
-	GitID        param.Field[int64]  `json:"gitId,required"`
+	GitAccountID param.Field[string] `json:"gitAccountId" api:"required" format:"uuid"`
+	GitID        param.Field[int64]  `json:"gitId" api:"required"`
 	Branch       param.Field[string] `json:"branch"`
 	RootDir      param.Field[string] `json:"rootDir"`
 }
@@ -2526,9 +2526,9 @@ func (r ProjectInferencePipelineNewParamsProjectGitRepo) MarshalJSON() (data []b
 
 type ProjectInferencePipelineNewParamsWorkspace struct {
 	// The workspace name.
-	Name param.Field[string] `json:"name,required"`
+	Name param.Field[string] `json:"name" api:"required"`
 	// The workspace slug.
-	Slug param.Field[string] `json:"slug,required"`
+	Slug param.Field[string] `json:"slug" api:"required"`
 	// The workspace invite code.
 	InviteCode param.Field[string] `json:"inviteCode"`
 	// Whether the workspace only allows SAML authentication.

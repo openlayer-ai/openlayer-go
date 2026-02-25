@@ -44,9 +44,9 @@ func (r *StoragePresignedURLService) New(ctx context.Context, body StoragePresig
 
 type StoragePresignedURLNewResponse struct {
 	// The storage URI to send back to the backend after the upload was completed.
-	StorageUri string `json:"storageUri,required"`
+	StorageUri string `json:"storageUri" api:"required"`
 	// The presigned url.
-	URL string `json:"url,required" format:"url"`
+	URL string `json:"url" api:"required" format:"url"`
 	// Fields to include in the body of the upload. Only needed by s3
 	Fields interface{}                        `json:"fields"`
 	JSON   storagePresignedURLNewResponseJSON `json:"-"`
@@ -72,7 +72,7 @@ func (r storagePresignedURLNewResponseJSON) RawJSON() string {
 
 type StoragePresignedURLNewParams struct {
 	// The name of the object.
-	ObjectName param.Field[string] `query:"objectName,required"`
+	ObjectName param.Field[string] `query:"objectName" api:"required"`
 }
 
 // URLQuery serializes [StoragePresignedURLNewParams]'s query parameters as
