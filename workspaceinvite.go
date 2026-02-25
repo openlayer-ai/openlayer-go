@@ -62,7 +62,7 @@ func (r *WorkspaceInviteService) List(ctx context.Context, workspaceID string, q
 }
 
 type WorkspaceInviteNewResponse struct {
-	Items []WorkspaceInviteNewResponseItem `json:"items,required"`
+	Items []WorkspaceInviteNewResponseItem `json:"items" api:"required"`
 	JSON  workspaceInviteNewResponseJSON   `json:"-"`
 }
 
@@ -84,17 +84,17 @@ func (r workspaceInviteNewResponseJSON) RawJSON() string {
 
 type WorkspaceInviteNewResponseItem struct {
 	// The invite id.
-	ID      string                                 `json:"id,required" format:"uuid"`
-	Creator WorkspaceInviteNewResponseItemsCreator `json:"creator,required"`
+	ID      string                                 `json:"id" api:"required" format:"uuid"`
+	Creator WorkspaceInviteNewResponseItemsCreator `json:"creator" api:"required"`
 	// The invite creation date.
-	DateCreated time.Time `json:"dateCreated,required" format:"date-time"`
+	DateCreated time.Time `json:"dateCreated" api:"required" format:"date-time"`
 	// The invite email.
-	Email string `json:"email,required" format:"email"`
+	Email string `json:"email" api:"required" format:"email"`
 	// The invite role.
-	Role WorkspaceInviteNewResponseItemsRole `json:"role,required"`
+	Role WorkspaceInviteNewResponseItemsRole `json:"role" api:"required"`
 	// The invite status.
-	Status    WorkspaceInviteNewResponseItemsStatus    `json:"status,required"`
-	Workspace WorkspaceInviteNewResponseItemsWorkspace `json:"workspace,required"`
+	Status    WorkspaceInviteNewResponseItemsStatus    `json:"status" api:"required"`
+	Workspace WorkspaceInviteNewResponseItemsWorkspace `json:"workspace" api:"required"`
 	JSON      workspaceInviteNewResponseItemJSON       `json:"-"`
 }
 
@@ -124,9 +124,9 @@ type WorkspaceInviteNewResponseItemsCreator struct {
 	// The invite creator id.
 	ID string `json:"id" format:"uuid"`
 	// The invite creator name.
-	Name string `json:"name,nullable"`
+	Name string `json:"name" api:"nullable"`
 	// The invite creator username.
-	Username string                                     `json:"username,nullable"`
+	Username string                                     `json:"username" api:"nullable"`
 	JSON     workspaceInviteNewResponseItemsCreatorJSON `json:"-"`
 }
 
@@ -182,11 +182,11 @@ func (r WorkspaceInviteNewResponseItemsStatus) IsKnown() bool {
 }
 
 type WorkspaceInviteNewResponseItemsWorkspace struct {
-	ID          string                                       `json:"id,required" format:"uuid"`
-	DateCreated time.Time                                    `json:"dateCreated,required" format:"date-time"`
-	MemberCount int64                                        `json:"memberCount,required"`
-	Name        string                                       `json:"name,required"`
-	Slug        string                                       `json:"slug,required"`
+	ID          string                                       `json:"id" api:"required" format:"uuid"`
+	DateCreated time.Time                                    `json:"dateCreated" api:"required" format:"date-time"`
+	MemberCount int64                                        `json:"memberCount" api:"required"`
+	Name        string                                       `json:"name" api:"required"`
+	Slug        string                                       `json:"slug" api:"required"`
 	JSON        workspaceInviteNewResponseItemsWorkspaceJSON `json:"-"`
 }
 
@@ -211,7 +211,7 @@ func (r workspaceInviteNewResponseItemsWorkspaceJSON) RawJSON() string {
 }
 
 type WorkspaceInviteListResponse struct {
-	Items []WorkspaceInviteListResponseItem `json:"items,required"`
+	Items []WorkspaceInviteListResponseItem `json:"items" api:"required"`
 	JSON  workspaceInviteListResponseJSON   `json:"-"`
 }
 
@@ -233,17 +233,17 @@ func (r workspaceInviteListResponseJSON) RawJSON() string {
 
 type WorkspaceInviteListResponseItem struct {
 	// The invite id.
-	ID      string                                  `json:"id,required" format:"uuid"`
-	Creator WorkspaceInviteListResponseItemsCreator `json:"creator,required"`
+	ID      string                                  `json:"id" api:"required" format:"uuid"`
+	Creator WorkspaceInviteListResponseItemsCreator `json:"creator" api:"required"`
 	// The invite creation date.
-	DateCreated time.Time `json:"dateCreated,required" format:"date-time"`
+	DateCreated time.Time `json:"dateCreated" api:"required" format:"date-time"`
 	// The invite email.
-	Email string `json:"email,required" format:"email"`
+	Email string `json:"email" api:"required" format:"email"`
 	// The invite role.
-	Role WorkspaceInviteListResponseItemsRole `json:"role,required"`
+	Role WorkspaceInviteListResponseItemsRole `json:"role" api:"required"`
 	// The invite status.
-	Status    WorkspaceInviteListResponseItemsStatus    `json:"status,required"`
-	Workspace WorkspaceInviteListResponseItemsWorkspace `json:"workspace,required"`
+	Status    WorkspaceInviteListResponseItemsStatus    `json:"status" api:"required"`
+	Workspace WorkspaceInviteListResponseItemsWorkspace `json:"workspace" api:"required"`
 	JSON      workspaceInviteListResponseItemJSON       `json:"-"`
 }
 
@@ -273,9 +273,9 @@ type WorkspaceInviteListResponseItemsCreator struct {
 	// The invite creator id.
 	ID string `json:"id" format:"uuid"`
 	// The invite creator name.
-	Name string `json:"name,nullable"`
+	Name string `json:"name" api:"nullable"`
 	// The invite creator username.
-	Username string                                      `json:"username,nullable"`
+	Username string                                      `json:"username" api:"nullable"`
 	JSON     workspaceInviteListResponseItemsCreatorJSON `json:"-"`
 }
 
@@ -331,11 +331,11 @@ func (r WorkspaceInviteListResponseItemsStatus) IsKnown() bool {
 }
 
 type WorkspaceInviteListResponseItemsWorkspace struct {
-	ID          string                                        `json:"id,required" format:"uuid"`
-	DateCreated time.Time                                     `json:"dateCreated,required" format:"date-time"`
-	MemberCount int64                                         `json:"memberCount,required"`
-	Name        string                                        `json:"name,required"`
-	Slug        string                                        `json:"slug,required"`
+	ID          string                                        `json:"id" api:"required" format:"uuid"`
+	DateCreated time.Time                                     `json:"dateCreated" api:"required" format:"date-time"`
+	MemberCount int64                                         `json:"memberCount" api:"required"`
+	Name        string                                        `json:"name" api:"required"`
+	Slug        string                                        `json:"slug" api:"required"`
 	JSON        workspaceInviteListResponseItemsWorkspaceJSON `json:"-"`
 }
 

@@ -49,17 +49,17 @@ func (r *WorkspaceAPIKeyService) New(ctx context.Context, workspaceID string, bo
 
 type WorkspaceAPIKeyNewResponse struct {
 	// The API key id.
-	ID string `json:"id,required" format:"uuid"`
+	ID string `json:"id" api:"required" format:"uuid"`
 	// The API key creation date.
-	DateCreated time.Time `json:"dateCreated,required" format:"date-time"`
+	DateCreated time.Time `json:"dateCreated" api:"required" format:"date-time"`
 	// The API key last use date.
-	DateLastUsed time.Time `json:"dateLastUsed,required,nullable" format:"date-time"`
+	DateLastUsed time.Time `json:"dateLastUsed" api:"required,nullable" format:"date-time"`
 	// The API key last update date.
-	DateUpdated time.Time `json:"dateUpdated,required" format:"date-time"`
+	DateUpdated time.Time `json:"dateUpdated" api:"required" format:"date-time"`
 	// The API key value.
-	SecureKey string `json:"secureKey,required"`
+	SecureKey string `json:"secureKey" api:"required"`
 	// The API key name.
-	Name string                         `json:"name,nullable"`
+	Name string                         `json:"name" api:"nullable"`
 	JSON workspaceAPIKeyNewResponseJSON `json:"-"`
 }
 
