@@ -65,28 +65,28 @@ func (r *WorkspaceService) Update(ctx context.Context, workspaceID string, body 
 
 type WorkspaceGetResponse struct {
 	// The workspace id.
-	ID string `json:"id,required" format:"uuid"`
+	ID string `json:"id" api:"required" format:"uuid"`
 	// The workspace creator id.
-	CreatorID string `json:"creatorId,required,nullable" format:"uuid"`
+	CreatorID string `json:"creatorId" api:"required,nullable" format:"uuid"`
 	// The workspace creation date.
-	DateCreated time.Time `json:"dateCreated,required" format:"date-time"`
+	DateCreated time.Time `json:"dateCreated" api:"required" format:"date-time"`
 	// The workspace last updated date.
-	DateUpdated time.Time `json:"dateUpdated,required" format:"date-time"`
+	DateUpdated time.Time `json:"dateUpdated" api:"required" format:"date-time"`
 	// The number of invites in the workspace.
-	InviteCount int64 `json:"inviteCount,required"`
+	InviteCount int64 `json:"inviteCount" api:"required"`
 	// The number of members in the workspace.
-	MemberCount int64 `json:"memberCount,required"`
+	MemberCount int64 `json:"memberCount" api:"required"`
 	// The workspace name.
-	Name string `json:"name,required"`
+	Name string `json:"name" api:"required"`
 	// The end date of the current billing period.
-	PeriodEndDate time.Time `json:"periodEndDate,required,nullable" format:"date-time"`
+	PeriodEndDate time.Time `json:"periodEndDate" api:"required,nullable" format:"date-time"`
 	// The start date of the current billing period.
-	PeriodStartDate time.Time `json:"periodStartDate,required,nullable" format:"date-time"`
+	PeriodStartDate time.Time `json:"periodStartDate" api:"required,nullable" format:"date-time"`
 	// The number of projects in the workspace.
-	ProjectCount int64 `json:"projectCount,required"`
+	ProjectCount int64 `json:"projectCount" api:"required"`
 	// The workspace slug.
-	Slug         string                             `json:"slug,required"`
-	Status       WorkspaceGetResponseStatus         `json:"status,required"`
+	Slug         string                             `json:"slug" api:"required"`
+	Status       WorkspaceGetResponseStatus         `json:"status" api:"required"`
 	MonthlyUsage []WorkspaceGetResponseMonthlyUsage `json:"monthlyUsage"`
 	// Whether the workspace only allows SAML authentication.
 	SAMLOnlyAccess  bool                     `json:"samlOnlyAccess"`
@@ -146,7 +146,7 @@ func (r WorkspaceGetResponseStatus) IsKnown() bool {
 }
 
 type WorkspaceGetResponseMonthlyUsage struct {
-	ExecutionTimeMs int64                                `json:"executionTimeMs,nullable"`
+	ExecutionTimeMs int64                                `json:"executionTimeMs" api:"nullable"`
 	MonthYear       time.Time                            `json:"monthYear" format:"date"`
 	PredictionCount int64                                `json:"predictionCount"`
 	JSON            workspaceGetResponseMonthlyUsageJSON `json:"-"`
@@ -172,28 +172,28 @@ func (r workspaceGetResponseMonthlyUsageJSON) RawJSON() string {
 
 type WorkspaceUpdateResponse struct {
 	// The workspace id.
-	ID string `json:"id,required" format:"uuid"`
+	ID string `json:"id" api:"required" format:"uuid"`
 	// The workspace creator id.
-	CreatorID string `json:"creatorId,required,nullable" format:"uuid"`
+	CreatorID string `json:"creatorId" api:"required,nullable" format:"uuid"`
 	// The workspace creation date.
-	DateCreated time.Time `json:"dateCreated,required" format:"date-time"`
+	DateCreated time.Time `json:"dateCreated" api:"required" format:"date-time"`
 	// The workspace last updated date.
-	DateUpdated time.Time `json:"dateUpdated,required" format:"date-time"`
+	DateUpdated time.Time `json:"dateUpdated" api:"required" format:"date-time"`
 	// The number of invites in the workspace.
-	InviteCount int64 `json:"inviteCount,required"`
+	InviteCount int64 `json:"inviteCount" api:"required"`
 	// The number of members in the workspace.
-	MemberCount int64 `json:"memberCount,required"`
+	MemberCount int64 `json:"memberCount" api:"required"`
 	// The workspace name.
-	Name string `json:"name,required"`
+	Name string `json:"name" api:"required"`
 	// The end date of the current billing period.
-	PeriodEndDate time.Time `json:"periodEndDate,required,nullable" format:"date-time"`
+	PeriodEndDate time.Time `json:"periodEndDate" api:"required,nullable" format:"date-time"`
 	// The start date of the current billing period.
-	PeriodStartDate time.Time `json:"periodStartDate,required,nullable" format:"date-time"`
+	PeriodStartDate time.Time `json:"periodStartDate" api:"required,nullable" format:"date-time"`
 	// The number of projects in the workspace.
-	ProjectCount int64 `json:"projectCount,required"`
+	ProjectCount int64 `json:"projectCount" api:"required"`
 	// The workspace slug.
-	Slug         string                                `json:"slug,required"`
-	Status       WorkspaceUpdateResponseStatus         `json:"status,required"`
+	Slug         string                                `json:"slug" api:"required"`
+	Status       WorkspaceUpdateResponseStatus         `json:"status" api:"required"`
 	MonthlyUsage []WorkspaceUpdateResponseMonthlyUsage `json:"monthlyUsage"`
 	// Whether the workspace only allows SAML authentication.
 	SAMLOnlyAccess  bool                        `json:"samlOnlyAccess"`
@@ -253,7 +253,7 @@ func (r WorkspaceUpdateResponseStatus) IsKnown() bool {
 }
 
 type WorkspaceUpdateResponseMonthlyUsage struct {
-	ExecutionTimeMs int64                                   `json:"executionTimeMs,nullable"`
+	ExecutionTimeMs int64                                   `json:"executionTimeMs" api:"nullable"`
 	MonthYear       time.Time                               `json:"monthYear" format:"date"`
 	PredictionCount int64                                   `json:"predictionCount"`
 	JSON            workspaceUpdateResponseMonthlyUsageJSON `json:"-"`

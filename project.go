@@ -74,36 +74,36 @@ func (r *ProjectService) Delete(ctx context.Context, projectID string, opts ...o
 
 type ProjectNewResponse struct {
 	// The project id.
-	ID string `json:"id,required" format:"uuid"`
+	ID string `json:"id" api:"required" format:"uuid"`
 	// The project creator id.
-	CreatorID string `json:"creatorId,required,nullable" format:"uuid"`
+	CreatorID string `json:"creatorId" api:"required,nullable" format:"uuid"`
 	// The project creation date.
-	DateCreated time.Time `json:"dateCreated,required" format:"date-time"`
+	DateCreated time.Time `json:"dateCreated" api:"required" format:"date-time"`
 	// The project last updated date.
-	DateUpdated time.Time `json:"dateUpdated,required" format:"date-time"`
+	DateUpdated time.Time `json:"dateUpdated" api:"required" format:"date-time"`
 	// The number of tests in the development mode of the project.
-	DevelopmentGoalCount int64 `json:"developmentGoalCount,required"`
+	DevelopmentGoalCount int64 `json:"developmentGoalCount" api:"required"`
 	// The total number of tests in the project.
-	GoalCount int64 `json:"goalCount,required"`
+	GoalCount int64 `json:"goalCount" api:"required"`
 	// The number of inference pipelines in the project.
-	InferencePipelineCount int64 `json:"inferencePipelineCount,required"`
+	InferencePipelineCount int64 `json:"inferencePipelineCount" api:"required"`
 	// Links to the project.
-	Links ProjectNewResponseLinks `json:"links,required"`
+	Links ProjectNewResponseLinks `json:"links" api:"required"`
 	// The number of tests in the monitoring mode of the project.
-	MonitoringGoalCount int64 `json:"monitoringGoalCount,required"`
+	MonitoringGoalCount int64 `json:"monitoringGoalCount" api:"required"`
 	// The project name.
-	Name string `json:"name,required"`
+	Name string `json:"name" api:"required"`
 	// The source of the project.
-	Source ProjectNewResponseSource `json:"source,required,nullable"`
+	Source ProjectNewResponseSource `json:"source" api:"required,nullable"`
 	// The task type of the project.
-	TaskType ProjectNewResponseTaskType `json:"taskType,required"`
+	TaskType ProjectNewResponseTaskType `json:"taskType" api:"required"`
 	// The number of versions (commits) in the project.
-	VersionCount int64 `json:"versionCount,required"`
+	VersionCount int64 `json:"versionCount" api:"required"`
 	// The workspace id.
-	WorkspaceID string `json:"workspaceId,required,nullable" format:"uuid"`
+	WorkspaceID string `json:"workspaceId" api:"required,nullable" format:"uuid"`
 	// The project description.
-	Description string                    `json:"description,nullable"`
-	GitRepo     ProjectNewResponseGitRepo `json:"gitRepo,nullable"`
+	Description string                    `json:"description" api:"nullable"`
+	GitRepo     ProjectNewResponseGitRepo `json:"gitRepo" api:"nullable"`
 	JSON        projectNewResponseJSON    `json:"-"`
 }
 
@@ -140,7 +140,7 @@ func (r projectNewResponseJSON) RawJSON() string {
 
 // Links to the project.
 type ProjectNewResponseLinks struct {
-	App  string                      `json:"app,required"`
+	App  string                      `json:"app" api:"required"`
 	JSON projectNewResponseLinksJSON `json:"-"`
 }
 
@@ -196,16 +196,16 @@ func (r ProjectNewResponseTaskType) IsKnown() bool {
 }
 
 type ProjectNewResponseGitRepo struct {
-	ID            string                        `json:"id,required" format:"uuid"`
-	DateConnected time.Time                     `json:"dateConnected,required" format:"date-time"`
-	DateUpdated   time.Time                     `json:"dateUpdated,required" format:"date-time"`
-	GitAccountID  string                        `json:"gitAccountId,required" format:"uuid"`
-	GitID         int64                         `json:"gitId,required"`
-	Name          string                        `json:"name,required"`
-	Private       bool                          `json:"private,required"`
-	ProjectID     string                        `json:"projectId,required" format:"uuid"`
-	Slug          string                        `json:"slug,required"`
-	URL           string                        `json:"url,required" format:"url"`
+	ID            string                        `json:"id" api:"required" format:"uuid"`
+	DateConnected time.Time                     `json:"dateConnected" api:"required" format:"date-time"`
+	DateUpdated   time.Time                     `json:"dateUpdated" api:"required" format:"date-time"`
+	GitAccountID  string                        `json:"gitAccountId" api:"required" format:"uuid"`
+	GitID         int64                         `json:"gitId" api:"required"`
+	Name          string                        `json:"name" api:"required"`
+	Private       bool                          `json:"private" api:"required"`
+	ProjectID     string                        `json:"projectId" api:"required" format:"uuid"`
+	Slug          string                        `json:"slug" api:"required"`
+	URL           string                        `json:"url" api:"required" format:"url"`
 	Branch        string                        `json:"branch"`
 	RootDir       string                        `json:"rootDir"`
 	JSON          projectNewResponseGitRepoJSON `json:"-"`
@@ -239,7 +239,7 @@ func (r projectNewResponseGitRepoJSON) RawJSON() string {
 }
 
 type ProjectListResponse struct {
-	Items []ProjectListResponseItem `json:"items,required"`
+	Items []ProjectListResponseItem `json:"items" api:"required"`
 	JSON  projectListResponseJSON   `json:"-"`
 }
 
@@ -261,36 +261,36 @@ func (r projectListResponseJSON) RawJSON() string {
 
 type ProjectListResponseItem struct {
 	// The project id.
-	ID string `json:"id,required" format:"uuid"`
+	ID string `json:"id" api:"required" format:"uuid"`
 	// The project creator id.
-	CreatorID string `json:"creatorId,required,nullable" format:"uuid"`
+	CreatorID string `json:"creatorId" api:"required,nullable" format:"uuid"`
 	// The project creation date.
-	DateCreated time.Time `json:"dateCreated,required" format:"date-time"`
+	DateCreated time.Time `json:"dateCreated" api:"required" format:"date-time"`
 	// The project last updated date.
-	DateUpdated time.Time `json:"dateUpdated,required" format:"date-time"`
+	DateUpdated time.Time `json:"dateUpdated" api:"required" format:"date-time"`
 	// The number of tests in the development mode of the project.
-	DevelopmentGoalCount int64 `json:"developmentGoalCount,required"`
+	DevelopmentGoalCount int64 `json:"developmentGoalCount" api:"required"`
 	// The total number of tests in the project.
-	GoalCount int64 `json:"goalCount,required"`
+	GoalCount int64 `json:"goalCount" api:"required"`
 	// The number of inference pipelines in the project.
-	InferencePipelineCount int64 `json:"inferencePipelineCount,required"`
+	InferencePipelineCount int64 `json:"inferencePipelineCount" api:"required"`
 	// Links to the project.
-	Links ProjectListResponseItemsLinks `json:"links,required"`
+	Links ProjectListResponseItemsLinks `json:"links" api:"required"`
 	// The number of tests in the monitoring mode of the project.
-	MonitoringGoalCount int64 `json:"monitoringGoalCount,required"`
+	MonitoringGoalCount int64 `json:"monitoringGoalCount" api:"required"`
 	// The project name.
-	Name string `json:"name,required"`
+	Name string `json:"name" api:"required"`
 	// The source of the project.
-	Source ProjectListResponseItemsSource `json:"source,required,nullable"`
+	Source ProjectListResponseItemsSource `json:"source" api:"required,nullable"`
 	// The task type of the project.
-	TaskType ProjectListResponseItemsTaskType `json:"taskType,required"`
+	TaskType ProjectListResponseItemsTaskType `json:"taskType" api:"required"`
 	// The number of versions (commits) in the project.
-	VersionCount int64 `json:"versionCount,required"`
+	VersionCount int64 `json:"versionCount" api:"required"`
 	// The workspace id.
-	WorkspaceID string `json:"workspaceId,required,nullable" format:"uuid"`
+	WorkspaceID string `json:"workspaceId" api:"required,nullable" format:"uuid"`
 	// The project description.
-	Description string                          `json:"description,nullable"`
-	GitRepo     ProjectListResponseItemsGitRepo `json:"gitRepo,nullable"`
+	Description string                          `json:"description" api:"nullable"`
+	GitRepo     ProjectListResponseItemsGitRepo `json:"gitRepo" api:"nullable"`
 	JSON        projectListResponseItemJSON     `json:"-"`
 }
 
@@ -327,7 +327,7 @@ func (r projectListResponseItemJSON) RawJSON() string {
 
 // Links to the project.
 type ProjectListResponseItemsLinks struct {
-	App  string                            `json:"app,required"`
+	App  string                            `json:"app" api:"required"`
 	JSON projectListResponseItemsLinksJSON `json:"-"`
 }
 
@@ -383,16 +383,16 @@ func (r ProjectListResponseItemsTaskType) IsKnown() bool {
 }
 
 type ProjectListResponseItemsGitRepo struct {
-	ID            string                              `json:"id,required" format:"uuid"`
-	DateConnected time.Time                           `json:"dateConnected,required" format:"date-time"`
-	DateUpdated   time.Time                           `json:"dateUpdated,required" format:"date-time"`
-	GitAccountID  string                              `json:"gitAccountId,required" format:"uuid"`
-	GitID         int64                               `json:"gitId,required"`
-	Name          string                              `json:"name,required"`
-	Private       bool                                `json:"private,required"`
-	ProjectID     string                              `json:"projectId,required" format:"uuid"`
-	Slug          string                              `json:"slug,required"`
-	URL           string                              `json:"url,required" format:"url"`
+	ID            string                              `json:"id" api:"required" format:"uuid"`
+	DateConnected time.Time                           `json:"dateConnected" api:"required" format:"date-time"`
+	DateUpdated   time.Time                           `json:"dateUpdated" api:"required" format:"date-time"`
+	GitAccountID  string                              `json:"gitAccountId" api:"required" format:"uuid"`
+	GitID         int64                               `json:"gitId" api:"required"`
+	Name          string                              `json:"name" api:"required"`
+	Private       bool                                `json:"private" api:"required"`
+	ProjectID     string                              `json:"projectId" api:"required" format:"uuid"`
+	Slug          string                              `json:"slug" api:"required"`
+	URL           string                              `json:"url" api:"required" format:"url"`
 	Branch        string                              `json:"branch"`
 	RootDir       string                              `json:"rootDir"`
 	JSON          projectListResponseItemsGitRepoJSON `json:"-"`
@@ -427,9 +427,9 @@ func (r projectListResponseItemsGitRepoJSON) RawJSON() string {
 
 type ProjectNewParams struct {
 	// The project name.
-	Name param.Field[string] `json:"name,required"`
+	Name param.Field[string] `json:"name" api:"required"`
 	// The task type of the project.
-	TaskType param.Field[ProjectNewParamsTaskType] `json:"taskType,required"`
+	TaskType param.Field[ProjectNewParamsTaskType] `json:"taskType" api:"required"`
 	// The project description.
 	Description param.Field[string] `json:"description"`
 }

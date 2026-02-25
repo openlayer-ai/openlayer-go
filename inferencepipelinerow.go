@@ -49,7 +49,7 @@ func (r *InferencePipelineRowService) Update(ctx context.Context, inferencePipel
 }
 
 type InferencePipelineRowUpdateResponse struct {
-	Success InferencePipelineRowUpdateResponseSuccess `json:"success,required"`
+	Success InferencePipelineRowUpdateResponseSuccess `json:"success" api:"required"`
 	JSON    inferencePipelineRowUpdateResponseJSON    `json:"-"`
 }
 
@@ -85,8 +85,8 @@ func (r InferencePipelineRowUpdateResponseSuccess) IsKnown() bool {
 
 type InferencePipelineRowUpdateParams struct {
 	// Specify the inference id as a query param.
-	InferenceID param.Field[string]                                 `query:"inferenceId,required"`
-	Row         param.Field[interface{}]                            `json:"row,required"`
+	InferenceID param.Field[string]                                 `query:"inferenceId" api:"required"`
+	Row         param.Field[interface{}]                            `json:"row" api:"required"`
 	Config      param.Field[InferencePipelineRowUpdateParamsConfig] `json:"config"`
 }
 

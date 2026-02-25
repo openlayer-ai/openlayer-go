@@ -50,34 +50,34 @@ func (r *CommitService) Get(ctx context.Context, projectVersionID string, opts .
 
 type CommitGetResponse struct {
 	// The project version (commit) id.
-	ID string `json:"id,required" format:"uuid"`
+	ID string `json:"id" api:"required" format:"uuid"`
 	// The details of a commit (project version).
-	Commit CommitGetResponseCommit `json:"commit,required"`
+	Commit CommitGetResponseCommit `json:"commit" api:"required"`
 	// The commit archive date.
-	DateArchived time.Time `json:"dateArchived,required,nullable" format:"date-time"`
+	DateArchived time.Time `json:"dateArchived" api:"required,nullable" format:"date-time"`
 	// The project version (commit) creation date.
-	DateCreated time.Time `json:"dateCreated,required" format:"date-time"`
+	DateCreated time.Time `json:"dateCreated" api:"required" format:"date-time"`
 	// The number of tests that are failing for the commit.
-	FailingGoalCount int64 `json:"failingGoalCount,required"`
+	FailingGoalCount int64 `json:"failingGoalCount" api:"required"`
 	// The model id.
-	MlModelID string `json:"mlModelId,required,nullable" format:"uuid"`
+	MlModelID string `json:"mlModelId" api:"required,nullable" format:"uuid"`
 	// The number of tests that are passing for the commit.
-	PassingGoalCount int64 `json:"passingGoalCount,required"`
+	PassingGoalCount int64 `json:"passingGoalCount" api:"required"`
 	// The project id.
-	ProjectID string `json:"projectId,required" format:"uuid"`
+	ProjectID string `json:"projectId" api:"required" format:"uuid"`
 	// The commit status. Initially, the commit is `queued`, then, it switches to
 	// `running`. Finally, it can be `paused`, `failed`, or `completed`.
-	Status CommitGetResponseStatus `json:"status,required"`
+	Status CommitGetResponseStatus `json:"status" api:"required"`
 	// The commit status message.
-	StatusMessage string `json:"statusMessage,required,nullable"`
+	StatusMessage string `json:"statusMessage" api:"required,nullable"`
 	// The total number of tests for the commit.
-	TotalGoalCount int64 `json:"totalGoalCount,required"`
+	TotalGoalCount int64 `json:"totalGoalCount" api:"required"`
 	// The training dataset id.
-	TrainingDatasetID string `json:"trainingDatasetId,required,nullable" format:"uuid"`
+	TrainingDatasetID string `json:"trainingDatasetId" api:"required,nullable" format:"uuid"`
 	// The validation dataset id.
-	ValidationDatasetID string `json:"validationDatasetId,required,nullable" format:"uuid"`
+	ValidationDatasetID string `json:"validationDatasetId" api:"required,nullable" format:"uuid"`
 	// Whether the commit is archived.
-	Archived bool `json:"archived,nullable"`
+	Archived bool `json:"archived" api:"nullable"`
 	// The deployment status associated with the commit's model.
 	DeploymentStatus string                 `json:"deploymentStatus"`
 	Links            CommitGetResponseLinks `json:"links"`
@@ -118,21 +118,21 @@ func (r commitGetResponseJSON) RawJSON() string {
 // The details of a commit (project version).
 type CommitGetResponseCommit struct {
 	// The commit id.
-	ID string `json:"id,required" format:"uuid"`
+	ID string `json:"id" api:"required" format:"uuid"`
 	// The author id of the commit.
-	AuthorID string `json:"authorId,required" format:"uuid"`
+	AuthorID string `json:"authorId" api:"required" format:"uuid"`
 	// The size of the commit bundle in bytes.
-	FileSize int64 `json:"fileSize,required,nullable"`
+	FileSize int64 `json:"fileSize" api:"required,nullable"`
 	// The commit message.
-	Message string `json:"message,required"`
+	Message string `json:"message" api:"required"`
 	// The model id.
-	MlModelID string `json:"mlModelId,required,nullable" format:"uuid"`
+	MlModelID string `json:"mlModelId" api:"required,nullable" format:"uuid"`
 	// The storage URI where the commit bundle is stored.
-	StorageUri string `json:"storageUri,required"`
+	StorageUri string `json:"storageUri" api:"required"`
 	// The training dataset id.
-	TrainingDatasetID string `json:"trainingDatasetId,required,nullable" format:"uuid"`
+	TrainingDatasetID string `json:"trainingDatasetId" api:"required,nullable" format:"uuid"`
 	// The validation dataset id.
-	ValidationDatasetID string `json:"validationDatasetId,required,nullable" format:"uuid"`
+	ValidationDatasetID string `json:"validationDatasetId" api:"required,nullable" format:"uuid"`
 	// The commit creation date.
 	DateCreated time.Time `json:"dateCreated" format:"date-time"`
 	// The ref of the corresponding git commit.
@@ -193,7 +193,7 @@ func (r CommitGetResponseStatus) IsKnown() bool {
 }
 
 type CommitGetResponseLinks struct {
-	App  string                     `json:"app,required"`
+	App  string                     `json:"app" api:"required"`
 	JSON commitGetResponseLinksJSON `json:"-"`
 }
 

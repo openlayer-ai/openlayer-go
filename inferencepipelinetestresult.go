@@ -53,7 +53,7 @@ func (r *InferencePipelineTestResultService) List(ctx context.Context, inference
 }
 
 type InferencePipelineTestResultListResponse struct {
-	Items []InferencePipelineTestResultListResponseItem `json:"items,required"`
+	Items []InferencePipelineTestResultListResponseItem `json:"items" api:"required"`
 	JSON  inferencePipelineTestResultListResponseJSON   `json:"-"`
 }
 
@@ -75,31 +75,31 @@ func (r inferencePipelineTestResultListResponseJSON) RawJSON() string {
 
 type InferencePipelineTestResultListResponseItem struct {
 	// Project version (commit) id.
-	ID string `json:"id,required" format:"uuid"`
+	ID string `json:"id" api:"required" format:"uuid"`
 	// The creation date.
-	DateCreated time.Time `json:"dateCreated,required" format:"date-time"`
+	DateCreated time.Time `json:"dateCreated" api:"required" format:"date-time"`
 	// The data end date.
-	DateDataEnds time.Time `json:"dateDataEnds,required,nullable" format:"date-time"`
+	DateDataEnds time.Time `json:"dateDataEnds" api:"required,nullable" format:"date-time"`
 	// The data start date.
-	DateDataStarts time.Time `json:"dateDataStarts,required,nullable" format:"date-time"`
+	DateDataStarts time.Time `json:"dateDataStarts" api:"required,nullable" format:"date-time"`
 	// The last updated date.
-	DateUpdated time.Time `json:"dateUpdated,required" format:"date-time"`
+	DateUpdated time.Time `json:"dateUpdated" api:"required" format:"date-time"`
 	// The inference pipeline id.
-	InferencePipelineID string `json:"inferencePipelineId,required,nullable" format:"uuid"`
+	InferencePipelineID string `json:"inferencePipelineId" api:"required,nullable" format:"uuid"`
 	// The project version (commit) id.
-	ProjectVersionID string `json:"projectVersionId,required,nullable" format:"uuid"`
+	ProjectVersionID string `json:"projectVersionId" api:"required,nullable" format:"uuid"`
 	// The status of the test.
-	Status InferencePipelineTestResultListResponseItemsStatus `json:"status,required"`
+	Status InferencePipelineTestResultListResponseItemsStatus `json:"status" api:"required"`
 	// The status message.
-	StatusMessage  string                                                      `json:"statusMessage,required,nullable"`
+	StatusMessage  string                                                      `json:"statusMessage" api:"required,nullable"`
 	ExpectedValues []InferencePipelineTestResultListResponseItemsExpectedValue `json:"expectedValues"`
 	Goal           InferencePipelineTestResultListResponseItemsGoal            `json:"goal"`
 	// The test id.
-	GoalID string `json:"goalId,nullable" format:"uuid"`
+	GoalID string `json:"goalId" api:"nullable" format:"uuid"`
 	// The URL to the rows of the test result.
 	Rows string `json:"rows"`
 	// The body of the rows request.
-	RowsBody InferencePipelineTestResultListResponseItemsRowsBody `json:"rowsBody,nullable"`
+	RowsBody InferencePipelineTestResultListResponseItemsRowsBody `json:"rowsBody" api:"nullable"`
 	JSON     inferencePipelineTestResultListResponseItemJSON      `json:"-"`
 }
 
@@ -153,11 +153,11 @@ func (r InferencePipelineTestResultListResponseItemsStatus) IsKnown() bool {
 
 type InferencePipelineTestResultListResponseItemsExpectedValue struct {
 	// the lower threshold for the expected value
-	LowerThreshold float64 `json:"lowerThreshold,nullable"`
+	LowerThreshold float64 `json:"lowerThreshold" api:"nullable"`
 	// One of the `measurement` values in the test's thresholds
 	Measurement string `json:"measurement"`
 	// The upper threshold for the expected value
-	UpperThreshold float64                                                       `json:"upperThreshold,nullable"`
+	UpperThreshold float64                                                       `json:"upperThreshold" api:"nullable"`
 	JSON           inferencePipelineTestResultListResponseItemsExpectedValueJSON `json:"-"`
 }
 
@@ -182,39 +182,39 @@ func (r inferencePipelineTestResultListResponseItemsExpectedValueJSON) RawJSON()
 
 type InferencePipelineTestResultListResponseItemsGoal struct {
 	// The test id.
-	ID string `json:"id,required" format:"uuid"`
+	ID string `json:"id" api:"required" format:"uuid"`
 	// The number of comments on the test.
-	CommentCount int64 `json:"commentCount,required"`
+	CommentCount int64 `json:"commentCount" api:"required"`
 	// The test creator id.
-	CreatorID string `json:"creatorId,required,nullable" format:"uuid"`
+	CreatorID string `json:"creatorId" api:"required,nullable" format:"uuid"`
 	// The date the test was archived.
-	DateArchived time.Time `json:"dateArchived,required,nullable" format:"date-time"`
+	DateArchived time.Time `json:"dateArchived" api:"required,nullable" format:"date-time"`
 	// The creation date.
-	DateCreated time.Time `json:"dateCreated,required" format:"date-time"`
+	DateCreated time.Time `json:"dateCreated" api:"required" format:"date-time"`
 	// The last updated date.
-	DateUpdated time.Time `json:"dateUpdated,required" format:"date-time"`
+	DateUpdated time.Time `json:"dateUpdated" api:"required" format:"date-time"`
 	// The test description.
-	Description interface{} `json:"description,required,nullable"`
+	Description interface{} `json:"description" api:"required,nullable"`
 	// The test name.
-	Name string `json:"name,required"`
+	Name string `json:"name" api:"required"`
 	// The test number.
-	Number int64 `json:"number,required"`
+	Number int64 `json:"number" api:"required"`
 	// The project version (commit) id where the test was created.
-	OriginProjectVersionID string `json:"originProjectVersionId,required,nullable" format:"uuid"`
+	OriginProjectVersionID string `json:"originProjectVersionId" api:"required,nullable" format:"uuid"`
 	// The test subtype.
-	Subtype InferencePipelineTestResultListResponseItemsGoalSubtype `json:"subtype,required"`
+	Subtype InferencePipelineTestResultListResponseItemsGoalSubtype `json:"subtype" api:"required"`
 	// Whether the test is suggested or user-created.
-	Suggested  bool                                                        `json:"suggested,required"`
-	Thresholds []InferencePipelineTestResultListResponseItemsGoalThreshold `json:"thresholds,required"`
+	Suggested  bool                                                        `json:"suggested" api:"required"`
+	Thresholds []InferencePipelineTestResultListResponseItemsGoalThreshold `json:"thresholds" api:"required"`
 	// The test type.
-	Type InferencePipelineTestResultListResponseItemsGoalType `json:"type,required"`
+	Type InferencePipelineTestResultListResponseItemsGoalType `json:"type" api:"required"`
 	// Whether the test is archived.
 	Archived bool `json:"archived"`
 	// The delay window in seconds. Only applies to tests that use production data.
-	DelayWindow float64 `json:"delayWindow,nullable"`
+	DelayWindow float64 `json:"delayWindow" api:"nullable"`
 	// The evaluation window in seconds. Only applies to tests that use production
 	// data.
-	EvaluationWindow float64 `json:"evaluationWindow,nullable"`
+	EvaluationWindow float64 `json:"evaluationWindow" api:"nullable"`
 	// Whether the test uses an ML model.
 	UsesMlModel bool `json:"usesMlModel"`
 	// Whether the test uses production data (monitoring mode only).
@@ -326,7 +326,7 @@ type InferencePipelineTestResultListResponseItemsGoalThreshold struct {
 	// The insight parameters. Required only for some test subtypes. For example, for
 	// tests that require a column name, the insight parameters will be [{'name':
 	// 'column_name', 'value': 'Age'}]
-	InsightParameters []InferencePipelineTestResultListResponseItemsGoalThresholdsInsightParameter `json:"insightParameters,nullable"`
+	InsightParameters []InferencePipelineTestResultListResponseItemsGoalThresholdsInsightParameter `json:"insightParameters" api:"nullable"`
 	// The measurement to be evaluated.
 	Measurement string `json:"measurement"`
 	// The operator to be used for the evaluation.
@@ -410,8 +410,8 @@ func (r InferencePipelineTestResultListResponseItemsGoalThresholdsInsightName) I
 
 type InferencePipelineTestResultListResponseItemsGoalThresholdsInsightParameter struct {
 	// The name of the insight filter.
-	Name  string                                                                         `json:"name,required"`
-	Value interface{}                                                                    `json:"value,required"`
+	Name  string                                                                         `json:"name" api:"required"`
+	Value interface{}                                                                    `json:"value" api:"required"`
 	JSON  inferencePipelineTestResultListResponseItemsGoalThresholdsInsightParameterJSON `json:"-"`
 }
 
@@ -528,13 +528,13 @@ func (r InferencePipelineTestResultListResponseItemsGoalType) IsKnown() bool {
 
 // The body of the rows request.
 type InferencePipelineTestResultListResponseItemsRowsBody struct {
-	ColumnFilters     []InferencePipelineTestResultListResponseItemsRowsBodyColumnFilter `json:"columnFilters,nullable"`
-	ExcludeRowIDList  []int64                                                            `json:"excludeRowIdList,nullable"`
-	NotSearchQueryAnd []string                                                           `json:"notSearchQueryAnd,nullable"`
-	NotSearchQueryOr  []string                                                           `json:"notSearchQueryOr,nullable"`
-	RowIDList         []int64                                                            `json:"rowIdList,nullable"`
-	SearchQueryAnd    []string                                                           `json:"searchQueryAnd,nullable"`
-	SearchQueryOr     []string                                                           `json:"searchQueryOr,nullable"`
+	ColumnFilters     []InferencePipelineTestResultListResponseItemsRowsBodyColumnFilter `json:"columnFilters" api:"nullable"`
+	ExcludeRowIDList  []int64                                                            `json:"excludeRowIdList" api:"nullable"`
+	NotSearchQueryAnd []string                                                           `json:"notSearchQueryAnd" api:"nullable"`
+	NotSearchQueryOr  []string                                                           `json:"notSearchQueryOr" api:"nullable"`
+	RowIDList         []int64                                                            `json:"rowIdList" api:"nullable"`
+	SearchQueryAnd    []string                                                           `json:"searchQueryAnd" api:"nullable"`
+	SearchQueryOr     []string                                                           `json:"searchQueryOr" api:"nullable"`
 	JSON              inferencePipelineTestResultListResponseItemsRowsBodyJSON           `json:"-"`
 }
 
@@ -562,13 +562,13 @@ func (r inferencePipelineTestResultListResponseItemsRowsBodyJSON) RawJSON() stri
 
 type InferencePipelineTestResultListResponseItemsRowsBodyColumnFilter struct {
 	// The name of the column.
-	Measurement string                                                                    `json:"measurement,required"`
-	Operator    InferencePipelineTestResultListResponseItemsRowsBodyColumnFiltersOperator `json:"operator,required"`
+	Measurement string                                                                    `json:"measurement" api:"required"`
+	Operator    InferencePipelineTestResultListResponseItemsRowsBodyColumnFiltersOperator `json:"operator" api:"required"`
 	// This field can have the runtime type of
 	// [[]InferencePipelineTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterValueUnion],
 	// [float64],
 	// [InferencePipelineTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilterValueUnion].
-	Value interface{}                                                          `json:"value,required"`
+	Value interface{}                                                          `json:"value" api:"required"`
 	JSON  inferencePipelineTestResultListResponseItemsRowsBodyColumnFilterJSON `json:"-"`
 	union InferencePipelineTestResultListResponseItemsRowsBodyColumnFiltersUnion
 }
@@ -639,9 +639,9 @@ func init() {
 
 type InferencePipelineTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilter struct {
 	// The name of the column.
-	Measurement string                                                                                       `json:"measurement,required"`
-	Operator    InferencePipelineTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterOperator     `json:"operator,required"`
-	Value       []InferencePipelineTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterValueUnion `json:"value,required"`
+	Measurement string                                                                                       `json:"measurement" api:"required"`
+	Operator    InferencePipelineTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterOperator     `json:"operator" api:"required"`
+	Value       []InferencePipelineTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterValueUnion `json:"value" api:"required"`
 	JSON        inferencePipelineTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterJSON         `json:"-"`
 }
 
@@ -707,9 +707,9 @@ func init() {
 
 type InferencePipelineTestResultListResponseItemsRowsBodyColumnFiltersNumericColumnFilter struct {
 	// The name of the column.
-	Measurement string                                                                                       `json:"measurement,required"`
-	Operator    InferencePipelineTestResultListResponseItemsRowsBodyColumnFiltersNumericColumnFilterOperator `json:"operator,required"`
-	Value       float64                                                                                      `json:"value,required,nullable"`
+	Measurement string                                                                                       `json:"measurement" api:"required"`
+	Operator    InferencePipelineTestResultListResponseItemsRowsBodyColumnFiltersNumericColumnFilterOperator `json:"operator" api:"required"`
+	Value       float64                                                                                      `json:"value" api:"required,nullable"`
 	JSON        inferencePipelineTestResultListResponseItemsRowsBodyColumnFiltersNumericColumnFilterJSON     `json:"-"`
 }
 
@@ -756,9 +756,9 @@ func (r InferencePipelineTestResultListResponseItemsRowsBodyColumnFiltersNumeric
 
 type InferencePipelineTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilter struct {
 	// The name of the column.
-	Measurement string                                                                                        `json:"measurement,required"`
-	Operator    InferencePipelineTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilterOperator   `json:"operator,required"`
-	Value       InferencePipelineTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilterValueUnion `json:"value,required"`
+	Measurement string                                                                                        `json:"measurement" api:"required"`
+	Operator    InferencePipelineTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilterOperator   `json:"operator" api:"required"`
+	Value       InferencePipelineTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilterValueUnion `json:"value" api:"required"`
 	JSON        inferencePipelineTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilterJSON       `json:"-"`
 }
 

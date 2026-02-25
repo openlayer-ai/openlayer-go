@@ -78,51 +78,51 @@ func (r *ProjectTestService) List(ctx context.Context, projectID string, query P
 
 type ProjectTestNewResponse struct {
 	// The test id.
-	ID string `json:"id,required" format:"uuid"`
+	ID string `json:"id" api:"required" format:"uuid"`
 	// The number of comments on the test.
-	CommentCount int64 `json:"commentCount,required"`
+	CommentCount int64 `json:"commentCount" api:"required"`
 	// The test creator id.
-	CreatorID string `json:"creatorId,required,nullable" format:"uuid"`
+	CreatorID string `json:"creatorId" api:"required,nullable" format:"uuid"`
 	// The date the test was archived.
-	DateArchived time.Time `json:"dateArchived,required,nullable" format:"date-time"`
+	DateArchived time.Time `json:"dateArchived" api:"required,nullable" format:"date-time"`
 	// The creation date.
-	DateCreated time.Time `json:"dateCreated,required" format:"date-time"`
+	DateCreated time.Time `json:"dateCreated" api:"required" format:"date-time"`
 	// The last updated date.
-	DateUpdated time.Time `json:"dateUpdated,required" format:"date-time"`
+	DateUpdated time.Time `json:"dateUpdated" api:"required" format:"date-time"`
 	// The test description.
-	Description interface{} `json:"description,required,nullable"`
+	Description interface{} `json:"description" api:"required,nullable"`
 	// The test name.
-	Name string `json:"name,required"`
+	Name string `json:"name" api:"required"`
 	// The test number.
-	Number int64 `json:"number,required"`
+	Number int64 `json:"number" api:"required"`
 	// The project version (commit) id where the test was created.
-	OriginProjectVersionID string `json:"originProjectVersionId,required,nullable" format:"uuid"`
+	OriginProjectVersionID string `json:"originProjectVersionId" api:"required,nullable" format:"uuid"`
 	// The test subtype.
-	Subtype ProjectTestNewResponseSubtype `json:"subtype,required"`
+	Subtype ProjectTestNewResponseSubtype `json:"subtype" api:"required"`
 	// Whether the test is suggested or user-created.
-	Suggested  bool                              `json:"suggested,required"`
-	Thresholds []ProjectTestNewResponseThreshold `json:"thresholds,required"`
+	Suggested  bool                              `json:"suggested" api:"required"`
+	Thresholds []ProjectTestNewResponseThreshold `json:"thresholds" api:"required"`
 	// The test type.
-	Type ProjectTestNewResponseType `json:"type,required"`
+	Type ProjectTestNewResponseType `json:"type" api:"required"`
 	// Whether the test is archived.
 	Archived bool `json:"archived"`
 	// Whether to apply the test to all pipelines (data sources) or to a specific set
 	// of pipelines. Only applies to tests that use production data.
-	DefaultToAllPipelines bool `json:"defaultToAllPipelines,nullable"`
+	DefaultToAllPipelines bool `json:"defaultToAllPipelines" api:"nullable"`
 	// The delay window in seconds. Only applies to tests that use production data.
-	DelayWindow float64 `json:"delayWindow,nullable"`
+	DelayWindow float64 `json:"delayWindow" api:"nullable"`
 	// The evaluation window in seconds. Only applies to tests that use production
 	// data.
-	EvaluationWindow float64 `json:"evaluationWindow,nullable"`
+	EvaluationWindow float64 `json:"evaluationWindow" api:"nullable"`
 	// Array of pipelines (data sources) to which the test should not be applied. Only
 	// applies to tests that use production data.
-	ExcludePipelines []string `json:"excludePipelines,nullable" format:"uuid"`
+	ExcludePipelines []string `json:"excludePipelines" api:"nullable" format:"uuid"`
 	// Whether to include historical data in the test result. Only applies to tests
 	// that use production data.
-	IncludeHistoricalData bool `json:"includeHistoricalData,nullable"`
+	IncludeHistoricalData bool `json:"includeHistoricalData" api:"nullable"`
 	// Array of pipelines (data sources) to which the test should be applied. Only
 	// applies to tests that use production data.
-	IncludePipelines []string `json:"includePipelines,nullable" format:"uuid"`
+	IncludePipelines []string `json:"includePipelines" api:"nullable" format:"uuid"`
 	// Whether the test uses an ML model.
 	UsesMlModel bool `json:"usesMlModel"`
 	// Whether the test uses production data (monitoring mode only).
@@ -238,7 +238,7 @@ type ProjectTestNewResponseThreshold struct {
 	// The insight parameters. Required only for some test subtypes. For example, for
 	// tests that require a column name, the insight parameters will be [{'name':
 	// 'column_name', 'value': 'Age'}]
-	InsightParameters []ProjectTestNewResponseThresholdsInsightParameter `json:"insightParameters,nullable"`
+	InsightParameters []ProjectTestNewResponseThresholdsInsightParameter `json:"insightParameters" api:"nullable"`
 	// The measurement to be evaluated.
 	Measurement string `json:"measurement"`
 	// The operator to be used for the evaluation.
@@ -321,8 +321,8 @@ func (r ProjectTestNewResponseThresholdsInsightName) IsKnown() bool {
 
 type ProjectTestNewResponseThresholdsInsightParameter struct {
 	// The name of the insight filter.
-	Name  string                                               `json:"name,required"`
-	Value interface{}                                          `json:"value,required"`
+	Name  string                                               `json:"name" api:"required"`
+	Value interface{}                                          `json:"value" api:"required"`
 	JSON  projectTestNewResponseThresholdsInsightParameterJSON `json:"-"`
 }
 
@@ -460,7 +460,7 @@ func (r projectTestUpdateResponseJSON) RawJSON() string {
 }
 
 type ProjectTestListResponse struct {
-	Items []ProjectTestListResponseItem `json:"items,required"`
+	Items []ProjectTestListResponseItem `json:"items" api:"required"`
 	JSON  projectTestListResponseJSON   `json:"-"`
 }
 
@@ -482,51 +482,51 @@ func (r projectTestListResponseJSON) RawJSON() string {
 
 type ProjectTestListResponseItem struct {
 	// The test id.
-	ID string `json:"id,required" format:"uuid"`
+	ID string `json:"id" api:"required" format:"uuid"`
 	// The number of comments on the test.
-	CommentCount int64 `json:"commentCount,required"`
+	CommentCount int64 `json:"commentCount" api:"required"`
 	// The test creator id.
-	CreatorID string `json:"creatorId,required,nullable" format:"uuid"`
+	CreatorID string `json:"creatorId" api:"required,nullable" format:"uuid"`
 	// The date the test was archived.
-	DateArchived time.Time `json:"dateArchived,required,nullable" format:"date-time"`
+	DateArchived time.Time `json:"dateArchived" api:"required,nullable" format:"date-time"`
 	// The creation date.
-	DateCreated time.Time `json:"dateCreated,required" format:"date-time"`
+	DateCreated time.Time `json:"dateCreated" api:"required" format:"date-time"`
 	// The last updated date.
-	DateUpdated time.Time `json:"dateUpdated,required" format:"date-time"`
+	DateUpdated time.Time `json:"dateUpdated" api:"required" format:"date-time"`
 	// The test description.
-	Description interface{} `json:"description,required,nullable"`
+	Description interface{} `json:"description" api:"required,nullable"`
 	// The test name.
-	Name string `json:"name,required"`
+	Name string `json:"name" api:"required"`
 	// The test number.
-	Number int64 `json:"number,required"`
+	Number int64 `json:"number" api:"required"`
 	// The project version (commit) id where the test was created.
-	OriginProjectVersionID string `json:"originProjectVersionId,required,nullable" format:"uuid"`
+	OriginProjectVersionID string `json:"originProjectVersionId" api:"required,nullable" format:"uuid"`
 	// The test subtype.
-	Subtype ProjectTestListResponseItemsSubtype `json:"subtype,required"`
+	Subtype ProjectTestListResponseItemsSubtype `json:"subtype" api:"required"`
 	// Whether the test is suggested or user-created.
-	Suggested  bool                                    `json:"suggested,required"`
-	Thresholds []ProjectTestListResponseItemsThreshold `json:"thresholds,required"`
+	Suggested  bool                                    `json:"suggested" api:"required"`
+	Thresholds []ProjectTestListResponseItemsThreshold `json:"thresholds" api:"required"`
 	// The test type.
-	Type ProjectTestListResponseItemsType `json:"type,required"`
+	Type ProjectTestListResponseItemsType `json:"type" api:"required"`
 	// Whether the test is archived.
 	Archived bool `json:"archived"`
 	// Whether to apply the test to all pipelines (data sources) or to a specific set
 	// of pipelines. Only applies to tests that use production data.
-	DefaultToAllPipelines bool `json:"defaultToAllPipelines,nullable"`
+	DefaultToAllPipelines bool `json:"defaultToAllPipelines" api:"nullable"`
 	// The delay window in seconds. Only applies to tests that use production data.
-	DelayWindow float64 `json:"delayWindow,nullable"`
+	DelayWindow float64 `json:"delayWindow" api:"nullable"`
 	// The evaluation window in seconds. Only applies to tests that use production
 	// data.
-	EvaluationWindow float64 `json:"evaluationWindow,nullable"`
+	EvaluationWindow float64 `json:"evaluationWindow" api:"nullable"`
 	// Array of pipelines (data sources) to which the test should not be applied. Only
 	// applies to tests that use production data.
-	ExcludePipelines []string `json:"excludePipelines,nullable" format:"uuid"`
+	ExcludePipelines []string `json:"excludePipelines" api:"nullable" format:"uuid"`
 	// Whether to include historical data in the test result. Only applies to tests
 	// that use production data.
-	IncludeHistoricalData bool `json:"includeHistoricalData,nullable"`
+	IncludeHistoricalData bool `json:"includeHistoricalData" api:"nullable"`
 	// Array of pipelines (data sources) to which the test should be applied. Only
 	// applies to tests that use production data.
-	IncludePipelines []string `json:"includePipelines,nullable" format:"uuid"`
+	IncludePipelines []string `json:"includePipelines" api:"nullable" format:"uuid"`
 	// Whether the test uses an ML model.
 	UsesMlModel bool `json:"usesMlModel"`
 	// Whether the test uses production data (monitoring mode only).
@@ -642,7 +642,7 @@ type ProjectTestListResponseItemsThreshold struct {
 	// The insight parameters. Required only for some test subtypes. For example, for
 	// tests that require a column name, the insight parameters will be [{'name':
 	// 'column_name', 'value': 'Age'}]
-	InsightParameters []ProjectTestListResponseItemsThresholdsInsightParameter `json:"insightParameters,nullable"`
+	InsightParameters []ProjectTestListResponseItemsThresholdsInsightParameter `json:"insightParameters" api:"nullable"`
 	// The measurement to be evaluated.
 	Measurement string `json:"measurement"`
 	// The operator to be used for the evaluation.
@@ -725,8 +725,8 @@ func (r ProjectTestListResponseItemsThresholdsInsightName) IsKnown() bool {
 
 type ProjectTestListResponseItemsThresholdsInsightParameter struct {
 	// The name of the insight filter.
-	Name  string                                                     `json:"name,required"`
-	Value interface{}                                                `json:"value,required"`
+	Name  string                                                     `json:"name" api:"required"`
+	Value interface{}                                                `json:"value" api:"required"`
 	JSON  projectTestListResponseItemsThresholdsInsightParameterJSON `json:"-"`
 }
 
@@ -842,14 +842,14 @@ func (r ProjectTestListResponseItemsType) IsKnown() bool {
 
 type ProjectTestNewParams struct {
 	// The test description.
-	Description param.Field[interface{}] `json:"description,required"`
+	Description param.Field[interface{}] `json:"description" api:"required"`
 	// The test name.
-	Name param.Field[string] `json:"name,required"`
+	Name param.Field[string] `json:"name" api:"required"`
 	// The test subtype.
-	Subtype    param.Field[ProjectTestNewParamsSubtype]     `json:"subtype,required"`
-	Thresholds param.Field[[]ProjectTestNewParamsThreshold] `json:"thresholds,required"`
+	Subtype    param.Field[ProjectTestNewParamsSubtype]     `json:"subtype" api:"required"`
+	Thresholds param.Field[[]ProjectTestNewParamsThreshold] `json:"thresholds" api:"required"`
 	// The test type.
-	Type param.Field[ProjectTestNewParamsType] `json:"type,required"`
+	Type param.Field[ProjectTestNewParamsType] `json:"type" api:"required"`
 	// Whether the test is archived.
 	Archived param.Field[bool] `json:"archived"`
 	// Whether to apply the test to all pipelines (data sources) or to a specific set
@@ -1011,8 +1011,8 @@ func (r ProjectTestNewParamsThresholdsInsightName) IsKnown() bool {
 
 type ProjectTestNewParamsThresholdsInsightParameter struct {
 	// The name of the insight filter.
-	Name  param.Field[string]      `json:"name,required"`
-	Value param.Field[interface{}] `json:"value,required"`
+	Name  param.Field[string]      `json:"name" api:"required"`
+	Value param.Field[interface{}] `json:"value" api:"required"`
 }
 
 func (r ProjectTestNewParamsThresholdsInsightParameter) MarshalJSON() (data []byte, err error) {
@@ -1086,7 +1086,7 @@ func (r ProjectTestNewParamsType) IsKnown() bool {
 }
 
 type ProjectTestUpdateParams struct {
-	Payloads param.Field[[]ProjectTestUpdateParamsPayload] `json:"payloads,required"`
+	Payloads param.Field[[]ProjectTestUpdateParamsPayload] `json:"payloads" api:"required"`
 }
 
 func (r ProjectTestUpdateParams) MarshalJSON() (data []byte, err error) {
@@ -1094,7 +1094,7 @@ func (r ProjectTestUpdateParams) MarshalJSON() (data []byte, err error) {
 }
 
 type ProjectTestUpdateParamsPayload struct {
-	ID param.Field[string] `json:"id,required" format:"uuid"`
+	ID param.Field[string] `json:"id" api:"required" format:"uuid"`
 	// Whether the test is archived.
 	Archived param.Field[bool] `json:"archived"`
 	// The test description.
@@ -1194,8 +1194,8 @@ func (r ProjectTestUpdateParamsPayloadsThresholdsInsightName) IsKnown() bool {
 
 type ProjectTestUpdateParamsPayloadsThresholdsInsightParameter struct {
 	// The name of the insight filter.
-	Name  param.Field[string]      `json:"name,required"`
-	Value param.Field[interface{}] `json:"value,required"`
+	Name  param.Field[string]      `json:"name" api:"required"`
+	Value param.Field[interface{}] `json:"value" api:"required"`
 }
 
 func (r ProjectTestUpdateParamsPayloadsThresholdsInsightParameter) MarshalJSON() (data []byte, err error) {

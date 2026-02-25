@@ -53,7 +53,7 @@ func (r *CommitTestResultService) List(ctx context.Context, projectVersionID str
 }
 
 type CommitTestResultListResponse struct {
-	Items []CommitTestResultListResponseItem `json:"items,required"`
+	Items []CommitTestResultListResponseItem `json:"items" api:"required"`
 	JSON  commitTestResultListResponseJSON   `json:"-"`
 }
 
@@ -75,31 +75,31 @@ func (r commitTestResultListResponseJSON) RawJSON() string {
 
 type CommitTestResultListResponseItem struct {
 	// Project version (commit) id.
-	ID string `json:"id,required" format:"uuid"`
+	ID string `json:"id" api:"required" format:"uuid"`
 	// The creation date.
-	DateCreated time.Time `json:"dateCreated,required" format:"date-time"`
+	DateCreated time.Time `json:"dateCreated" api:"required" format:"date-time"`
 	// The data end date.
-	DateDataEnds time.Time `json:"dateDataEnds,required,nullable" format:"date-time"`
+	DateDataEnds time.Time `json:"dateDataEnds" api:"required,nullable" format:"date-time"`
 	// The data start date.
-	DateDataStarts time.Time `json:"dateDataStarts,required,nullable" format:"date-time"`
+	DateDataStarts time.Time `json:"dateDataStarts" api:"required,nullable" format:"date-time"`
 	// The last updated date.
-	DateUpdated time.Time `json:"dateUpdated,required" format:"date-time"`
+	DateUpdated time.Time `json:"dateUpdated" api:"required" format:"date-time"`
 	// The inference pipeline id.
-	InferencePipelineID string `json:"inferencePipelineId,required,nullable" format:"uuid"`
+	InferencePipelineID string `json:"inferencePipelineId" api:"required,nullable" format:"uuid"`
 	// The project version (commit) id.
-	ProjectVersionID string `json:"projectVersionId,required,nullable" format:"uuid"`
+	ProjectVersionID string `json:"projectVersionId" api:"required,nullable" format:"uuid"`
 	// The status of the test.
-	Status CommitTestResultListResponseItemsStatus `json:"status,required"`
+	Status CommitTestResultListResponseItemsStatus `json:"status" api:"required"`
 	// The status message.
-	StatusMessage  string                                           `json:"statusMessage,required,nullable"`
+	StatusMessage  string                                           `json:"statusMessage" api:"required,nullable"`
 	ExpectedValues []CommitTestResultListResponseItemsExpectedValue `json:"expectedValues"`
 	Goal           CommitTestResultListResponseItemsGoal            `json:"goal"`
 	// The test id.
-	GoalID string `json:"goalId,nullable" format:"uuid"`
+	GoalID string `json:"goalId" api:"nullable" format:"uuid"`
 	// The URL to the rows of the test result.
 	Rows string `json:"rows"`
 	// The body of the rows request.
-	RowsBody CommitTestResultListResponseItemsRowsBody `json:"rowsBody,nullable"`
+	RowsBody CommitTestResultListResponseItemsRowsBody `json:"rowsBody" api:"nullable"`
 	JSON     commitTestResultListResponseItemJSON      `json:"-"`
 }
 
@@ -153,11 +153,11 @@ func (r CommitTestResultListResponseItemsStatus) IsKnown() bool {
 
 type CommitTestResultListResponseItemsExpectedValue struct {
 	// the lower threshold for the expected value
-	LowerThreshold float64 `json:"lowerThreshold,nullable"`
+	LowerThreshold float64 `json:"lowerThreshold" api:"nullable"`
 	// One of the `measurement` values in the test's thresholds
 	Measurement string `json:"measurement"`
 	// The upper threshold for the expected value
-	UpperThreshold float64                                            `json:"upperThreshold,nullable"`
+	UpperThreshold float64                                            `json:"upperThreshold" api:"nullable"`
 	JSON           commitTestResultListResponseItemsExpectedValueJSON `json:"-"`
 }
 
@@ -181,39 +181,39 @@ func (r commitTestResultListResponseItemsExpectedValueJSON) RawJSON() string {
 
 type CommitTestResultListResponseItemsGoal struct {
 	// The test id.
-	ID string `json:"id,required" format:"uuid"`
+	ID string `json:"id" api:"required" format:"uuid"`
 	// The number of comments on the test.
-	CommentCount int64 `json:"commentCount,required"`
+	CommentCount int64 `json:"commentCount" api:"required"`
 	// The test creator id.
-	CreatorID string `json:"creatorId,required,nullable" format:"uuid"`
+	CreatorID string `json:"creatorId" api:"required,nullable" format:"uuid"`
 	// The date the test was archived.
-	DateArchived time.Time `json:"dateArchived,required,nullable" format:"date-time"`
+	DateArchived time.Time `json:"dateArchived" api:"required,nullable" format:"date-time"`
 	// The creation date.
-	DateCreated time.Time `json:"dateCreated,required" format:"date-time"`
+	DateCreated time.Time `json:"dateCreated" api:"required" format:"date-time"`
 	// The last updated date.
-	DateUpdated time.Time `json:"dateUpdated,required" format:"date-time"`
+	DateUpdated time.Time `json:"dateUpdated" api:"required" format:"date-time"`
 	// The test description.
-	Description interface{} `json:"description,required,nullable"`
+	Description interface{} `json:"description" api:"required,nullable"`
 	// The test name.
-	Name string `json:"name,required"`
+	Name string `json:"name" api:"required"`
 	// The test number.
-	Number int64 `json:"number,required"`
+	Number int64 `json:"number" api:"required"`
 	// The project version (commit) id where the test was created.
-	OriginProjectVersionID string `json:"originProjectVersionId,required,nullable" format:"uuid"`
+	OriginProjectVersionID string `json:"originProjectVersionId" api:"required,nullable" format:"uuid"`
 	// The test subtype.
-	Subtype CommitTestResultListResponseItemsGoalSubtype `json:"subtype,required"`
+	Subtype CommitTestResultListResponseItemsGoalSubtype `json:"subtype" api:"required"`
 	// Whether the test is suggested or user-created.
-	Suggested  bool                                             `json:"suggested,required"`
-	Thresholds []CommitTestResultListResponseItemsGoalThreshold `json:"thresholds,required"`
+	Suggested  bool                                             `json:"suggested" api:"required"`
+	Thresholds []CommitTestResultListResponseItemsGoalThreshold `json:"thresholds" api:"required"`
 	// The test type.
-	Type CommitTestResultListResponseItemsGoalType `json:"type,required"`
+	Type CommitTestResultListResponseItemsGoalType `json:"type" api:"required"`
 	// Whether the test is archived.
 	Archived bool `json:"archived"`
 	// The delay window in seconds. Only applies to tests that use production data.
-	DelayWindow float64 `json:"delayWindow,nullable"`
+	DelayWindow float64 `json:"delayWindow" api:"nullable"`
 	// The evaluation window in seconds. Only applies to tests that use production
 	// data.
-	EvaluationWindow float64 `json:"evaluationWindow,nullable"`
+	EvaluationWindow float64 `json:"evaluationWindow" api:"nullable"`
 	// Whether the test uses an ML model.
 	UsesMlModel bool `json:"usesMlModel"`
 	// Whether the test uses production data (monitoring mode only).
@@ -325,7 +325,7 @@ type CommitTestResultListResponseItemsGoalThreshold struct {
 	// The insight parameters. Required only for some test subtypes. For example, for
 	// tests that require a column name, the insight parameters will be [{'name':
 	// 'column_name', 'value': 'Age'}]
-	InsightParameters []CommitTestResultListResponseItemsGoalThresholdsInsightParameter `json:"insightParameters,nullable"`
+	InsightParameters []CommitTestResultListResponseItemsGoalThresholdsInsightParameter `json:"insightParameters" api:"nullable"`
 	// The measurement to be evaluated.
 	Measurement string `json:"measurement"`
 	// The operator to be used for the evaluation.
@@ -408,8 +408,8 @@ func (r CommitTestResultListResponseItemsGoalThresholdsInsightName) IsKnown() bo
 
 type CommitTestResultListResponseItemsGoalThresholdsInsightParameter struct {
 	// The name of the insight filter.
-	Name  string                                                              `json:"name,required"`
-	Value interface{}                                                         `json:"value,required"`
+	Name  string                                                              `json:"name" api:"required"`
+	Value interface{}                                                         `json:"value" api:"required"`
 	JSON  commitTestResultListResponseItemsGoalThresholdsInsightParameterJSON `json:"-"`
 }
 
@@ -526,13 +526,13 @@ func (r CommitTestResultListResponseItemsGoalType) IsKnown() bool {
 
 // The body of the rows request.
 type CommitTestResultListResponseItemsRowsBody struct {
-	ColumnFilters     []CommitTestResultListResponseItemsRowsBodyColumnFilter `json:"columnFilters,nullable"`
-	ExcludeRowIDList  []int64                                                 `json:"excludeRowIdList,nullable"`
-	NotSearchQueryAnd []string                                                `json:"notSearchQueryAnd,nullable"`
-	NotSearchQueryOr  []string                                                `json:"notSearchQueryOr,nullable"`
-	RowIDList         []int64                                                 `json:"rowIdList,nullable"`
-	SearchQueryAnd    []string                                                `json:"searchQueryAnd,nullable"`
-	SearchQueryOr     []string                                                `json:"searchQueryOr,nullable"`
+	ColumnFilters     []CommitTestResultListResponseItemsRowsBodyColumnFilter `json:"columnFilters" api:"nullable"`
+	ExcludeRowIDList  []int64                                                 `json:"excludeRowIdList" api:"nullable"`
+	NotSearchQueryAnd []string                                                `json:"notSearchQueryAnd" api:"nullable"`
+	NotSearchQueryOr  []string                                                `json:"notSearchQueryOr" api:"nullable"`
+	RowIDList         []int64                                                 `json:"rowIdList" api:"nullable"`
+	SearchQueryAnd    []string                                                `json:"searchQueryAnd" api:"nullable"`
+	SearchQueryOr     []string                                                `json:"searchQueryOr" api:"nullable"`
 	JSON              commitTestResultListResponseItemsRowsBodyJSON           `json:"-"`
 }
 
@@ -560,13 +560,13 @@ func (r commitTestResultListResponseItemsRowsBodyJSON) RawJSON() string {
 
 type CommitTestResultListResponseItemsRowsBodyColumnFilter struct {
 	// The name of the column.
-	Measurement string                                                         `json:"measurement,required"`
-	Operator    CommitTestResultListResponseItemsRowsBodyColumnFiltersOperator `json:"operator,required"`
+	Measurement string                                                         `json:"measurement" api:"required"`
+	Operator    CommitTestResultListResponseItemsRowsBodyColumnFiltersOperator `json:"operator" api:"required"`
 	// This field can have the runtime type of
 	// [[]CommitTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterValueUnion],
 	// [float64],
 	// [CommitTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilterValueUnion].
-	Value interface{}                                               `json:"value,required"`
+	Value interface{}                                               `json:"value" api:"required"`
 	JSON  commitTestResultListResponseItemsRowsBodyColumnFilterJSON `json:"-"`
 	union CommitTestResultListResponseItemsRowsBodyColumnFiltersUnion
 }
@@ -634,9 +634,9 @@ func init() {
 
 type CommitTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilter struct {
 	// The name of the column.
-	Measurement string                                                                            `json:"measurement,required"`
-	Operator    CommitTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterOperator     `json:"operator,required"`
-	Value       []CommitTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterValueUnion `json:"value,required"`
+	Measurement string                                                                            `json:"measurement" api:"required"`
+	Operator    CommitTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterOperator     `json:"operator" api:"required"`
+	Value       []CommitTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterValueUnion `json:"value" api:"required"`
 	JSON        commitTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterJSON         `json:"-"`
 }
 
@@ -702,9 +702,9 @@ func init() {
 
 type CommitTestResultListResponseItemsRowsBodyColumnFiltersNumericColumnFilter struct {
 	// The name of the column.
-	Measurement string                                                                            `json:"measurement,required"`
-	Operator    CommitTestResultListResponseItemsRowsBodyColumnFiltersNumericColumnFilterOperator `json:"operator,required"`
-	Value       float64                                                                           `json:"value,required,nullable"`
+	Measurement string                                                                            `json:"measurement" api:"required"`
+	Operator    CommitTestResultListResponseItemsRowsBodyColumnFiltersNumericColumnFilterOperator `json:"operator" api:"required"`
+	Value       float64                                                                           `json:"value" api:"required,nullable"`
 	JSON        commitTestResultListResponseItemsRowsBodyColumnFiltersNumericColumnFilterJSON     `json:"-"`
 }
 
@@ -751,9 +751,9 @@ func (r CommitTestResultListResponseItemsRowsBodyColumnFiltersNumericColumnFilte
 
 type CommitTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilter struct {
 	// The name of the column.
-	Measurement string                                                                             `json:"measurement,required"`
-	Operator    CommitTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilterOperator   `json:"operator,required"`
-	Value       CommitTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilterValueUnion `json:"value,required"`
+	Measurement string                                                                             `json:"measurement" api:"required"`
+	Operator    CommitTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilterOperator   `json:"operator" api:"required"`
+	Value       CommitTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilterValueUnion `json:"value" api:"required"`
 	JSON        commitTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilterJSON       `json:"-"`
 }
 
