@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.4.6 (2026-03-03)
+
+Full Changelog: [v0.4.5...v0.4.6](https://github.com/openlayer-ai/openlayer-go/compare/v0.4.5...v0.4.6)
+
+### Chores
+
+* **internal:** codegen related update ([6e34598](https://github.com/openlayer-ai/openlayer-go/commit/6e34598da609480e5de1588139919eefa9078908))
+
 ## 0.4.5 (2026-02-25)
 
 Full Changelog: [v0.4.4...v0.4.5](https://github.com/openlayer-ai/openlayer-go/compare/v0.4.4...v0.4.5)
