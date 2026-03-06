@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.5.0 (2026-03-06)
+
+Full Changelog: [v0.4.6...v0.5.0](https://github.com/openlayer-ai/openlayer-go/compare/v0.4.6...v0.5.0)
+
+### Features
+
+* **api:** update POST /rows to use list method name ([41e63db](https://github.com/openlayer-ai/openlayer-go/commit/41e63db6be69f60dfc6b5cb1742b020995749ff4))
+* **closes OPEN-9425:** document /rows endpoint in API reference and … ([fbbd96d](https://github.com/openlayer-ai/openlayer-go/commit/fbbd96dafd853037ffe1f8fcba177afee2b321a3))
+
+
+### Chores
+
+* **internal:** codegen related update ([6eee863](https://github.com/openlayer-ai/openlayer-go/commit/6eee8632c49fe741d88ac7697778a5b4d6649b2d))
+* **test:** do not count install time for mock server timeout ([7fe9198](https://github.com/openlayer-ai/openlayer-go/commit/7fe919820df200ebc731b7c74483882ca0a18787))
+
 ## 0.4.6 (2026-03-03)
 
 Full Changelog: [v0.4.5...v0.4.6](https://github.com/openlayer-ai/openlayer-go/compare/v0.4.5...v0.4.6)
