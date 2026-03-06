@@ -14,48 +14,6 @@ import (
 	"github.com/openlayer-ai/openlayer-go/shared"
 )
 
-func TestInferencePipelineRowNewWithOptionalParams(t *testing.T) {
-	baseURL := "http://localhost:4010"
-	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
-		baseURL = envURL
-	}
-	if !testutil.CheckTestServer(t, baseURL) {
-		return
-	}
-	client := openlayer.NewClient(
-		option.WithBaseURL(baseURL),
-		option.WithAPIKey("My API Key"),
-	)
-	_, err := client.InferencePipelines.Rows.New(
-		context.TODO(),
-		"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
-		openlayer.InferencePipelineRowNewParams{
-			Asc:        openlayer.F(true),
-			Page:       openlayer.F(int64(1)),
-			PerPage:    openlayer.F(int64(1)),
-			SortColumn: openlayer.F("sortColumn"),
-			ColumnFilters: openlayer.F([]openlayer.InferencePipelineRowNewParamsColumnFilterUnion{openlayer.InferencePipelineRowNewParamsColumnFiltersSetColumnFilter{
-				Measurement: openlayer.F("openlayer_token_set"),
-				Operator:    openlayer.F(openlayer.InferencePipelineRowNewParamsColumnFiltersSetColumnFilterOperatorContainsNone),
-				Value:       openlayer.F([]openlayer.InferencePipelineRowNewParamsColumnFiltersSetColumnFilterValueUnion{shared.UnionString("cat")}),
-			}}),
-			ExcludeRowIDList:  openlayer.F([]int64{int64(0)}),
-			NotSearchQueryAnd: openlayer.F([]string{"string"}),
-			NotSearchQueryOr:  openlayer.F([]string{"string"}),
-			RowIDList:         openlayer.F([]int64{int64(0)}),
-			SearchQueryAnd:    openlayer.F([]string{"string"}),
-			SearchQueryOr:     openlayer.F([]string{"string"}),
-		},
-	)
-	if err != nil {
-		var apierr *openlayer.Error
-		if errors.As(err, &apierr) {
-			t.Log(string(apierr.DumpRequest(true)))
-		}
-		t.Fatalf("err should be nil: %s", err.Error())
-	}
-}
-
 func TestInferencePipelineRowUpdateWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
@@ -81,6 +39,48 @@ func TestInferencePipelineRowUpdateWithOptionalParams(t *testing.T) {
 				LatencyColumnName:       openlayer.F("latency"),
 				TimestampColumnName:     openlayer.F("timestamp"),
 			}),
+		},
+	)
+	if err != nil {
+		var apierr *openlayer.Error
+		if errors.As(err, &apierr) {
+			t.Log(string(apierr.DumpRequest(true)))
+		}
+		t.Fatalf("err should be nil: %s", err.Error())
+	}
+}
+
+func TestInferencePipelineRowListWithOptionalParams(t *testing.T) {
+	baseURL := "http://localhost:4010"
+	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
+		baseURL = envURL
+	}
+	if !testutil.CheckTestServer(t, baseURL) {
+		return
+	}
+	client := openlayer.NewClient(
+		option.WithBaseURL(baseURL),
+		option.WithAPIKey("My API Key"),
+	)
+	_, err := client.InferencePipelines.Rows.List(
+		context.TODO(),
+		"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+		openlayer.InferencePipelineRowListParams{
+			Asc:        openlayer.F(true),
+			Page:       openlayer.F(int64(1)),
+			PerPage:    openlayer.F(int64(1)),
+			SortColumn: openlayer.F("sortColumn"),
+			ColumnFilters: openlayer.F([]openlayer.InferencePipelineRowListParamsColumnFilterUnion{openlayer.InferencePipelineRowListParamsColumnFiltersSetColumnFilter{
+				Measurement: openlayer.F("openlayer_token_set"),
+				Operator:    openlayer.F(openlayer.InferencePipelineRowListParamsColumnFiltersSetColumnFilterOperatorContainsNone),
+				Value:       openlayer.F([]openlayer.InferencePipelineRowListParamsColumnFiltersSetColumnFilterValueUnion{shared.UnionString("cat")}),
+			}}),
+			ExcludeRowIDList:  openlayer.F([]int64{int64(0)}),
+			NotSearchQueryAnd: openlayer.F([]string{"string"}),
+			NotSearchQueryOr:  openlayer.F([]string{"string"}),
+			RowIDList:         openlayer.F([]int64{int64(0)}),
+			SearchQueryAnd:    openlayer.F([]string{"string"}),
+			SearchQueryOr:     openlayer.F([]string{"string"}),
 		},
 	)
 	if err != nil {
