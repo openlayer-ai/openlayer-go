@@ -13,6 +13,9 @@ func (UnionString) ImplementsCommitTestResultListResponseItemsRowsBodyColumnFilt
 }
 func (UnionString) ImplementsCommitTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilterValueUnion() {
 }
+func (UnionString) ImplementsInferencePipelineRowNewParamsColumnFiltersSetColumnFilterValueUnion() {}
+func (UnionString) ImplementsInferencePipelineRowNewParamsColumnFiltersStringColumnFilterValueUnion() {
+}
 func (UnionString) ImplementsInferencePipelineTestResultListResponseItemsGoalThresholdsValueUnion() {}
 func (UnionString) ImplementsInferencePipelineTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterValueUnion() {
 }
@@ -38,7 +41,8 @@ func (UnionBool) ImplementsProjectTestUpdateParamsPayloadsThresholdsValueUnion()
 func (UnionBool) ImplementsCommitTestResultListResponseItemsGoalThresholdsValueUnion() {}
 func (UnionBool) ImplementsCommitTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilterValueUnion() {
 }
-func (UnionBool) ImplementsInferencePipelineTestResultListResponseItemsGoalThresholdsValueUnion() {}
+func (UnionBool) ImplementsInferencePipelineRowNewParamsColumnFiltersStringColumnFilterValueUnion() {}
+func (UnionBool) ImplementsInferencePipelineTestResultListResponseItemsGoalThresholdsValueUnion()   {}
 func (UnionBool) ImplementsInferencePipelineTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilterValueUnion() {
 }
 func (UnionBool) ImplementsTestListResultsResponseItemsGoalThresholdsValueUnion() {}
@@ -57,6 +61,7 @@ func (UnionFloat) ImplementsProjectTestUpdateParamsPayloadsThresholdsValueUnion(
 func (UnionFloat) ImplementsCommitTestResultListResponseItemsGoalThresholdsValueUnion() {}
 func (UnionFloat) ImplementsCommitTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterValueUnion() {
 }
+func (UnionFloat) ImplementsInferencePipelineRowNewParamsColumnFiltersSetColumnFilterValueUnion()  {}
 func (UnionFloat) ImplementsInferencePipelineTestResultListResponseItemsGoalThresholdsValueUnion() {}
 func (UnionFloat) ImplementsInferencePipelineTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterValueUnion() {
 }
