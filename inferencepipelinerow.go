@@ -36,18 +36,6 @@ func NewInferencePipelineRowService(opts ...option.RequestOption) (r *InferenceP
 	return
 }
 
-// A list of rows for an inference pipeline.
-func (r *InferencePipelineRowService) New(ctx context.Context, inferencePipelineID string, params InferencePipelineRowNewParams, opts ...option.RequestOption) (res *InferencePipelineRowNewResponse, err error) {
-	opts = slices.Concat(r.Options, opts)
-	if inferencePipelineID == "" {
-		err = errors.New("missing required inferencePipelineId parameter")
-		return
-	}
-	path := fmt.Sprintf("inference-pipelines/%s/rows", inferencePipelineID)
-	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, params, &res, opts...)
-	return
-}
-
 // Update an inference data point in an inference pipeline.
 func (r *InferencePipelineRowService) Update(ctx context.Context, inferencePipelineID string, params InferencePipelineRowUpdateParams, opts ...option.RequestOption) (res *InferencePipelineRowUpdateResponse, err error) {
 	opts = slices.Concat(r.Options, opts)
@@ -60,46 +48,16 @@ func (r *InferencePipelineRowService) Update(ctx context.Context, inferencePipel
 	return
 }
 
-type InferencePipelineRowNewResponse struct {
-	Items []InferencePipelineRowNewResponseItem `json:"items" api:"required"`
-	JSON  inferencePipelineRowNewResponseJSON   `json:"-"`
-}
-
-// inferencePipelineRowNewResponseJSON contains the JSON metadata for the struct
-// [InferencePipelineRowNewResponse]
-type inferencePipelineRowNewResponseJSON struct {
-	Items       apijson.Field
-	raw         string
-	ExtraFields map[string]apijson.Field
-}
-
-func (r *InferencePipelineRowNewResponse) UnmarshalJSON(data []byte) (err error) {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-func (r inferencePipelineRowNewResponseJSON) RawJSON() string {
-	return r.raw
-}
-
-type InferencePipelineRowNewResponseItem struct {
-	OpenlayerRowID int64                                   `json:"openlayer_row_id" api:"required"`
-	JSON           inferencePipelineRowNewResponseItemJSON `json:"-"`
-}
-
-// inferencePipelineRowNewResponseItemJSON contains the JSON metadata for the
-// struct [InferencePipelineRowNewResponseItem]
-type inferencePipelineRowNewResponseItemJSON struct {
-	OpenlayerRowID apijson.Field
-	raw            string
-	ExtraFields    map[string]apijson.Field
-}
-
-func (r *InferencePipelineRowNewResponseItem) UnmarshalJSON(data []byte) (err error) {
-	return apijson.UnmarshalRoot(data, r)
-}
-
-func (r inferencePipelineRowNewResponseItemJSON) RawJSON() string {
-	return r.raw
+// A list of rows for an inference pipeline.
+func (r *InferencePipelineRowService) List(ctx context.Context, inferencePipelineID string, params InferencePipelineRowListParams, opts ...option.RequestOption) (res *InferencePipelineRowListResponse, err error) {
+	opts = slices.Concat(r.Options, opts)
+	if inferencePipelineID == "" {
+		err = errors.New("missing required inferencePipelineId parameter")
+		return
+	}
+	path := fmt.Sprintf("inference-pipelines/%s/rows", inferencePipelineID)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, params, &res, opts...)
+	return
 }
 
 type InferencePipelineRowUpdateResponse struct {
@@ -137,185 +95,46 @@ func (r InferencePipelineRowUpdateResponseSuccess) IsKnown() bool {
 	return false
 }
 
-type InferencePipelineRowNewParams struct {
-	// Whether or not to sort on the sortColumn in ascending order.
-	Asc param.Field[bool] `query:"asc"`
-	// The page to return in a paginated query.
-	Page param.Field[int64] `query:"page"`
-	// Maximum number of items to return per page.
-	PerPage param.Field[int64] `query:"perPage"`
-	// Name of the column to sort on
-	SortColumn        param.Field[string]                                           `query:"sortColumn"`
-	ColumnFilters     param.Field[[]InferencePipelineRowNewParamsColumnFilterUnion] `json:"columnFilters"`
-	ExcludeRowIDList  param.Field[[]int64]                                          `json:"excludeRowIdList"`
-	NotSearchQueryAnd param.Field[[]string]                                         `json:"notSearchQueryAnd"`
-	NotSearchQueryOr  param.Field[[]string]                                         `json:"notSearchQueryOr"`
-	RowIDList         param.Field[[]int64]                                          `json:"rowIdList"`
-	SearchQueryAnd    param.Field[[]string]                                         `json:"searchQueryAnd"`
-	SearchQueryOr     param.Field[[]string]                                         `json:"searchQueryOr"`
+type InferencePipelineRowListResponse struct {
+	Items []InferencePipelineRowListResponseItem `json:"items" api:"required"`
+	JSON  inferencePipelineRowListResponseJSON   `json:"-"`
 }
 
-func (r InferencePipelineRowNewParams) MarshalJSON() (data []byte, err error) {
-	return apijson.MarshalRoot(r)
+// inferencePipelineRowListResponseJSON contains the JSON metadata for the struct
+// [InferencePipelineRowListResponse]
+type inferencePipelineRowListResponseJSON struct {
+	Items       apijson.Field
+	raw         string
+	ExtraFields map[string]apijson.Field
 }
 
-// URLQuery serializes [InferencePipelineRowNewParams]'s query parameters as
-// `url.Values`.
-func (r InferencePipelineRowNewParams) URLQuery() (v url.Values) {
-	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
-		ArrayFormat:  apiquery.ArrayQueryFormatComma,
-		NestedFormat: apiquery.NestedQueryFormatBrackets,
-	})
+func (r *InferencePipelineRowListResponse) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
 }
 
-type InferencePipelineRowNewParamsColumnFilter struct {
-	// The name of the column.
-	Measurement param.Field[string]                                             `json:"measurement" api:"required"`
-	Operator    param.Field[InferencePipelineRowNewParamsColumnFiltersOperator] `json:"operator" api:"required"`
-	Value       param.Field[interface{}]                                        `json:"value" api:"required"`
+func (r inferencePipelineRowListResponseJSON) RawJSON() string {
+	return r.raw
 }
 
-func (r InferencePipelineRowNewParamsColumnFilter) MarshalJSON() (data []byte, err error) {
-	return apijson.MarshalRoot(r)
+type InferencePipelineRowListResponseItem struct {
+	OpenlayerRowID int64                                    `json:"openlayer_row_id" api:"required"`
+	JSON           inferencePipelineRowListResponseItemJSON `json:"-"`
 }
 
-func (r InferencePipelineRowNewParamsColumnFilter) implementsInferencePipelineRowNewParamsColumnFilterUnion() {
+// inferencePipelineRowListResponseItemJSON contains the JSON metadata for the
+// struct [InferencePipelineRowListResponseItem]
+type inferencePipelineRowListResponseItemJSON struct {
+	OpenlayerRowID apijson.Field
+	raw            string
+	ExtraFields    map[string]apijson.Field
 }
 
-// Satisfied by [InferencePipelineRowNewParamsColumnFiltersSetColumnFilter],
-// [InferencePipelineRowNewParamsColumnFiltersNumericColumnFilter],
-// [InferencePipelineRowNewParamsColumnFiltersStringColumnFilter],
-// [InferencePipelineRowNewParamsColumnFilter].
-type InferencePipelineRowNewParamsColumnFilterUnion interface {
-	implementsInferencePipelineRowNewParamsColumnFilterUnion()
+func (r *InferencePipelineRowListResponseItem) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
 }
 
-type InferencePipelineRowNewParamsColumnFiltersSetColumnFilter struct {
-	// The name of the column.
-	Measurement param.Field[string]                                                                `json:"measurement" api:"required"`
-	Operator    param.Field[InferencePipelineRowNewParamsColumnFiltersSetColumnFilterOperator]     `json:"operator" api:"required"`
-	Value       param.Field[[]InferencePipelineRowNewParamsColumnFiltersSetColumnFilterValueUnion] `json:"value" api:"required"`
-}
-
-func (r InferencePipelineRowNewParamsColumnFiltersSetColumnFilter) MarshalJSON() (data []byte, err error) {
-	return apijson.MarshalRoot(r)
-}
-
-func (r InferencePipelineRowNewParamsColumnFiltersSetColumnFilter) implementsInferencePipelineRowNewParamsColumnFilterUnion() {
-}
-
-type InferencePipelineRowNewParamsColumnFiltersSetColumnFilterOperator string
-
-const (
-	InferencePipelineRowNewParamsColumnFiltersSetColumnFilterOperatorContainsNone InferencePipelineRowNewParamsColumnFiltersSetColumnFilterOperator = "contains_none"
-	InferencePipelineRowNewParamsColumnFiltersSetColumnFilterOperatorContainsAny  InferencePipelineRowNewParamsColumnFiltersSetColumnFilterOperator = "contains_any"
-	InferencePipelineRowNewParamsColumnFiltersSetColumnFilterOperatorContainsAll  InferencePipelineRowNewParamsColumnFiltersSetColumnFilterOperator = "contains_all"
-	InferencePipelineRowNewParamsColumnFiltersSetColumnFilterOperatorOneOf        InferencePipelineRowNewParamsColumnFiltersSetColumnFilterOperator = "one_of"
-	InferencePipelineRowNewParamsColumnFiltersSetColumnFilterOperatorNoneOf       InferencePipelineRowNewParamsColumnFiltersSetColumnFilterOperator = "none_of"
-)
-
-func (r InferencePipelineRowNewParamsColumnFiltersSetColumnFilterOperator) IsKnown() bool {
-	switch r {
-	case InferencePipelineRowNewParamsColumnFiltersSetColumnFilterOperatorContainsNone, InferencePipelineRowNewParamsColumnFiltersSetColumnFilterOperatorContainsAny, InferencePipelineRowNewParamsColumnFiltersSetColumnFilterOperatorContainsAll, InferencePipelineRowNewParamsColumnFiltersSetColumnFilterOperatorOneOf, InferencePipelineRowNewParamsColumnFiltersSetColumnFilterOperatorNoneOf:
-		return true
-	}
-	return false
-}
-
-// Satisfied by [shared.UnionString], [shared.UnionFloat].
-type InferencePipelineRowNewParamsColumnFiltersSetColumnFilterValueUnion interface {
-	ImplementsInferencePipelineRowNewParamsColumnFiltersSetColumnFilterValueUnion()
-}
-
-type InferencePipelineRowNewParamsColumnFiltersNumericColumnFilter struct {
-	// The name of the column.
-	Measurement param.Field[string]                                                                `json:"measurement" api:"required"`
-	Operator    param.Field[InferencePipelineRowNewParamsColumnFiltersNumericColumnFilterOperator] `json:"operator" api:"required"`
-	Value       param.Field[float64]                                                               `json:"value" api:"required"`
-}
-
-func (r InferencePipelineRowNewParamsColumnFiltersNumericColumnFilter) MarshalJSON() (data []byte, err error) {
-	return apijson.MarshalRoot(r)
-}
-
-func (r InferencePipelineRowNewParamsColumnFiltersNumericColumnFilter) implementsInferencePipelineRowNewParamsColumnFilterUnion() {
-}
-
-type InferencePipelineRowNewParamsColumnFiltersNumericColumnFilterOperator string
-
-const (
-	InferencePipelineRowNewParamsColumnFiltersNumericColumnFilterOperatorGreater         InferencePipelineRowNewParamsColumnFiltersNumericColumnFilterOperator = ">"
-	InferencePipelineRowNewParamsColumnFiltersNumericColumnFilterOperatorGreaterOrEquals InferencePipelineRowNewParamsColumnFiltersNumericColumnFilterOperator = ">="
-	InferencePipelineRowNewParamsColumnFiltersNumericColumnFilterOperatorIs              InferencePipelineRowNewParamsColumnFiltersNumericColumnFilterOperator = "is"
-	InferencePipelineRowNewParamsColumnFiltersNumericColumnFilterOperatorLess            InferencePipelineRowNewParamsColumnFiltersNumericColumnFilterOperator = "<"
-	InferencePipelineRowNewParamsColumnFiltersNumericColumnFilterOperatorLessOrEquals    InferencePipelineRowNewParamsColumnFiltersNumericColumnFilterOperator = "<="
-	InferencePipelineRowNewParamsColumnFiltersNumericColumnFilterOperatorNotEquals       InferencePipelineRowNewParamsColumnFiltersNumericColumnFilterOperator = "!="
-)
-
-func (r InferencePipelineRowNewParamsColumnFiltersNumericColumnFilterOperator) IsKnown() bool {
-	switch r {
-	case InferencePipelineRowNewParamsColumnFiltersNumericColumnFilterOperatorGreater, InferencePipelineRowNewParamsColumnFiltersNumericColumnFilterOperatorGreaterOrEquals, InferencePipelineRowNewParamsColumnFiltersNumericColumnFilterOperatorIs, InferencePipelineRowNewParamsColumnFiltersNumericColumnFilterOperatorLess, InferencePipelineRowNewParamsColumnFiltersNumericColumnFilterOperatorLessOrEquals, InferencePipelineRowNewParamsColumnFiltersNumericColumnFilterOperatorNotEquals:
-		return true
-	}
-	return false
-}
-
-type InferencePipelineRowNewParamsColumnFiltersStringColumnFilter struct {
-	// The name of the column.
-	Measurement param.Field[string]                                                                 `json:"measurement" api:"required"`
-	Operator    param.Field[InferencePipelineRowNewParamsColumnFiltersStringColumnFilterOperator]   `json:"operator" api:"required"`
-	Value       param.Field[InferencePipelineRowNewParamsColumnFiltersStringColumnFilterValueUnion] `json:"value" api:"required"`
-}
-
-func (r InferencePipelineRowNewParamsColumnFiltersStringColumnFilter) MarshalJSON() (data []byte, err error) {
-	return apijson.MarshalRoot(r)
-}
-
-func (r InferencePipelineRowNewParamsColumnFiltersStringColumnFilter) implementsInferencePipelineRowNewParamsColumnFilterUnion() {
-}
-
-type InferencePipelineRowNewParamsColumnFiltersStringColumnFilterOperator string
-
-const (
-	InferencePipelineRowNewParamsColumnFiltersStringColumnFilterOperatorIs        InferencePipelineRowNewParamsColumnFiltersStringColumnFilterOperator = "is"
-	InferencePipelineRowNewParamsColumnFiltersStringColumnFilterOperatorNotEquals InferencePipelineRowNewParamsColumnFiltersStringColumnFilterOperator = "!="
-)
-
-func (r InferencePipelineRowNewParamsColumnFiltersStringColumnFilterOperator) IsKnown() bool {
-	switch r {
-	case InferencePipelineRowNewParamsColumnFiltersStringColumnFilterOperatorIs, InferencePipelineRowNewParamsColumnFiltersStringColumnFilterOperatorNotEquals:
-		return true
-	}
-	return false
-}
-
-// Satisfied by [shared.UnionString], [shared.UnionBool].
-type InferencePipelineRowNewParamsColumnFiltersStringColumnFilterValueUnion interface {
-	ImplementsInferencePipelineRowNewParamsColumnFiltersStringColumnFilterValueUnion()
-}
-
-type InferencePipelineRowNewParamsColumnFiltersOperator string
-
-const (
-	InferencePipelineRowNewParamsColumnFiltersOperatorContainsNone    InferencePipelineRowNewParamsColumnFiltersOperator = "contains_none"
-	InferencePipelineRowNewParamsColumnFiltersOperatorContainsAny     InferencePipelineRowNewParamsColumnFiltersOperator = "contains_any"
-	InferencePipelineRowNewParamsColumnFiltersOperatorContainsAll     InferencePipelineRowNewParamsColumnFiltersOperator = "contains_all"
-	InferencePipelineRowNewParamsColumnFiltersOperatorOneOf           InferencePipelineRowNewParamsColumnFiltersOperator = "one_of"
-	InferencePipelineRowNewParamsColumnFiltersOperatorNoneOf          InferencePipelineRowNewParamsColumnFiltersOperator = "none_of"
-	InferencePipelineRowNewParamsColumnFiltersOperatorGreater         InferencePipelineRowNewParamsColumnFiltersOperator = ">"
-	InferencePipelineRowNewParamsColumnFiltersOperatorGreaterOrEquals InferencePipelineRowNewParamsColumnFiltersOperator = ">="
-	InferencePipelineRowNewParamsColumnFiltersOperatorIs              InferencePipelineRowNewParamsColumnFiltersOperator = "is"
-	InferencePipelineRowNewParamsColumnFiltersOperatorLess            InferencePipelineRowNewParamsColumnFiltersOperator = "<"
-	InferencePipelineRowNewParamsColumnFiltersOperatorLessOrEquals    InferencePipelineRowNewParamsColumnFiltersOperator = "<="
-	InferencePipelineRowNewParamsColumnFiltersOperatorNotEquals       InferencePipelineRowNewParamsColumnFiltersOperator = "!="
-)
-
-func (r InferencePipelineRowNewParamsColumnFiltersOperator) IsKnown() bool {
-	switch r {
-	case InferencePipelineRowNewParamsColumnFiltersOperatorContainsNone, InferencePipelineRowNewParamsColumnFiltersOperatorContainsAny, InferencePipelineRowNewParamsColumnFiltersOperatorContainsAll, InferencePipelineRowNewParamsColumnFiltersOperatorOneOf, InferencePipelineRowNewParamsColumnFiltersOperatorNoneOf, InferencePipelineRowNewParamsColumnFiltersOperatorGreater, InferencePipelineRowNewParamsColumnFiltersOperatorGreaterOrEquals, InferencePipelineRowNewParamsColumnFiltersOperatorIs, InferencePipelineRowNewParamsColumnFiltersOperatorLess, InferencePipelineRowNewParamsColumnFiltersOperatorLessOrEquals, InferencePipelineRowNewParamsColumnFiltersOperatorNotEquals:
-		return true
-	}
-	return false
+func (r inferencePipelineRowListResponseItemJSON) RawJSON() string {
+	return r.raw
 }
 
 type InferencePipelineRowUpdateParams struct {
@@ -356,4 +175,185 @@ type InferencePipelineRowUpdateParamsConfig struct {
 
 func (r InferencePipelineRowUpdateParamsConfig) MarshalJSON() (data []byte, err error) {
 	return apijson.MarshalRoot(r)
+}
+
+type InferencePipelineRowListParams struct {
+	// Whether or not to sort on the sortColumn in ascending order.
+	Asc param.Field[bool] `query:"asc"`
+	// The page to return in a paginated query.
+	Page param.Field[int64] `query:"page"`
+	// Maximum number of items to return per page.
+	PerPage param.Field[int64] `query:"perPage"`
+	// Name of the column to sort on
+	SortColumn        param.Field[string]                                            `query:"sortColumn"`
+	ColumnFilters     param.Field[[]InferencePipelineRowListParamsColumnFilterUnion] `json:"columnFilters"`
+	ExcludeRowIDList  param.Field[[]int64]                                           `json:"excludeRowIdList"`
+	NotSearchQueryAnd param.Field[[]string]                                          `json:"notSearchQueryAnd"`
+	NotSearchQueryOr  param.Field[[]string]                                          `json:"notSearchQueryOr"`
+	RowIDList         param.Field[[]int64]                                           `json:"rowIdList"`
+	SearchQueryAnd    param.Field[[]string]                                          `json:"searchQueryAnd"`
+	SearchQueryOr     param.Field[[]string]                                          `json:"searchQueryOr"`
+}
+
+func (r InferencePipelineRowListParams) MarshalJSON() (data []byte, err error) {
+	return apijson.MarshalRoot(r)
+}
+
+// URLQuery serializes [InferencePipelineRowListParams]'s query parameters as
+// `url.Values`.
+func (r InferencePipelineRowListParams) URLQuery() (v url.Values) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
+
+type InferencePipelineRowListParamsColumnFilter struct {
+	// The name of the column.
+	Measurement param.Field[string]                                              `json:"measurement" api:"required"`
+	Operator    param.Field[InferencePipelineRowListParamsColumnFiltersOperator] `json:"operator" api:"required"`
+	Value       param.Field[interface{}]                                         `json:"value" api:"required"`
+}
+
+func (r InferencePipelineRowListParamsColumnFilter) MarshalJSON() (data []byte, err error) {
+	return apijson.MarshalRoot(r)
+}
+
+func (r InferencePipelineRowListParamsColumnFilter) implementsInferencePipelineRowListParamsColumnFilterUnion() {
+}
+
+// Satisfied by [InferencePipelineRowListParamsColumnFiltersSetColumnFilter],
+// [InferencePipelineRowListParamsColumnFiltersNumericColumnFilter],
+// [InferencePipelineRowListParamsColumnFiltersStringColumnFilter],
+// [InferencePipelineRowListParamsColumnFilter].
+type InferencePipelineRowListParamsColumnFilterUnion interface {
+	implementsInferencePipelineRowListParamsColumnFilterUnion()
+}
+
+type InferencePipelineRowListParamsColumnFiltersSetColumnFilter struct {
+	// The name of the column.
+	Measurement param.Field[string]                                                                 `json:"measurement" api:"required"`
+	Operator    param.Field[InferencePipelineRowListParamsColumnFiltersSetColumnFilterOperator]     `json:"operator" api:"required"`
+	Value       param.Field[[]InferencePipelineRowListParamsColumnFiltersSetColumnFilterValueUnion] `json:"value" api:"required"`
+}
+
+func (r InferencePipelineRowListParamsColumnFiltersSetColumnFilter) MarshalJSON() (data []byte, err error) {
+	return apijson.MarshalRoot(r)
+}
+
+func (r InferencePipelineRowListParamsColumnFiltersSetColumnFilter) implementsInferencePipelineRowListParamsColumnFilterUnion() {
+}
+
+type InferencePipelineRowListParamsColumnFiltersSetColumnFilterOperator string
+
+const (
+	InferencePipelineRowListParamsColumnFiltersSetColumnFilterOperatorContainsNone InferencePipelineRowListParamsColumnFiltersSetColumnFilterOperator = "contains_none"
+	InferencePipelineRowListParamsColumnFiltersSetColumnFilterOperatorContainsAny  InferencePipelineRowListParamsColumnFiltersSetColumnFilterOperator = "contains_any"
+	InferencePipelineRowListParamsColumnFiltersSetColumnFilterOperatorContainsAll  InferencePipelineRowListParamsColumnFiltersSetColumnFilterOperator = "contains_all"
+	InferencePipelineRowListParamsColumnFiltersSetColumnFilterOperatorOneOf        InferencePipelineRowListParamsColumnFiltersSetColumnFilterOperator = "one_of"
+	InferencePipelineRowListParamsColumnFiltersSetColumnFilterOperatorNoneOf       InferencePipelineRowListParamsColumnFiltersSetColumnFilterOperator = "none_of"
+)
+
+func (r InferencePipelineRowListParamsColumnFiltersSetColumnFilterOperator) IsKnown() bool {
+	switch r {
+	case InferencePipelineRowListParamsColumnFiltersSetColumnFilterOperatorContainsNone, InferencePipelineRowListParamsColumnFiltersSetColumnFilterOperatorContainsAny, InferencePipelineRowListParamsColumnFiltersSetColumnFilterOperatorContainsAll, InferencePipelineRowListParamsColumnFiltersSetColumnFilterOperatorOneOf, InferencePipelineRowListParamsColumnFiltersSetColumnFilterOperatorNoneOf:
+		return true
+	}
+	return false
+}
+
+// Satisfied by [shared.UnionString], [shared.UnionFloat].
+type InferencePipelineRowListParamsColumnFiltersSetColumnFilterValueUnion interface {
+	ImplementsInferencePipelineRowListParamsColumnFiltersSetColumnFilterValueUnion()
+}
+
+type InferencePipelineRowListParamsColumnFiltersNumericColumnFilter struct {
+	// The name of the column.
+	Measurement param.Field[string]                                                                 `json:"measurement" api:"required"`
+	Operator    param.Field[InferencePipelineRowListParamsColumnFiltersNumericColumnFilterOperator] `json:"operator" api:"required"`
+	Value       param.Field[float64]                                                                `json:"value" api:"required"`
+}
+
+func (r InferencePipelineRowListParamsColumnFiltersNumericColumnFilter) MarshalJSON() (data []byte, err error) {
+	return apijson.MarshalRoot(r)
+}
+
+func (r InferencePipelineRowListParamsColumnFiltersNumericColumnFilter) implementsInferencePipelineRowListParamsColumnFilterUnion() {
+}
+
+type InferencePipelineRowListParamsColumnFiltersNumericColumnFilterOperator string
+
+const (
+	InferencePipelineRowListParamsColumnFiltersNumericColumnFilterOperatorGreater         InferencePipelineRowListParamsColumnFiltersNumericColumnFilterOperator = ">"
+	InferencePipelineRowListParamsColumnFiltersNumericColumnFilterOperatorGreaterOrEquals InferencePipelineRowListParamsColumnFiltersNumericColumnFilterOperator = ">="
+	InferencePipelineRowListParamsColumnFiltersNumericColumnFilterOperatorIs              InferencePipelineRowListParamsColumnFiltersNumericColumnFilterOperator = "is"
+	InferencePipelineRowListParamsColumnFiltersNumericColumnFilterOperatorLess            InferencePipelineRowListParamsColumnFiltersNumericColumnFilterOperator = "<"
+	InferencePipelineRowListParamsColumnFiltersNumericColumnFilterOperatorLessOrEquals    InferencePipelineRowListParamsColumnFiltersNumericColumnFilterOperator = "<="
+	InferencePipelineRowListParamsColumnFiltersNumericColumnFilterOperatorNotEquals       InferencePipelineRowListParamsColumnFiltersNumericColumnFilterOperator = "!="
+)
+
+func (r InferencePipelineRowListParamsColumnFiltersNumericColumnFilterOperator) IsKnown() bool {
+	switch r {
+	case InferencePipelineRowListParamsColumnFiltersNumericColumnFilterOperatorGreater, InferencePipelineRowListParamsColumnFiltersNumericColumnFilterOperatorGreaterOrEquals, InferencePipelineRowListParamsColumnFiltersNumericColumnFilterOperatorIs, InferencePipelineRowListParamsColumnFiltersNumericColumnFilterOperatorLess, InferencePipelineRowListParamsColumnFiltersNumericColumnFilterOperatorLessOrEquals, InferencePipelineRowListParamsColumnFiltersNumericColumnFilterOperatorNotEquals:
+		return true
+	}
+	return false
+}
+
+type InferencePipelineRowListParamsColumnFiltersStringColumnFilter struct {
+	// The name of the column.
+	Measurement param.Field[string]                                                                  `json:"measurement" api:"required"`
+	Operator    param.Field[InferencePipelineRowListParamsColumnFiltersStringColumnFilterOperator]   `json:"operator" api:"required"`
+	Value       param.Field[InferencePipelineRowListParamsColumnFiltersStringColumnFilterValueUnion] `json:"value" api:"required"`
+}
+
+func (r InferencePipelineRowListParamsColumnFiltersStringColumnFilter) MarshalJSON() (data []byte, err error) {
+	return apijson.MarshalRoot(r)
+}
+
+func (r InferencePipelineRowListParamsColumnFiltersStringColumnFilter) implementsInferencePipelineRowListParamsColumnFilterUnion() {
+}
+
+type InferencePipelineRowListParamsColumnFiltersStringColumnFilterOperator string
+
+const (
+	InferencePipelineRowListParamsColumnFiltersStringColumnFilterOperatorIs        InferencePipelineRowListParamsColumnFiltersStringColumnFilterOperator = "is"
+	InferencePipelineRowListParamsColumnFiltersStringColumnFilterOperatorNotEquals InferencePipelineRowListParamsColumnFiltersStringColumnFilterOperator = "!="
+)
+
+func (r InferencePipelineRowListParamsColumnFiltersStringColumnFilterOperator) IsKnown() bool {
+	switch r {
+	case InferencePipelineRowListParamsColumnFiltersStringColumnFilterOperatorIs, InferencePipelineRowListParamsColumnFiltersStringColumnFilterOperatorNotEquals:
+		return true
+	}
+	return false
+}
+
+// Satisfied by [shared.UnionString], [shared.UnionBool].
+type InferencePipelineRowListParamsColumnFiltersStringColumnFilterValueUnion interface {
+	ImplementsInferencePipelineRowListParamsColumnFiltersStringColumnFilterValueUnion()
+}
+
+type InferencePipelineRowListParamsColumnFiltersOperator string
+
+const (
+	InferencePipelineRowListParamsColumnFiltersOperatorContainsNone    InferencePipelineRowListParamsColumnFiltersOperator = "contains_none"
+	InferencePipelineRowListParamsColumnFiltersOperatorContainsAny     InferencePipelineRowListParamsColumnFiltersOperator = "contains_any"
+	InferencePipelineRowListParamsColumnFiltersOperatorContainsAll     InferencePipelineRowListParamsColumnFiltersOperator = "contains_all"
+	InferencePipelineRowListParamsColumnFiltersOperatorOneOf           InferencePipelineRowListParamsColumnFiltersOperator = "one_of"
+	InferencePipelineRowListParamsColumnFiltersOperatorNoneOf          InferencePipelineRowListParamsColumnFiltersOperator = "none_of"
+	InferencePipelineRowListParamsColumnFiltersOperatorGreater         InferencePipelineRowListParamsColumnFiltersOperator = ">"
+	InferencePipelineRowListParamsColumnFiltersOperatorGreaterOrEquals InferencePipelineRowListParamsColumnFiltersOperator = ">="
+	InferencePipelineRowListParamsColumnFiltersOperatorIs              InferencePipelineRowListParamsColumnFiltersOperator = "is"
+	InferencePipelineRowListParamsColumnFiltersOperatorLess            InferencePipelineRowListParamsColumnFiltersOperator = "<"
+	InferencePipelineRowListParamsColumnFiltersOperatorLessOrEquals    InferencePipelineRowListParamsColumnFiltersOperator = "<="
+	InferencePipelineRowListParamsColumnFiltersOperatorNotEquals       InferencePipelineRowListParamsColumnFiltersOperator = "!="
+)
+
+func (r InferencePipelineRowListParamsColumnFiltersOperator) IsKnown() bool {
+	switch r {
+	case InferencePipelineRowListParamsColumnFiltersOperatorContainsNone, InferencePipelineRowListParamsColumnFiltersOperatorContainsAny, InferencePipelineRowListParamsColumnFiltersOperatorContainsAll, InferencePipelineRowListParamsColumnFiltersOperatorOneOf, InferencePipelineRowListParamsColumnFiltersOperatorNoneOf, InferencePipelineRowListParamsColumnFiltersOperatorGreater, InferencePipelineRowListParamsColumnFiltersOperatorGreaterOrEquals, InferencePipelineRowListParamsColumnFiltersOperatorIs, InferencePipelineRowListParamsColumnFiltersOperatorLess, InferencePipelineRowListParamsColumnFiltersOperatorLessOrEquals, InferencePipelineRowListParamsColumnFiltersOperatorNotEquals:
+		return true
+	}
+	return false
 }
