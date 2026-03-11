@@ -39,11 +39,11 @@ func (r *InferencePipelineDataService) Stream(ctx context.Context, inferencePipe
 	opts = slices.Concat(r.Options, opts)
 	if inferencePipelineID == "" {
 		err = errors.New("missing required inferencePipelineId parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("inference-pipelines/%s/data-stream", inferencePipelineID)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
-	return
+	return res, err
 }
 
 type InferencePipelineDataStreamResponse struct {

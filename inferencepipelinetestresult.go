@@ -45,11 +45,11 @@ func (r *InferencePipelineTestResultService) List(ctx context.Context, inference
 	opts = slices.Concat(r.Options, opts)
 	if inferencePipelineID == "" {
 		err = errors.New("missing required inferencePipelineId parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("inference-pipelines/%s/results", inferencePipelineID)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 type InferencePipelineTestResultListResponse struct {

@@ -48,11 +48,11 @@ func (r *TestService) Evaluate(ctx context.Context, testID string, body TestEval
 	opts = slices.Concat(r.Options, opts)
 	if testID == "" {
 		err = errors.New("missing required testId parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("tests/%s/evaluate", testID)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
-	return
+	return res, err
 }
 
 // List the test results for a test.
@@ -60,11 +60,11 @@ func (r *TestService) ListResults(ctx context.Context, testID string, query Test
 	opts = slices.Concat(r.Options, opts)
 	if testID == "" {
 		err = errors.New("missing required testId parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("tests/%s/results", testID)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 type TestEvaluateResponse struct {

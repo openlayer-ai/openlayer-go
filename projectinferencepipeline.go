@@ -44,11 +44,11 @@ func (r *ProjectInferencePipelineService) New(ctx context.Context, projectID str
 	opts = slices.Concat(r.Options, opts)
 	if projectID == "" {
 		err = errors.New("missing required projectId parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("projects/%s/inference-pipelines", projectID)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
-	return
+	return res, err
 }
 
 // List the inference pipelines in a project.
@@ -56,11 +56,11 @@ func (r *ProjectInferencePipelineService) List(ctx context.Context, projectID st
 	opts = slices.Concat(r.Options, opts)
 	if projectID == "" {
 		err = errors.New("missing required projectId parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("projects/%s/inference-pipelines", projectID)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 type ProjectInferencePipelineNewResponse struct {

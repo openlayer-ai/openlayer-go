@@ -41,11 +41,11 @@ func (r *CommitService) Get(ctx context.Context, projectVersionID string, opts .
 	opts = slices.Concat(r.Options, opts)
 	if projectVersionID == "" {
 		err = errors.New("missing required projectVersionId parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("versions/%s", projectVersionID)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 type CommitGetResponse struct {
