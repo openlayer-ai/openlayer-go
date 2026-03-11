@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.5.2 (2026-03-11)
+
+Full Changelog: [v0.5.1...v0.5.2](https://github.com/openlayer-ai/openlayer-go/compare/v0.5.1...v0.5.2)
+
+### Chores
+
+* **internal:** minor cleanup ([79713f7](https://github.com/openlayer-ai/openlayer-go/commit/79713f782f3baf04b18b8fdcf043a378a9ef093b))
+* **internal:** use explicit returns ([b4c00c6](https://github.com/openlayer-ai/openlayer-go/commit/b4c00c6f3c8f1b296ca9aa8d9d584971f45a33c7))
+* **internal:** use explicit returns in more places ([2bd7baa](https://github.com/openlayer-ai/openlayer-go/commit/2bd7baac9a836b33822e4a0498596921e9c5071b))
+
 ## 0.5.1 (2026-03-08)
 
 Full Changelog: [v0.5.0...v0.5.1](https://github.com/openlayer-ai/openlayer-go/compare/v0.5.0...v0.5.1)
