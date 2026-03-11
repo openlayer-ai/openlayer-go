@@ -38,7 +38,7 @@ func TestUserAgentHeader(t *testing.T) {
 			},
 		}),
 	)
-	client.InferencePipelines.Data.Stream(
+	_, _ = client.InferencePipelines.Data.Stream(
 		context.Background(),
 		"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
 		openlayer.InferencePipelineDataStreamParams{
