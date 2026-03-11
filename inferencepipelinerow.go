@@ -41,11 +41,11 @@ func (r *InferencePipelineRowService) Update(ctx context.Context, inferencePipel
 	opts = slices.Concat(r.Options, opts)
 	if inferencePipelineID == "" {
 		err = errors.New("missing required inferencePipelineId parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("inference-pipelines/%s/rows", inferencePipelineID)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, params, &res, opts...)
-	return
+	return res, err
 }
 
 // A list of rows for an inference pipeline.
@@ -53,11 +53,11 @@ func (r *InferencePipelineRowService) List(ctx context.Context, inferencePipelin
 	opts = slices.Concat(r.Options, opts)
 	if inferencePipelineID == "" {
 		err = errors.New("missing required inferencePipelineId parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("inference-pipelines/%s/rows", inferencePipelineID)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, params, &res, opts...)
-	return
+	return res, err
 }
 
 type InferencePipelineRowUpdateResponse struct {

@@ -42,11 +42,11 @@ func (r *ProjectCommitService) New(ctx context.Context, projectID string, body P
 	opts = slices.Concat(r.Options, opts)
 	if projectID == "" {
 		err = errors.New("missing required projectId parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("projects/%s/versions", projectID)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
-	return
+	return res, err
 }
 
 // List the commits (project versions) in a project.
@@ -54,11 +54,11 @@ func (r *ProjectCommitService) List(ctx context.Context, projectID string, query
 	opts = slices.Concat(r.Options, opts)
 	if projectID == "" {
 		err = errors.New("missing required projectId parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("projects/%s/versions", projectID)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 type ProjectCommitNewResponse struct {

@@ -45,11 +45,11 @@ func (r *ProjectTestService) New(ctx context.Context, projectID string, body Pro
 	opts = slices.Concat(r.Options, opts)
 	if projectID == "" {
 		err = errors.New("missing required projectId parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("projects/%s/tests", projectID)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
-	return
+	return res, err
 }
 
 // Update tests.
@@ -57,11 +57,11 @@ func (r *ProjectTestService) Update(ctx context.Context, projectID string, body 
 	opts = slices.Concat(r.Options, opts)
 	if projectID == "" {
 		err = errors.New("missing required projectId parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("projects/%s/tests", projectID)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, &res, opts...)
-	return
+	return res, err
 }
 
 // List tests under a project.
@@ -69,11 +69,11 @@ func (r *ProjectTestService) List(ctx context.Context, projectID string, query P
 	opts = slices.Concat(r.Options, opts)
 	if projectID == "" {
 		err = errors.New("missing required projectId parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("projects/%s/tests", projectID)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 type ProjectTestNewResponse struct {

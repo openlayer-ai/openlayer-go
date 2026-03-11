@@ -45,11 +45,11 @@ func (r *CommitTestResultService) List(ctx context.Context, projectVersionID str
 	opts = slices.Concat(r.Options, opts)
 	if projectVersionID == "" {
 		err = errors.New("missing required projectVersionId parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("versions/%s/results", projectVersionID)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 type CommitTestResultListResponse struct {

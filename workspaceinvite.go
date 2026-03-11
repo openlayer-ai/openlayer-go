@@ -42,11 +42,11 @@ func (r *WorkspaceInviteService) New(ctx context.Context, workspaceID string, bo
 	opts = slices.Concat(r.Options, opts)
 	if workspaceID == "" {
 		err = errors.New("missing required workspaceId parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("workspaces/%s/invites", workspaceID)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
-	return
+	return res, err
 }
 
 // Retrieve a list of invites in a workspace.
@@ -54,11 +54,11 @@ func (r *WorkspaceInviteService) List(ctx context.Context, workspaceID string, q
 	opts = slices.Concat(r.Options, opts)
 	if workspaceID == "" {
 		err = errors.New("missing required workspaceId parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("workspaces/%s/invites", workspaceID)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 type WorkspaceInviteNewResponse struct {
