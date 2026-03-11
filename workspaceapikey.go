@@ -40,11 +40,11 @@ func (r *WorkspaceAPIKeyService) New(ctx context.Context, workspaceID string, bo
 	opts = slices.Concat(r.Options, opts)
 	if workspaceID == "" {
 		err = errors.New("missing required workspaceId parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("workspaces/%s/api-keys", workspaceID)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
-	return
+	return res, err
 }
 
 type WorkspaceAPIKeyNewResponse struct {

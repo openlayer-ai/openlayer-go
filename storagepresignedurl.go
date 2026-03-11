@@ -39,7 +39,7 @@ func (r *StoragePresignedURLService) New(ctx context.Context, body StoragePresig
 	opts = slices.Concat(r.Options, opts)
 	path := "storage/presigned-url"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
-	return
+	return res, err
 }
 
 type StoragePresignedURLNewResponse struct {

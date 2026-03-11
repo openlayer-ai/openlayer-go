@@ -48,7 +48,7 @@ func (r *ProjectService) New(ctx context.Context, body ProjectNewParams, opts ..
 	opts = slices.Concat(r.Options, opts)
 	path := "projects"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, body, &res, opts...)
-	return
+	return res, err
 }
 
 // List your workspace's projects.
@@ -56,7 +56,7 @@ func (r *ProjectService) List(ctx context.Context, query ProjectListParams, opts
 	opts = slices.Concat(r.Options, opts)
 	path := "projects"
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Delete a project by its ID.
@@ -65,11 +65,11 @@ func (r *ProjectService) Delete(ctx context.Context, projectID string, opts ...o
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if projectID == "" {
 		err = errors.New("missing required projectId parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("projects/%s", projectID)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, nil, opts...)
-	return
+	return err
 }
 
 type ProjectNewResponse struct {

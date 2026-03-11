@@ -50,11 +50,11 @@ func (r *InferencePipelineService) Get(ctx context.Context, inferencePipelineID 
 	opts = slices.Concat(r.Options, opts)
 	if inferencePipelineID == "" {
 		err = errors.New("missing required inferencePipelineId parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("inference-pipelines/%s", inferencePipelineID)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 // Update inference pipeline.
@@ -62,11 +62,11 @@ func (r *InferencePipelineService) Update(ctx context.Context, inferencePipeline
 	opts = slices.Concat(r.Options, opts)
 	if inferencePipelineID == "" {
 		err = errors.New("missing required inferencePipelineId parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("inference-pipelines/%s", inferencePipelineID)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, &res, opts...)
-	return
+	return res, err
 }
 
 // Delete inference pipeline.
@@ -75,11 +75,11 @@ func (r *InferencePipelineService) Delete(ctx context.Context, inferencePipeline
 	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
 	if inferencePipelineID == "" {
 		err = errors.New("missing required inferencePipelineId parameter")
-		return
+		return err
 	}
 	path := fmt.Sprintf("inference-pipelines/%s", inferencePipelineID)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, nil, opts...)
-	return
+	return err
 }
 
 // Get aggregated user data for an inference pipeline with pagination and metadata.
@@ -91,11 +91,11 @@ func (r *InferencePipelineService) GetUsers(ctx context.Context, inferencePipeli
 	opts = slices.Concat(r.Options, opts)
 	if inferencePipelineID == "" {
 		err = errors.New("missing required inferencePipelineId parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("inference-pipelines/%s/users", inferencePipelineID)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
-	return
+	return res, err
 }
 
 type InferencePipelineGetResponse struct {

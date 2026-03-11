@@ -44,11 +44,11 @@ func (r *WorkspaceService) Get(ctx context.Context, workspaceID string, opts ...
 	opts = slices.Concat(r.Options, opts)
 	if workspaceID == "" {
 		err = errors.New("missing required workspaceId parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("workspaces/%s", workspaceID)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
-	return
+	return res, err
 }
 
 // Update a workspace.
@@ -56,11 +56,11 @@ func (r *WorkspaceService) Update(ctx context.Context, workspaceID string, body 
 	opts = slices.Concat(r.Options, opts)
 	if workspaceID == "" {
 		err = errors.New("missing required workspaceId parameter")
-		return
+		return nil, err
 	}
 	path := fmt.Sprintf("workspaces/%s", workspaceID)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPut, path, body, &res, opts...)
-	return
+	return res, err
 }
 
 type WorkspaceGetResponse struct {
