@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.5.3 (2026-03-20)
+
+Full Changelog: [v0.5.2...v0.5.3](https://github.com/openlayer-ai/openlayer-go/compare/v0.5.2...v0.5.3)
+
+### Chores
+
+* **internal:** tweak CI branches ([aa7b916](https://github.com/openlayer-ai/openlayer-go/commit/aa7b9167ef355ddf514d6be078904181a233831f))
+
+
+### Refactors
+
+* **tests:** switch from prism to steady ([3562cda](https://github.com/openlayer-ai/openlayer-go/commit/3562cda0a57c42db655f27b235359cb0fe932b24))
+
 ## 0.5.2 (2026-03-11)
 
 Full Changelog: [v0.5.1...v0.5.2](https://github.com/openlayer-ai/openlayer-go/compare/v0.5.1...v0.5.2)
