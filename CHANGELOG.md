@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.7.0 (2026-04-01)
+
+Full Changelog: [v0.6.0...v0.7.0](https://github.com/openlayer-ai/openlayer-go/compare/v0.6.0...v0.7.0)
+
+### Features
+
+* Cid/fetching endpoints ([fc42b1a](https://github.com/openlayer-ai/openlayer-go/commit/fc42b1a1034a825a88bf6bd85bbfb258fde74eef))
+
 ## 0.6.0 (2026-04-01)
 
 Full Changelog: [v0.5.3...v0.6.0](https://github.com/openlayer-ai/openlayer-go/compare/v0.5.3...v0.6.0)
