@@ -13,6 +13,14 @@ func (UnionString) ImplementsCommitTestResultListResponseItemsRowsBodyColumnFilt
 }
 func (UnionString) ImplementsCommitTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilterValueUnion() {
 }
+func (UnionString) ImplementsInferencePipelineGetSessionsParamsColumnFiltersSetColumnFilterValueUnion() {
+}
+func (UnionString) ImplementsInferencePipelineGetSessionsParamsColumnFiltersStringColumnFilterValueUnion() {
+}
+func (UnionString) ImplementsInferencePipelineGetUsersParamsColumnFiltersSetColumnFilterValueUnion() {
+}
+func (UnionString) ImplementsInferencePipelineGetUsersParamsColumnFiltersStringColumnFilterValueUnion() {
+}
 func (UnionString) ImplementsInferencePipelineRowListParamsColumnFiltersSetColumnFilterValueUnion() {}
 func (UnionString) ImplementsInferencePipelineRowListParamsColumnFiltersStringColumnFilterValueUnion() {
 }
@@ -41,6 +49,10 @@ func (UnionBool) ImplementsProjectTestUpdateParamsPayloadsThresholdsValueUnion()
 func (UnionBool) ImplementsCommitTestResultListResponseItemsGoalThresholdsValueUnion() {}
 func (UnionBool) ImplementsCommitTestResultListResponseItemsRowsBodyColumnFiltersStringColumnFilterValueUnion() {
 }
+func (UnionBool) ImplementsInferencePipelineGetSessionsParamsColumnFiltersStringColumnFilterValueUnion() {
+}
+func (UnionBool) ImplementsInferencePipelineGetUsersParamsColumnFiltersStringColumnFilterValueUnion() {
+}
 func (UnionBool) ImplementsInferencePipelineRowListParamsColumnFiltersStringColumnFilterValueUnion() {
 }
 func (UnionBool) ImplementsInferencePipelineTestResultListResponseItemsGoalThresholdsValueUnion() {}
@@ -62,8 +74,11 @@ func (UnionFloat) ImplementsProjectTestUpdateParamsPayloadsThresholdsValueUnion(
 func (UnionFloat) ImplementsCommitTestResultListResponseItemsGoalThresholdsValueUnion() {}
 func (UnionFloat) ImplementsCommitTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterValueUnion() {
 }
-func (UnionFloat) ImplementsInferencePipelineRowListParamsColumnFiltersSetColumnFilterValueUnion() {}
-func (UnionFloat) ImplementsInferencePipelineTestResultListResponseItemsGoalThresholdsValueUnion() {}
+func (UnionFloat) ImplementsInferencePipelineGetSessionsParamsColumnFiltersSetColumnFilterValueUnion() {
+}
+func (UnionFloat) ImplementsInferencePipelineGetUsersParamsColumnFiltersSetColumnFilterValueUnion() {}
+func (UnionFloat) ImplementsInferencePipelineRowListParamsColumnFiltersSetColumnFilterValueUnion()  {}
+func (UnionFloat) ImplementsInferencePipelineTestResultListResponseItemsGoalThresholdsValueUnion()  {}
 func (UnionFloat) ImplementsInferencePipelineTestResultListResponseItemsRowsBodyColumnFiltersSetColumnFilterValueUnion() {
 }
 func (UnionFloat) ImplementsTestListResultsResponseItemsGoalThresholdsValueUnion() {}
