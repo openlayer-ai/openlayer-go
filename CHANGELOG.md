@@ -1,5 +1,32 @@
 # Changelog
 
+## 0.6.0 (2026-04-01)
+
+Full Changelog: [v0.5.3...v0.6.0](https://github.com/openlayer-ai/openlayer-go/compare/v0.5.3...v0.6.0)
+
+### Features
+
+* **internal:** support comma format in multipart form encoding ([e786b5d](https://github.com/openlayer-ai/openlayer-go/commit/e786b5d85bfb0961c69bcb324f0a385a68a4b3ac))
+
+
+### Bug Fixes
+
+* prevent duplicate ? in query params ([2ce2a83](https://github.com/openlayer-ai/openlayer-go/commit/2ce2a83255f418da84d07322e3c0e401258edfea))
+
+
+### Chores
+
+* **ci:** skip lint on metadata-only changes ([cedb652](https://github.com/openlayer-ai/openlayer-go/commit/cedb6523519bf810b25e32415cbe1c68466155ac))
+* **ci:** support opting out of skipping builds on metadata-only commits ([38613e1](https://github.com/openlayer-ai/openlayer-go/commit/38613e1f3e88137c7a866cec81121afe82b810f3))
+* **internal:** update gitignore ([62de9d9](https://github.com/openlayer-ai/openlayer-go/commit/62de9d9089c743cb4c6549cb3c91d25e1b08950d))
+* remove unnecessary error check for url parsing ([c20daa2](https://github.com/openlayer-ai/openlayer-go/commit/c20daa24798bb7581992de3ade017c7f9e714a67))
+* **tests:** bump steady to v0.19.4 ([0236fbc](https://github.com/openlayer-ai/openlayer-go/commit/0236fbccbc3cbe3103ea2b0641ed22dc43b43051))
+* **tests:** bump steady to v0.19.5 ([23fbd1d](https://github.com/openlayer-ai/openlayer-go/commit/23fbd1daa39106396326febb99f162672eacb83b))
+* **tests:** bump steady to v0.19.6 ([c97c1b9](https://github.com/openlayer-ai/openlayer-go/commit/c97c1b90f41536df70929aa1d10144fa6ed0751e))
+* **tests:** bump steady to v0.19.7 ([6de99ba](https://github.com/openlayer-ai/openlayer-go/commit/6de99bad6b0db4359d02dffe7c54dd62da4bcff1))
+* **tests:** bump steady to v0.20.1 ([fa50dbf](https://github.com/openlayer-ai/openlayer-go/commit/fa50dbfb2b94db2aa8f9dc8f0aa50e36013a54ec))
+* **tests:** bump steady to v0.20.2 ([bf9d7c7](https://github.com/openlayer-ai/openlayer-go/commit/bf9d7c799cd10b0c44ce3e97f98b7d83b335eb4e))
+
 ## 0.5.3 (2026-03-20)
 
 Full Changelog: [v0.5.2...v0.5.3](https://github.com/openlayer-ai/openlayer-go/compare/v0.5.2...v0.5.3)
