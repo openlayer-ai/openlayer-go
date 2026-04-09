@@ -1712,7 +1712,7 @@ func (r TestEvaluateParams) MarshalJSON() (data []byte, err error) {
 
 type TestListResultsParams struct {
 	// Filter for results that use data starting before the end timestamp.
-	EndTimestamp param.Field[float64] `query:"endTimestamp"`
+	EndTimestamp param.Field[float64] `query:"endTimestamp" format:"integer"`
 	// Include the insights linked to each test result
 	IncludeInsights param.Field[bool] `query:"includeInsights"`
 	// Retrive test results for a specific inference pipeline.
@@ -1724,7 +1724,7 @@ type TestListResultsParams struct {
 	// Retrive test results for a specific project version.
 	ProjectVersionID param.Field[string] `query:"projectVersionId" format:"uuid"`
 	// Filter for results that use data ending after the start timestamp.
-	StartTimestamp param.Field[float64] `query:"startTimestamp"`
+	StartTimestamp param.Field[float64] `query:"startTimestamp" format:"integer"`
 	// Filter by status(es).
 	Status param.Field[[]string] `query:"status"`
 }
