@@ -36,6 +36,22 @@ func NewInferencePipelineRowService(opts ...option.RequestOption) (r *InferenceP
 	return
 }
 
+// Fetch a single inference pipeline row by inference ID, including OTel steps.
+func (r *InferencePipelineRowService) Get(ctx context.Context, inferencePipelineID string, inferenceID string, opts ...option.RequestOption) (res *InferencePipelineRowGetResponse, err error) {
+	opts = slices.Concat(r.Options, opts)
+	if inferencePipelineID == "" {
+		err = errors.New("missing required inferencePipelineId parameter")
+		return nil, err
+	}
+	if inferenceID == "" {
+		err = errors.New("missing required inferenceId parameter")
+		return nil, err
+	}
+	path := fmt.Sprintf("inference-pipelines/%s/rows/%s", inferencePipelineID, inferenceID)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, nil, &res, opts...)
+	return res, err
+}
+
 // Update an inference data point in an inference pipeline.
 func (r *InferencePipelineRowService) Update(ctx context.Context, inferencePipelineID string, params InferencePipelineRowUpdateParams, opts ...option.RequestOption) (res *InferencePipelineRowUpdateResponse, err error) {
 	opts = slices.Concat(r.Options, opts)
@@ -58,6 +74,47 @@ func (r *InferencePipelineRowService) List(ctx context.Context, inferencePipelin
 	path := fmt.Sprintf("inference-pipelines/%s/rows", inferencePipelineID)
 	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPost, path, params, &res, opts...)
 	return res, err
+}
+
+// Delete a single inference pipeline row by inference ID. Only project admins can
+// perform this action.
+func (r *InferencePipelineRowService) Delete(ctx context.Context, inferencePipelineID string, inferenceID string, opts ...option.RequestOption) (err error) {
+	opts = slices.Concat(r.Options, opts)
+	opts = append([]option.RequestOption{option.WithHeader("Accept", "*/*")}, opts...)
+	if inferencePipelineID == "" {
+		err = errors.New("missing required inferencePipelineId parameter")
+		return err
+	}
+	if inferenceID == "" {
+		err = errors.New("missing required inferenceId parameter")
+		return err
+	}
+	path := fmt.Sprintf("inference-pipelines/%s/rows/%s", inferencePipelineID, inferenceID)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodDelete, path, nil, nil, opts...)
+	return err
+}
+
+type InferencePipelineRowGetResponse struct {
+	Row     interface{}                         `json:"row"`
+	Success bool                                `json:"success"`
+	JSON    inferencePipelineRowGetResponseJSON `json:"-"`
+}
+
+// inferencePipelineRowGetResponseJSON contains the JSON metadata for the struct
+// [InferencePipelineRowGetResponse]
+type inferencePipelineRowGetResponseJSON struct {
+	Row         apijson.Field
+	Success     apijson.Field
+	raw         string
+	ExtraFields map[string]apijson.Field
+}
+
+func (r *InferencePipelineRowGetResponse) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r inferencePipelineRowGetResponseJSON) RawJSON() string {
+	return r.raw
 }
 
 type InferencePipelineRowUpdateResponse struct {
