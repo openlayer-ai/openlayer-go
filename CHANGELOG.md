@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.7.1 (2026-04-10)
+
+Full Changelog: [v0.7.0...v0.7.1](https://github.com/openlayer-ai/openlayer-go/compare/v0.7.0...v0.7.1)
+
+### Bug Fixes
+
+* better respect format tags from the spec ([b4ce09a](https://github.com/openlayer-ai/openlayer-go/commit/b4ce09a7634307d71ab72fb7e08df6e0d9b67c8b))
+
+
+### Documentation
+
+* **closes OPEN-9953:** expose endpoints to get and delete a row ([f398e1e](https://github.com/openlayer-ai/openlayer-go/commit/f398e1e779f703d299d828d62feb4870e2f9ba1e))
+
 ## 0.7.0 (2026-04-01)
 
 Full Changelog: [v0.6.0...v0.7.0](https://github.com/openlayer-ai/openlayer-go/compare/v0.6.0...v0.7.0)
