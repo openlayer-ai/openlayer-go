@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.8.0 (2026-05-01)
+
+Full Changelog: [v0.7.1...v0.8.0](https://github.com/openlayer-ai/openlayer-go/compare/v0.7.1...v0.8.0)
+
+### Features
+
+* **go:** add default http client with timeout ([da44eaf](https://github.com/openlayer-ai/openlayer-go/commit/da44eaf95248221675f2fad295bb5d077fcff661))
+* support setting headers via env ([7e985fe](https://github.com/openlayer-ai/openlayer-go/commit/7e985fe107dff7315cdc641249c35702ba922c0e))
+
+
+### Chores
+
+* avoid embedding reflect.Type for dead code elimination ([5614b9a](https://github.com/openlayer-ai/openlayer-go/commit/5614b9adad1475db7b0679e381cb4fdea7e38909))
+* **internal:** more robust bootstrap script ([24a151f](https://github.com/openlayer-ai/openlayer-go/commit/24a151ff7c5d0ddc8c5cc2ed081c7b3bd6b38f23))
+* **tests:** bump steady to v0.22.1 ([7489be2](https://github.com/openlayer-ai/openlayer-go/commit/7489be22b8e6e9e0a62ed9297b18a44dc6db45cc))
+
 ## 0.7.1 (2026-04-10)
 
 Full Changelog: [v0.7.0...v0.7.1](https://github.com/openlayer-ai/openlayer-go/compare/v0.7.0...v0.7.1)
