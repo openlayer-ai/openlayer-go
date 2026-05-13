@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.8.1 (2026-05-13)
+
+Full Changelog: [v0.8.0...v0.8.1](https://github.com/openlayer-ai/openlayer-go/compare/v0.8.0...v0.8.1)
+
+### Bug Fixes
+
+* **go:** avoid panic when http.DefaultTransport is wrapped ([6d9b80a](https://github.com/openlayer-ai/openlayer-go/commit/6d9b80ade021459e7ce23cdaa29edf5d1b1184f9))
+
+
+### Chores
+
+* redact api-key headers in debug logs ([a9a157e](https://github.com/openlayer-ai/openlayer-go/commit/a9a157e732b4b4c98515f9fff85c4532144dc311))
+
 ## 0.8.0 (2026-05-01)
 
 Full Changelog: [v0.7.1...v0.8.0](https://github.com/openlayer-ai/openlayer-go/compare/v0.7.1...v0.8.0)
