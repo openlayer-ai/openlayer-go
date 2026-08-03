@@ -51,6 +51,18 @@ func (r *ProjectService) New(ctx context.Context, body ProjectNewParams, opts ..
 	return res, err
 }
 
+// Update a project's metadata.
+func (r *ProjectService) Update(ctx context.Context, projectID string, body ProjectUpdateParams, opts ...option.RequestOption) (res *ProjectUpdateResponse, err error) {
+	opts = slices.Concat(r.Options, opts)
+	if projectID == "" {
+		err = errors.New("missing required projectId parameter")
+		return nil, err
+	}
+	path := fmt.Sprintf("projects/%s", projectID)
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodPatch, path, body, &res, opts...)
+	return res, err
+}
+
 // List your workspace's projects.
 func (r *ProjectService) List(ctx context.Context, query ProjectListParams, opts ...option.RequestOption) (res *ProjectListResponse, err error) {
 	opts = slices.Concat(r.Options, opts)
@@ -101,10 +113,19 @@ type ProjectNewResponse struct {
 	VersionCount int64 `json:"versionCount" api:"required"`
 	// The workspace id.
 	WorkspaceID string `json:"workspaceId" api:"required,nullable" format:"uuid"`
+	// Number of days to retain monitoring data for this project. Null means data is
+	// retained indefinitely.
+	DataRetentionDays int64 `json:"dataRetentionDays" api:"nullable"`
 	// The project description.
 	Description string                    `json:"description" api:"nullable"`
 	GitRepo     ProjectNewResponseGitRepo `json:"gitRepo" api:"nullable"`
-	JSON        projectNewResponseJSON    `json:"-"`
+	// Who developed the model used in this project.
+	ModelDeveloper string `json:"modelDeveloper" api:"nullable"`
+	// The kinds of model used in this project.
+	ModelTypes []string `json:"modelTypes" api:"nullable"`
+	// What the system in this project is intended to do.
+	Purpose string                 `json:"purpose" api:"nullable"`
+	JSON    projectNewResponseJSON `json:"-"`
 }
 
 // projectNewResponseJSON contains the JSON metadata for the struct
@@ -124,8 +145,12 @@ type projectNewResponseJSON struct {
 	TaskType               apijson.Field
 	VersionCount           apijson.Field
 	WorkspaceID            apijson.Field
+	DataRetentionDays      apijson.Field
 	Description            apijson.Field
 	GitRepo                apijson.Field
+	ModelDeveloper         apijson.Field
+	ModelTypes             apijson.Field
+	Purpose                apijson.Field
 	raw                    string
 	ExtraFields            map[string]apijson.Field
 }
@@ -238,6 +263,185 @@ func (r projectNewResponseGitRepoJSON) RawJSON() string {
 	return r.raw
 }
 
+type ProjectUpdateResponse struct {
+	// The project id.
+	ID string `json:"id" api:"required" format:"uuid"`
+	// The project creator id.
+	CreatorID string `json:"creatorId" api:"required,nullable" format:"uuid"`
+	// The project creation date.
+	DateCreated time.Time `json:"dateCreated" api:"required" format:"date-time"`
+	// The project last updated date.
+	DateUpdated time.Time `json:"dateUpdated" api:"required" format:"date-time"`
+	// The number of tests in the development mode of the project.
+	DevelopmentGoalCount int64 `json:"developmentGoalCount" api:"required"`
+	// The total number of tests in the project.
+	GoalCount int64 `json:"goalCount" api:"required"`
+	// The number of inference pipelines in the project.
+	InferencePipelineCount int64 `json:"inferencePipelineCount" api:"required"`
+	// Links to the project.
+	Links ProjectUpdateResponseLinks `json:"links" api:"required"`
+	// The number of tests in the monitoring mode of the project.
+	MonitoringGoalCount int64 `json:"monitoringGoalCount" api:"required"`
+	// The project name.
+	Name string `json:"name" api:"required"`
+	// The source of the project.
+	Source ProjectUpdateResponseSource `json:"source" api:"required,nullable"`
+	// The task type of the project.
+	TaskType ProjectUpdateResponseTaskType `json:"taskType" api:"required"`
+	// The number of versions (commits) in the project.
+	VersionCount int64 `json:"versionCount" api:"required"`
+	// The workspace id.
+	WorkspaceID string `json:"workspaceId" api:"required,nullable" format:"uuid"`
+	// Number of days to retain monitoring data for this project. Null means data is
+	// retained indefinitely.
+	DataRetentionDays int64 `json:"dataRetentionDays" api:"nullable"`
+	// The project description.
+	Description string                       `json:"description" api:"nullable"`
+	GitRepo     ProjectUpdateResponseGitRepo `json:"gitRepo" api:"nullable"`
+	// Who developed the model used in this project.
+	ModelDeveloper string `json:"modelDeveloper" api:"nullable"`
+	// The kinds of model used in this project.
+	ModelTypes []string `json:"modelTypes" api:"nullable"`
+	// What the system in this project is intended to do.
+	Purpose string                    `json:"purpose" api:"nullable"`
+	JSON    projectUpdateResponseJSON `json:"-"`
+}
+
+// projectUpdateResponseJSON contains the JSON metadata for the struct
+// [ProjectUpdateResponse]
+type projectUpdateResponseJSON struct {
+	ID                     apijson.Field
+	CreatorID              apijson.Field
+	DateCreated            apijson.Field
+	DateUpdated            apijson.Field
+	DevelopmentGoalCount   apijson.Field
+	GoalCount              apijson.Field
+	InferencePipelineCount apijson.Field
+	Links                  apijson.Field
+	MonitoringGoalCount    apijson.Field
+	Name                   apijson.Field
+	Source                 apijson.Field
+	TaskType               apijson.Field
+	VersionCount           apijson.Field
+	WorkspaceID            apijson.Field
+	DataRetentionDays      apijson.Field
+	Description            apijson.Field
+	GitRepo                apijson.Field
+	ModelDeveloper         apijson.Field
+	ModelTypes             apijson.Field
+	Purpose                apijson.Field
+	raw                    string
+	ExtraFields            map[string]apijson.Field
+}
+
+func (r *ProjectUpdateResponse) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r projectUpdateResponseJSON) RawJSON() string {
+	return r.raw
+}
+
+// Links to the project.
+type ProjectUpdateResponseLinks struct {
+	App  string                         `json:"app" api:"required"`
+	JSON projectUpdateResponseLinksJSON `json:"-"`
+}
+
+// projectUpdateResponseLinksJSON contains the JSON metadata for the struct
+// [ProjectUpdateResponseLinks]
+type projectUpdateResponseLinksJSON struct {
+	App         apijson.Field
+	raw         string
+	ExtraFields map[string]apijson.Field
+}
+
+func (r *ProjectUpdateResponseLinks) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r projectUpdateResponseLinksJSON) RawJSON() string {
+	return r.raw
+}
+
+// The source of the project.
+type ProjectUpdateResponseSource string
+
+const (
+	ProjectUpdateResponseSourceWeb  ProjectUpdateResponseSource = "web"
+	ProjectUpdateResponseSourceAPI  ProjectUpdateResponseSource = "api"
+	ProjectUpdateResponseSourceNull ProjectUpdateResponseSource = "null"
+)
+
+func (r ProjectUpdateResponseSource) IsKnown() bool {
+	switch r {
+	case ProjectUpdateResponseSourceWeb, ProjectUpdateResponseSourceAPI, ProjectUpdateResponseSourceNull:
+		return true
+	}
+	return false
+}
+
+// The task type of the project.
+type ProjectUpdateResponseTaskType string
+
+const (
+	ProjectUpdateResponseTaskTypeLlmBase               ProjectUpdateResponseTaskType = "llm-base"
+	ProjectUpdateResponseTaskTypeTabularClassification ProjectUpdateResponseTaskType = "tabular-classification"
+	ProjectUpdateResponseTaskTypeTabularRegression     ProjectUpdateResponseTaskType = "tabular-regression"
+	ProjectUpdateResponseTaskTypeTextClassification    ProjectUpdateResponseTaskType = "text-classification"
+)
+
+func (r ProjectUpdateResponseTaskType) IsKnown() bool {
+	switch r {
+	case ProjectUpdateResponseTaskTypeLlmBase, ProjectUpdateResponseTaskTypeTabularClassification, ProjectUpdateResponseTaskTypeTabularRegression, ProjectUpdateResponseTaskTypeTextClassification:
+		return true
+	}
+	return false
+}
+
+type ProjectUpdateResponseGitRepo struct {
+	ID            string                           `json:"id" api:"required" format:"uuid"`
+	DateConnected time.Time                        `json:"dateConnected" api:"required" format:"date-time"`
+	DateUpdated   time.Time                        `json:"dateUpdated" api:"required" format:"date-time"`
+	GitAccountID  string                           `json:"gitAccountId" api:"required" format:"uuid"`
+	GitID         int64                            `json:"gitId" api:"required"`
+	Name          string                           `json:"name" api:"required"`
+	Private       bool                             `json:"private" api:"required"`
+	ProjectID     string                           `json:"projectId" api:"required" format:"uuid"`
+	Slug          string                           `json:"slug" api:"required"`
+	URL           string                           `json:"url" api:"required" format:"url"`
+	Branch        string                           `json:"branch"`
+	RootDir       string                           `json:"rootDir"`
+	JSON          projectUpdateResponseGitRepoJSON `json:"-"`
+}
+
+// projectUpdateResponseGitRepoJSON contains the JSON metadata for the struct
+// [ProjectUpdateResponseGitRepo]
+type projectUpdateResponseGitRepoJSON struct {
+	ID            apijson.Field
+	DateConnected apijson.Field
+	DateUpdated   apijson.Field
+	GitAccountID  apijson.Field
+	GitID         apijson.Field
+	Name          apijson.Field
+	Private       apijson.Field
+	ProjectID     apijson.Field
+	Slug          apijson.Field
+	URL           apijson.Field
+	Branch        apijson.Field
+	RootDir       apijson.Field
+	raw           string
+	ExtraFields   map[string]apijson.Field
+}
+
+func (r *ProjectUpdateResponseGitRepo) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r projectUpdateResponseGitRepoJSON) RawJSON() string {
+	return r.raw
+}
+
 type ProjectListResponse struct {
 	Items []ProjectListResponseItem `json:"items" api:"required"`
 	JSON  projectListResponseJSON   `json:"-"`
@@ -288,10 +492,19 @@ type ProjectListResponseItem struct {
 	VersionCount int64 `json:"versionCount" api:"required"`
 	// The workspace id.
 	WorkspaceID string `json:"workspaceId" api:"required,nullable" format:"uuid"`
+	// Number of days to retain monitoring data for this project. Null means data is
+	// retained indefinitely.
+	DataRetentionDays int64 `json:"dataRetentionDays" api:"nullable"`
 	// The project description.
 	Description string                          `json:"description" api:"nullable"`
 	GitRepo     ProjectListResponseItemsGitRepo `json:"gitRepo" api:"nullable"`
-	JSON        projectListResponseItemJSON     `json:"-"`
+	// Who developed the model used in this project.
+	ModelDeveloper string `json:"modelDeveloper" api:"nullable"`
+	// The kinds of model used in this project.
+	ModelTypes []string `json:"modelTypes" api:"nullable"`
+	// What the system in this project is intended to do.
+	Purpose string                      `json:"purpose" api:"nullable"`
+	JSON    projectListResponseItemJSON `json:"-"`
 }
 
 // projectListResponseItemJSON contains the JSON metadata for the struct
@@ -311,8 +524,12 @@ type projectListResponseItemJSON struct {
 	TaskType               apijson.Field
 	VersionCount           apijson.Field
 	WorkspaceID            apijson.Field
+	DataRetentionDays      apijson.Field
 	Description            apijson.Field
 	GitRepo                apijson.Field
+	ModelDeveloper         apijson.Field
+	ModelTypes             apijson.Field
+	Purpose                apijson.Field
 	raw                    string
 	ExtraFields            map[string]apijson.Field
 }
@@ -430,8 +647,17 @@ type ProjectNewParams struct {
 	Name param.Field[string] `json:"name" api:"required"`
 	// The task type of the project.
 	TaskType param.Field[ProjectNewParamsTaskType] `json:"taskType" api:"required"`
+	// Number of days to retain monitoring data for this project. Null means data is
+	// retained indefinitely.
+	DataRetentionDays param.Field[int64] `json:"dataRetentionDays"`
 	// The project description.
 	Description param.Field[string] `json:"description"`
+	// Who developed the model used in this project.
+	ModelDeveloper param.Field[string] `json:"modelDeveloper"`
+	// The kinds of model used in this project.
+	ModelTypes param.Field[[]string] `json:"modelTypes"`
+	// What the system in this project is intended to do.
+	Purpose param.Field[string] `json:"purpose"`
 }
 
 func (r ProjectNewParams) MarshalJSON() (data []byte, err error) {
@@ -454,6 +680,26 @@ func (r ProjectNewParamsTaskType) IsKnown() bool {
 		return true
 	}
 	return false
+}
+
+type ProjectUpdateParams struct {
+	// Number of days to retain monitoring data for this project. Null means data is
+	// retained indefinitely.
+	DataRetentionDays param.Field[int64] `json:"dataRetentionDays"`
+	// The project description.
+	Description param.Field[string] `json:"description"`
+	// Who developed the model used in this project.
+	ModelDeveloper param.Field[string] `json:"modelDeveloper"`
+	// The kinds of model used in this project.
+	ModelTypes param.Field[[]string] `json:"modelTypes"`
+	// The project name.
+	Name param.Field[string] `json:"name"`
+	// What the system in this project is intended to do.
+	Purpose param.Field[string] `json:"purpose"`
+}
+
+func (r ProjectUpdateParams) MarshalJSON() (data []byte, err error) {
+	return apijson.MarshalRoot(r)
 }
 
 type ProjectListParams struct {
