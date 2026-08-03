@@ -47,9 +47,13 @@ func TestProjectInferencePipelineNewWithOptionalParams(t *testing.T) {
 				PartitionType: openlayer.F(openlayer.ProjectInferencePipelineNewParamsDataBackendBigQueryDataBackendPartitionTypeDay),
 			}),
 			Project: openlayer.F(openlayer.ProjectInferencePipelineNewParamsProject{
-				Name:        openlayer.F("My Project"),
-				TaskType:    openlayer.F(openlayer.ProjectInferencePipelineNewParamsProjectTaskTypeLlmBase),
-				Description: openlayer.F("My project description."),
+				Name:              openlayer.F("My Project"),
+				TaskType:          openlayer.F(openlayer.ProjectInferencePipelineNewParamsProjectTaskTypeLlmBase),
+				DataRetentionDays: openlayer.F(int64(30)),
+				Description:       openlayer.F("My project description."),
+				ModelDeveloper:    openlayer.F("Acme AI"),
+				ModelTypes:        openlayer.F([]string{"llm"}),
+				Purpose:           openlayer.F("Answer customer billing questions."),
 			}),
 			Workspace: openlayer.F(openlayer.ProjectInferencePipelineNewParamsWorkspace{
 				Name:            openlayer.F("Openlayer"),
