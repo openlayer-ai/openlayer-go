@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.9.0 (2026-08-03)
+
+Full Changelog: [v0.8.1...v0.9.0](https://github.com/openlayer-ai/openlayer-go/compare/v0.8.1...v0.9.0)
+
+### Features
+
+* **stlc:** configurable CI runner and private-production-repo support in workflow templates ([9512641](https://github.com/openlayer-ai/openlayer-go/commit/951264146af4fa54baa34e077c8e7ff7d24c745e))
+
+
+### Chores
+
+* **closes OPEN-11851:** expose update project endpoint ([6ab0473](https://github.com/openlayer-ai/openlayer-go/commit/6ab04730799f2877ed20de3d53cbabe0b7cadad1))
+
 ## 0.8.1 (2026-05-13)
 
 Full Changelog: [v0.8.0...v0.8.1](https://github.com/openlayer-ai/openlayer-go/compare/v0.8.0...v0.8.1)
