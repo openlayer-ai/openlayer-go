@@ -816,10 +816,19 @@ type ProjectInferencePipelineNewResponseProject struct {
 	VersionCount int64 `json:"versionCount" api:"required"`
 	// The workspace id.
 	WorkspaceID string `json:"workspaceId" api:"required,nullable" format:"uuid"`
+	// Number of days to retain monitoring data for this project. Null means data is
+	// retained indefinitely.
+	DataRetentionDays int64 `json:"dataRetentionDays" api:"nullable"`
 	// The project description.
 	Description string                                            `json:"description" api:"nullable"`
 	GitRepo     ProjectInferencePipelineNewResponseProjectGitRepo `json:"gitRepo" api:"nullable"`
-	JSON        projectInferencePipelineNewResponseProjectJSON    `json:"-"`
+	// Who developed the model used in this project.
+	ModelDeveloper string `json:"modelDeveloper" api:"nullable"`
+	// The kinds of model used in this project.
+	ModelTypes []string `json:"modelTypes" api:"nullable"`
+	// What the system in this project is intended to do.
+	Purpose string                                         `json:"purpose" api:"nullable"`
+	JSON    projectInferencePipelineNewResponseProjectJSON `json:"-"`
 }
 
 // projectInferencePipelineNewResponseProjectJSON contains the JSON metadata for
@@ -839,8 +848,12 @@ type projectInferencePipelineNewResponseProjectJSON struct {
 	TaskType               apijson.Field
 	VersionCount           apijson.Field
 	WorkspaceID            apijson.Field
+	DataRetentionDays      apijson.Field
 	Description            apijson.Field
 	GitRepo                apijson.Field
+	ModelDeveloper         apijson.Field
+	ModelTypes             apijson.Field
+	Purpose                apijson.Field
 	raw                    string
 	ExtraFields            map[string]apijson.Field
 }
@@ -1835,10 +1848,19 @@ type ProjectInferencePipelineListResponseItemsProject struct {
 	VersionCount int64 `json:"versionCount" api:"required"`
 	// The workspace id.
 	WorkspaceID string `json:"workspaceId" api:"required,nullable" format:"uuid"`
+	// Number of days to retain monitoring data for this project. Null means data is
+	// retained indefinitely.
+	DataRetentionDays int64 `json:"dataRetentionDays" api:"nullable"`
 	// The project description.
 	Description string                                                  `json:"description" api:"nullable"`
 	GitRepo     ProjectInferencePipelineListResponseItemsProjectGitRepo `json:"gitRepo" api:"nullable"`
-	JSON        projectInferencePipelineListResponseItemsProjectJSON    `json:"-"`
+	// Who developed the model used in this project.
+	ModelDeveloper string `json:"modelDeveloper" api:"nullable"`
+	// The kinds of model used in this project.
+	ModelTypes []string `json:"modelTypes" api:"nullable"`
+	// What the system in this project is intended to do.
+	Purpose string                                               `json:"purpose" api:"nullable"`
+	JSON    projectInferencePipelineListResponseItemsProjectJSON `json:"-"`
 }
 
 // projectInferencePipelineListResponseItemsProjectJSON contains the JSON metadata
@@ -1858,8 +1880,12 @@ type projectInferencePipelineListResponseItemsProjectJSON struct {
 	TaskType               apijson.Field
 	VersionCount           apijson.Field
 	WorkspaceID            apijson.Field
+	DataRetentionDays      apijson.Field
 	Description            apijson.Field
 	GitRepo                apijson.Field
+	ModelDeveloper         apijson.Field
+	ModelTypes             apijson.Field
+	Purpose                apijson.Field
 	raw                    string
 	ExtraFields            map[string]apijson.Field
 }
@@ -2461,8 +2487,17 @@ type ProjectInferencePipelineNewParamsProject struct {
 	Name param.Field[string] `json:"name" api:"required"`
 	// The task type of the project.
 	TaskType param.Field[ProjectInferencePipelineNewParamsProjectTaskType] `json:"taskType" api:"required"`
+	// Number of days to retain monitoring data for this project. Null means data is
+	// retained indefinitely.
+	DataRetentionDays param.Field[int64] `json:"dataRetentionDays"`
 	// The project description.
 	Description param.Field[string] `json:"description"`
+	// Who developed the model used in this project.
+	ModelDeveloper param.Field[string] `json:"modelDeveloper"`
+	// The kinds of model used in this project.
+	ModelTypes param.Field[[]string] `json:"modelTypes"`
+	// What the system in this project is intended to do.
+	Purpose param.Field[string] `json:"purpose"`
 }
 
 func (r ProjectInferencePipelineNewParamsProject) MarshalJSON() (data []byte, err error) {

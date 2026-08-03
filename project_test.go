@@ -26,10 +26,47 @@ func TestProjectNewWithOptionalParams(t *testing.T) {
 		option.WithAPIKey("My API Key"),
 	)
 	_, err := client.Projects.New(context.TODO(), openlayer.ProjectNewParams{
-		Name:        openlayer.F("My Project"),
-		TaskType:    openlayer.F(openlayer.ProjectNewParamsTaskTypeLlmBase),
-		Description: openlayer.F("My project description."),
+		Name:              openlayer.F("My Project"),
+		TaskType:          openlayer.F(openlayer.ProjectNewParamsTaskTypeLlmBase),
+		DataRetentionDays: openlayer.F(int64(30)),
+		Description:       openlayer.F("My project description."),
+		ModelDeveloper:    openlayer.F("Acme AI"),
+		ModelTypes:        openlayer.F([]string{"llm"}),
+		Purpose:           openlayer.F("Answer customer billing questions."),
 	})
+	if err != nil {
+		var apierr *openlayer.Error
+		if errors.As(err, &apierr) {
+			t.Log(string(apierr.DumpRequest(true)))
+		}
+		t.Fatalf("err should be nil: %s", err.Error())
+	}
+}
+
+func TestProjectUpdateWithOptionalParams(t *testing.T) {
+	baseURL := "http://localhost:4010"
+	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
+		baseURL = envURL
+	}
+	if !testutil.CheckTestServer(t, baseURL) {
+		return
+	}
+	client := openlayer.NewClient(
+		option.WithBaseURL(baseURL),
+		option.WithAPIKey("My API Key"),
+	)
+	_, err := client.Projects.Update(
+		context.TODO(),
+		"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+		openlayer.ProjectUpdateParams{
+			DataRetentionDays: openlayer.F(int64(30)),
+			Description:       openlayer.F("My project description."),
+			ModelDeveloper:    openlayer.F("Acme AI"),
+			ModelTypes:        openlayer.F([]string{"llm"}),
+			Name:              openlayer.F("My Project"),
+			Purpose:           openlayer.F("Answer customer billing questions."),
+		},
+	)
 	if err != nil {
 		var apierr *openlayer.Error
 		if errors.As(err, &apierr) {
