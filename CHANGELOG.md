@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.9.1 (2026-08-20)
+
+Full Changelog: [v0.9.0...v0.9.1](https://github.com/openlayer-ai/openlayer-go/compare/v0.9.0...v0.9.1)
+
+### Chores
+
+* **internal:** allow the mock server port to be set with STAINLESS_MOCK_PORT ([6985066](https://github.com/openlayer-ai/openlayer-go/commit/6985066340322a92020144408cc3dadfe8a416a7))
+
 ## 0.9.0 (2026-08-03)
 
 Full Changelog: [v0.8.1...v0.9.0](https://github.com/openlayer-ai/openlayer-go/compare/v0.8.1...v0.9.0)
