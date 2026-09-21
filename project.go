@@ -189,14 +189,13 @@ func (r projectNewResponseLinksJSON) RawJSON() string {
 type ProjectNewResponseSource string
 
 const (
-	ProjectNewResponseSourceWeb  ProjectNewResponseSource = "web"
-	ProjectNewResponseSourceAPI  ProjectNewResponseSource = "api"
-	ProjectNewResponseSourceNull ProjectNewResponseSource = "null"
+	ProjectNewResponseSourceWeb ProjectNewResponseSource = "web"
+	ProjectNewResponseSourceAPI ProjectNewResponseSource = "api"
 )
 
 func (r ProjectNewResponseSource) IsKnown() bool {
 	switch r {
-	case ProjectNewResponseSourceWeb, ProjectNewResponseSourceAPI, ProjectNewResponseSourceNull:
+	case ProjectNewResponseSourceWeb, ProjectNewResponseSourceAPI:
 		return true
 	}
 	return false
@@ -368,14 +367,13 @@ func (r projectUpdateResponseLinksJSON) RawJSON() string {
 type ProjectUpdateResponseSource string
 
 const (
-	ProjectUpdateResponseSourceWeb  ProjectUpdateResponseSource = "web"
-	ProjectUpdateResponseSourceAPI  ProjectUpdateResponseSource = "api"
-	ProjectUpdateResponseSourceNull ProjectUpdateResponseSource = "null"
+	ProjectUpdateResponseSourceWeb ProjectUpdateResponseSource = "web"
+	ProjectUpdateResponseSourceAPI ProjectUpdateResponseSource = "api"
 )
 
 func (r ProjectUpdateResponseSource) IsKnown() bool {
 	switch r {
-	case ProjectUpdateResponseSourceWeb, ProjectUpdateResponseSourceAPI, ProjectUpdateResponseSourceNull:
+	case ProjectUpdateResponseSourceWeb, ProjectUpdateResponseSourceAPI:
 		return true
 	}
 	return false
@@ -568,14 +566,13 @@ func (r projectListResponseItemsLinksJSON) RawJSON() string {
 type ProjectListResponseItemsSource string
 
 const (
-	ProjectListResponseItemsSourceWeb  ProjectListResponseItemsSource = "web"
-	ProjectListResponseItemsSourceAPI  ProjectListResponseItemsSource = "api"
-	ProjectListResponseItemsSourceNull ProjectListResponseItemsSource = "null"
+	ProjectListResponseItemsSourceWeb ProjectListResponseItemsSource = "web"
+	ProjectListResponseItemsSourceAPI ProjectListResponseItemsSource = "api"
 )
 
 func (r ProjectListResponseItemsSource) IsKnown() bool {
 	switch r {
-	case ProjectListResponseItemsSourceWeb, ProjectListResponseItemsSourceAPI, ProjectListResponseItemsSourceNull:
+	case ProjectListResponseItemsSourceWeb, ProjectListResponseItemsSourceAPI:
 		return true
 	}
 	return false
