@@ -943,14 +943,13 @@ func (r inferencePipelineGetResponseProjectLinksJSON) RawJSON() string {
 type InferencePipelineGetResponseProjectSource string
 
 const (
-	InferencePipelineGetResponseProjectSourceWeb  InferencePipelineGetResponseProjectSource = "web"
-	InferencePipelineGetResponseProjectSourceAPI  InferencePipelineGetResponseProjectSource = "api"
-	InferencePipelineGetResponseProjectSourceNull InferencePipelineGetResponseProjectSource = "null"
+	InferencePipelineGetResponseProjectSourceWeb InferencePipelineGetResponseProjectSource = "web"
+	InferencePipelineGetResponseProjectSourceAPI InferencePipelineGetResponseProjectSource = "api"
 )
 
 func (r InferencePipelineGetResponseProjectSource) IsKnown() bool {
 	switch r {
-	case InferencePipelineGetResponseProjectSourceWeb, InferencePipelineGetResponseProjectSourceAPI, InferencePipelineGetResponseProjectSourceNull:
+	case InferencePipelineGetResponseProjectSourceWeb, InferencePipelineGetResponseProjectSourceAPI:
 		return true
 	}
 	return false
@@ -1953,14 +1952,13 @@ func (r inferencePipelineUpdateResponseProjectLinksJSON) RawJSON() string {
 type InferencePipelineUpdateResponseProjectSource string
 
 const (
-	InferencePipelineUpdateResponseProjectSourceWeb  InferencePipelineUpdateResponseProjectSource = "web"
-	InferencePipelineUpdateResponseProjectSourceAPI  InferencePipelineUpdateResponseProjectSource = "api"
-	InferencePipelineUpdateResponseProjectSourceNull InferencePipelineUpdateResponseProjectSource = "null"
+	InferencePipelineUpdateResponseProjectSourceWeb InferencePipelineUpdateResponseProjectSource = "web"
+	InferencePipelineUpdateResponseProjectSourceAPI InferencePipelineUpdateResponseProjectSource = "api"
 )
 
 func (r InferencePipelineUpdateResponseProjectSource) IsKnown() bool {
 	switch r {
-	case InferencePipelineUpdateResponseProjectSourceWeb, InferencePipelineUpdateResponseProjectSourceAPI, InferencePipelineUpdateResponseProjectSourceNull:
+	case InferencePipelineUpdateResponseProjectSourceWeb, InferencePipelineUpdateResponseProjectSourceAPI:
 		return true
 	}
 	return false

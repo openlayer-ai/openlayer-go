@@ -42,6 +42,23 @@ func (r *StoragePresignedURLService) New(ctx context.Context, body StoragePresig
 	return res, err
 }
 
+// Exchange a `storageUri` for a short-lived presigned url you can download the
+// object from.
+//
+// Use it to collect anything the platform stored on your behalf -- for example the
+// archive a framework export leaves behind, whose `storageUri` comes back in the
+// background task's `outputs`.
+//
+// The workspace is taken from the API key, so there is nothing else to send. The
+// url is only issued for objects your workspace owns, and `404` covers both "no
+// such object" and "not yours".
+func (r *StoragePresignedURLService) Get(ctx context.Context, query StoragePresignedURLGetParams, opts ...option.RequestOption) (res *StoragePresignedURLGetResponse, err error) {
+	opts = slices.Concat(r.Options, opts)
+	path := "storage/presigned-url"
+	err = requestconfig.ExecuteNewRequest(ctx, http.MethodGet, path, query, &res, opts...)
+	return res, err
+}
+
 type StoragePresignedURLNewResponse struct {
 	// The storage URI to send back to the backend after the upload was completed.
 	StorageUri string `json:"storageUri" api:"required"`
@@ -70,6 +87,28 @@ func (r storagePresignedURLNewResponseJSON) RawJSON() string {
 	return r.raw
 }
 
+type StoragePresignedURLGetResponse struct {
+	// The presigned url. Short-lived -- download promptly.
+	URL  string                             `json:"url" api:"required" format:"url"`
+	JSON storagePresignedURLGetResponseJSON `json:"-"`
+}
+
+// storagePresignedURLGetResponseJSON contains the JSON metadata for the struct
+// [StoragePresignedURLGetResponse]
+type storagePresignedURLGetResponseJSON struct {
+	URL         apijson.Field
+	raw         string
+	ExtraFields map[string]apijson.Field
+}
+
+func (r *StoragePresignedURLGetResponse) UnmarshalJSON(data []byte) (err error) {
+	return apijson.UnmarshalRoot(data, r)
+}
+
+func (r storagePresignedURLGetResponseJSON) RawJSON() string {
+	return r.raw
+}
+
 type StoragePresignedURLNewParams struct {
 	// The name of the object.
 	ObjectName param.Field[string] `query:"objectName" api:"required"`
@@ -78,6 +117,20 @@ type StoragePresignedURLNewParams struct {
 // URLQuery serializes [StoragePresignedURLNewParams]'s query parameters as
 // `url.Values`.
 func (r StoragePresignedURLNewParams) URLQuery() (v url.Values) {
+	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
+		ArrayFormat:  apiquery.ArrayQueryFormatComma,
+		NestedFormat: apiquery.NestedQueryFormatBrackets,
+	})
+}
+
+type StoragePresignedURLGetParams struct {
+	// The object's storage uri.
+	StorageUri param.Field[string] `query:"storageUri" api:"required"`
+}
+
+// URLQuery serializes [StoragePresignedURLGetParams]'s query parameters as
+// `url.Values`.
+func (r StoragePresignedURLGetParams) URLQuery() (v url.Values) {
 	return apiquery.MarshalWithSettings(r, apiquery.QuerySettings{
 		ArrayFormat:  apiquery.ArrayQueryFormatComma,
 		NestedFormat: apiquery.NestedQueryFormatBrackets,

@@ -892,14 +892,13 @@ func (r projectInferencePipelineNewResponseProjectLinksJSON) RawJSON() string {
 type ProjectInferencePipelineNewResponseProjectSource string
 
 const (
-	ProjectInferencePipelineNewResponseProjectSourceWeb  ProjectInferencePipelineNewResponseProjectSource = "web"
-	ProjectInferencePipelineNewResponseProjectSourceAPI  ProjectInferencePipelineNewResponseProjectSource = "api"
-	ProjectInferencePipelineNewResponseProjectSourceNull ProjectInferencePipelineNewResponseProjectSource = "null"
+	ProjectInferencePipelineNewResponseProjectSourceWeb ProjectInferencePipelineNewResponseProjectSource = "web"
+	ProjectInferencePipelineNewResponseProjectSourceAPI ProjectInferencePipelineNewResponseProjectSource = "api"
 )
 
 func (r ProjectInferencePipelineNewResponseProjectSource) IsKnown() bool {
 	switch r {
-	case ProjectInferencePipelineNewResponseProjectSourceWeb, ProjectInferencePipelineNewResponseProjectSourceAPI, ProjectInferencePipelineNewResponseProjectSourceNull:
+	case ProjectInferencePipelineNewResponseProjectSourceWeb, ProjectInferencePipelineNewResponseProjectSourceAPI:
 		return true
 	}
 	return false
@@ -1924,14 +1923,13 @@ func (r projectInferencePipelineListResponseItemsProjectLinksJSON) RawJSON() str
 type ProjectInferencePipelineListResponseItemsProjectSource string
 
 const (
-	ProjectInferencePipelineListResponseItemsProjectSourceWeb  ProjectInferencePipelineListResponseItemsProjectSource = "web"
-	ProjectInferencePipelineListResponseItemsProjectSourceAPI  ProjectInferencePipelineListResponseItemsProjectSource = "api"
-	ProjectInferencePipelineListResponseItemsProjectSourceNull ProjectInferencePipelineListResponseItemsProjectSource = "null"
+	ProjectInferencePipelineListResponseItemsProjectSourceWeb ProjectInferencePipelineListResponseItemsProjectSource = "web"
+	ProjectInferencePipelineListResponseItemsProjectSourceAPI ProjectInferencePipelineListResponseItemsProjectSource = "api"
 )
 
 func (r ProjectInferencePipelineListResponseItemsProjectSource) IsKnown() bool {
 	switch r {
-	case ProjectInferencePipelineListResponseItemsProjectSourceWeb, ProjectInferencePipelineListResponseItemsProjectSourceAPI, ProjectInferencePipelineListResponseItemsProjectSourceNull:
+	case ProjectInferencePipelineListResponseItemsProjectSourceWeb, ProjectInferencePipelineListResponseItemsProjectSourceAPI:
 		return true
 	}
 	return false
@@ -2517,14 +2515,13 @@ func (r ProjectInferencePipelineNewParamsProjectLinks) MarshalJSON() (data []byt
 type ProjectInferencePipelineNewParamsProjectSource string
 
 const (
-	ProjectInferencePipelineNewParamsProjectSourceWeb  ProjectInferencePipelineNewParamsProjectSource = "web"
-	ProjectInferencePipelineNewParamsProjectSourceAPI  ProjectInferencePipelineNewParamsProjectSource = "api"
-	ProjectInferencePipelineNewParamsProjectSourceNull ProjectInferencePipelineNewParamsProjectSource = "null"
+	ProjectInferencePipelineNewParamsProjectSourceWeb ProjectInferencePipelineNewParamsProjectSource = "web"
+	ProjectInferencePipelineNewParamsProjectSourceAPI ProjectInferencePipelineNewParamsProjectSource = "api"
 )
 
 func (r ProjectInferencePipelineNewParamsProjectSource) IsKnown() bool {
 	switch r {
-	case ProjectInferencePipelineNewParamsProjectSourceWeb, ProjectInferencePipelineNewParamsProjectSourceAPI, ProjectInferencePipelineNewParamsProjectSourceNull:
+	case ProjectInferencePipelineNewParamsProjectSourceWeb, ProjectInferencePipelineNewParamsProjectSourceAPI:
 		return true
 	}
 	return false

@@ -24,6 +24,8 @@ type Client struct {
 	InferencePipelines *InferencePipelineService
 	Storage            *StorageService
 	Tests              *TestService
+	BackgroundTasks    *BackgroundTaskService
+	Governance         *GovernanceService
 }
 
 // DefaultClientOptions read from the environment (OPENLAYER_API_KEY,
@@ -62,6 +64,8 @@ func NewClient(opts ...option.RequestOption) (r *Client) {
 	r.InferencePipelines = NewInferencePipelineService(opts...)
 	r.Storage = NewStorageService(opts...)
 	r.Tests = NewTestService(opts...)
+	r.BackgroundTasks = NewBackgroundTaskService(opts...)
+	r.Governance = NewGovernanceService(opts...)
 
 	return
 }

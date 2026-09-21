@@ -13,7 +13,7 @@ import (
 	"github.com/openlayer-ai/openlayer-go/option"
 )
 
-func TestStoragePresignedURLNew(t *testing.T) {
+func TestGovernanceFrameworkDocumentGet(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -25,9 +25,11 @@ func TestStoragePresignedURLNew(t *testing.T) {
 		option.WithBaseURL(baseURL),
 		option.WithAPIKey("My API Key"),
 	)
-	_, err := client.Storage.PresignedURL.New(context.TODO(), openlayer.StoragePresignedURLNewParams{
-		ObjectName: openlayer.F("objectName"),
-	})
+	_, err := client.Governance.Frameworks.Documents.Get(
+		context.TODO(),
+		"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+		"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+	)
 	if err != nil {
 		var apierr *openlayer.Error
 		if errors.As(err, &apierr) {
@@ -37,7 +39,7 @@ func TestStoragePresignedURLNew(t *testing.T) {
 	}
 }
 
-func TestStoragePresignedURLGet(t *testing.T) {
+func TestGovernanceFrameworkDocumentListWithOptionalParams(t *testing.T) {
 	baseURL := "http://localhost:4010"
 	if envURL, ok := os.LookupEnv("TEST_API_BASE_URL"); ok {
 		baseURL = envURL
@@ -49,9 +51,14 @@ func TestStoragePresignedURLGet(t *testing.T) {
 		option.WithBaseURL(baseURL),
 		option.WithAPIKey("My API Key"),
 	)
-	_, err := client.Storage.PresignedURL.Get(context.TODO(), openlayer.StoragePresignedURLGetParams{
-		StorageUri: openlayer.F("storageUri"),
-	})
+	_, err := client.Governance.Frameworks.Documents.List(
+		context.TODO(),
+		"182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+		openlayer.GovernanceFrameworkDocumentListParams{
+			Page:    openlayer.F(int64(1)),
+			PerPage: openlayer.F(int64(1)),
+		},
+	)
 	if err != nil {
 		var apierr *openlayer.Error
 		if errors.As(err, &apierr) {
