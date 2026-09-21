@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.10.0](https://github.com/openlayer-ai/openlayer-go/compare/v0.9.1...v0.10.0) (2026-09-21)
+
+
+### Features
+
+* **governance:** add the governance write endpoints and generate governance SDK methods ([d6b216d](https://github.com/openlayer-ai/openlayer-go/commit/d6b216d346565a3a498e7a1109e59c4ffce7149d))
+
+
+### Chores
+
+* merge production main (release cut by the Stainless app) into the staging trunk ([7c76b82](https://github.com/openlayer-ai/openlayer-go/commit/7c76b82ef51c4a5ec2a1ba19d65e1827225d8f18))
+
+
+### Documentation
+
+* **closes OPEN-9410:** expose the governance framework endpoints ([5bb5a16](https://github.com/openlayer-ai/openlayer-go/commit/5bb5a1666d79e7cdded91ce3bf5e0263d53ebba5))
+
 ## 0.9.1 (2026-08-20)
 
 Full Changelog: [v0.9.0...v0.9.1](https://github.com/openlayer-ai/openlayer-go/compare/v0.9.0...v0.9.1)
