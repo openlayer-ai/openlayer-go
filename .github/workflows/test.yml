@@ -1,0 +1,80 @@
+# Separate from the generated ci.yml. stlc keeps workflow files across builds, but
+# `stlc build --rewrite-scaffold` would drop this one; re-add it after such a run.
+name: Tests
+on:
+  # No job-level `if:` (unlike ci.yml): a job skipped on pull_request counts as passing
+  # for required checks, and the PRs to gate (promote, release-please) are same-repo.
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  # A new PR push cancels the old run. Other runs get a group per commit: GitHub also
+  # cancels a queued run when a newer one joins its group, and a cancelled run on main
+  # would fail the required check for a good commit.
+  group: test-${{ github.event_name == 'pull_request' && github.ref || github.sha }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    # Above go test's own 10m default, so a hang ends with its goroutine dump.
+    timeout-minutes: 15
+    runs-on: ${{ startsWith(github.repository, 'stainless-sdks/') && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
+    strategy:
+      fail-fast: false
+      matrix:
+        # The minimum go.mod declares, and the latest release.
+        go: [go.mod, stable]
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          # setup-go ignores an empty go-version and falls back to go-version-file.
+          go-version: ${{ matrix.go == 'stable' && 'stable' || '' }}
+          go-version-file: ${{ matrix.go == 'go.mod' && './go.mod' || '' }}
+
+      # scripts/test starts the Steady mock server through `npm exec`.
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: '24'
+
+      # go test exits 0 when tests skip, and with SKIP_MOCK_TESTS=true and no mock every
+      # API test skips, so the -json events are checked too (the log shows the plain
+      # output). Packages without test files also report "skip", hence the `.Test` filter.
+      - name: Run tests
+        run: |
+          set -o pipefail
+          events="$RUNNER_TEMP/go-test.jsonl"
+          code=0
+          # shellcheck disable=SC2266 # shellcheck mistakes ./scripts/test for test(1)
+          ./scripts/test -count=1 -race -json | tee "$events" \
+            | jq --unbuffered -Rrj 'fromjson? // {Output: "\(.)\n"} | .Output // empty' || code=$?
+          passed=$(jq -Rrn '[inputs | fromjson? | select(.Test and .Action == "pass")] | length' "$events")
+          echo "$passed tests passed"
+          # No pass events means the flags never reached go test (plain output, no -race).
+          if [ "$passed" -eq 0 ]; then
+            code=1
+          fi
+          not_passed=$(jq -Rr 'fromjson? | select(.Action == "fail" or (.Action == "skip" and .Test)) | "\(.Action): \(.Package) \(.Test // "")"' "$events")
+          if [ -n "$not_passed" ]; then
+            echo "$not_passed"
+            code=1
+          fi
+          exit "$code"
+
+  # The one check to require in rulesets, so matrix legs can be added or renamed freely.
+  # always(), not !cancelled(): a skipped required check would count as passing.
+  required:
+    timeout-minutes: 5
+    if: always()
+    needs: [test]
+    runs-on: ubuntu-latest
+    steps:
+      - run: test "${{ needs.test.result }}" = success
