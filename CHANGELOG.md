@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.11.0](https://github.com/openlayer-ai/openlayer-go/compare/v0.10.0...v0.11.0) (2026-09-29)
+
+
+### Features
+
+* **api:** add API key CRUD, expiry, and rotation ([32740eb](https://github.com/openlayer-ai/openlayer-go/commit/32740eb6877e2f1060f560112aeb24c4548a3e83))
+
 ## [0.10.0](https://github.com/openlayer-ai/openlayer-go/compare/v0.9.1...v0.10.0) (2026-09-21)
 
 
